@@ -17,6 +17,7 @@ class SampleTest {
         Sample.printHelloWorld();
     }
 
+
     @Test
     void doINeedToCheckDefaultConstructor() {
         final var sampleInstance = new Sample();
