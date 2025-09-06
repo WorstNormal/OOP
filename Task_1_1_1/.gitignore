@@ -3,9 +3,6 @@
 *.iml
 
 # Gradle
-gradle/wrapper/
-gradlew
-gradlew.bat
 settings.gradle
 
 # Артефакты сборки
