@@ -13,9 +13,6 @@ docs/
 
 # Зависимости
 libs/
-.idea/
-*.iml
-
 
 # Прочие локальные файлы
 sources.txt
