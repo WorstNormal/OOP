@@ -10,21 +10,21 @@ class SampleTest {
     void checkSorting() { // все ли работает
         int[] array = {4, 10, 3, 5, 1};
         int[] expected = {1, 3, 4, 5, 10};
-        int[] result = new Sample().heapsort(array);
+        int[] result = new Sample().heapSort(array);
         assertArrayEquals(expected, result, () -> "Ошибка с стандартным массивом");
     }
 
     @Test
     void checkEmptyArray() { // крайний случай снизу 1
         int[] array = {};
-        int[] result = new Sample().heapsort(array);
+        int[] result = new Sample().heapSort(array);
         assertArrayEquals(new int[]{}, result, () -> "Ошибка с пустым массивом");
     }
 
     @Test
     void checkSingleElement() { // крайний случай снизу 2
         int[] array = {42};
-        int[] result = new Sample().heapsort(array);
+        int[] result = new Sample().heapSort(array);
         assertArrayEquals(new int[]{42}, result, () ->  "Ошибка с массивом из одного элемента");
     }
 
