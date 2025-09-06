@@ -34,7 +34,7 @@ class SampleTest {
                 IntStream.of(2),
                 IntStream.generate(() -> 1).limit(10000)
         ).toArray();
-        int[] result = new Sample().heapsort(array);
+        int[] result = new Sample().heapSort(array);
         int[] expected = IntStream.concat(
                 IntStream.generate(() -> 1).limit(10000),
                 IntStream.of(2)
@@ -48,7 +48,7 @@ class SampleTest {
                 IntStream.generate(() -> (int) 1e9).limit(100),
                 IntStream.of(2)
         ).toArray();
-        int[] result = new Sample().heapsort(array);
+        int[] result = new Sample().heapSort(array);
         int[] expected = IntStream.concat(
                 IntStream.of(2),
                 IntStream.generate(() -> (int) 1e9).limit(100)
