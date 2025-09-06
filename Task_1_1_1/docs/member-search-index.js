@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"ru.nsu.gaev","c":"Sample","l":"heapsort(int[])"},{"p":"ru.nsu.gaev","c":"Sample","l":"main(String[])","u":"main(java.lang.String[])"},{"p":"ru.nsu.gaev","c":"Sample","l":"Sample()","u":"%3Cinit%3E()"}];updateSearchResults();
