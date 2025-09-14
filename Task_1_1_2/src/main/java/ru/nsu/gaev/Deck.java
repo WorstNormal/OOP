@@ -36,21 +36,14 @@ public class Deck {
         return cards.remove(0);
     }
 
-    public int size() {
-        return cards.size();
-    }
-
     // значение карты (туз = 11 по умолчанию)
     private static int getCardValue(String card) {
         String rank = card.substring(0, card.length() - 1);
-        switch (rank) {
-            case "J": case "Q": case "K":
-                return 10;
-            case "A":
-                return 11;
-            default:
-                return Integer.parseInt(rank);
-        }
+        return switch (rank) {
+            case "J", "Q", "K" -> 10;
+            case "A" -> 11;
+            default -> Integer.parseInt(rank);
+        };
     }
 
     // сумма руки с учётом тузов
