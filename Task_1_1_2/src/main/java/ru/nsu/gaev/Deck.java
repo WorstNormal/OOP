@@ -21,7 +21,6 @@ public class Deck {
                 }
             }
         }
-
         shuffle();
     }
 
