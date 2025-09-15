@@ -3,7 +3,7 @@ package ru.nsu.gaev;
 import java.util.Scanner;
 
 public class GameLogic {
-    static Scanner scanner = new Scanner(System.in);
+    public static final Scanner scanner = new Scanner(System.in);
     private static int roundCounter = 0;
 
     /**

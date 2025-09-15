@@ -97,6 +97,16 @@ class PlayerLogicTest {
         assertTrue(output.contains("Bust! You have"));
     }
 
+
+    @Test
+    void playerTurnTestMistake() {
+        String input = "std\nstand\n";
+        System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+        player.playerTurn();
+        String output = outputStream.toString();
+        assertTrue(output.contains("Please enter 'hit' or 'stand'"));
+    }
+
     @Test
     void playerTurnTestHit() {
         // Подготавливаем ввод с действиями "hit", "hit", "stand"
