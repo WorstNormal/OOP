@@ -6,7 +6,11 @@ public class GameLogic {
     static Scanner scanner = new Scanner(System.in);
     private static int roundCounter = 0;
 
-    public static void main(String[] args) {
+    /**
+     * Основной метод игры. Запускает раунды игры Blackjack до тех пор,
+     * пока игрок не выберет завершение.
+     */
+    public static void main() {
         System.out.println("Welcome to Blackjack!");
 
         while (true) {
@@ -22,12 +26,17 @@ public class GameLogic {
                 answer = scanner.next().toLowerCase();
             }
             if (answer.equals("no")) {
-                System.out.println("Game over. You played " + roundCounter + " rounds.");
+                System.out.println("Game over. You played " + roundCounter +
+                        " rounds.");
                 break;
             }
         }
     }
 
+    /**
+     * Запускает один раунд игры Blackjack. Запрашивает количество колод карт, инициализирует игрока и дилера,
+     * обрабатывает ход игрока, проверяет его баллы, после чего ходит дилер и определяется победитель.
+     */
     public static void startRound() {
         System.out.print("Enter number of decks to use (at least 1): ");
         int countDecks = scanner.nextInt();
@@ -48,8 +57,10 @@ public class GameLogic {
         dealer.addCard(deck.drawCard());
         dealer.addCard(deck.drawCard());
 
-        System.out.println("Player's hand: " + player.getHand() + " (total = " + player.getScore() + ")");
-        System.out.println("Dealer's hand: [" + dealer.getVisibleCard() + ", X]");
+        System.out.println("Player's hand: " + player.getHand() +
+                " (total = " + player.getScore() + ")");
+        System.out.println("Dealer's hand: [" + dealer.getVisibleCard() +
+                ", X]");
 
         // ход игрока
         player.playerTurn();
@@ -60,11 +71,11 @@ public class GameLogic {
             return; // раунд закончен
         }
 
-        // dealer turn if player didn't bust
+        // ход дилера, если игрок не перебрал
         if (player.getScore() <= 21) {
             dealer.dealerTurn();
 
-            // compare results
+            // сравнение результатов
             int playerScore = player.getScore();
             int dealerScore = dealer.getScore();
 

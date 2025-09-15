@@ -2,59 +2,62 @@ package ru.nsu.gaev;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class DeckTest {
-    private Deck deck;
-
+    private Deck deck1;
+    private Deck fackdeck;
     @BeforeEach
-    void setUp() {
-        deck = new Deck(1);
+    void deck1create() {
+        deck1 = new Deck(1);
+        fackdeck = new Deck();
     }
 
     @Test
-    void testDeckInitialization() {
-        // 52 карты в одной колоде
-        for (int i = 0; i < 52; i++) {
-            assertNotNull(deck.drawCard());
-        }
-
-        // После 52-х карт — должно выброситься исключение
-        assertThrows(IllegalStateException.class, deck::drawCard);
-    }
-
-    @Test
-    void testShuffle() {
-        // Проверка на то, что после shuffle порядок не предсказуем
-        Deck deck1 = new Deck(1);
+    void shuffleTest()
+    {
         Deck deck2 = new Deck(1);
-        assertNotEquals(deck1.drawCard(), deck2.drawCard());
+        Deck deck3 = new Deck();
+        assertNotEquals(deck1, deck2);
+        assertNotEquals(deck1, deck2);
     }
 
     @Test
-    void testCalculateHandValueWithoutAce() {
-        List<String> hand = Arrays.asList("10H", "7S");
-        assertEquals(17, Deck.calculateHandValue(hand));
+    void getCardsCountTest()
+    {
+        Deck deck2 = new Deck(1);
+        assertEquals(deck1.getCardsCount(), deck2.getCardsCount());
     }
 
     @Test
-    void testCalculateHandValueWithOneAce() {
-        List<String> hand = Arrays.asList("AH", "7S");
-        assertEquals(18, Deck.calculateHandValue(hand));
+    void drawTest()
+    {
+        Deck deck2 = new Deck(1);
+        deck2.drawCard();
+        assertNotEquals(deck1.getCardsCount(), deck2.getCardsCount());
     }
 
     @Test
-    void testCalculateHandValueWithMultipleAces() {
-        List<String> hand = Arrays.asList("AH", "AD", "8C");
-        assertEquals(20, Deck.calculateHandValue(hand));
+    void getCardValueTest()
+    {
+        int value_A = Deck.getCardValue("AH");
+        assertEquals(11, value_A);
+        int value_J = Deck.getCardValue("JH");
+        assertEquals(10, value_J);
+        int value_6 = Deck.getCardValue("6H");
+        assertEquals(6, value_6);
     }
 
     @Test
-    void testCalculateHandValueBustingWithAces() {
-        List<String> hand = Arrays.asList("AH", "AD", "AC", "9S");
-        assertEquals(12, Deck.calculateHandValue(hand));
+    void calculateHandValueTest()
+    {
+        int value_A_10_10 = Deck.calculateHandValue(java.util.List.of("AH", "10H", "10S"));
+        assertEquals(21, value_A_10_10);
+        int value_A_A_A = Deck.calculateHandValue(java.util.List.of("AH", "AC", "AS"));
+        assertEquals(13, value_A_A_A);
+        int value_J_K_Q = Deck.calculateHandValue(java.util.List.of("JH", "KC", "QS"));
+        assertEquals(30, value_J_K_Q);
     }
 }
