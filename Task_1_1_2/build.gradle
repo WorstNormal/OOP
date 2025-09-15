@@ -15,12 +15,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     // Зависимость для JUnit 5
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-
-    // Зависимость для Mockito
-    testImplementation 'org.mockito:mockito-core:4.3.1'
-
-    // Зависимость для JUnit 5 runner (если нужно)
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 test {
     useJUnitPlatform()
