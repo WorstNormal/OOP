@@ -88,7 +88,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.gaev.Deck)" class="member-name-link">DealerLogic</a><wbr>(<a href="Deck.html" title="class in ru.nsu.gaev">Deck</a>&nbsp;deck)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор для инициализации дилера.</div>
+</div>
 </div>
 </section>
 </li>
@@ -105,19 +107,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addCard(java.lang.String)" class="member-name-link">addCard</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;card)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Добавляет карту в руку дилера.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerTurn()" class="member-name-link">dealerTurn</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHand()" class="member-name-link">getHand</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Ход дилера по правилам игры.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandSize()" class="member-name-link">getHandSize</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает количество карт у дилера.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getScore()" class="member-name-link">getScore</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает текущий счёт дилера.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVisibleCard()" class="member-name-link">getVisibleCard</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает карту, которая видна игроку (первая карта в руке дилера).</div>
+</div>
 </div>
 </div>
 </div>
@@ -139,6 +151,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.gaev.Deck)">
 <h3>DealerLogic</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DealerLogic</span><wbr><span class="parameters">(<a href="Deck.html" title="class in ru.nsu.gaev">Deck</a>&nbsp;deck)</span></div>
+<div class="block">Конструктор для инициализации дилера. Инициализирует колоду, из которой будут вытягиваться карты для дилера.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>deck</code> - колода карт, из которой будут раздавать карты.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -153,30 +170,55 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addCard(java.lang.String)">
 <h3>addCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addCard</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;card)</span></div>
+<div class="block">Добавляет карту в руку дилера.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>card</code> - карта в виде строки, которая добавляется в руку дилера (например, "2H", "KS").</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getScore()">
 <h3>getScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getScore</span>()</div>
+<div class="block">Возвращает текущий счёт дилера. Счёт рассчитывается как сумма значений карт в руке.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>текущий счёт дилера.</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getHand()">
-<h3>getHand</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">getHand</span>()</div>
+<section class="detail" id="getHandSize()">
+<h3>getHandSize</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getHandSize</span>()</div>
+<div class="block">Возвращает количество карт у дилера.
+ Метод не изменяет содержимое руки, а только
+ сообщает текущее количество элементов в списке <code>cards</code>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>число карт, которые сейчас находятся в руке</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getVisibleCard()">
 <h3>getVisibleCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getVisibleCard</span>()</div>
+<div class="block">Возвращает карту, которая видна игроку (первая карта в руке дилера).</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>строка, представляющая видимую карту дилера (например, "2H").</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="dealerTurn()">
 <h3>dealerTurn</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dealerTurn</span>()</div>
+<div class="block">Ход дилера по правилам игры. Дилер продолжает брать карты, пока не наберет минимум 17 очков.
+ Если у дилера перебор, выводится соответствующее сообщение.
+ После завершения хода выводится итоговое количество очков дилера.</div>
 </section>
 </li>
 </ul>
