@@ -3,15 +3,18 @@ package ru.nsu.gaev;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static ru.nsu.gaev.GameLogic.scanner;
 
 class PlayerLogicTest {
     private Deck deck;
@@ -77,7 +80,8 @@ class PlayerLogicTest {
         player.addCard("AH");
         player.addCard("KH");
 
-        player.playerTurn();
+        Scanner testScanner = new Scanner(new ByteArrayInputStream("hit\nstand\n".getBytes()));
+        player.playerTurn(testScanner);
         String output = outputStream.toString();
         assertTrue(output.contains("Your cards: [AH, KH] (total = 21)"));
         assertTrue(output.contains("You have 21! You stand automatically."));
@@ -90,7 +94,7 @@ class PlayerLogicTest {
         player.addCard("JH");
         player.addCard("KS");
         player.addCard("KH");
-        player.playerTurn();
+        player.playerTurn(scanner);
 
         String output = outputStream.toString();
         assertTrue(output.contains("Your cards: "));
@@ -100,31 +104,35 @@ class PlayerLogicTest {
 
     @Test
     void playerTurnTestMistake() {
-        String input = "std\nstand\n";
-        System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
-        player.playerTurn();
+        String input = "std\nstand\n"; // первое введено некорректно, второе — правильно
+        Scanner testScanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+
+        player.addCard("4D");
+        player.addCard("4S");
+        player.playerTurn(testScanner);
+
         String output = outputStream.toString();
+        // Проверяем, что вывод содержит сообщение о неверном вводе
         assertTrue(output.contains("Please enter 'hit' or 'stand'"));
     }
 
     @Test
     void playerTurnTestHit() {
-        // Подготавливаем ввод с действиями "hit", "hit", "stand"
         String input = "hit\nhit\nstand\n";
-        System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));  // Подключаем ввод
+        Scanner testScanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
 
-        // Мокаем колоду, чтобы она возвращала заранее подготовленные карты
-        MockDeck mockDeck = new MockDeck(Arrays.asList("4H", "2D"));  // Карты для подбора в ходе теста
-        facePlayer = new PlayerLogic(mockDeck);  // Используем мок-колоду для теста
-        // Добавляем карты в руку
-        facePlayer.addCard("3H");
-        facePlayer.addCard("3S");
+        MockDeck mockDeck = new MockDeck(Arrays.asList("4H", "2D"));
+        PlayerLogic testPlayer = new PlayerLogic(mockDeck);
+        testPlayer.addCard("4D");
+        testPlayer.addCard("4S");
 
-        // Выполняем ход игрока
-        facePlayer.playerTurn();
+        testPlayer.playerTurn(testScanner);
         String output = outputStream.toString();
-        assertEquals(12, facePlayer.getScore());
+
+        assertTrue(output.contains("Your cards: [4D, 4S, 4H, 2D]"));
     }
+
+
 
     @AfterEach
     void restoreSystemStreams() {

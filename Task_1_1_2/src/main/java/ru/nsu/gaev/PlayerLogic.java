@@ -2,6 +2,7 @@ package ru.nsu.gaev;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class PlayerLogic {
     private final List<String> hand = new ArrayList<>();
@@ -27,7 +28,7 @@ public class PlayerLogic {
         return new ArrayList<>(hand);
     }
 
-    public void playerTurn() {
+    public void playerTurn(Scanner scanner) {
         System.out.println("Your cards: " + hand + " (total = " + getScore() + ")");
 
         while (true) {
@@ -42,7 +43,11 @@ public class PlayerLogic {
             }
 
             System.out.println("Do you want to hit or stand? ");
-            String action = GameLogic.scanner.nextLine().toLowerCase(); // используем scanner из GameLogic
+            if (!scanner.hasNextLine()) {
+                System.out.println("No input detected, standing automatically.");
+                break;
+            }
+            String action = scanner.nextLine().toLowerCase();
 
             if (action.equals("hit")) {
                 String newCard = deck.drawCard();
