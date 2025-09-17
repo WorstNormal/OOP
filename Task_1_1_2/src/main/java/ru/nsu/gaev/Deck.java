@@ -20,8 +20,8 @@ public class Deck {
     public Deck(int countDecks) {
         String[] suits = {"S", "H", "D", "C"};  // Масти карт
         String[] ranks = {
-                "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                "J", "Q", "K", "A"
+            "2", "3", "4", "5", "6", "7", "8", "9", "10",
+            "J", "Q", "K", "A"
         };  // Ранги карт
 
         for (int i = 0; i < countDecks; i++) {

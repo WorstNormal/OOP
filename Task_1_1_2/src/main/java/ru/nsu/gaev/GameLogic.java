@@ -17,7 +17,6 @@ public class GameLogic {
      * @param args аргументы командной строки (не используются)
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         message.welcomeBlackjack();
         while (true) {
             roundCounter++;
@@ -58,7 +57,7 @@ public class GameLogic {
         dealer.addCard(deck.drawCard());
         dealer.addCard(deck.drawCard());
 
-        message.cardsMessage(dealer.getVisibleCard(), dealer.getScore(),"Dilear");
+        message.cardsMessage(dealer.getVisibleCard(), dealer.getScore(), "Dealer");
 
         player.playerTurn(scanner);
 
@@ -79,7 +78,7 @@ public class GameLogic {
             if (dealerScore > 21 || playerScore > dealerScore) {
                 message.win("Player");
             } else if (dealerScore > playerScore) {
-                message.win("Dialer");
+                message.win("Dealer");
             } else {
                 message.tie();
             }

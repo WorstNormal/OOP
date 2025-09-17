@@ -79,7 +79,7 @@ public class MessageConsole {
     /**
      * Приветственное сообщение для игры Blackjack.
      */
-    public void welcomeBlackjack(){
+    public void welcomeBlackjack() {
         System.out.println("Welcome to Blackjack!");
     }
 
@@ -88,21 +88,21 @@ public class MessageConsole {
      *
      * @param roundCounter номер раунда
      */
-    public void amountRound(Integer roundCounter){
+    public void amountRound(Integer roundCounter) {
         System.out.println("\n=== Round " + roundCounter + " ===");
     }
 
     /**
      * Сообщение с предложением сыграть ещё раз.
      */
-    public void playAgain(){
+    public void playAgain() {
         System.out.print("Play again? (yes/no): ");
     }
 
     /**
      * Сообщение с просьбой ввести yes или no.
      */
-    public void yesOrNo(){
+    public void yesOrNo() {
         System.out.print("Please enter 'yes' or 'no': ");
     }
 
@@ -111,21 +111,21 @@ public class MessageConsole {
      *
      * @param roundCounter количество сыгранных раундов
      */
-    public void gameOver(Integer roundCounter){
+    public void gameOver(Integer roundCounter) {
         System.out.println("Game over. You played " + roundCounter + " rounds.");
     }
 
     /**
      * Сообщение с просьбой ввести количество колод.
      */
-    public void numberOfDecks(){
+    public void numberOfDecks() {
         System.out.print("Enter number of decks to use (at least 1): ");
     }
 
     /**
      * Сообщение о выигрыше игрока с блекджеком.
      */
-    public void playerBlackjack(){
+    public void playerBlackjack() {
         System.out.println("Blackjack! Player wins immediately!");
     }
 
@@ -134,14 +134,14 @@ public class MessageConsole {
      *
      * @param player имя победителя
      */
-    public void win(String player){
-        System.out.println(player + "wins!");
+    public void win(String player) {
+        System.out.println(player + " wins!");
     }
 
     /**
      * Сообщение о ничьей.
      */
-    public void tie(){
+    public void tie() {
         System.out.println("Push (tie)!");
     }
 }
