@@ -30,10 +30,6 @@ class PlayerLogicTest {
     void deckCreate() {
         Deck deck = new Deck(1);
         player = new PlayerLogic(deck);
-
-        Deck fackdeck = new Deck(0);
-        PlayerLogic facePlayer = new PlayerLogic(fackdeck);
-
         // Перехват вывода
         originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
