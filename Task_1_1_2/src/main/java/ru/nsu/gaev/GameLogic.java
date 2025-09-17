@@ -2,31 +2,32 @@ package ru.nsu.gaev;
 
 import java.util.Scanner;
 
+
 public class GameLogic {
     public static final Scanner scanner = new Scanner(System.in);
     private static int roundCounter = 0;
+    public static MessageConsole message = new MessageConsole();
 
     /**
      * Основной метод игры. Запускает раунды игры Blackjack до тех пор,
      * пока игрок не выберет завершение.
      */
-    public static void main() {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Blackjack!");
-
+        message.welcomeBlackjack();
         while (true) {
             roundCounter++;
-            System.out.println("\n=== Round " + roundCounter + " ===");
+            message.amountRound(roundCounter);
             startRound(scanner);
 
-            System.out.print("Play again? (yes/no): ");
+            message.playAgain();
             String answer = scanner.nextLine().toLowerCase();
             while (!answer.equals("yes") && !answer.equals("no")) {
-                System.out.print("Please enter 'yes' or 'no': ");
+                message.yesOrNo();
                 answer = scanner.nextLine().toLowerCase();
             }
             if (answer.equals("no")) {
-                System.out.println("Game over. You played " + roundCounter + " rounds.");
+                message.gameOver(roundCounter);
                 break;
             }
         }
@@ -37,7 +38,7 @@ public class GameLogic {
      * обрабатывает ход игрока, проверяет его баллы, после чего ходит дилер и определяется победитель.
      */
     public static void startRound(Scanner scanner) {
-        System.out.print("Enter number of decks to use (at least 1): ");
+        message.numberOfDecks();
         int countDecks = scanner.nextInt();
         scanner.nextLine(); // чтобы "съесть" перевод строки
 
@@ -51,14 +52,13 @@ public class GameLogic {
         dealer.addCard(deck.drawCard());
         dealer.addCard(deck.drawCard());
 
-        System.out.println("Player's hand: " + player.getHand() + " (total = " + player.getScore() + ")");
-        System.out.println("Dealer's hand: [" + dealer.getVisibleCard() + ", X]");
+        message.cardsMessage(dealer.getVisibleCard(), dealer.getScore(),"Dilear");
 
         player.playerTurn(scanner);
 
         // проверка на блекджек у игрока
         if (player.getScore() == 21) {
-            System.out.println("Blackjack! Player wins immediately!");
+            message.playerBlackjack();
             return; // раунд закончен
         }
 
@@ -71,11 +71,11 @@ public class GameLogic {
             int dealerScore = dealer.getScore();
 
             if (dealerScore > 21 || playerScore > dealerScore) {
-                System.out.println("Player wins!");
+                message.win("Player");
             } else if (dealerScore > playerScore) {
-                System.out.println("Dealer wins!");
+                message.win("Dialer");
             } else {
-                System.out.println("Push (tie)!");
+                message.tie();
             }
         }
     }

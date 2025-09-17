@@ -3,7 +3,6 @@ package ru.nsu.gaev;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.gaev.GameLogic;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -31,7 +30,8 @@ class GameLogicTest {
         String input = "1\nstand\nsad\nno\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));  // Подключаем ввод
         // Запускаем метод main()
-        GameLogic.main();
+        String[] gameArgs = {};
+        GameLogic.main(gameArgs);
 
         // Захватываем вывод
         String output = outputStream.toString();

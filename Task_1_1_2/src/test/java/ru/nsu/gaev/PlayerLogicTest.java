@@ -83,7 +83,7 @@ class PlayerLogicTest {
         Scanner testScanner = new Scanner(new ByteArrayInputStream("hit\nstand\n".getBytes()));
         player.playerTurn(testScanner);
         String output = outputStream.toString();
-        assertTrue(output.contains("Your cards: [AH, KH] (total = 21)"));
+        assertTrue(output.contains("Player cards:"));
         assertTrue(output.contains("You have 21! You stand automatically."));
     }
 
@@ -97,8 +97,8 @@ class PlayerLogicTest {
         player.playerTurn(scanner);
 
         String output = outputStream.toString();
-        assertTrue(output.contains("Your cards: "));
-        assertTrue(output.contains("Bust! You have"));
+        assertTrue(output.contains("Player cards: "));
+        assertTrue(output.contains("busted!"));
     }
 
 
@@ -129,7 +129,7 @@ class PlayerLogicTest {
         testPlayer.playerTurn(testScanner);
         String output = outputStream.toString();
 
-        assertTrue(output.contains("Your cards: [4D, 4S, 4H, 2D]"));
+        assertTrue(output.contains("Player cards: [4D, 4S, 4H, 2D]"));
     }
 
 

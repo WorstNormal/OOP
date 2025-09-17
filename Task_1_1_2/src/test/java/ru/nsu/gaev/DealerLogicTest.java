@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class DealerLogicTest {
@@ -43,7 +42,7 @@ class DealerLogicTest {
         DealerLogic dealer = new DealerLogic(deck);
         dealer.addCard("AH");
         dealer.addCard("AS");
-        assertEquals("AH", dealer.getVisibleCard());
+        assertEquals("AH", dealer.getVisibleCard().get(0));
     }
 
     @Test

@@ -8,19 +8,16 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class DeckTest {
     private Deck deck1;
-    private Deck fackdeck;
+
     @BeforeEach
     void deck1create() {
         deck1 = new Deck(1);
-        fackdeck = new Deck();
     }
 
     @Test
     void shuffleTest()
     {
         Deck deck2 = new Deck(1);
-        Deck deck3 = new Deck();
-        assertNotEquals(deck1, deck2);
         assertNotEquals(deck1, deck2);
     }
 

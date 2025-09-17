@@ -1,11 +1,13 @@
 package ru.nsu.gaev;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DealerLogic {
     private final List<String> hand = new ArrayList<>();
     private final Deck deck;
+    public static MessageConsole message = new MessageConsole();
 
     /**
      * Конструктор для инициализации дилера. Инициализирует колоду, из которой будут вытягиваться карты для дилера.
@@ -50,8 +52,8 @@ public class DealerLogic {
      *
      * @return строка, представляющая видимую карту дилера (например, "2H").
      */
-    public String getVisibleCard() {
-        return hand.get(0);
+    public ArrayList<String> getVisibleCard() {
+        return new ArrayList<>(Arrays.asList(hand.get(0).split(" ")));
     }
 
     /**
@@ -60,22 +62,22 @@ public class DealerLogic {
      * После завершения хода выводится итоговое количество очков дилера.
      */
     public void dealerTurn() {
-        System.out.println("Dealer's cards: " + hand + " (sum = " + getScore() + ")");
+        message.cardsMessage(hand, getScore(), "Dealer");
 
         // Пока у дилера сумма очков меньше 17, он берет карту
         while (getScore() < 17) {
             String newCard = deck.drawCard();
             addCard(newCard);
-            System.out.println("Dealer drew a card: " + newCard);
-            System.out.println("Dealer's cards: " + hand + " (sum = " + getScore() + ")");
+            message.newCardsMessage(newCard, "Dealer");
+            message.cardsMessage(hand, getScore(), "Dealer");
         }
 
         // Если у дилера перебор, выводим сообщение о переборе
         if (getScore() > 21) {
-            System.out.println("Dealer busted! (" + getScore() + ")");
+            message.bustedMessage(getScore(), "Dealer");
         } else {
             // Если у дилера не перебор, выводим итоговый счёт
-            System.out.println("Dealer stands. Final score: " + getScore());
+            message.standsMessage(getScore(), "Dealer");
         }
     }
 }

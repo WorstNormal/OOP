@@ -30,6 +30,12 @@ public class Deck {
         }
         Collections.shuffle(cards); // Перетасовываем колоду после её создания
     }
+    /**
+     * Конструктор колоды. Заполняет колоду карт в зависимости от количества колод.
+     * Каждая карта представлена как строка, состоящая из ранга и масти.
+     * После инициализации колода перетасовывается.
+     *
+     */
     public Deck() {
         String[] suits = {"S", "H", "D", "C"};  // Масти карт
         String[] ranks = {
@@ -38,7 +44,7 @@ public class Deck {
 
         for (String suit : suits) {
             for (String rank : ranks) {
-                cards.add(rank + suit);  // Формируем карты в виде строки: "2H", "10S" и т. д.
+                cards.add(rank + suit);  // Формируем карты в виде строки: "2H".
             }
         }
         Collections.shuffle(cards); // Перетасовываем колоду после её создания

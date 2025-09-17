@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class PlayerLogic {
     private final List<String> hand = new ArrayList<>();
     private final Deck deck;
+    public static MessageConsole message = new MessageConsole();
 
     public PlayerLogic(Deck deck) {
         this.deck = deck;
@@ -29,22 +30,22 @@ public class PlayerLogic {
     }
 
     public void playerTurn(Scanner scanner) {
-        System.out.println("Your cards: " + hand + " (total = " + getScore() + ")");
+        message.cardsMessage(hand, getScore(), "Player");
 
         while (true) {
             if (getScore() > 21) {
-                System.out.println("Bust! You have " + getScore() + " points.");
+                message.bustedMessage(getScore(), "Player");
                 break;
             }
 
             if (getScore() == 21) {
-                System.out.println("You have 21! You stand automatically.");
+                message.blackjack();
                 break;
             }
 
-            System.out.println("Do you want to hit or stand? ");
+            message.playerOption();
             if (!scanner.hasNextLine()) {
-                System.out.println("No input detected, standing automatically.");
+                message.noInputDetect();
                 break;
             }
             String action = scanner.nextLine().toLowerCase();
@@ -52,13 +53,13 @@ public class PlayerLogic {
             if (action.equals("hit")) {
                 String newCard = deck.drawCard();
                 addCard(newCard);
-                System.out.println("You drew: " + newCard);
-                System.out.println("Your cards: " + hand + " (total = " + getScore() + ")");
+                message.newCardsMessage(newCard, "Player");
+                message.cardsMessage(hand, getScore(), "Player");
             } else if (action.equals("stand")) {
-                System.out.println("You stand. Final score: " + getScore());
+                message.standsMessage(getScore(), "Player");
                 break;
             } else {
-                System.out.println("Please enter 'hit' or 'stand'.");
+                message.errorInputDetect();
             }
         }
     }
