@@ -65,9 +65,9 @@ class DeckTest {
     void calculateHandValueTest() {
         int valueA1010 = Deck.calculateHandValue(java.util.List.of("AH", "10H", "10S"));
         assertEquals(21, valueA1010);
-        int valueAAA = Deck.calculateHandValue(java.util.List.of("AH", "AC", "AS"));
-        assertEquals(13, valueAAA);
-        int valueJKQ = Deck.calculateHandValue(java.util.List.of("JH", "KC", "QS"));
-        assertEquals(30, valueJKQ);
+        int valueAaa = Deck.calculateHandValue(java.util.List.of("AH", "AC", "AS"));
+        assertEquals(13, valueAaa);
+        int valueJkq = Deck.calculateHandValue(java.util.List.of("JH", "KC", "QS"));
+        assertEquals(30, valueJkq);
     }
 }

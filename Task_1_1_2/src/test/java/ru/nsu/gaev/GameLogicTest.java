@@ -1,5 +1,7 @@
 package ru.nsu.gaev;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -8,8 +10,6 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Тесты для класса GameLogic (основная логика игры Blackjack).
@@ -38,8 +38,8 @@ class GameLogicTest {
      */
     @Test
     void mainTest() {
-        // Подготовка ввода для теста (вводим 1 для количества колод, затем "stand", потом некорректный ввод "sad", потом правильный ввод "no")
-        String input = "1\nstand\nsad\nno\n";
+        // Подготовка ввода для теста: 1 (кол-во колод), затем ответы по строкам
+        String input = String.join("\n", "1", "stand", "sad", "no") + "\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         // Запускаем метод main()
