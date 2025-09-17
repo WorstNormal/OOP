@@ -17,11 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.nsu.gaev.GameLogic.scanner;
 
 class PlayerLogicTest {
-    private Deck deck;
-    private Deck fackdeck;
 
     private PlayerLogic player;
-    private PlayerLogic facePlayer;
 
 
     // Поля для перехвата вывода
@@ -31,11 +28,11 @@ class PlayerLogicTest {
 
     @BeforeEach
     void deckCreate() {
-        deck = new Deck(1);
+        Deck deck = new Deck(1);
         player = new PlayerLogic(deck);
 
-        fackdeck = new Deck(0);
-        facePlayer = new PlayerLogic(fackdeck);
+        Deck fackdeck = new Deck(0);
+        PlayerLogic facePlayer = new PlayerLogic(fackdeck);
 
         // Перехват вывода
         originalOut = System.out;
