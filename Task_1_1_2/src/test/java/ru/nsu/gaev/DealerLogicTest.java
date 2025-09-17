@@ -3,8 +3,9 @@ package ru.nsu.gaev;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Тесты для класса DealerLogic (логика дилера в игре Blackjack).
@@ -21,8 +22,7 @@ class DealerLogicTest {
      * Проверяет, что объект DealerLogic создаётся корректно.
      */
     @Test
-    void DealerLogicCheck()
-    {
+    void dealerLogicCheck() {
         DealerLogic dealer = new DealerLogic(deck);
         assertNotNull(dealer);
     }
@@ -31,8 +31,7 @@ class DealerLogicTest {
      * Проверяет, что размер руки дилера изначально равен 0.
      */
     @Test
-    void getHandSizeTest()
-    {
+    void getHandSizeTest() {
         DealerLogic dealer = new DealerLogic(deck);
         assertEquals(0, dealer.getHandSize());
     }
@@ -41,8 +40,7 @@ class DealerLogicTest {
      * Проверяет добавление карты в руку дилера.
      */
     @Test
-    void addCardTest()
-    {
+    void addCardTest() {
         DealerLogic dealer = new DealerLogic(deck);
         dealer.addCard("AH");
         assertEquals(1, dealer.getHandSize());
@@ -52,8 +50,7 @@ class DealerLogicTest {
      * Проверяет получение видимой карты дилера.
      */
     @Test
-    void getVisibleCardTest()
-    {
+    void getVisibleCardTest() {
         DealerLogic dealer = new DealerLogic(deck);
         dealer.addCard("AH");
         dealer.addCard("AS");
@@ -64,8 +61,7 @@ class DealerLogicTest {
      * Проверяет подсчёт очков дилера.
      */
     @Test
-    void getScoreTest()
-    {
+    void getScoreTest() {
         DealerLogic dealer = new DealerLogic(deck);
         dealer.addCard("AH");
         assertEquals(11, dealer.getScore());

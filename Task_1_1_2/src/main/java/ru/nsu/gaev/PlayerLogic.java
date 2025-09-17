@@ -1,60 +1,13 @@
 package ru.nsu.gaev;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
  * Класс, реализующий логику игрока в игре Blackjack.
  */
-public class PlayerLogic {
-    private final List<String> hand = new ArrayList<>();
-    private final Deck deck;
-    public static MessageConsole message = new MessageConsole();
-
-    /**
-     * Конструктор для инициализации игрока с определённой колодой.
-     *
-     * @param deck колода карт, из которой будут раздавать карты.
-     */
+public class PlayerLogic extends Participant {
     public PlayerLogic(Deck deck) {
-        this.deck = deck;
-    }
-
-    /**
-     * Возвращает количество карт в руке игрока.
-     *
-     * @return количество карт в руке
-     */
-    public int getHandSize() {
-        return hand.size();
-    }
-
-    /**
-     * Добавляет карту в руку игрока.
-     *
-     * @param card карта в виде строки, которая добавляется в руку игрока (например, "2H", "KS").
-     */
-    public void addCard(String card) {
-        hand.add(card);
-    }
-
-    /**
-     * Возвращает текущий счёт игрока. Счёт рассчитывается как сумма значений карт в руке.
-     *
-     * @return текущий счёт игрока
-     */
-    public int getScore() {
-        return Deck.calculateHandValue(hand);
-    }
-
-    /**
-     * Возвращает копию руки игрока.
-     *
-     * @return список карт в руке
-     */
-    public List<String> getHand() {
-        return new ArrayList<>(hand);
+        super(deck);
     }
 
     /**

@@ -1,28 +1,27 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.nsu.gaev.GameLogic.scanner;
 
 /**
  * Тесты для класса PlayerLogic (логика игрока в игре Blackjack).
  */
 class PlayerLogicTest {
-
     private PlayerLogic player;
-
 
     // Поля для перехвата вывода
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -44,7 +43,7 @@ class PlayerLogicTest {
      * Проверяет, что объект PlayerLogic создаётся корректно.
      */
     @Test
-    void PlayerLogicCheck() {
+    void playerLogicCheck() {
         assertNotNull(player);
     }
 
@@ -71,7 +70,7 @@ class PlayerLogicTest {
     @Test
     void getScoreTest() {
         player.addCard("AH");
-        assertEquals(11, player.getScore());  // Предположительно, "AH" = 11 очков
+        assertEquals(11, player.getScore());
     }
 
     /**
@@ -90,7 +89,7 @@ class PlayerLogicTest {
     @Test
     void playerTurnTestAce() {
         String input = "hit\nstand\n";
-        System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         player.addCard("AH");
         player.addCard("KH");
 
@@ -107,7 +106,7 @@ class PlayerLogicTest {
     @Test
     void playerTurnTestBust() {
         String input = "stand\n";
-        System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         player.addCard("JH");
         player.addCard("KS");
         player.addCard("KH");
@@ -117,7 +116,6 @@ class PlayerLogicTest {
         assertTrue(output.contains("Player cards: "));
         assertTrue(output.contains("busted!"));
     }
-
 
     /**
      * Проверяет обработку некорректного ввода действия игрока.
@@ -155,8 +153,6 @@ class PlayerLogicTest {
         assertTrue(output.contains("Player cards: [4D, 4S, 4H, 2D]"));
     }
 
-
-
     /**
      * Восстанавливает стандартные потоки ввода/вывода после каждого теста.
      */
@@ -164,35 +160,5 @@ class PlayerLogicTest {
     void restoreSystemStreams() {
         System.setOut(originalOut);  // Восстановить стандартный поток вывода
         System.setIn(originalIn);  // Восстановить стандартный поток ввода
-    }
-}
-
-/**
- * Мок-колода для тестирования логики игрока (PlayerLogic).
- */
-class MockDeck extends Deck {
-    private final List<String> mockCards;
-    private int currentCardIndex = 0;
-
-    /**
-     * Конструктор мок-колоды.
-     * @param mockCards список карт, которые будут возвращаться при вызове drawCard()
-     */
-    public MockDeck(List<String> mockCards) {
-        super(0);  // Пустая колода
-        this.mockCards = mockCards;
-    }
-
-    /**
-     * Возвращает карту из списка mockCards по порядку.
-     * @return карта из списка или пустая строка, если карты закончились
-     */
-    @Override
-    public String drawCard() {
-        // Возвращаем карты из списка по порядку
-        if (currentCardIndex < mockCards.size()) {
-            return mockCards.get(currentCardIndex++);
-        }
-        return "";  // Если карты закончились, возвращаем пустую строку (или можно обработать ошибку)
     }
 }
