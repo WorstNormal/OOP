@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+/**
+ * Тесты для класса Deck (колода карт для игры Blackjack).
+ */
 class DeckTest {
     private Deck deck1;
 
@@ -14,6 +17,9 @@ class DeckTest {
         deck1 = new Deck(1);
     }
 
+    /**
+     * Проверяет, что две новые колоды отличаются (перетасованы).
+     */
     @Test
     void shuffleTest()
     {
@@ -21,6 +27,9 @@ class DeckTest {
         assertNotEquals(deck1, deck2);
     }
 
+    /**
+     * Проверяет, что количество карт в двух новых колодах совпадает.
+     */
     @Test
     void getCardsCountTest()
     {
@@ -28,6 +37,9 @@ class DeckTest {
         assertEquals(deck1.getCardsCount(), deck2.getCardsCount());
     }
 
+    /**
+     * Проверяет уменьшение количества карт после вытягивания карты.
+     */
     @Test
     void drawTest()
     {
@@ -36,6 +48,9 @@ class DeckTest {
         assertNotEquals(deck1.getCardsCount(), deck2.getCardsCount());
     }
 
+    /**
+     * Проверяет корректность определения значения карты.
+     */
     @Test
     void getCardValueTest()
     {
@@ -47,6 +62,9 @@ class DeckTest {
         assertEquals(6, value_6);
     }
 
+    /**
+     * Проверяет корректность подсчёта суммы очков для различных комбинаций карт.
+     */
     @Test
     void calculateHandValueTest()
     {

@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Тесты для класса DealerLogic (логика дилера в игре Blackjack).
+ */
 class DealerLogicTest {
     private Deck deck;
 
@@ -14,6 +17,9 @@ class DealerLogicTest {
         deck = new Deck(1);
     }
 
+    /**
+     * Проверяет, что объект DealerLogic создаётся корректно.
+     */
     @Test
     void DealerLogicCheck()
     {
@@ -21,6 +27,9 @@ class DealerLogicTest {
         assertNotNull(dealer);
     }
 
+    /**
+     * Проверяет, что размер руки дилера изначально равен 0.
+     */
     @Test
     void getHandSizeTest()
     {
@@ -28,6 +37,9 @@ class DealerLogicTest {
         assertEquals(0, dealer.getHandSize());
     }
 
+    /**
+     * Проверяет добавление карты в руку дилера.
+     */
     @Test
     void addCardTest()
     {
@@ -36,6 +48,9 @@ class DealerLogicTest {
         assertEquals(1, dealer.getHandSize());
     }
 
+    /**
+     * Проверяет получение видимой карты дилера.
+     */
     @Test
     void getVisibleCardTest()
     {
@@ -45,6 +60,9 @@ class DealerLogicTest {
         assertEquals("AH", dealer.getVisibleCard().get(0));
     }
 
+    /**
+     * Проверяет подсчёт очков дилера.
+     */
     @Test
     void getScoreTest()
     {
@@ -53,6 +71,9 @@ class DealerLogicTest {
         assertEquals(11, dealer.getScore());
     }
 
+    /**
+     * Проверяет, что дилер останавливается при 17 и более очках.
+     */
     @Test
     void dealerTurnStopsAt17OrMore() {
         Deck deck = new Deck(1);
@@ -68,6 +89,9 @@ class DealerLogicTest {
         assertTrue(dealer.getScore() >= 17);
     }
 
+    /**
+     * Проверяет, что дилер может получить перебор.
+     */
     @Test
     void dealerCanBust() {
         Deck deck = new Deck(1);
@@ -84,6 +108,9 @@ class DealerLogicTest {
         assertEquals(2, dealer.getHandSize());
     }
 
+    /**
+     * Проверяет, что дилер добирает карты до 17 очков.
+     */
     @Test
     void dealerDrawsUntil17() {
         Deck deck = new Deck(1);

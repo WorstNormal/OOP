@@ -16,6 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.nsu.gaev.GameLogic.scanner;
 
+/**
+ * Тесты для класса PlayerLogic (логика игрока в игре Blackjack).
+ */
 class PlayerLogicTest {
 
     private PlayerLogic player;
@@ -37,28 +40,43 @@ class PlayerLogicTest {
         originalIn = System.in;
     }
 
+    /**
+     * Проверяет, что объект PlayerLogic создаётся корректно.
+     */
     @Test
     void PlayerLogicCheck() {
         assertNotNull(player);
     }
 
+    /**
+     * Проверяет, что размер руки игрока изначально равен 0.
+     */
     @Test
     void getHandSizeTest() {
         assertEquals(0, player.getHandSize());
     }
 
+    /**
+     * Проверяет добавление карты в руку игрока.
+     */
     @Test
     void addCardTest() {
         player.addCard("AH");
         assertEquals(1, player.getHandSize());
     }
 
+    /**
+     * Проверяет корректность подсчёта очков для одной карты.
+     */
     @Test
     void getScoreTest() {
         player.addCard("AH");
         assertEquals(11, player.getScore());  // Предположительно, "AH" = 11 очков
     }
 
+    /**
+     * Проверяет получение списка карт в руке игрока.
+     */
     @Test
     void getHandTest() {
         player.addCard("AH");
@@ -66,6 +84,9 @@ class PlayerLogicTest {
         assertArrayEquals(new String[]{"AH", "AS"}, player.getHand().toArray(new String[0]));
     }
 
+    /**
+     * Проверяет сценарий, когда игрок добирает карты и получает 21 очко (туз + король).
+     */
     @Test
     void playerTurnTestAce() {
         String input = "hit\nstand\n";
@@ -80,6 +101,9 @@ class PlayerLogicTest {
         assertTrue(output.contains("You have 21! You stand automatically."));
     }
 
+    /**
+     * Проверяет сценарий, когда у игрока перебор очков.
+     */
     @Test
     void playerTurnTestBust() {
         String input = "stand\n";
@@ -95,6 +119,9 @@ class PlayerLogicTest {
     }
 
 
+    /**
+     * Проверяет обработку некорректного ввода действия игрока.
+     */
     @Test
     void playerTurnTestMistake() {
         String input = "std\nstand\n"; // первое введено некорректно, второе — правильно
@@ -109,6 +136,9 @@ class PlayerLogicTest {
         assertTrue(output.contains("Please enter 'hit' or 'stand'"));
     }
 
+    /**
+     * Проверяет корректность добавления карт при выборе действия "hit".
+     */
     @Test
     void playerTurnTestHit() {
         String input = "hit\nhit\nstand\n";
@@ -127,22 +157,36 @@ class PlayerLogicTest {
 
 
 
+    /**
+     * Восстанавливает стандартные потоки ввода/вывода после каждого теста.
+     */
     @AfterEach
     void restoreSystemStreams() {
         System.setOut(originalOut);  // Восстановить стандартный поток вывода
         System.setIn(originalIn);  // Восстановить стандартный поток ввода
     }
 }
-// Мок-колода для тестирования
+
+/**
+ * Мок-колода для тестирования логики игрока (PlayerLogic).
+ */
 class MockDeck extends Deck {
     private final List<String> mockCards;
     private int currentCardIndex = 0;
 
+    /**
+     * Конструктор мок-колоды.
+     * @param mockCards список карт, которые будут возвращаться при вызове drawCard()
+     */
     public MockDeck(List<String> mockCards) {
         super(0);  // Пустая колода
         this.mockCards = mockCards;
     }
 
+    /**
+     * Возвращает карту из списка mockCards по порядку.
+     * @return карта из списка или пустая строка, если карты закончились
+     */
     @Override
     public String drawCard() {
         // Возвращаем карты из списка по порядку

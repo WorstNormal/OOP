@@ -2,7 +2,9 @@ package ru.nsu.gaev;
 
 import java.util.Scanner;
 
-
+/**
+ * Класс, реализующий основную логику игры Blackjack.
+ */
 public class GameLogic {
     public static final Scanner scanner = new Scanner(System.in);
     private static int roundCounter = 0;
@@ -11,6 +13,8 @@ public class GameLogic {
     /**
      * Основной метод игры. Запускает раунды игры Blackjack до тех пор,
      * пока игрок не выберет завершение.
+     *
+     * @param args аргументы командной строки (не используются)
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -36,6 +40,8 @@ public class GameLogic {
     /**
      * Запускает один раунд игры Blackjack. Запрашивает количество колод карт, инициализирует игрока и дилера,
      * обрабатывает ход игрока, проверяет его баллы, после чего ходит дилер и определяется победитель.
+     *
+     * @param scanner сканер для ввода пользователя
      */
     public static void startRound(Scanner scanner) {
         message.numberOfDecks();

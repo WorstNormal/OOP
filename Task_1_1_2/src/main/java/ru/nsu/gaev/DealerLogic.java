@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Класс, реализующий логику дилера в игре Blackjack.
+ */
 public class DealerLogic {
     private final List<String> hand = new ArrayList<>();
     private final Deck deck;

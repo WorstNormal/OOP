@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Класс, реализующий колоду карт для игры Blackjack.
+ */
 public class Deck {
     private final ArrayList<String> cards = new ArrayList<>();
 
@@ -30,6 +33,7 @@ public class Deck {
         }
         Collections.shuffle(cards); // Перетасовываем колоду после её создания
     }
+
     /**
      * Вытягивает одну карту из колоды.
      * Если колода пуста, выбрасывается исключение.
