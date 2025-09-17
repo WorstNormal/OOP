@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -70,12 +70,14 @@ loadScripts(document, 'script');</script>
 <h1 title="Class DealerLogic" class="title">Class DealerLogic</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
+<div class="inheritance"><a href="Participant.html" title="class in ru.nsu.gaev">ru.nsu.gaev.Participant</a>
 <div class="inheritance">ru.nsu.gaev.DealerLogic</div>
+</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DealerLogic</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<span class="extends-implements">extends <a href="Participant.html" title="class in ru.nsu.gaev">Participant</a></span></div>
 <div class="block">Класс, реализующий логику дилера в игре Blackjack.</div>
 </section>
 <section class="summary">
@@ -84,15 +86,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
-<div class="caption"><span>Fields</span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Field</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static <a href="MessageConsole.html" title="class in ru.nsu.gaev">MessageConsole</a></code></div>
-<div class="col-second even-row-color"><code><a href="#message" class="member-name-link">message</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-</div>
+<div class="inherited-list">
+<h3 id="fields-inherited-from-class-ru.nsu.gaev.Participant">Fields inherited from class&nbsp;ru.nsu.gaev.<a href="Participant.html" title="class in ru.nsu.gaev">Participant</a></h3>
+<code><a href="Participant.html#deck">deck</a>, <a href="Participant.html#hand">hand</a>, <a href="Participant.html#message">message</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -122,33 +118,21 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addCard(java.lang.String)" class="member-name-link">addCard</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;card)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerTurn()" class="member-name-link">dealerTurn</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Добавляет карту в руку дилера.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerTurn()" class="member-name-link">dealerTurn</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Ход дилера по правилам игры.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandSize()" class="member-name-link">getHandSize</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает количество карт у дилера.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getScore()" class="member-name-link">getScore</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVisibleCard()" class="member-name-link">getVisibleCard</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает текущий счёт дилера.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVisibleCard()" class="member-name-link">getVisibleCard</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает карту, которая видна игроку (первая карта в руке дилера).</div>
+<div class="block">Возвращает видимую карту дилера (первая в руке) как список для совместимости с выводом.</div>
 </div>
 </div>
 </div>
 </div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-ru.nsu.gaev.Participant">Methods inherited from class&nbsp;ru.nsu.gaev.<a href="Participant.html" title="class in ru.nsu.gaev">Participant</a></h3>
+<code><a href="Participant.html#addCard(java.lang.String)">addCard</a>, <a href="Participant.html#getHand()">getHand</a>, <a href="Participant.html#getHandSize()">getHandSize</a>, <a href="Participant.html#getScore()">getScore</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -158,20 +142,6 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="details">
 <ul class="details-list">
-<!-- ============ FIELD DETAIL =========== -->
-<li>
-<section class="field-details" id="field-detail">
-<h2>Field Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="message">
-<h3>message</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="MessageConsole.html" title="class in ru.nsu.gaev">MessageConsole</a></span>&nbsp;<span class="element-name">message</span></div>
-</section>
-</li>
-</ul>
-</section>
-</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -197,58 +167,17 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addCard(java.lang.String)">
-<h3>addCard</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addCard</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;card)</span></div>
-<div class="block">Добавляет карту в руку дилера.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>card</code> - карта в виде строки, которая добавляется в руку дилера (например, "2H", "KS").</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getScore()">
-<h3>getScore</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getScore</span>()</div>
-<div class="block">Возвращает текущий счёт дилера. Счёт рассчитывается как сумма значений карт в руке.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>текущий счёт дилера.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getHandSize()">
-<h3>getHandSize</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getHandSize</span>()</div>
-<div class="block">Возвращает количество карт у дилера.
- Метод не изменяет содержимое руки, а только
- сообщает текущее количество элементов в списке <code>cards</code>.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>число карт, которые сейчас находятся в руке</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="getVisibleCard()">
 <h3>getVisibleCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">getVisibleCard</span>()</div>
-<div class="block">Возвращает карту, которая видна игроку (первая карта в руке дилера).</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>строка, представляющая видимую карту дилера (например, "2H").</dd>
-</dl>
+<div class="block">Возвращает видимую карту дилера (первая в руке) как список для совместимости с выводом.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="dealerTurn()">
 <h3>dealerTurn</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dealerTurn</span>()</div>
-<div class="block">Ход дилера по правилам игры. Дилер продолжает брать карты, пока не наберет минимум 17 очков.
- Если у дилера перебор, выводится соответствующее сообщение.
- После завершения хода выводится итоговое количество очков дилера.</div>
+<div class="block">Ход дилера по правилам игры. Дилер продолжает брать карты, пока не наберет минимум 17 очков.</div>
 </section>
 </li>
 </ul>
