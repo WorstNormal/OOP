@@ -11,6 +11,41 @@ public class Deck {
     private final ArrayList<String> cards = new ArrayList<>();
 
     /**
+     * Перечисление для мастей карт
+     */
+    public enum Suit {
+        SPADES("S"), HEARTS("H"), DIAMONDS("D"), CLUBS("C");
+
+        private final String symbol;
+
+        Suit(String symbol) {
+            this.symbol = symbol;
+        }
+
+        public String getSymbol() {
+            return symbol;
+        }
+    }
+
+    /**
+     * Перечисление для рангов карт
+     */
+    public enum Rank {
+        TWO("2"), THREE("3"), FOUR("4"), FIVE("5"), SIX("6"), SEVEN("7"), EIGHT("8"),
+        NINE("9"), TEN("10"), JACK("J"), QUEEN("Q"), KING("K"), ACE("A");
+
+        private final String symbol;
+
+        Rank(String symbol) {
+            this.symbol = symbol;
+        }
+
+        public String getSymbol() {
+            return symbol;
+        }
+    }
+
+    /**
      * Конструктор колоды. Заполняет колоду карт в зависимости от количества колод.
      * Каждая карта представлена как строка, состоящая из ранга и масти.
      * После инициализации колода перетасовывается.
@@ -18,20 +53,17 @@ public class Deck {
      * @param countDecks количество колод, которые будут использованы в игре.
      */
     public Deck(int countDecks) {
-        String[] suits = {"S", "H", "D", "C"};  // Масти карт
-        String[] ranks = {
-            "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "J", "Q", "K", "A"
-        };  // Ранги карт
-
+        // Перебираем количество колод
         for (int i = 0; i < countDecks; i++) {
-            for (String suit : suits) {
-                for (String rank : ranks) {
-                    cards.add(rank + suit);  // Формируем карты в виде строки: "2H", "KS" и т. д.
+            // Перебираем масти и ранги
+            for (Suit suit : Suit.values()) {
+                for (Rank rank : Rank.values()) {
+                    // Формируем карту в виде строки: "2H", "KS" и т. д.
+                    cards.add(rank.getSymbol() + suit.getSymbol());
                 }
             }
         }
-        Collections.shuffle(cards); // Перетасовываем колоду после её создания
+        Collections.shuffle(cards); // Перетасовываем колоду
     }
 
     /**
