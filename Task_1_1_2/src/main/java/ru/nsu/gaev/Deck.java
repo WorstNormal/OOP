@@ -11,7 +11,7 @@ public class Deck {
     private final ArrayList<String> cards = new ArrayList<>();
 
     /**
-     * Перечисление для мастей карт
+     * Перечисление для мастей карт.
      */
     public enum Suit {
         SPADES("S"), HEARTS("H"), DIAMONDS("D"), CLUBS("C");
@@ -28,11 +28,13 @@ public class Deck {
     }
 
     /**
-     * Перечисление для рангов карт
+     * Перечисление для рангов карт.
      */
     public enum Rank {
-        TWO("2"), THREE("3"), FOUR("4"), FIVE("5"), SIX("6"), SEVEN("7"), EIGHT("8"),
-        NINE("9"), TEN("10"), JACK("J"), QUEEN("Q"), KING("K"), ACE("A");
+        TWO("2"), THREE("3"), FOUR("4"), FIVE("5"),
+        SIX("6"), SEVEN("7"), EIGHT("8"),
+        NINE("9"), TEN("10"), JACK("J"), QUEEN("Q"),
+        KING("K"), ACE("A");
 
         private final String symbol;
 
@@ -89,7 +91,7 @@ public class Deck {
     }
 
     /**
-     * Возвращает значение карты. Тузы по умолчанию имеют значение 11 ,
+     * Возвращает значение карты. Тузы по умолчанию имеют значение 11,
      * а карты с изображением (J, Q, K) оцениваются в 10 очков.
      *
      * @param card карта в виде строки (например, "2H" или "KH").
