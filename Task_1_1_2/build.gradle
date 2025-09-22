@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group = 'ru.nsu.gaav'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Зависимость для JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+}
+test {
+    useJUnitPlatform()
+}
+
+// Обновлённая версия JaCoCo, чтобы поддерживать более новые версии Java (например, Java 21)
+jacoco {
+    toolVersion = '0.8.10'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
