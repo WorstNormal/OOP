@@ -48,7 +48,7 @@ class SubTest {
     void testSimplifyNonTrivial() {
         Expression expr = new Sub(new Add(new Number(2), new Number(3)), new Number(1));
         Expression simplified = expr.simplify();
-        assertEquals(new Number(4), simplified); // окончательный результат — 4
+        assertEquals(new Number(4), simplified);
     }
 
     @Test
