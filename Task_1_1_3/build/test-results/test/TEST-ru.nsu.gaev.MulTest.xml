@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.gaev.MulTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2025-10-05T17:26:57" hostname="DESKTOP-5DMEAV6" time="0.169">
+  <properties/>
+  <testcase name="testDerivativeSimple()" classname="ru.nsu.gaev.MulTest" time="0.126"/>
+  <testcase name="testDerivativeMixed()" classname="ru.nsu.gaev.MulTest" time="0.001"/>
+  <testcase name="testSimplifyOneRight()" classname="ru.nsu.gaev.MulTest" time="0.001"/>
+  <testcase name="testEvalSimple()" classname="ru.nsu.gaev.MulTest" time="0.002"/>
+  <testcase name="testEvalWithVariables()" classname="ru.nsu.gaev.MulTest" time="0.001"/>
+  <testcase name="testSimplifyOneLeft()" classname="ru.nsu.gaev.MulTest" time="0.001"/>
+  <testcase name="testSimplifyZeroRight()" classname="ru.nsu.gaev.MulTest" time="0.001"/>
+  <testcase name="testEqualsAndHashCode()" classname="ru.nsu.gaev.MulTest" time="0.006"/>
+  <testcase name="testSimplifyZeroLeft()" classname="ru.nsu.gaev.MulTest" time="0.001"/>
+  <testcase name="testToExpressionString()" classname="ru.nsu.gaev.MulTest" time="0.015"/>
+  <testcase name="testSimplifyBothNumbers()" classname="ru.nsu.gaev.MulTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

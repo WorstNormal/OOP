@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.gaev.VariableTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-10-05T17:26:58" hostname="DESKTOP-5DMEAV6" time="0.027">
+  <properties/>
+  <testcase name="testDerivativeSameVariable()" classname="ru.nsu.gaev.VariableTest" time="0.0"/>
+  <testcase name="testDerivativeDifferentVariable()" classname="ru.nsu.gaev.VariableTest" time="0.001"/>
+  <testcase name="testEvalWithAssignedVariable()" classname="ru.nsu.gaev.VariableTest" time="0.0"/>
+  <testcase name="testSimplifyReturnsItself()" classname="ru.nsu.gaev.VariableTest" time="0.001"/>
+  <testcase name="testEvalWithoutAssignedVariableThrowsException()" classname="ru.nsu.gaev.VariableTest" time="0.016"/>
+  <testcase name="testNotEqualsDifferentClass()" classname="ru.nsu.gaev.VariableTest" time="0.0"/>
+  <testcase name="testEqualsAndHashCode()" classname="ru.nsu.gaev.VariableTest" time="0.0"/>
+  <testcase name="testToExpressionString()" classname="ru.nsu.gaev.VariableTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
