@@ -72,8 +72,6 @@ class ParserTest {
         assertThrows(IllegalArgumentException.class, () -> Parser.parse(null));
     }
 
-    // ======== ТЕСТЫ НА parseAssignment() ========
-
     @Test
     void testParseAssignmentSingle() {
         Map<String, Integer> vars = Parser.parseAssignment("x=5");
