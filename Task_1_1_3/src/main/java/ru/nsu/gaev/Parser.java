@@ -52,7 +52,7 @@ public class Parser {
                 if (!found) {
                     throw new IllegalArgumentException("Invalid number at pos " + t.pos);
                 }
-                return new ru.nsu.gaev.Number(sign * val);
+                return new Number(sign * val);
             } else if (Character.isLetter(t.peek())) {
                 StringBuilder sb = new StringBuilder();
                 while (!t.isEnd() && Character.isLetterOrDigit(t.peek())) {

@@ -29,9 +29,9 @@ public class Add extends Expression {
     public Expression simplify() {
         Expression l = left.simplify();
         Expression r = right.simplify();
-        if (l instanceof ru.nsu.gaev.Number && r instanceof ru.nsu.gaev.Number) {
-            int v = ((ru.nsu.gaev.Number) l).getValue() + ((ru.nsu.gaev.Number) r).getValue();
-            return new ru.nsu.gaev.Number(v);
+        if (l instanceof Number && r instanceof Number) {
+            int v = ((Number) l).getValue() + ((Number) r).getValue();
+            return new Number(v);
         }
         return new Add(l, r);
     }

@@ -23,7 +23,7 @@ public class Variable extends Expression {
 
     @Override
     public Expression derivative(String var) {
-        return new ru.nsu.gaev.Number(name.equals(var) ? 1 : 0);
+        return new Number(name.equals(var) ? 1 : 0);
     }
 
     @Override

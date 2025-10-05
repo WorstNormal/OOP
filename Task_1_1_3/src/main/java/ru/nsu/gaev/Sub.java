@@ -26,11 +26,11 @@ public class Sub extends Expression {
     public Expression simplify() {
         Expression l = left.simplify();
         Expression r = right.simplify();
-        if (l instanceof ru.nsu.gaev.Number && r instanceof ru.nsu.gaev.Number) {
-            return new ru.nsu.gaev.Number(((ru.nsu.gaev.Number) l).getValue() - ((ru.nsu.gaev.Number) r).getValue());
+        if (l instanceof Number && r instanceof Number) {
+            return new Number(((Number) l).getValue() - ((Number) r).getValue());
         }
         if (l.equals(r)) {
-            return new ru.nsu.gaev.Number(0);
+            return new Number(0);
         }
         return new Sub(l, r);
     }

@@ -26,20 +26,20 @@ public class Mul extends Expression {
     public Expression simplify() {
         Expression l = left.simplify();
         Expression r = right.simplify();
-        if (l instanceof ru.nsu.gaev.Number && ((ru.nsu.gaev.Number) l).getValue() == 0) {
+        if (l instanceof Number && ((Number) l).getValue() == 0) {
             return new Number(0);
         }
-        if (r instanceof ru.nsu.gaev.Number && ((ru.nsu.gaev.Number) r).getValue() == 0) {
+        if (r instanceof Number && ((Number) r).getValue() == 0) {
             return new Number(0);
         }
-        if (l instanceof ru.nsu.gaev.Number && ((ru.nsu.gaev.Number) l).getValue() == 1) {
+        if (l instanceof Number && ((Number) l).getValue() == 1) {
             return r;
         }
-        if (r instanceof ru.nsu.gaev.Number && ((ru.nsu.gaev.Number) r).getValue() == 1) {
+        if (r instanceof Number && ((Number) r).getValue() == 1) {
             return l;
         }
-        if (l instanceof ru.nsu.gaev.Number && r instanceof ru.nsu.gaev.Number) {
-            return new ru.nsu.gaev.Number(((ru.nsu.gaev.Number) l).getValue() * ((ru.nsu.gaev.Number) r).getValue());
+        if (l instanceof Number && r instanceof Number) {
+            return new Number(((Number) l).getValue() * ((Number) r).getValue());
         }
         return new Mul(l, r);
     }
