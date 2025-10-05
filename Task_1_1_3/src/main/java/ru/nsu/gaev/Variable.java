@@ -38,8 +38,12 @@ public class Variable extends Expression {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Variable)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Variable)) {
+            return false;
+        }
         Variable variable = (Variable) o;
         return name.equals(variable.name);
     }

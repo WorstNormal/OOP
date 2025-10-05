@@ -5,11 +5,15 @@ import java.util.Map;
 
 public class Parser {
     public static Expression parse(String s) {
-        if (s == null) throw new IllegalArgumentException("input is null");
+        if (s == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         Tokenizer t = new Tokenizer(s);
         Expression e = parseExpr(t);
         t.skipWhitespace();
-        if (!t.isEnd()) throw new IllegalArgumentException("Unexpected chars at end: " + s.substring(t.pos));
+        if (!t.isEnd()) {
+            throw new IllegalArgumentException("Unexpected chars at end: " + s.substring(t.pos));
+        }
         return e;
     }
 
@@ -22,7 +26,9 @@ public class Parser {
             char op = t.consume();
             Expression right = parseExpr(t);
             t.skipWhitespace();
-            if (t.peek() != ')') throw new IllegalArgumentException("Expected ) at pos " + t.pos);
+            if (t.peek() != ')') {
+                throw new IllegalArgumentException("Expected ) at pos " + t.pos);
+            }
             t.consume(); // ')'
             switch (op) {
                 case '+': return new Add(left, right);
@@ -34,18 +40,24 @@ public class Parser {
         } else {
             if (Character.isDigit(t.peek()) || t.peek() == '-') {
                 int sign = 1;
-                if (t.peek() == '-') { sign = -1; t.consume(); }
+                if (t.peek() == '-') {
+                    sign = -1; t.consume();
+                }
                 int val = 0;
                 boolean found = false;
                 while (!t.isEnd() && Character.isDigit(t.peek())) {
                     found = true;
                     val = val * 10 + (t.consume() - '0');
                 }
-                if (!found) throw new IllegalArgumentException("Invalid number at pos " + t.pos);
+                if (!found) {
+                    throw new IllegalArgumentException("Invalid number at pos " + t.pos);
+                }
                 return new ru.nsu.gaev.Number(sign * val);
             } else if (Character.isLetter(t.peek())) {
                 StringBuilder sb = new StringBuilder();
-                while (!t.isEnd() && Character.isLetterOrDigit(t.peek())) sb.append(t.consume());
+                while (!t.isEnd() && Character.isLetterOrDigit(t.peek())) {
+                    sb.append(t.consume());
+                }
                 return new Variable(sb.toString());
             } else {
                 throw new IllegalArgumentException("Unexpected char '" + t.peek() + "' at pos " + t.pos);
@@ -54,13 +66,19 @@ public class Parser {
     }
     public static Map<String, Integer> parseAssignment(String s) {
         Map<String, Integer> map = new HashMap<>();
-        if (s == null || s.trim().isEmpty()) return map;
+        if (s == null || s.trim().isEmpty()) {
+            return map;
+        }
         String[] parts = s.split(";");
         for (String part : parts) {
             String p = part.trim();
-            if (p.isEmpty()) continue;
+            if (p.isEmpty()) {
+                continue;
+            }
             String[] kv = p.split("=");
-            if (kv.length != 2) throw new IllegalArgumentException("Bad assignment: " + part);
+            if (kv.length != 2) {
+                throw new IllegalArgumentException("Bad assignment: " + part);
+            }
             String key = kv[0].trim();
             String val = kv[1].trim();
             map.put(key, Integer.parseInt(val));
@@ -77,18 +95,24 @@ public class Parser {
         boolean isEnd() { skipWhitespace(); return pos >= s.length(); }
 
         void skipWhitespace() {
-            while (pos < s.length() && Character.isWhitespace(s.charAt(pos))) pos++;
+            while (pos < s.length() && Character.isWhitespace(s.charAt(pos))) {
+                pos++;
+            }
         }
 
         char peek() {
             skipWhitespace();
-            if (pos >= s.length()) return '\0';
+            if (pos >= s.length()) {
+                return '\0';
+            }
             return s.charAt(pos);
         }
 
         char consume() {
             skipWhitespace();
-            if (pos >= s.length()) return '\0';
+            if (pos >= s.length()) {
+                return '\0';
+            }
             return s.charAt(pos++);
         }
     }
