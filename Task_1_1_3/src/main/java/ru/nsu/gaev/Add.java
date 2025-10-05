@@ -29,7 +29,6 @@ public class Add extends Expression {
     public Expression simplify() {
         Expression l = left.simplify();
         Expression r = right.simplify();
-        // If both numbers, compute
         if (l instanceof ru.nsu.gaev.Number && r instanceof ru.nsu.gaev.Number) {
             int v = ((ru.nsu.gaev.Number) l).getValue() + ((ru.nsu.gaev.Number) r).getValue();
             return new ru.nsu.gaev.Number(v);
