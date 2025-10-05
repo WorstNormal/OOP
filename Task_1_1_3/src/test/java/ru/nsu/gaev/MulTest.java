@@ -19,23 +19,19 @@ class MulTest {
         Map<String, Integer> vars = new HashMap<>();
         vars.put("x", 3);
         vars.put("y", 4);
-        assertEquals(18, expr.eval(vars)); // 3 * (4 + 2) = 18
+        assertEquals(18, expr.eval(vars));
     }
 
     @Test
     void testDerivativeSimple() {
-        // f(x) = x * x  => f'(x) = 2x
         Expression x = new Variable("x");
         Expression expr = new Mul(x, x);
         Expression derivative = expr.derivative("x").simplify();
-
-        // Ожидаем (x + x) или (2 * x)
         assertEquals(new Add(x, x).simplify(), derivative);
     }
 
     @Test
     void testDerivativeMixed() {
-        // f(x) = x * 5 => f'(x) = 5
         Expression expr = new Mul(new Variable("x"), new Number(5));
         Expression derivative = expr.derivative("x").simplify();
         assertEquals(new Number(5), derivative);

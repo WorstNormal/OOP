@@ -5,9 +5,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParserTest {
-
-    // ======== ТЕСТЫ НА parse() ========
-
     @Test
     void testParseSimpleNumber() {
         Expression expr = Parser.parse("42");
@@ -40,7 +37,7 @@ class ParserTest {
         Expression expected = new Mul(new Add(new Variable("x"), new Number(2)), new Number(3));
         assertEquals(expected, expr);
 
-        int result = expr.eval(Map.of("x", 4)); // (4 + 2) * 3 = 18
+        int result = expr.eval(Map.of("x", 4));
         assertEquals(18, result);
     }
 

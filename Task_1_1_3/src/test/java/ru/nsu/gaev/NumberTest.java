@@ -15,7 +15,7 @@ class NumberTest {
     @Test
     void testEvalReturnsValueIgnoringVars() {
         Number num = new Number(10);
-        assertEquals(10, num.eval(new HashMap<>())); // vars ignored
+        assertEquals(10, num.eval(new HashMap<>()));
     }
 
     @Test
@@ -29,7 +29,7 @@ class NumberTest {
     void testSimplifyReturnsSameInstance() {
         Number num = new Number(7);
         Expression simplified = num.simplify();
-        assertSame(num, simplified); // simplify() should return itself
+        assertSame(num, simplified);
     }
 
     @Test
@@ -52,13 +52,13 @@ class NumberTest {
     @Test
     void testEqualsSelf() {
         Number num = new Number(9);
-        assertEquals(num, num); // reflexivity
+        assertEquals(num, num);
     }
 
     @Test
     void testEqualsWithDifferentType() {
         Number num = new Number(5);
-        assertNotEquals(num, "5"); // not same type
+        assertNotEquals(num, "5");
     }
 
     @Test
