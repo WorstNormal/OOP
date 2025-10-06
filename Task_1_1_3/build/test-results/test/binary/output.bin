@@ -1,0 +1,7 @@
+	Vars: {x=5, y=10}
+	Derivative result: 0
+	
+Vars: {x=5, y=10}
+	
+Result: 0
+(x+1)

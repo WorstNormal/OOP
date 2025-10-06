@@ -36,7 +36,8 @@ public class Parser {
         Expression e = parseExpr(t);
         t.skipWhitespace();
         if (!t.isEnd()) {
-            throw new IllegalArgumentException("Неожиданные символы в конце: " + s.substring(t.pos));
+            throw new IllegalArgumentException("Неожиданные символы в конце: " +
+                    s.substring(t.pos));
         }
         return e;
     }
@@ -58,7 +59,8 @@ public class Parser {
             Expression right = parseExpr(t);
             t.skipWhitespace();
             if (t.peek() != ')') {
-                throw new IllegalArgumentException("Ожидалась закрывающая скобка ) на позиции " + t.pos);
+                throw new IllegalArgumentException("Ожидалась закрывающая скобка ) на позиции "
+                        + t.pos);
             }
             t.consume(); // ')'
             switch (op) {
