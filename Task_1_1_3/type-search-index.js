@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"ru.nsu.gaev","l":"Add"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.gaev","l":"Div"},{"p":"ru.nsu.gaev","l":"Expression"},{"p":"ru.nsu.gaev","l":"Mul"},{"p":"ru.nsu.gaev","l":"Number"},{"p":"ru.nsu.gaev","l":"Parser"},{"p":"ru.nsu.gaev","l":"Sub"},{"p":"ru.nsu.gaev","l":"Variable"}];updateSearchResults();
