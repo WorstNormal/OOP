@@ -35,7 +35,7 @@ public class Parser {
         Tokenizer tokenizer = new Tokenizer(inputString);
         Expression expression = parseExpr(tokenizer);
         tokenizer.skipWhitespace();
-        if (!tokenizer.isEnd()) {
+        if (tokenizer.IsEnd()) {
             throw new IllegalArgumentException("Неожиданные символы в конце: "
                     + inputString.substring(tokenizer.position));
         }
@@ -55,21 +55,27 @@ public class Parser {
             tokenizer.consume(); // '('
             Expression left = parseExpr(tokenizer);
             tokenizer.skipWhitespace();
+
+            // Считываем оператор между операндами
+            final char operator = tokenizer.consume();
+            tokenizer.skipWhitespace();
+
             Expression right = parseExpr(tokenizer);
             tokenizer.skipWhitespace();
+
             if (tokenizer.peek() != ')') {
                 throw new IllegalArgumentException("Ожидалась закрывающая скобка ) на позиции "
                         + tokenizer.position);
             }
             tokenizer.consume(); // ')'
-            final char operator = tokenizer.consume();
+
+            // Создаем выражение в зависимости от оператора
             return switch (operator) {
                 case '+' -> new Add(left, right);
                 case '-' -> new Sub(left, right);
                 case '*' -> new Mul(left, right);
                 case '/' -> new Div(left, right);
-                default -> throw new IllegalArgumentException("Неизвестный оператор: "
-                        + operator);
+                default -> throw new IllegalArgumentException("Неизвестный оператор: " + operator);
             };
         } else {
             if (Character.isDigit(tokenizer.peek()) || tokenizer.peek() == '-') {
@@ -80,7 +86,7 @@ public class Parser {
                 }
                 int value = 0;
                 boolean found = false;
-                while (!tokenizer.isEnd() && Character.isDigit(tokenizer.peek())) {
+                while (tokenizer.IsEnd() && Character.isDigit(tokenizer.peek())) {
                     found = true;
                     value = value * 10 + (tokenizer.consume() - '0');
                 }
@@ -91,7 +97,7 @@ public class Parser {
                 return new Number(sign * value);
             } else if (Character.isLetter(tokenizer.peek())) {
                 StringBuilder stringBuilder = new StringBuilder();
-                while (!tokenizer.isEnd() && Character.isLetterOrDigit(tokenizer.peek())) {
+                while (tokenizer.IsEnd() && Character.isLetterOrDigit(tokenizer.peek())) {
                     stringBuilder.append(tokenizer.consume());
                 }
                 return new Variable(stringBuilder.toString());
@@ -160,9 +166,9 @@ public class Parser {
          *
          * @return {@code true}, если больше нет символов
          */
-        boolean isEnd() {
+        boolean IsEnd() {
             skipWhitespace();
-            return position >= inputString.length();
+            return position < inputString.length();
         }
 
         /** Пропускает пробельные символы. */
