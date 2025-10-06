@@ -35,7 +35,7 @@ public class Parser {
         Tokenizer tokenizer = new Tokenizer(inputString);
         Expression expression = parseExpr(tokenizer);
         tokenizer.skipWhitespace();
-        if (tokenizer.IsEnd()) {
+        if (tokenizer.isEnd()) {
             throw new IllegalArgumentException("Неожиданные символы в конце: "
                     + inputString.substring(tokenizer.position));
         }
@@ -86,7 +86,7 @@ public class Parser {
                 }
                 int value = 0;
                 boolean found = false;
-                while (tokenizer.IsEnd() && Character.isDigit(tokenizer.peek())) {
+                while (tokenizer.isEnd() && Character.isDigit(tokenizer.peek())) {
                     found = true;
                     value = value * 10 + (tokenizer.consume() - '0');
                 }
@@ -97,7 +97,7 @@ public class Parser {
                 return new Number(sign * value);
             } else if (Character.isLetter(tokenizer.peek())) {
                 StringBuilder stringBuilder = new StringBuilder();
-                while (tokenizer.IsEnd() && Character.isLetterOrDigit(tokenizer.peek())) {
+                while (tokenizer.isEnd() && Character.isLetterOrDigit(tokenizer.peek())) {
                     stringBuilder.append(tokenizer.consume());
                 }
                 return new Variable(stringBuilder.toString());
@@ -166,7 +166,7 @@ public class Parser {
          *
          * @return {@code true}, если больше нет символов
          */
-        boolean IsEnd() {
+        boolean isEnd() {
             skipWhitespace();
             return position < inputString.length();
         }

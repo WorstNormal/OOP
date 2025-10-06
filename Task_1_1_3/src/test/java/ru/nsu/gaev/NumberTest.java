@@ -5,9 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
-
 
 class NumberTest {
 
