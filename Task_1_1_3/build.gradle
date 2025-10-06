@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
 }
 
-group = 'ru.nsu.gaev'
+group = 'ru.nsu.gaav'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -11,36 +11,22 @@ repositories {
 }
 
 dependencies {
-    // Управляем зависимостями JUnit через BOM
-    testImplementation platform('org.junit:junit-bom:5.10.2')
-
-    // Основные зависимости JUnit 5
-    testImplementation 'org.junit.jupiter:junit-jupiter-api'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Зависимость для JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
 }
-
 test {
     useJUnitPlatform()
-    testLogging {
-        events "passed", "failed", "skipped"
-    }
 }
 
+// Обновлённая версия JaCoCo, чтобы поддерживать более новые версии Java (например, Java 21)
 jacoco {
-    toolVersion = "0.8.10"
+    toolVersion = '0.8.10'
 }
 
 jacocoTestReport {
-    dependsOn test
     reports {
         xml.required = true
-        html.required = true
-    }
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
     }
 }
