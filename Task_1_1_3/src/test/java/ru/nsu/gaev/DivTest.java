@@ -1,13 +1,13 @@
 package ru.nsu.gaev;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class DivTest {
     @Test
@@ -49,7 +49,7 @@ class DivTest {
     void testSimplify() {
         Expression expr = new Div(new ru.nsu.gaev.Number(6), new ru.nsu.gaev.Number(3));
         Expression simplifiedExpr = expr.simplify();
-        assertTrue(simplifiedExpr instanceof ru.nsu.gaev.Number);
+        assertInstanceOf(Number.class, simplifiedExpr);
         assertEquals(2, ((ru.nsu.gaev.Number) simplifiedExpr).getValue());
     }
 
@@ -88,14 +88,14 @@ class DivTest {
     void testSimplifyDivByOne() {
         Expression expr = new Div(new ru.nsu.gaev.Number(5), new ru.nsu.gaev.Number(1));
         Expression simplifiedExpr = expr.simplify();
-        assertTrue(simplifiedExpr instanceof ru.nsu.gaev.Number);
+        assertInstanceOf(Number.class, simplifiedExpr);
         assertEquals(5, ((ru.nsu.gaev.Number) simplifiedExpr).getValue());
     }
     @Test
     void testSimplifyDivZeroNumerator() {
         Expression expr = new Div(new ru.nsu.gaev.Number(0), new ru.nsu.gaev.Number(3));
         Expression simplifiedExpr = expr.simplify();
-        assertTrue(simplifiedExpr instanceof ru.nsu.gaev.Number);
+        assertInstanceOf(Number.class, simplifiedExpr);
         assertEquals(0, ((ru.nsu.gaev.Number) simplifiedExpr).getValue());
     }
 }

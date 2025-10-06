@@ -1,27 +1,15 @@
 package ru.nsu.gaev;
 
 import org.junit.jupiter.api.Test;
-import java.util.Map;
+
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class ExpressionTest {
-    static class Parser {
-        public static Map<String, Integer> parseAssignment(String assignment) {
-            Map<String, Integer> vars = new HashMap<>();
-            String[] pairs = assignment.split(",");
-            for (String pair : pairs) {
-                String[] parts = pair.split("=");
-                vars.put(parts[0].trim(), Integer.parseInt(parts[1].trim()));
-            }
-            return vars;
-        }
-    }
 
     @Test
     void testEvalStringAssignment() {
@@ -58,7 +46,7 @@ class ExpressionTest {
     void testSimplifyConstantExpression() {
         Expression expr = new Add(new Number(2), new Number(3));
         Expression simplified = expr.simplify();
-        assertTrue(simplified instanceof Number);
+        assertInstanceOf(Number.class, simplified);
         assertEquals(5, ((Number) simplified).getValue());
     }
 
