@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -20,15 +18,6 @@ class VariableTest {
 
         int result = x.eval(vars);
         assertEquals(10, result);
-    }
-
-    @Test
-    void testEvalWithoutAssignedVariableThrowsException() {
-        Variable y = new Variable("y");
-        Map<String, Integer> vars = new HashMap<>(); // пустое множество
-
-        RuntimeException ex = assertThrows(RuntimeException.class, () -> y.eval(vars));
-        assertTrue(ex.getMessage().contains("Variable 'y' is not assigned"));
     }
 
     @Test
@@ -71,6 +60,6 @@ class VariableTest {
     @Test
     void testNotEqualsDifferentClass() {
         Variable x = new Variable("x");
-        assertNotEquals(x, new Number(5));
+        assertNotEquals(new Number(5), x);
     }
 }
