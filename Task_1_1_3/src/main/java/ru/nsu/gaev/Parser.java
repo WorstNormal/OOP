@@ -24,46 +24,46 @@ public class Parser {
     /**
      * Разбирает строку и возвращает соответствующее выражение.
      *
-     * @param s строка с арифметическим выражением
+     * @param inputString строка с арифметическим выражением
      * @return объект {@link Expression}, соответствующий выражению
      * @throws IllegalArgumentException если входная строка некорректна
      */
-    public static Expression parse(String s) {
-        if (s == null) {
+    public static Expression parse(String inputString) {
+        if (inputString == null) {
             throw new IllegalArgumentException("Входная строка не может быть null");
         }
-        Tokenizer t = new Tokenizer(s);
-        Expression e = parseExpr(t);
-        t.skipWhitespace();
-        if (!t.isEnd()) {
-            throw new IllegalArgumentException("Неожиданные символы в конце: " +
-                    s.substring(t.pos));
+        Tokenizer tokenizer = new Tokenizer(inputString);
+        Expression expression = parseExpr(tokenizer);
+        tokenizer.skipWhitespace();
+        if (!tokenizer.isEnd()) {
+            throw new IllegalArgumentException("Неожиданные символы в конце: "
+                    + inputString.substring(tokenizer.position));
         }
-        return e;
+        return expression;
     }
 
     /**
      * Рекурсивно разбирает выражение из токенов.
      *
-     * @param t объект {@link Tokenizer}, предоставляющий последовательный доступ к символам
+     * @param tokenizer объект {@link Tokenizer}, предоставляющий доступ к символам
      * @return разобранное выражение
      * @throws IllegalArgumentException при синтаксической ошибке
      */
-    private static Expression parseExpr(Tokenizer t) {
-        t.skipWhitespace();
-        if (t.peek() == '(') {
-            t.consume(); // '('
-            Expression left = parseExpr(t);
-            t.skipWhitespace();
-            char op = t.consume();
-            Expression right = parseExpr(t);
-            t.skipWhitespace();
-            if (t.peek() != ')') {
+    private static Expression parseExpr(Tokenizer tokenizer) {
+        tokenizer.skipWhitespace();
+        if (tokenizer.peek() == '(') {
+            tokenizer.consume(); // '('
+            Expression left = parseExpr(tokenizer);
+            tokenizer.skipWhitespace();
+            char operator = tokenizer.consume();
+            Expression right = parseExpr(tokenizer);
+            tokenizer.skipWhitespace();
+            if (tokenizer.peek() != ')') {
                 throw new IllegalArgumentException("Ожидалась закрывающая скобка ) на позиции "
-                        + t.pos);
+                        + tokenizer.position);
             }
-            t.consume(); // ')'
-            switch (op) {
+            tokenizer.consume(); // ')'
+            switch (operator) {
                 case '+':
                     return new Add(left, right);
                 case '-':
@@ -73,34 +73,36 @@ public class Parser {
                 case '/':
                     return new Div(left, right);
                 default:
-                    throw new IllegalArgumentException("Неизвестный оператор: " + op);
+                    throw new IllegalArgumentException("Неизвестный оператор: " + operator);
             }
         } else {
-            if (Character.isDigit(t.peek()) || t.peek() == '-') {
+            if (Character.isDigit(tokenizer.peek()) || tokenizer.peek() == '-') {
                 int sign = 1;
-                if (t.peek() == '-') {
+                if (tokenizer.peek() == '-') {
                     sign = -1;
-                    t.consume();
+                    tokenizer.consume();
                 }
-                int val = 0;
+                int value = 0;
                 boolean found = false;
-                while (!t.isEnd() && Character.isDigit(t.peek())) {
+                while (!tokenizer.isEnd() && Character.isDigit(tokenizer.peek())) {
                     found = true;
-                    val = val * 10 + (t.consume() - '0');
+                    value = value * 10 + (tokenizer.consume() - '0');
                 }
                 if (!found) {
-                    throw new IllegalArgumentException("Неверное число на позиции " + t.pos);
+                    throw new IllegalArgumentException("Неверное число на позиции "
+                            + tokenizer.position);
                 }
-                return new Number(sign * val);
-            } else if (Character.isLetter(t.peek())) {
-                StringBuilder sb = new StringBuilder();
-                while (!t.isEnd() && Character.isLetterOrDigit(t.peek())) {
-                    sb.append(t.consume());
+                return new Number(sign * value);
+            } else if (Character.isLetter(tokenizer.peek())) {
+                StringBuilder stringBuilder = new StringBuilder();
+                while (!tokenizer.isEnd() && Character.isLetterOrDigit(tokenizer.peek())) {
+                    stringBuilder.append(tokenizer.consume());
                 }
-                return new Variable(sb.toString());
+                return new Variable(stringBuilder.toString());
             } else {
                 throw new IllegalArgumentException(
-                        "Неожиданный символ '" + t.peek() + "' на позиции " + t.pos
+                        "Неожиданный символ '" + tokenizer.peek() + "' на позиции "
+                                + tokenizer.position
                 );
             }
         }
@@ -110,28 +112,28 @@ public class Parser {
      * Разбирает строку с присваиваниями переменных.
      * Формат: {@code x=2; y=5; z=10}
      *
-     * @param s строка с присваиваниями
+     * @param assignmentString строка с присваиваниями
      * @return отображение переменных и их значений
      * @throws IllegalArgumentException если формат некорректен
      */
-    public static Map<String, Integer> parseAssignment(String s) {
+    public static Map<String, Integer> parseAssignment(String assignmentString) {
         Map<String, Integer> map = new HashMap<>();
-        if (s == null || s.trim().isEmpty()) {
+        if (assignmentString == null || assignmentString.trim().isEmpty()) {
             return map;
         }
-        String[] parts = s.split(";");
+        String[] parts = assignmentString.split(";");
         for (String part : parts) {
-            String p = part.trim();
-            if (p.isEmpty()) {
+            String trimmedPart = part.trim();
+            if (trimmedPart.isEmpty()) {
                 continue;
             }
-            String[] kv = p.split("=");
-            if (kv.length != 2) {
+            String[] keyValue = trimmedPart.split("=");
+            if (keyValue.length != 2) {
                 throw new IllegalArgumentException("Некорректное присваивание: " + part);
             }
-            String key = kv[0].trim();
-            String val = kv[1].trim();
-            map.put(key, Integer.parseInt(val));
+            String key = keyValue[0].trim();
+            String value = keyValue[1].trim();
+            map.put(key, Integer.parseInt(value));
         }
         return map;
     }
@@ -142,19 +144,19 @@ public class Parser {
      */
     private static class Tokenizer {
         /** Исходная строка. */
-        private final String s;
+        private final String inputString;
 
         /** Текущая позиция чтения. */
-        private int pos;
+        private int position;
 
         /**
          * Создаёт токенайзер для заданной строки.
          *
-         * @param s исходная строка
+         * @param inputString исходная строка
          */
-        Tokenizer(String s) {
-            this.s = s;
-            this.pos = 0;
+        Tokenizer(String inputString) {
+            this.inputString = inputString;
+            this.position = 0;
         }
 
         /**
@@ -164,13 +166,14 @@ public class Parser {
          */
         boolean isEnd() {
             skipWhitespace();
-            return pos >= s.length();
+            return position >= inputString.length();
         }
 
         /** Пропускает пробельные символы. */
         void skipWhitespace() {
-            while (pos < s.length() && Character.isWhitespace(s.charAt(pos))) {
-                pos++;
+            while (position < inputString.length()
+                    && Character.isWhitespace(inputString.charAt(position))) {
+                position++;
             }
         }
 
@@ -181,10 +184,10 @@ public class Parser {
          */
         char peek() {
             skipWhitespace();
-            if (pos >= s.length()) {
+            if (position >= inputString.length()) {
                 return '\0';
             }
-            return s.charAt(pos);
+            return inputString.charAt(position);
         }
 
         /**
@@ -194,10 +197,10 @@ public class Parser {
          */
         char consume() {
             skipWhitespace();
-            if (pos >= s.length()) {
+            if (position >= inputString.length()) {
                 return '\0';
             }
-            return s.charAt(pos++);
+            return inputString.charAt(position++);
         }
     }
 }

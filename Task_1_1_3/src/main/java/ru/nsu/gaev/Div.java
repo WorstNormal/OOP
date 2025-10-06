@@ -29,7 +29,8 @@ public class Div extends Expression {
     /**
      * Вычисляет результат деления выражений на основе переданных значений переменных.
      *
-     * @param vars отображение (map), где ключ — имя переменной, а значение — её числовое значение
+     * @param vars отображение (map), где ключ — имя переменной,
+     *             а значение — её числовое значение
      * @return целое число — результат деления
      */
     @Override
@@ -39,6 +40,7 @@ public class Div extends Expression {
 
     /**
      * Вычисляет выражения деления по заданной переменной.
+     *
      * @param var имя переменной
      * @return новое выражение {@code Div}
      */
@@ -99,7 +101,7 @@ public class Div extends Expression {
      *
      * @param o объект для сравнения
      * @return {@code true}, если оба объекта — экземпляры {@code Div} и
-     * имеют одинаковые операнды
+     *         имеют одинаковые операнды
      */
     @Override
     public boolean equals(Object o) {
