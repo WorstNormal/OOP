@@ -55,7 +55,6 @@ public class Parser {
             tokenizer.consume(); // '('
             Expression left = parseExpr(tokenizer);
             tokenizer.skipWhitespace();
-            char operator = tokenizer.consume();
             Expression right = parseExpr(tokenizer);
             tokenizer.skipWhitespace();
             if (tokenizer.peek() != ')') {
@@ -63,18 +62,15 @@ public class Parser {
                         + tokenizer.position);
             }
             tokenizer.consume(); // ')'
-            switch (operator) {
-                case '+':
-                    return new Add(left, right);
-                case '-':
-                    return new Sub(left, right);
-                case '*':
-                    return new Mul(left, right);
-                case '/':
-                    return new Div(left, right);
-                default:
-                    throw new IllegalArgumentException("Неизвестный оператор: " + operator);
-            }
+            final char operator = tokenizer.consume();
+            return switch (operator) {
+                case '+' -> new Add(left, right);
+                case '-' -> new Sub(left, right);
+                case '*' -> new Mul(left, right);
+                case '/' -> new Div(left, right);
+                default -> throw new IllegalArgumentException("Неизвестный оператор: "
+                        + operator);
+            };
         } else {
             if (Character.isDigit(tokenizer.peek()) || tokenizer.peek() == '-') {
                 int sign = 1;

@@ -1,12 +1,13 @@
 package ru.nsu.gaev;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class SubTest {
 
@@ -75,7 +76,7 @@ class SubTest {
     @Test
     void testEqualsWithDifferentType() {
         Sub sub = new Sub(new Number(1), new Number(2));
-        assertNotEquals(sub, "not an expression");
+        assertNotEquals("not an expression", sub);
     }
 
     @Test
