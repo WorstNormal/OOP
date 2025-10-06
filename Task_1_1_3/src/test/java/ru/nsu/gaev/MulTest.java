@@ -1,9 +1,9 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -18,7 +18,8 @@ class MulTest {
 
     @Test
     void testEvalWithVariables() {
-        Expression expr = new Mul(new Variable("x"), new Add(new Variable("y"), new Number(2)));
+        Expression expr = new Mul(new Variable("x"),
+                new Add(new Variable("y"), new Number(2)));
         Map<String, Integer> vars = new HashMap<>();
         vars.put("x", 3);
         vars.put("y", 4);
@@ -72,7 +73,8 @@ class MulTest {
 
     @Test
     void testToExpressionString() {
-        Expression expr = new Mul(new Add(new Number(2), new Variable("x")), new Number(3));
+        Expression expr = new Mul(new Add(new Number(2), new Variable("x")),
+                new Number(3));
         assertEquals("((2+x)*3)", expr.toExpressionString());
     }
 

@@ -1,9 +1,9 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -49,7 +49,8 @@ class SubTest {
 
     @Test
     void testSimplifyNonTrivial() {
-        Expression expr = new Sub(new Add(new Number(2), new Number(3)), new Number(1));
+        Expression expr = new Sub(new Add(new Number(2), new Number(3)),
+                new Number(1));
         Expression simplified = expr.simplify();
         assertEquals(new Number(4), simplified);
     }

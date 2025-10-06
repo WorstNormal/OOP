@@ -1,13 +1,12 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Map;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 
 class ParserTest {
     @Test
@@ -39,7 +38,8 @@ class ParserTest {
     @Test
     void testParseNestedExpression() {
         Expression expr = Parser.parse("((x+2)*3)");
-        Expression expected = new Mul(new Add(new Variable("x"), new Number(2)), new Number(3));
+        Expression expected = new Mul(new Add(new Variable("x"), new Number(2)),
+                new Number(3));
         assertEquals(expected, expr);
 
         int result = expr.eval(Map.of("x", 4));
@@ -49,7 +49,8 @@ class ParserTest {
     @Test
     void testParseExpressionWithDivisionAndSubtraction() {
         Expression expr = Parser.parse("((10-4)/2)");
-        Expression expected = new Div(new Sub(new Number(10), new Number(4)), new Number(2));
+        Expression expected = new Div(new Sub(new Number(10), new Number(4)),
+                new Number(2));
         assertEquals(expected, expr);
         assertEquals(3, expr.eval(Map.of()));
     }
@@ -107,8 +108,11 @@ class ParserTest {
 
     @Test
     void testParseAssignmentThrowsOnBadFormat() {
-        assertThrows(IllegalArgumentException.class, () -> Parser.parseAssignment("x=3 y=5"));
-        assertThrows(IllegalArgumentException.class, () -> Parser.parseAssignment("x:3"));
-        assertThrows(IllegalArgumentException.class, () -> Parser.parseAssignment("a=b=c"));
+        assertThrows(IllegalArgumentException.class,
+                () -> Parser.parseAssignment("x=3 y=5"));
+        assertThrows(IllegalArgumentException.class,
+                () -> Parser.parseAssignment("x:3"));
+        assertThrows(IllegalArgumentException.class,
+                () -> Parser.parseAssignment("a=b=c"));
     }
 }
