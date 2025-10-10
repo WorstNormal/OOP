@@ -35,7 +35,12 @@ public class Div extends Expression {
      */
     @Override
     public int eval(Map<String, Integer> vars) {
-        return left.eval(vars) / right.eval(vars);
+        int numerator = left.eval(vars);
+        int denominator = right.eval(vars);
+        if (denominator == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
+        return numerator / denominator;
     }
 
     /**
@@ -69,6 +74,12 @@ public class Div extends Expression {
         Expression l = left.simplify();
         Expression r = right.simplify();
 
+        // Сначала проверяем знаменатель на ноль (нельзя делить на ноль)
+        if (r instanceof Number && ((Number) r).getValue() == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
+
+        // Если числитель равен 0 — результат 0 (и знаменатель не равен нулю, иначе бы выше сработало исключение)
         if (l instanceof Number && ((Number) l).getValue() == 0) {
             return new Number(0);
         }
@@ -108,10 +119,9 @@ public class Div extends Expression {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Div)) {
+        if (!(o instanceof Div div)) {
             return false;
         }
-        Div div = (Div) o;
         return Objects.equals(left, div.left)
                 && Objects.equals(right, div.right);
     }

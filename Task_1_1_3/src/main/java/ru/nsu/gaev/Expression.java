@@ -48,7 +48,7 @@ public abstract class Expression {
      * Печатает текущее выражение в стандартный поток вывода.
      */
     public void print() {
-        System.out.print(this.toExpressionString());
+        System.out.print(this.toString());
     }
 
     /**
@@ -58,4 +58,13 @@ public abstract class Expression {
      * @return строковое представление выражения
      */
     protected abstract String toExpressionString();
+
+    /**
+     * Переопределяем стандартный toString() чтобы возвращать строковое представление выражения.
+     * Теперь достаточно переопределить toExpressionString() в подклассе.
+     */
+    @Override
+    public String toString() {
+        return toExpressionString();
+    }
 }
