@@ -25,7 +25,8 @@ public class Parser {
         Expression e = parseExpr(t);
         t.skipWhitespace();
         if (t.hasMore()) {
-            throw new IllegalArgumentException("Unexpected trailing symbols: " + s.substring(t.pos));
+            throw new IllegalArgumentException("Unexpected trailing symbols: "
+                    + s.substring(t.pos));
         }
         return e;
     }
@@ -34,22 +35,19 @@ public class Parser {
         t.skipWhitespace();
         if (t.peek() == '(') {
             t.consume(); // '('
-            Expression left = parseExpr(t);
             t.skipWhitespace();
-
-            // Если после левого выражения сразу идёт закрывающая скобка, то это группировка: (expr)
+            Expression left = parseExpr(t);
             if (t.peek() == ')') {
                 t.consume(); // ')'
                 return left;
             }
-
-            char op = t.consume();
-            Expression right = parseExpr(t);
             t.skipWhitespace();
             if (t.peek() != ')') {
                 throw new IllegalArgumentException("Missing closing ')' at position " + t.pos);
             }
             t.consume(); // ')'
+            Expression right = parseExpr(t);
+            char op = t.consume();
             return switch (op) {
                 case '+' -> new Add(left, right);
                 case '-' -> new Sub(left, right);
@@ -81,7 +79,8 @@ public class Parser {
                 }
                 return new Variable(sb.toString());
             } else {
-                throw new IllegalArgumentException("Unexpected symbol '" + t.peek() + "' at position " + t.pos);
+                throw new IllegalArgumentException("Unexpected symbol '" + t.peek() +
+                        "' at position " + t.pos);
             }
         }
     }
