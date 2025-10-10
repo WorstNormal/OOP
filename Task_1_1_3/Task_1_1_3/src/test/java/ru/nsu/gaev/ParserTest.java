@@ -1,8 +1,8 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Map;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class ParserTest {
+
     @Test
     void testParseSimpleNumber() {
         Expression expr = Parser.parse("42");
@@ -39,7 +40,10 @@ class ParserTest {
     @Test
     void testParseNestedExpression() {
         Expression expr = Parser.parse("((x+2)*3)");
-        Expression expected = new Mul(new Add(new Variable("x"), new Number(2)), new Number(3));
+        Expression expected = new Mul(
+                new Add(new Variable("x"), new Number(2)),
+                new Number(3)
+        );
         assertEquals(expected, expr);
 
         int result = expr.eval(Map.of("x", 4));
@@ -111,6 +115,7 @@ class ParserTest {
         assertThrows(IllegalArgumentException.class, () -> Parser.parseAssignment("x:3"));
         assertThrows(IllegalArgumentException.class, () -> Parser.parseAssignment("a=b=c"));
     }
+
     @Test
     void testTripleParenthesesProducesVariable() {
         Expression expr = Parser.parse("(((x)))");
@@ -126,7 +131,10 @@ class ParserTest {
     @Test
     void testNestedAddMulParsing() {
         Expression expr = Parser.parse("((a)+((b)*(c)))");
-        Expression expected = new Add(new Variable("a"), new Mul(new Variable("b"), new Variable("c")));
+        Expression expected = new Add(
+                new Variable("a"),
+                new Mul(new Variable("b"), new Variable("c"))
+        );
         assertEquals(expected, expr);
     }
 
