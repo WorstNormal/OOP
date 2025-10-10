@@ -44,7 +44,6 @@ public class Parser {
 
     /**
      * Рекурсивно разбирает выражение из токенов.
-     *
      * @param t объект {@link Tokenizer}, предоставляющий последовательный доступ к символам
      * @return разобранное выражение
      * @throws IllegalArgumentException при синтаксической ошибке
@@ -70,7 +69,8 @@ public class Parser {
                 case '/' -> new Div(left, right);
                 default -> throw new IllegalArgumentException("Неизвестный оператор: " + op);
             };
-        } else {
+        }
+        else {
             if (Character.isDigit(t.peek()) || t.peek() == '-') {
                 int sign = 1;
                 if (t.peek() == '-') {
