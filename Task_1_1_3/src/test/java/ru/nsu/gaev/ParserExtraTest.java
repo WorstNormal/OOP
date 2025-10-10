@@ -1,8 +1,9 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ParserExtraTest {
 
@@ -15,13 +16,17 @@ class ParserExtraTest {
     @Test
     void testSimpleAdditionWithParentheses() {
         Expression expr = Parser.parse("((x)+(y))");
-        assertEquals(new Add(new Variable("x"), new Variable("y")), expr);
+        Expression expected = new Add(new Variable("x"), new Variable("y"));
+        assertEquals(expected, expr);
     }
 
     @Test
     void testNestedAddMulParsing() {
         Expression expr = Parser.parse("((a)+((b)*(c)))");
-        Expression expected = new Add(new Variable("a"), new Mul(new Variable("b"), new Variable("c")));
+        Expression expected = new Add(
+                new Variable("a"),
+                new Mul(new Variable("b"), new Variable("c"))
+        );
         assertEquals(expected, expr);
     }
 
@@ -32,15 +37,27 @@ class ParserExtraTest {
         assertEquals(expected, expr);
 
         Expression expr2 = Parser.parse("(veryLongVariableName * short)");
-        Expression expected2 = new Mul(new Variable("veryLongVariableName"), new Variable("short"));
+        Expression expected2 = new Mul(
+                new Variable("veryLongVariableName"),
+                new Variable("short")
+        );
         assertEquals(expected2, expr2);
     }
 
     @Test
     void testWhitespaceVariations() {
-        assertEquals(new Add(new Variable("x"), new Variable("y")), Parser.parse("( x + y )"));
-        assertEquals(new Add(new Variable("x"), new Variable("y")), Parser.parse("(x+ y)"));
-        assertEquals(new Add(new Variable("x"), new Variable("y")), Parser.parse("(x +y)"));
+        assertEquals(
+                new Add(new Variable("x"), new Variable("y")),
+                Parser.parse("( x + y )")
+        );
+        assertEquals(
+                new Add(new Variable("x"), new Variable("y")),
+                Parser.parse("(x+ y)")
+        );
+        assertEquals(
+                new Add(new Variable("x"), new Variable("y")),
+                Parser.parse("(x +y)")
+        );
     }
 
     @Test
@@ -74,4 +91,3 @@ class ParserExtraTest {
         assertThrows(IllegalArgumentException.class, () -> Parser.parse("(x++)"));
     }
 }
-
