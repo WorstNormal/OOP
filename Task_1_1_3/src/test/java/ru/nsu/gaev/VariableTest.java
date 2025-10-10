@@ -3,6 +3,7 @@ package ru.nsu.gaev;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,19 @@ class VariableTest {
 
         int result = x.eval(vars);
         assertEquals(10, result);
+    }
+
+    @Test
+    void testEvalMissingVariableThrows() {
+        Variable x = new Variable("x");
+        // ожидание RuntimeException при отсутствии значения
+        assertThrows(RuntimeException.class, () -> x.eval(Map.of()));
+    }
+
+    @Test
+    void testGetName() {
+        Variable v = new Variable("abc");
+        assertEquals("abc", v.getName());
     }
 
     @Test
@@ -55,6 +69,13 @@ class VariableTest {
         assertEquals(x1, x2);
         assertNotEquals(x1, y);
         assertEquals(x1.hashCode(), x2.hashCode());
+    }
+
+    @Test
+    void testHashCodeStable() {
+        Variable x = new Variable("x");
+        int h = x.hashCode();
+        assertEquals(h, x.hashCode());
     }
 
     @Test
