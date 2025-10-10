@@ -114,4 +114,64 @@ class ParserTest {
         assertThrows(IllegalArgumentException.class,
                 () -> Parser.parseAssignment("a=b=c"));
     }
+
+    @Test
+    void testParseParenthesesVariants() {
+        assertEquals(new Variable("x"), Parser.parse("(((x)))"));
+        assertEquals(new Add(new Variable("x"), new Variable("y")), Parser.parse("((x)+(y))"));
+        assertEquals(
+                new Add(new Variable("a"), new Mul(new Variable("b"), new Variable("c"))),
+                Parser.parse("((a)+((b)*(c)))")
+        );
+    }
+
+    @Test
+    void testParseMultiLetterVariables() {
+        assertEquals(new Add(new Variable("alpha"), new Variable("beta")), Parser.parse("(alpha+beta)"));
+        assertEquals(new Mul(new Variable("veryLongVariableName"), new Variable("short")),
+                Parser.parse("(veryLongVariableName*short)"));
+    }
+
+    @Test
+    void testParseSpacesVariants() {
+        assertEquals(new Add(new Variable("x"), new Variable("y")), Parser.parse("( x + y )"));
+        assertEquals(new Add(new Variable("x"), new Variable("y")), Parser.parse("(x+ y)"));
+        assertEquals(new Add(new Variable("x"), new Variable("y")), Parser.parse("(x +y)"));
+    }
+
+    @Test
+    void testParseNegativeNumbers() {
+        assertEquals(new Number(-5), Parser.parse("(-5)"));
+        assertEquals(new Add(new Variable("x"), new Number(-3)), Parser.parse("(x+(-3))"));
+    }
+
+    @Test
+    void testParseComplexExpression() {
+        Expression expected = new Add(
+                new Mul(new Variable("a"), new Variable("b")),
+                new Div(
+                        new Sub(new Variable("c"), new Variable("d")),
+                        new Add(new Number(1), new Number(2))
+                )
+        );
+        assertEquals(expected, Parser.parse("((a*b)+((c-d)/(1+2)))"));
+    }
+
+    @Test
+    void testEvalWithAssignmentStringVarious() {
+        Expression e = new Add(
+                new Mul(new Variable("x"), new Variable("y")),
+                new Div(new Variable("z"), new Number(2))
+        );
+        assertEquals(17, e.eval("x=3; y=4; z=10"));
+        assertEquals(4, e.eval("x=0; y=100; z=8"));
+        assertEquals(17, e.eval("z=10; x=3; y=4"));
+        assertEquals(17, e.eval("x=3; y=4; z=10; w=100"));
+        assertThrows(RuntimeException.class, () -> e.eval("x=3; y=4"));
+    }
+
+    @Test
+    void testParseAssignmentThrowsOnEmptyValue() {
+        assertThrows(IllegalArgumentException.class, () -> Parser.parseAssignment("x=; y=5"));
+    }
 }
