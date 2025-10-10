@@ -37,17 +37,21 @@ public class Parser {
             t.consume(); // '('
             t.skipWhitespace();
             Expression left = parseExpr(t);
+            t.skipWhitespace();
             if (t.peek() == ')') {
                 t.consume(); // ')'
                 return left;
             }
+            char op = t.consume();
+            if (op != '+' && op != '-' && op != '*' && op != '/') {
+                throw new IllegalArgumentException("Unknown operator: " + op + " at position " + t.pos);
+            }
+            Expression right = parseExpr(t);
             t.skipWhitespace();
             if (t.peek() != ')') {
                 throw new IllegalArgumentException("Missing closing ')' at position " + t.pos);
             }
             t.consume(); // ')'
-            Expression right = parseExpr(t);
-            char op = t.consume();
             return switch (op) {
                 case '+' -> new Add(left, right);
                 case '-' -> new Sub(left, right);
