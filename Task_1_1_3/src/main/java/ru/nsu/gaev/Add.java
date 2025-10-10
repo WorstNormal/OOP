@@ -91,8 +91,8 @@ public class Add extends Expression {
      * @return строка в виде "(левое+правое)"
      */
     @Override
-    protected String toExpressionString() {
-        return "(" + left.toExpressionString() + "+" + right.toExpressionString() + ")";
+    public String toString() {
+        return "(" + left.toString() + "+" + right.toString() + ")";
     }
 
     /**

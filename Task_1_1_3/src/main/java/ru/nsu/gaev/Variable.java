@@ -72,7 +72,7 @@ public class Variable extends Expression {
      * @return имя переменной в виде строки
      */
     @Override
-    protected String toExpressionString() {
+    public String toString() {
         return name;
     }
 

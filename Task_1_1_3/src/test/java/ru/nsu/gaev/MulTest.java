@@ -74,7 +74,7 @@ class MulTest {
     void testToExpressionString() {
         Expression expr = new Mul(new Add(new Number(2), new Variable("x")),
                 new Number(3));
-        assertEquals("((2+x)*3)", expr.toExpressionString());
+        assertEquals("((2+x)*3)", expr.toString());
     }
 
     @Test

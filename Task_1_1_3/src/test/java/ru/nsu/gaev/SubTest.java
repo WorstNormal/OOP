@@ -57,7 +57,7 @@ class SubTest {
     @Test
     void testToExpressionString() {
         Expression expr = new Sub(new Number(7), new Variable("y"));
-        assertEquals("(7-y)", expr.toExpressionString());
+        assertEquals("(7-y)", expr.toString());
     }
 
     @Test

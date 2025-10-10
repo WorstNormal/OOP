@@ -52,7 +52,7 @@ class DivTest {
         Expression x = new Variable("x");
         Expression expr = new Div(x, new Number(2));
 
-        String expressionString = expr.toExpressionString();
+        String expressionString = expr.toString();
         assertEquals("(x/2)", expressionString);
     }
 

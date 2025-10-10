@@ -38,7 +38,7 @@ class NumberTest {
     @Test
     void testToExpressionString() {
         Number num = new Number(-8);
-        assertEquals("-8", num.toExpressionString());
+        assertEquals("-8", num.toString());
     }
 
     @Test

@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Абстрактный класс, представляющий математическое выражение.
  * Определяет базовые операции для всех типов выражений:
- * вычисление значения, взятие производной, упрощение и печать.
+ * вычисление значения, взятие производной и упрощение.
  */
 public abstract class Expression {
 
@@ -45,26 +45,9 @@ public abstract class Expression {
     public abstract Expression simplify();
 
     /**
-     * Печатает текущее выражение в стандартный поток вывода.
-     */
-    public void print() {
-        System.out.print(this.toString());
-    }
-
-    /**
-     * Возвращает строковое представление выражения.
-     * Этот метод реализуется в подклассах.
-     *
-     * @return строковое представление выражения
-     */
-    protected abstract String toExpressionString();
-
-    /**
      * Переопределяем стандартный toString() чтобы возвращать строковое представление выражения.
-     * Теперь достаточно переопределить toExpressionString() в подклассе.
+     * Подклассы обязаны реализовать этот метод.
      */
     @Override
-    public String toString() {
-        return toExpressionString();
-    }
+    public abstract String toString();
 }

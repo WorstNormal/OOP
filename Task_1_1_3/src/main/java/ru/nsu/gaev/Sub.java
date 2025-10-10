@@ -77,8 +77,8 @@ public class Sub extends Expression {
      * @return строка, представляющая выражение
      */
     @Override
-    protected String toExpressionString() {
-        return "(" + left.toExpressionString() + "-" + right.toExpressionString() + ")";
+    public String toString() {
+        return "(" + left.toString() + "-" + right.toString() + ")";
     }
 
     /**

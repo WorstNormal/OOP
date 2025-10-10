@@ -70,7 +70,7 @@ public class Number extends Expression {
      * @return строка, содержащая значение числа
      */
     @Override
-    protected String toExpressionString() {
+    public String toString() {
         return Integer.toString(value);
     }
 

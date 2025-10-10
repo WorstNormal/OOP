@@ -51,7 +51,7 @@ class ExpressionTest {
     @Test
     void testPrint() {
         Expression expr = new Add(new Variable("x"), new Number(1));
-        assertDoesNotThrow(expr::print);
+        assertDoesNotThrow(() -> System.out.println(expr));
     }
 
     @Test
@@ -59,6 +59,6 @@ class ExpressionTest {
         Expression expr = new Div(new Add(new Variable("x"), new Number(2)),
                 new Number(5));
         String expected = "((x+2)/5)";
-        assertEquals(expected, expr.toExpressionString());
+        assertEquals(expected, expr.toString());
     }
 }

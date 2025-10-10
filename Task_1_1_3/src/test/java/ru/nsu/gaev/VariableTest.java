@@ -57,7 +57,7 @@ class VariableTest {
     @Test
     void testToExpressionString() {
         Variable var = new Variable("abc");
-        assertEquals("abc", var.toExpressionString());
+        assertEquals("abc", var.toString());
     }
 
     @Test
