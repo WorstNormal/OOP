@@ -1,12 +1,12 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class ExpressionTest {
@@ -21,7 +21,10 @@ class ExpressionTest {
 
     @Test
     void testEvalStringAssignmentMultipleVars() {
-        Expression expr = new Mul(new Add(new Variable("x"), new Variable("y")), new Number(2));
+        Expression expr = new Mul(
+                new Add(new Variable("x"), new Variable("y")),
+                new Number(2)
+        );
 
         int result = expr.eval("x=3;y=5");
         assertEquals(16, result);
@@ -58,7 +61,10 @@ class ExpressionTest {
 
     @Test
     void testToExpressionString() {
-        Expression expr = new Div(new Add(new Variable("x"), new Number(2)), new Number(5));
+        Expression expr = new Div(
+                new Add(new Variable("x"), new Number(2)),
+                new Number(5)
+        );
         String expected = "((x+2)/5)";
         assertEquals(expected, expr.toExpressionString());
     }

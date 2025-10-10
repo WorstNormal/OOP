@@ -35,11 +35,11 @@ public class Parser {
         Tokenizer t = new Tokenizer(s);
         Expression e = parseExpr(t);
         t.skipWhitespace();
-        if (!t.isEnd()) {
-            throw new IllegalArgumentException("Неожиданные символы в конце: " +
-                    s.substring(t.pos));
+        if (!t.hasMore()) {
+            return e;
         }
-        return e;
+        throw new IllegalArgumentException("Неожиданные символы в конце: "
+                + s.substring(t.pos));
     }
 
     /**
@@ -55,26 +55,21 @@ public class Parser {
             t.consume(); // '('
             Expression left = parseExpr(t);
             t.skipWhitespace();
-            char op = t.consume();
-            Expression right = parseExpr(t);
+            final char op = t.consume();
+            final Expression right = parseExpr(t);
             t.skipWhitespace();
             if (t.peek() != ')') {
                 throw new IllegalArgumentException("Ожидалась закрывающая скобка ) на позиции "
                         + t.pos);
             }
             t.consume(); // ')'
-            switch (op) {
-                case '+':
-                    return new Add(left, right);
-                case '-':
-                    return new Sub(left, right);
-                case '*':
-                    return new Mul(left, right);
-                case '/':
-                    return new Div(left, right);
-                default:
-                    throw new IllegalArgumentException("Неизвестный оператор: " + op);
-            }
+            return switch (op) {
+                case '+' -> new Add(left, right);
+                case '-' -> new Sub(left, right);
+                case '*' -> new Mul(left, right);
+                case '/' -> new Div(left, right);
+                default -> throw new IllegalArgumentException("Неизвестный оператор: " + op);
+            };
         } else {
             if (Character.isDigit(t.peek()) || t.peek() == '-') {
                 int sign = 1;
@@ -84,7 +79,7 @@ public class Parser {
                 }
                 int val = 0;
                 boolean found = false;
-                while (!t.isEnd() && Character.isDigit(t.peek())) {
+                while (t.hasMore() && Character.isDigit(t.peek())) {
                     found = true;
                     val = val * 10 + (t.consume() - '0');
                 }
@@ -94,7 +89,7 @@ public class Parser {
                 return new Number(sign * val);
             } else if (Character.isLetter(t.peek())) {
                 StringBuilder sb = new StringBuilder();
-                while (!t.isEnd() && Character.isLetterOrDigit(t.peek())) {
+                while (t.hasMore() && Character.isLetterOrDigit(t.peek())) {
                     sb.append(t.consume());
                 }
                 return new Variable(sb.toString());
@@ -142,7 +137,7 @@ public class Parser {
      */
     private static class Tokenizer {
         /** Исходная строка. */
-        private final String s;
+        private final String input;
 
         /** Текущая позиция чтения. */
         private int pos;
@@ -150,26 +145,24 @@ public class Parser {
         /**
          * Создаёт токенайзер для заданной строки.
          *
-         * @param s исходная строка
+         * @param input исходная строка
          */
-        Tokenizer(String s) {
-            this.s = s;
+        Tokenizer(String input) {
+            this.input = input;
             this.pos = 0;
         }
 
         /**
-         * Проверяет, достигнут ли конец строки.
-         *
-         * @return {@code true}, если больше нет символов
+         * Возвращает {@code true}, если есть ещё символы для чтения.
          */
-        boolean isEnd() {
+        boolean hasMore() {
             skipWhitespace();
-            return pos >= s.length();
+            return pos < input.length();
         }
 
         /** Пропускает пробельные символы. */
         void skipWhitespace() {
-            while (pos < s.length() && Character.isWhitespace(s.charAt(pos))) {
+            while (pos < input.length() && Character.isWhitespace(input.charAt(pos))) {
                 pos++;
             }
         }
@@ -181,10 +174,10 @@ public class Parser {
          */
         char peek() {
             skipWhitespace();
-            if (pos >= s.length()) {
+            if (pos >= input.length()) {
                 return '\0';
             }
-            return s.charAt(pos);
+            return input.charAt(pos);
         }
 
         /**
@@ -194,10 +187,10 @@ public class Parser {
          */
         char consume() {
             skipWhitespace();
-            if (pos >= s.length()) {
+            if (pos >= input.length()) {
                 return '\0';
             }
-            return s.charAt(pos++);
+            return input.charAt(pos++);
         }
     }
 }
