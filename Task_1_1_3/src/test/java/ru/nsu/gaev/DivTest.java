@@ -7,8 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-import ru.nsu.gaev.expression.*;
+import ru.nsu.gaev.expression.Add;
+import ru.nsu.gaev.expression.Div;
+import ru.nsu.gaev.expression.Expression;
 import ru.nsu.gaev.expression.Number;
+import ru.nsu.gaev.expression.Variable;
 
 class DivTest {
     @Test

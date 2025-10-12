@@ -6,8 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-import ru.nsu.gaev.expression.*;
+import ru.nsu.gaev.expression.Add;
+import ru.nsu.gaev.expression.Div;
+import ru.nsu.gaev.expression.Expression;
+import ru.nsu.gaev.expression.Mul;
 import ru.nsu.gaev.expression.Number;
+import ru.nsu.gaev.expression.Sub;
+import ru.nsu.gaev.expression.Variable;
 import ru.nsu.gaev.parser.Parser;
 
 class ParserTest {
@@ -33,14 +38,16 @@ class ParserTest {
     @Test
     void testParseSimpleAddition() {
         Expression expr = Parser.parse("(2+3)");
-        assertEquals(new Add(new ru.nsu.gaev.expression.Number(2), new ru.nsu.gaev.expression.Number(3)), expr);
+        assertEquals(new Add(new ru.nsu.gaev.expression.Number(2),
+                new ru.nsu.gaev.expression.Number(3)), expr);
         assertEquals(5, expr.eval(Map.of()));
     }
 
     @Test
     void testParseNestedExpression() {
         Expression expr = Parser.parse("((x+2)*3)");
-        Expression expected = new Mul(new Add(new Variable("x"), new ru.nsu.gaev.expression.Number(2)),
+        Expression expected = new Mul(new Add(new Variable("x"),
+                new ru.nsu.gaev.expression.Number(2)),
                 new ru.nsu.gaev.expression.Number(3));
         assertEquals(expected, expr);
 
@@ -51,7 +58,8 @@ class ParserTest {
     @Test
     void testParseExpressionWithDivisionAndSubtraction() {
         Expression expr = Parser.parse("((10-4)/2)");
-        Expression expected = new Div(new Sub(new ru.nsu.gaev.expression.Number(10), new ru.nsu.gaev.expression.Number(4)),
+        Expression expected = new Div(new Sub(new ru.nsu.gaev.expression.Number(10),
+                new ru.nsu.gaev.expression.Number(4)),
                 new ru.nsu.gaev.expression.Number(2));
         assertEquals(expected, expr);
         assertEquals(3, expr.eval(Map.of()));

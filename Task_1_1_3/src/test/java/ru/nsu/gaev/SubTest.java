@@ -3,8 +3,12 @@ package ru.nsu.gaev;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-import ru.nsu.gaev.expression.*;
+import ru.nsu.gaev.expression.Add;
+import ru.nsu.gaev.expression.Expression;
 import ru.nsu.gaev.expression.Number;
+import ru.nsu.gaev.expression.Sub;
+import ru.nsu.gaev.expression.Variable;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -13,7 +17,8 @@ class SubTest {
 
     @Test
     void testEvalWithConstants() {
-        Expression expr = new Sub(new ru.nsu.gaev.expression.Number(10), new ru.nsu.gaev.expression.Number(4));
+        Expression expr = new Sub(new ru.nsu.gaev.expression.Number(10),
+                new ru.nsu.gaev.expression.Number(4));
         assertEquals(6, expr.eval(Map.of()));
     }
 

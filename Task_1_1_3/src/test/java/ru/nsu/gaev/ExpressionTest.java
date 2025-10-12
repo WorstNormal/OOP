@@ -5,8 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import org.junit.jupiter.api.Test;
-import ru.nsu.gaev.expression.*;
+import ru.nsu.gaev.expression.Add;
+import ru.nsu.gaev.expression.Div;
+import ru.nsu.gaev.expression.Expression;
+import ru.nsu.gaev.expression.Mul;
 import ru.nsu.gaev.expression.Number;
+import ru.nsu.gaev.expression.Sub;
+import ru.nsu.gaev.expression.Variable;
+
 
 class ExpressionTest {
 
