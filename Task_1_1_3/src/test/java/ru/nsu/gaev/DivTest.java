@@ -43,7 +43,8 @@ class DivTest {
 
     @Test
     void testSimplify() {
-        Expression expr = new Div(new ru.nsu.gaev.expression.Number(6), new ru.nsu.gaev.expression.Number(3));
+        Expression expr = new Div(new ru.nsu.gaev.expression.Number(6),
+                new ru.nsu.gaev.expression.Number(3));
         Expression simplifiedExpr = expr.simplify();
         assertInstanceOf(ru.nsu.gaev.expression.Number.class, simplifiedExpr);
         assertEquals(2, ((ru.nsu.gaev.expression.Number) simplifiedExpr).getValue());
@@ -82,7 +83,8 @@ class DivTest {
 
     @Test
     void testSimplifyDivByOne() {
-        Expression expr = new Div(new ru.nsu.gaev.expression.Number(5), new ru.nsu.gaev.expression.Number(1));
+        Expression expr = new Div(new ru.nsu.gaev.expression.Number(5),
+                new ru.nsu.gaev.expression.Number(1));
         Expression simplifiedExpr = expr.simplify();
         assertInstanceOf(ru.nsu.gaev.expression.Number.class, simplifiedExpr);
         assertEquals(5, ((ru.nsu.gaev.expression.Number) simplifiedExpr).getValue());
@@ -90,7 +92,8 @@ class DivTest {
 
     @Test
     void testSimplifyDivZeroNumerator() {
-        Expression expr = new Div(new ru.nsu.gaev.expression.Number(0), new ru.nsu.gaev.expression.Number(3));
+        Expression expr = new Div(new ru.nsu.gaev.expression.Number(0),
+                new ru.nsu.gaev.expression.Number(3));
         Expression simplifiedExpr = expr.simplify();
         assertInstanceOf(ru.nsu.gaev.expression.Number.class, simplifiedExpr);
         assertEquals(0, ((Number) simplifiedExpr).getValue());

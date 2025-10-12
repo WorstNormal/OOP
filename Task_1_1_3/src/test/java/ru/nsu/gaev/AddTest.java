@@ -17,7 +17,8 @@ class AddTest {
     void testEval() {
         Expression x = new Variable("x");
         Expression y = new Variable("y");
-        Expression expr = new Add(new Add(x, new ru.nsu.gaev.expression.Number(2)), new Add(new ru.nsu.gaev.expression.Number(3), y));
+        Expression expr = new Add(new Add(x, new ru.nsu.gaev.expression.Number(2)),
+                new Add(new ru.nsu.gaev.expression.Number(3), y));
 
         Map<String, Integer> vars = new HashMap<>();
         vars.put("x", 5);
@@ -31,7 +32,8 @@ class AddTest {
     void testDerivative() {
         Expression x = new Variable("x");
         Expression y = new Variable("y");
-        Expression expr = new Add(new Add(x, new ru.nsu.gaev.expression.Number(2)), new Add(new ru.nsu.gaev.expression.Number(3), y));
+        Expression expr = new Add(new Add(x, new ru.nsu.gaev.expression.Number(2)),
+                new Add(new ru.nsu.gaev.expression.Number(3), y));
         Expression derivative = expr.derivative("x");
         Map<String, Integer> vars = new HashMap<>();
         int derivativeResult = derivative.eval(vars);
@@ -40,7 +42,8 @@ class AddTest {
 
     @Test
     void testSimplify() {
-        Expression expr = new Add(new ru.nsu.gaev.expression.Number(2), new ru.nsu.gaev.expression.Number(3));
+        Expression expr = new Add(new ru.nsu.gaev.expression.Number(2),
+                new ru.nsu.gaev.expression.Number(3));
         Expression simplifiedExpr = expr.simplify();
         assertTrue(simplifiedExpr instanceof ru.nsu.gaev.expression.Number);
         assertEquals(5, ((ru.nsu.gaev.expression.Number) simplifiedExpr).getValue());

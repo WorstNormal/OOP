@@ -79,7 +79,8 @@ public class Div extends Expression {
             throw new ArithmeticException("Division by zero");
         }
 
-        // Если числитель равен 0 — результат 0 (и знаменатель не равен нулю, иначе бы выше сработало исключение)
+        // Если числитель равен 0 — результат 0 (и знаменатель не
+        // равен нулю, иначе бы выше сработало исключение)
         if (l instanceof Number && ((Number) l).getValue() == 0) {
             return new Number(0);
         }

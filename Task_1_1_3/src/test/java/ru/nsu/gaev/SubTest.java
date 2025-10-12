@@ -30,13 +30,15 @@ class SubTest {
     void testDerivative() {
         Expression expr = new Sub(new Variable("x"), new ru.nsu.gaev.expression.Number(3));
         Expression derivative = expr.derivative("x");
-        Expression expected = new Sub(new ru.nsu.gaev.expression.Number(1), new ru.nsu.gaev.expression.Number(0));
+        Expression expected = new Sub(new ru.nsu.gaev.expression.Number(1),
+                new ru.nsu.gaev.expression.Number(0));
         assertEquals(expected, derivative);
     }
 
     @Test
     void testSimplifyConstantSubtraction() {
-        Expression expr = new Sub(new ru.nsu.gaev.expression.Number(9), new ru.nsu.gaev.expression.Number(4));
+        Expression expr = new Sub(new ru.nsu.gaev.expression.Number(9),
+                new ru.nsu.gaev.expression.Number(4));
         Expression simplified = expr.simplify();
         assertEquals(new ru.nsu.gaev.expression.Number(5), simplified);
     }
@@ -50,7 +52,8 @@ class SubTest {
 
     @Test
     void testSimplifyNonTrivial() {
-        Expression expr = new Sub(new Add(new ru.nsu.gaev.expression.Number(2), new ru.nsu.gaev.expression.Number(3)),
+        Expression expr = new Sub(new Add(new ru.nsu.gaev.expression.Number(2),
+                new ru.nsu.gaev.expression.Number(3)),
                 new ru.nsu.gaev.expression.Number(1));
         Expression simplified = expr.simplify();
         assertEquals(new ru.nsu.gaev.expression.Number(4), simplified);
@@ -75,13 +78,15 @@ class SubTest {
 
     @Test
     void testEqualsWithDifferentType() {
-        Sub sub = new Sub(new ru.nsu.gaev.expression.Number(1), new ru.nsu.gaev.expression.Number(2));
+        Sub sub = new Sub(new ru.nsu.gaev.expression.Number(1),
+                new ru.nsu.gaev.expression.Number(2));
         assertNotEquals("not an expression", sub);
     }
 
     @Test
     void testEqualsWithNull() {
-        Sub sub = new Sub(new ru.nsu.gaev.expression.Number(1), new ru.nsu.gaev.expression.Number(2));
+        Sub sub = new Sub(new ru.nsu.gaev.expression.Number(1),
+                new ru.nsu.gaev.expression.Number(2));
         assertNotEquals(null, sub);
     }
 

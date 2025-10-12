@@ -68,13 +68,15 @@ class MulTest {
 
     @Test
     void testSimplifyBothNumbers() {
-        Expression expr = new Mul(new ru.nsu.gaev.expression.Number(3), new ru.nsu.gaev.expression.Number(5));
+        Expression expr = new Mul(new ru.nsu.gaev.expression.Number(3),
+                new ru.nsu.gaev.expression.Number(5));
         assertEquals(new ru.nsu.gaev.expression.Number(15), expr.simplify());
     }
 
     @Test
     void testToExpressionString() {
-        Expression expr = new Mul(new Add(new ru.nsu.gaev.expression.Number(2), new Variable("x")),
+        Expression expr = new Mul(new Add(new ru.nsu.gaev.expression.Number(2),
+                new Variable("x")),
                 new ru.nsu.gaev.expression.Number(3));
         assertEquals("((2+x)*3)", expr.toString());
     }
