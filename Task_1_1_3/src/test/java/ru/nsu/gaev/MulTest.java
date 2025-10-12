@@ -17,7 +17,8 @@ class MulTest {
 
     @Test
     void testEvalSimple() {
-        Expression expr = new Mul(new ru.nsu.gaev.expression.Number(3), new ru.nsu.gaev.expression.Number(4));
+        Expression expr = new Mul(new ru.nsu.gaev.expression.Number(3),
+                new ru.nsu.gaev.expression.Number(4));
         assertEquals(12, expr.eval(new HashMap<>()));
     }
 

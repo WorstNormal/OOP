@@ -13,7 +13,7 @@ import ru.nsu.gaev.expression.Number;
 import ru.nsu.gaev.expression.Variable;
 
 class VariableTest {
-
+    
     @Test
     void testEvalWithAssignedVariable() {
         Variable x = new Variable("x");

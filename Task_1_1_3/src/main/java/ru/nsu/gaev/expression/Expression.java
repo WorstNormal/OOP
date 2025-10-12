@@ -1,8 +1,8 @@
 package ru.nsu.gaev.expression;
 
-import ru.nsu.gaev.parser.Parser;
-
 import java.util.Map;
+
+import ru.nsu.gaev.parser.Parser;
 
 /**
  * Абстрактный класс, представляющий математическое выражение.

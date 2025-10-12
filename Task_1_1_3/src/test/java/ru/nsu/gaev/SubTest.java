@@ -1,5 +1,8 @@
 package ru.nsu.gaev;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -8,10 +11,6 @@ import ru.nsu.gaev.expression.Expression;
 import ru.nsu.gaev.expression.Number;
 import ru.nsu.gaev.expression.Sub;
 import ru.nsu.gaev.expression.Variable;
-
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class SubTest {
 

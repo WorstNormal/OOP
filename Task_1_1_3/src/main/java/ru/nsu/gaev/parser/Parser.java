@@ -1,7 +1,12 @@
 package ru.nsu.gaev.parser;
 
-import ru.nsu.gaev.expression.*;
+import ru.nsu.gaev.expression.Add;
+import ru.nsu.gaev.expression.Div;
+import ru.nsu.gaev.expression.Expression;
+import ru.nsu.gaev.expression.Mul;
 import ru.nsu.gaev.expression.Number;
+import ru.nsu.gaev.expression.Sub;
+import ru.nsu.gaev.expression.Variable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +52,8 @@ public class Parser {
             }
             char op = t.consume();
             if (op != '+' && op != '-' && op != '*' && op != '/') {
-                throw new IllegalArgumentException("Unknown operator: " + op + " at position " + t.pos);
+                throw new IllegalArgumentException("Unknown operator: " + op +
+                        " at position " + t.pos);
             }
             Expression right = parseExpr(t);
             t.skipWhitespace();
@@ -86,8 +92,8 @@ public class Parser {
                 }
                 return new Variable(sb.toString());
             } else {
-                throw new IllegalArgumentException("Unexpected symbol '" + t.peek() +
-                        "' at position " + t.pos);
+                throw new IllegalArgumentException("Unexpected symbol '" + t.peek()
+                        + "' at position " + t.pos);
             }
         }
     }
