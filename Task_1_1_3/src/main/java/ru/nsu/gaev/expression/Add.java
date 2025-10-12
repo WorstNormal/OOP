@@ -1,4 +1,4 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.expression;
 
 import java.util.Map;
 import java.util.Objects;

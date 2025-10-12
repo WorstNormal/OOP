@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
+import ru.nsu.gaev.expression.Expression;
+import ru.nsu.gaev.expression.Number;
+import ru.nsu.gaev.expression.Variable;
 
 class VariableTest {
 
@@ -38,14 +41,14 @@ class VariableTest {
     void testDerivativeSameVariable() {
         Variable x = new Variable("x");
         Expression derivative = x.derivative("x");
-        assertEquals(new Number(1), derivative);
+        assertEquals(new ru.nsu.gaev.expression.Number(1), derivative);
     }
 
     @Test
     void testDerivativeDifferentVariable() {
         Variable x = new Variable("x");
         Expression derivative = x.derivative("y");
-        assertEquals(new Number(0), derivative);
+        assertEquals(new ru.nsu.gaev.expression.Number(0), derivative);
     }
 
     @Test

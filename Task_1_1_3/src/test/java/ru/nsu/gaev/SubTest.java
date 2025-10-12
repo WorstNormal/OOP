@@ -3,6 +3,8 @@ package ru.nsu.gaev;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
+import ru.nsu.gaev.expression.*;
+import ru.nsu.gaev.expression.Number;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -11,7 +13,7 @@ class SubTest {
 
     @Test
     void testEvalWithConstants() {
-        Expression expr = new Sub(new Number(10), new Number(4));
+        Expression expr = new Sub(new ru.nsu.gaev.expression.Number(10), new ru.nsu.gaev.expression.Number(4));
         assertEquals(6, expr.eval(Map.of()));
     }
 
@@ -26,45 +28,45 @@ class SubTest {
 
     @Test
     void testDerivative() {
-        Expression expr = new Sub(new Variable("x"), new Number(3));
+        Expression expr = new Sub(new Variable("x"), new ru.nsu.gaev.expression.Number(3));
         Expression derivative = expr.derivative("x");
-        Expression expected = new Sub(new Number(1), new Number(0));
+        Expression expected = new Sub(new ru.nsu.gaev.expression.Number(1), new ru.nsu.gaev.expression.Number(0));
         assertEquals(expected, derivative);
     }
 
     @Test
     void testSimplifyConstantSubtraction() {
-        Expression expr = new Sub(new Number(9), new Number(4));
+        Expression expr = new Sub(new ru.nsu.gaev.expression.Number(9), new ru.nsu.gaev.expression.Number(4));
         Expression simplified = expr.simplify();
-        assertEquals(new Number(5), simplified);
+        assertEquals(new ru.nsu.gaev.expression.Number(5), simplified);
     }
 
     @Test
     void testSimplifyEqualExpressions() {
         Expression expr = new Sub(new Variable("x"), new Variable("x"));
         Expression simplified = expr.simplify();
-        assertEquals(new Number(0), simplified);
+        assertEquals(new ru.nsu.gaev.expression.Number(0), simplified);
     }
 
     @Test
     void testSimplifyNonTrivial() {
-        Expression expr = new Sub(new Add(new Number(2), new Number(3)),
-                new Number(1));
+        Expression expr = new Sub(new Add(new ru.nsu.gaev.expression.Number(2), new ru.nsu.gaev.expression.Number(3)),
+                new ru.nsu.gaev.expression.Number(1));
         Expression simplified = expr.simplify();
-        assertEquals(new Number(4), simplified);
+        assertEquals(new ru.nsu.gaev.expression.Number(4), simplified);
     }
 
     @Test
     void testToExpressionString() {
-        Expression expr = new Sub(new Number(7), new Variable("y"));
+        Expression expr = new Sub(new ru.nsu.gaev.expression.Number(7), new Variable("y"));
         assertEquals("(7-y)", expr.toString());
     }
 
     @Test
     void testEqualsAndHashCode() {
-        Sub a = new Sub(new Number(2), new Variable("x"));
-        Sub b = new Sub(new Number(2), new Variable("x"));
-        Sub c = new Sub(new Number(3), new Variable("x"));
+        Sub a = new Sub(new ru.nsu.gaev.expression.Number(2), new Variable("x"));
+        Sub b = new Sub(new ru.nsu.gaev.expression.Number(2), new Variable("x"));
+        Sub c = new Sub(new ru.nsu.gaev.expression.Number(3), new Variable("x"));
 
         assertEquals(a, b);
         assertEquals(a.hashCode(), b.hashCode());
@@ -73,13 +75,13 @@ class SubTest {
 
     @Test
     void testEqualsWithDifferentType() {
-        Sub sub = new Sub(new Number(1), new Number(2));
+        Sub sub = new Sub(new ru.nsu.gaev.expression.Number(1), new ru.nsu.gaev.expression.Number(2));
         assertNotEquals("not an expression", sub);
     }
 
     @Test
     void testEqualsWithNull() {
-        Sub sub = new Sub(new Number(1), new Number(2));
+        Sub sub = new Sub(new ru.nsu.gaev.expression.Number(1), new ru.nsu.gaev.expression.Number(2));
         assertNotEquals(null, sub);
     }
 
@@ -87,7 +89,7 @@ class SubTest {
     void testDerivativeWithOtherVariable() {
         Expression expr = new Sub(new Variable("x"), new Variable("y"));
         Expression derivative = expr.derivative("y");
-        Expression expected = new Sub(new Number(0), new Number(1));
+        Expression expected = new Sub(new ru.nsu.gaev.expression.Number(0), new Number(1));
         assertEquals(expected, derivative);
     }
 }

@@ -1,4 +1,7 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.parser;
+
+import ru.nsu.gaev.expression.*;
+import ru.nsu.gaev.expression.Number;
 
 import java.util.HashMap;
 import java.util.Map;

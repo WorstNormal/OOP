@@ -6,19 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
 import org.junit.jupiter.api.Test;
+import ru.nsu.gaev.expression.*;
+import ru.nsu.gaev.expression.Number;
+import ru.nsu.gaev.parser.Parser;
 
 class ParserTest {
     @Test
     void testParseSimpleNumber() {
         Expression expr = Parser.parse("42");
-        assertEquals(new Number(42), expr);
+        assertEquals(new ru.nsu.gaev.expression.Number(42), expr);
         assertEquals(42, expr.eval(Map.of()));
     }
 
     @Test
     void testParseNegativeNumber() {
         Expression expr = Parser.parse("-7");
-        assertEquals(new Number(-7), expr);
+        assertEquals(new ru.nsu.gaev.expression.Number(-7), expr);
     }
 
     @Test
@@ -30,15 +33,15 @@ class ParserTest {
     @Test
     void testParseSimpleAddition() {
         Expression expr = Parser.parse("(2+3)");
-        assertEquals(new Add(new Number(2), new Number(3)), expr);
+        assertEquals(new Add(new ru.nsu.gaev.expression.Number(2), new ru.nsu.gaev.expression.Number(3)), expr);
         assertEquals(5, expr.eval(Map.of()));
     }
 
     @Test
     void testParseNestedExpression() {
         Expression expr = Parser.parse("((x+2)*3)");
-        Expression expected = new Mul(new Add(new Variable("x"), new Number(2)),
-                new Number(3));
+        Expression expected = new Mul(new Add(new Variable("x"), new ru.nsu.gaev.expression.Number(2)),
+                new ru.nsu.gaev.expression.Number(3));
         assertEquals(expected, expr);
 
         int result = expr.eval(Map.of("x", 4));
@@ -48,8 +51,8 @@ class ParserTest {
     @Test
     void testParseExpressionWithDivisionAndSubtraction() {
         Expression expr = Parser.parse("((10-4)/2)");
-        Expression expected = new Div(new Sub(new Number(10), new Number(4)),
-                new Number(2));
+        Expression expected = new Div(new Sub(new ru.nsu.gaev.expression.Number(10), new ru.nsu.gaev.expression.Number(4)),
+                new ru.nsu.gaev.expression.Number(2));
         assertEquals(expected, expr);
         assertEquals(3, expr.eval(Map.of()));
     }
@@ -141,8 +144,8 @@ class ParserTest {
 
     @Test
     void testParseNegativeNumbers() {
-        assertEquals(new Number(-5), Parser.parse("(-5)"));
-        assertEquals(new Add(new Variable("x"), new Number(-3)), Parser.parse("(x+(-3))"));
+        assertEquals(new ru.nsu.gaev.expression.Number(-5), Parser.parse("(-5)"));
+        assertEquals(new Add(new Variable("x"), new ru.nsu.gaev.expression.Number(-3)), Parser.parse("(x+(-3))"));
     }
 
     @Test
@@ -151,7 +154,7 @@ class ParserTest {
                 new Mul(new Variable("a"), new Variable("b")),
                 new Div(
                         new Sub(new Variable("c"), new Variable("d")),
-                        new Add(new Number(1), new Number(2))
+                        new Add(new ru.nsu.gaev.expression.Number(1), new ru.nsu.gaev.expression.Number(2))
                 )
         );
         assertEquals(expected, Parser.parse("((a*b)+((c-d)/(1+2)))"));
