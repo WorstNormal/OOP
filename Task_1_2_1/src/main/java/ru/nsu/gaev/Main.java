@@ -23,7 +23,8 @@ public class Main {
             System.out.println("----------------------------------------");
 
             System.out.println("Topological Sort (from Adjacency List implementation):");
-            List<String> sortedVertices = TopologicalSort.sort(listGraph);
+            // Изменено: Вызываем метод прямо из объекта графа
+            List<String> sortedVertices = listGraph.topologicalSort();
             System.out.println(sortedVertices);
 
         } catch (IOException e) {

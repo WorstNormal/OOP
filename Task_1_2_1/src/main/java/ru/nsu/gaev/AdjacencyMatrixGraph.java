@@ -2,16 +2,19 @@ package ru.nsu.gaev;
 
 import java.util.*;
 
-public class AdjacencyMatrixGraph<V> extends AbstractGraph<V> {
+// Наследуемся от AbstractIndexBasedGraph
+public class AdjacencyMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
     private int[][] matrix = new int[0][0];
 
     @Override
     public void clear() {
-        matrix = new int[0][0];
+        super.clear(); // Очищаем карты (vertexToIndex, indexToVertex)
+        matrix = new int[0][0]; // Очищаем свою структуру
     }
 
     @Override
     public boolean addVertex(V vertex) {
+        // Вызываем super.addVertex() из AbstractIndexBasedGraph
         if (super.addVertex(vertex)) {
             int newSize = indexToVertex.size();
             int[][] newMatrix = new int[newSize][newSize];
@@ -26,15 +29,62 @@ public class AdjacencyMatrixGraph<V> extends AbstractGraph<V> {
 
     @Override
     public boolean removeVertex(V vertex) {
-        throw new UnsupportedOperationException("Remove vertex is not supported.");
+        Integer idxToRemove = vertexToIndex.get(vertex);
+        if (idxToRemove == null) {
+            return false;
+        }
+
+        int oldSize = indexToVertex.size();
+        int newSize = oldSize - 1;
+
+        if (newSize == 0) {
+            clear(); // Вызовет super.clear() и очистит matrix
+            return true;
+        }
+
+        int[][] newMatrix = new int[newSize][newSize];
+
+        // 1. Удаляем вершину из списков (они в super-классе)
+        vertexToIndex.remove(vertex);
+        indexToVertex.remove((int) idxToRemove);
+
+        // 2. Перестраиваем карту vertexToIndex
+        vertexToIndex.clear();
+        for (int i = 0; i < newSize; i++) {
+            vertexToIndex.put(indexToVertex.get(i), i);
+        }
+
+        // 3. Перестраиваем матрицу
+        int r = 0;
+        for (int i = 0; i < oldSize; i++) {
+            if (i == idxToRemove) {
+                continue;
+            }
+            int c = 0;
+            for (int j = 0; j < oldSize; j++) {
+                if (j == idxToRemove) {
+                    continue;
+                }
+                newMatrix[r][c] = matrix[i][j];
+                c++;
+            }
+            r++;
+        }
+
+        matrix = newMatrix;
+        return true;
     }
 
     @Override
     public boolean addEdge(V source, V destination) {
         Integer srcIdx = vertexToIndex.get(source);
         Integer destIdx = vertexToIndex.get(destination);
-        if (srcIdx == null || destIdx == null) throw new IllegalArgumentException("Vertex not found.");
-        if (matrix[srcIdx][destIdx] == 1) return false;
+        if (srcIdx == null || destIdx == null) {
+            throw new IllegalArgumentException("Vertex not found.");
+        }
+        if (matrix[srcIdx][destIdx] == 1) {
+            return false;
+        }
         matrix[srcIdx][destIdx] = 1;
         return true;
     }
@@ -43,7 +93,9 @@ public class AdjacencyMatrixGraph<V> extends AbstractGraph<V> {
     public boolean removeEdge(V source, V destination) {
         Integer srcIdx = vertexToIndex.get(source);
         Integer destIdx = vertexToIndex.get(destination);
-        if (srcIdx == null || destIdx == null || matrix[srcIdx][destIdx] == 0) return false;
+        if (srcIdx == null || destIdx == null || matrix[srcIdx][destIdx] == 0) {
+            return false;
+        }
         matrix[srcIdx][destIdx] = 0;
         return true;
     }
@@ -51,7 +103,9 @@ public class AdjacencyMatrixGraph<V> extends AbstractGraph<V> {
     @Override
     public Set<V> getNeighbors(V vertex) {
         Integer index = vertexToIndex.get(vertex);
-        if (index == null) return Collections.emptySet();
+        if (index == null) {
+            return Collections.emptySet();
+        }
         Set<V> neighbors = new LinkedHashSet<>();
         for (int j = 0; j < matrix[index].length; j++) {
             if (matrix[index][j] == 1) {
@@ -72,12 +126,14 @@ public class AdjacencyMatrixGraph<V> extends AbstractGraph<V> {
     public String toString() {
         StringBuilder sb = new StringBuilder("Adjacency Matrix Graph:\n");
         sb.append("    ");
-        for (V v : indexToVertex) sb.append(v).append(" ");
+        for (V v : indexToVertex) {
+            sb.append(String.format("%-3s", v));
+        }
         sb.append("\n");
         for (int i = 0; i < matrix.length; i++) {
             sb.append(String.format("%-4s", indexToVertex.get(i)));
             for (int j = 0; j < matrix[i].length; j++) {
-                sb.append(matrix[i][j]).append(" ");
+                sb.append(String.format("%-3d", matrix[i][j]));
             }
             sb.append("\n");
         }

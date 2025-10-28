@@ -7,9 +7,6 @@ import java.util.*;
 
 public abstract class AbstractGraph<V> implements Graph<V> {
 
-    protected final Map<V, Integer> vertexToIndex = new HashMap<>();
-    protected final List<V> indexToVertex = new ArrayList<>();
-
     /**
      * Очищает все внутренние структуры графа (ребра и т.д.),
      * подготавливая его к чтению новых данных из файла.
@@ -17,19 +14,10 @@ public abstract class AbstractGraph<V> implements Graph<V> {
     public abstract void clear();
 
     @Override
-    public Set<V> getVertices() {
-        return Collections.unmodifiableSet(vertexToIndex.keySet());
-    }
+    public abstract Set<V> getVertices();
 
     @Override
-    public boolean addVertex(V vertex) {
-        if (vertexToIndex.containsKey(vertex)) {
-            return false;
-        }
-        vertexToIndex.put(vertex, indexToVertex.size());
-        indexToVertex.add(vertex);
-        return true;
-    }
+    public abstract boolean addVertex(V vertex);
 
     @Override
     public abstract boolean removeVertex(V vertex);
@@ -37,9 +25,8 @@ public abstract class AbstractGraph<V> implements Graph<V> {
     @Override
     public void readFromFile(String filePath) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            // Очищаем конкретную реализацию графа
             this.clear();
-            vertexToIndex.clear();
-            indexToVertex.clear();
 
             String line;
 
@@ -56,6 +43,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
                 if (line.trim().isEmpty()) { i--; continue; }
                 @SuppressWarnings("unchecked")
                 V vertex = (V) line.trim();
+                // Вызываем абстрактный addVertex, который реализуют наследники
                 this.addVertex(vertex);
             }
 
@@ -90,6 +78,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 
         Graph<V> other = (Graph<V>) o;
 
+        // Сравнение через getVertices() (который теперь абстрактный)
         if (!this.getVertices().equals(other.getVertices())) {
             return false;
         }
@@ -97,15 +86,12 @@ public abstract class AbstractGraph<V> implements Graph<V> {
         for (V vertex : this.getVertices()) {
             Set<V> thisNeighbors = this.getNeighbors(vertex);
 
-            // Проверяем, что вершина существует в другом графе
             if (!other.getVertices().contains(vertex)) {
                 return false;
             }
 
-            // Получаем соседей напрямую с типом V
             Set<V> otherNeighbors = other.getNeighbors(vertex);
 
-            // Сравниваем множества соседей
             if (!thisNeighbors.equals(otherNeighbors)) {
                 return false;
             }

@@ -2,6 +2,13 @@ package ru.nsu.gaev;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.List; // Добавлено
+import java.util.Map; // Добавлено
+import java.util.HashMap; // Добавлено
+import java.util.Queue; // Добавлено
+import java.util.LinkedList; // Добавлено
+import java.util.ArrayList; // Добавлено
+import java.util.Collections; // Добавлено для Collections.emptySet()
 
 /**
  * Интерфейс, представляющий структуру данных "Граф".
@@ -9,6 +16,8 @@ import java.util.Set;
  */
 public interface Graph<V> {
 
+
+    void clear();
     /**
      * Добавляет вершину в граф.
      * @param vertex Вершина для добавления.
@@ -66,4 +75,50 @@ public interface Graph<V> {
      * @throws IOException если возникает ошибка чтения.
      */
     void readFromFile(String filePath) throws IOException;
+
+    /**
+     * Выполняет топологическую сортировку графа.
+     * @return Список вершин в топологическом порядке.
+     * @throws IllegalStateException если в графе есть цикл.
+     */
+    default List<V> topologicalSort() {
+        Map<V, Integer> inDegree = new HashMap<>();
+        for (V vertex : this.getVertices()) {
+            inDegree.put(vertex, 0);
+        }
+
+        for (V vertex : this.getVertices()) {
+            for (V neighbor : this.getNeighbors(vertex)) {
+                // Обработка случая, когда neighbor может не быть в inDegree (хотя по логике getVertices должен)
+                inDegree.put(neighbor, inDegree.getOrDefault(neighbor, 0) + 1);
+            }
+        }
+
+        Queue<V> queue = new LinkedList<>();
+        for (Map.Entry<V, Integer> entry : inDegree.entrySet()) {
+            if (entry.getValue() == 0) {
+                queue.add(entry.getKey());
+            }
+        }
+
+        List<V> sortedOrder = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            V vertex = queue.poll();
+            sortedOrder.add(vertex);
+
+            for (V neighbor : this.getNeighbors(vertex)) {
+                int newDegree = inDegree.get(neighbor) - 1;
+                inDegree.put(neighbor, newDegree);
+                if (newDegree == 0) {
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        if (sortedOrder.size() != this.getVertices().size()) {
+            throw new IllegalStateException("Graph has a cycle, topological sort is not possible.");
+        }
+
+        return sortedOrder;
+    }
 }

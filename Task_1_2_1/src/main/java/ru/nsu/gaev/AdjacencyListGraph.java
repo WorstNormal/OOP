@@ -2,32 +2,51 @@ package ru.nsu.gaev;
 
 import java.util.*;
 
+// Наследуемся от "чистого" AbstractGraph
 public class AdjacencyListGraph<V> extends AbstractGraph<V> {
     private final Map<V, Set<V>> adjList = new HashMap<>();
 
+    /**
+     * Реализуем clear() из AbstractGraph
+     */
     @Override
     public void clear() {
         adjList.clear();
     }
 
+    /**
+     * Реализуем addVertex() из AbstractGraph
+     * Логика не использует индексы.
+     */
     @Override
     public boolean addVertex(V vertex) {
-        if (!adjList.containsKey(vertex)) {
-            adjList.put(vertex, new LinkedHashSet<>());
-            return super.addVertex(vertex);
+        if (adjList.containsKey(vertex)) {
+            return false;
         }
-        return false;
+        adjList.put(vertex, new LinkedHashSet<>());
+        return true;
     }
 
+    /**
+     * Реализуем removeVertex() из AbstractGraph
+     * Логика не использует индексы.
+     */
     @Override
     public boolean removeVertex(V vertex) {
-        if (!adjList.containsKey(vertex)) return false;
+        if (!adjList.containsKey(vertex)) {
+            return false;
+        }
         adjList.values().forEach(neighbors -> neighbors.remove(vertex));
         adjList.remove(vertex);
-        vertexToIndex.remove(vertex);
-        indexToVertex.remove(vertex);
-        // В реальном проекте потребовалась бы переиндексация
         return true;
+    }
+
+    /**
+     * Реализуем getVertices() из AbstractGraph
+     */
+    @Override
+    public Set<V> getVertices() {
+        return Collections.unmodifiableSet(adjList.keySet());
     }
 
     @Override
@@ -40,7 +59,9 @@ public class AdjacencyListGraph<V> extends AbstractGraph<V> {
 
     @Override
     public boolean removeEdge(V source, V destination) {
-        if (!adjList.containsKey(source)) return false;
+        if (!adjList.containsKey(source)) {
+            return false;
+        }
         return adjList.get(source).remove(destination);
     }
 

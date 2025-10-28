@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.gaev.AdjacencyListGraphTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2025-10-28T02:53:48.703Z" hostname="DESKTOP-5DMEAV6" time="0.189">
+  <properties/>
+  <testcase name="Исключение при добавлении ребра к несуществующей вершине" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.077"/>
+  <testcase name="Удаление всех вершин" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.009"/>
+  <testcase name="Чтение из файла (readFromFile)" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.05"/>
+  <testcase name="Добавление ребер и проверка hasEdge / getNeighbors" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.005"/>
+  <testcase name="Запрет на добавление дубликатов вершин" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
+  <testcase name="Метод clear()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="Удаление вершины" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
+  <testcase name="Удаление ребра" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="Добавление вершин и проверка getVertices" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="Проверка equals() и hashCode()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.006"/>
+  <testcase name="Топологическая сортировка (обнаружение цикла)" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.005"/>
+  <testcase name="Топологическая сортировка (успех)" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="Запрет на добавление дубликатов ребер" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
