@@ -1,16 +1,20 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Тесты для AdjacencyListGraph
@@ -184,9 +188,19 @@ class AdjacencyListGraphTest {
         graph.addVertex("TRASH");
         graph.addEdge("TRASH", "TRASH");
 
-        String fileContent =
-                "5\nV1\nV2\nV3\nV4\nV5\n" +
-                        "4\nV1 V2\nV1 V3\nV3 V4\nV3 V5\n";
+        String fileContent = """
+                5
+                V1
+                V2
+                V3
+                V4
+                V5
+                4
+                V1 V2
+                V1 V3
+                V3 V4
+                V3 V5
+                """;
 
         Path file = tempDir.resolve("graph.txt");
         Files.writeString(file, fileContent);

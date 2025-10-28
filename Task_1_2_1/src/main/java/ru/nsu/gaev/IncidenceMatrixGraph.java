@@ -117,10 +117,48 @@ public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
 
     @Override
     public boolean removeEdge(V source, V destination) {
-        // Реализация removeEdge для матрицы инцидентности очень сложна,
-        // т.к. требует перестройки всей матрицы (сдвига столбцов).
-        // Оставим UnsupportedOperationException, если это не требуется по заданию.
-        throw new UnsupportedOperationException("Remove edge is not supported in IncidenceMatrixGraph due to complexity.");
+        Integer srcIdx = vertexToIndex.get(source);
+        Integer destIdx = vertexToIndex.get(destination);
+        if (srcIdx == null || destIdx == null) {
+            return false;
+        }
+
+        // Находим столбец (edge) где src->1 и dest->-1
+        int foundCol = -1;
+        for (int j = 0; j < edgeCount; j++) {
+            if (matrix[srcIdx][j] == 1 && matrix[destIdx][j] == -1) {
+                foundCol = j;
+                break;
+            }
+        }
+
+        if (foundCol == -1) {
+            return false; // ребро не найдено
+        }
+
+        // Если это единственный столбец, просто обнулим матрицу столбцов
+        if (edgeCount == 1) {
+            matrix = new int[indexToVertex.size()][0];
+            edgeCount = 0;
+            return true;
+        }
+
+        int newEdgeCount = edgeCount - 1;
+        int[][] newMatrix = new int[indexToVertex.size()][newEdgeCount];
+
+        for (int i = 0; i < indexToVertex.size(); i++) {
+            int c = 0;
+            for (int j = 0; j < edgeCount; j++) {
+                if (j == foundCol) {
+                    continue;
+                }
+                newMatrix[i][c++] = matrix[i][j];
+            }
+        }
+
+        matrix = newMatrix;
+        edgeCount = newEdgeCount;
+        return true;
     }
 
     @Override

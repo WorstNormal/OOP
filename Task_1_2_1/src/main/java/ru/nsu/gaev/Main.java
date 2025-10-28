@@ -3,7 +3,16 @@ package ru.nsu.gaev;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Утилитный класс для запуска демонстрации и тестирования реализаций Graph.
+ */
 public class Main {
+    /**
+     * Точка входа. Считывает граф из файла graph.txt и демонстрирует
+     * работу реализаций и топологическую сортировку.
+     *
+     * @param args аргументы командной строки (не используются)
+     */
     public static void main(String[] args) {
         try {
             Graph<String> listGraph = new AdjacencyListGraph<>();
@@ -32,8 +41,7 @@ public class Main {
         } catch (IllegalStateException e) {
             System.err.println("Error during sorting: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("An unexpected runtime error occurred!");
-            e.printStackTrace();
+            System.err.println("An unexpected runtime error occurred: " + e.getMessage());
         }
     }
 }

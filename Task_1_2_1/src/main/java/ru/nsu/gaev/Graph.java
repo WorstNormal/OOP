@@ -8,7 +8,6 @@ import java.util.HashMap; // Добавлено
 import java.util.Queue; // Добавлено
 import java.util.LinkedList; // Добавлено
 import java.util.ArrayList; // Добавлено
-import java.util.Collections; // Добавлено для Collections.emptySet()
 
 /**
  * Интерфейс, представляющий структуру данных "Граф".
