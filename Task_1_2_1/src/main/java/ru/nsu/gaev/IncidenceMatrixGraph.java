@@ -1,8 +1,16 @@
 package ru.nsu.gaev;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-// Наследуемся от AbstractIndexBasedGraph
+/**
+ * Реализация графа через матрицу инцидентности.
+ * Наследуется от AbstractIndexBasedGraph.
+ *
+ * @param <V> тип вершины
+ */
 public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
     private int[][] matrix = new int[0][0];
     private int edgeCount = 0;
@@ -200,7 +208,8 @@ public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Incidence Matrix Graph (Edges 0 to " + (edgeCount - 1) + "):\n");
+        StringBuilder sb = new StringBuilder("Incidence Matrix Graph (Edges 0 to ")
+                .append(edgeCount - 1).append("):\n");
         sb.append("    ");
         for (int j = 0; j < edgeCount; j++) {
             sb.append(String.format("%3d", j));

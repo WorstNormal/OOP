@@ -3,7 +3,6 @@ package ru.nsu.gaev;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.ByteArrayOutputStream;
@@ -39,7 +38,6 @@ class MainTest {
      * Тест для успешного выполнения main() с корректным файлом графа.
      */
     @Test
-    @DisplayName("Успешное выполнение main() с корректным графом")
     void testMain_Success(@TempDir Path tempDir) throws IOException {
         String fileContent =
                 "4\n" +

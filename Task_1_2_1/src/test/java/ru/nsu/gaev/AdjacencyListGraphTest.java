@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Set;
-
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -17,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Тесты для AdjacencyListGraph
+ * Тесты для AdjacencyListGraph.
  */
 class AdjacencyListGraphTest {
 
@@ -39,7 +37,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Добавление вершин и проверка getVertices")
     void testAddVertex() {
         Graph<String> graph = new AdjacencyListGraph<>();
         assertTrue(graph.addVertex("A"));
@@ -52,7 +49,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Запрет на добавление дубликатов вершин")
     void testAddDuplicateVertex() {
         Graph<String> graph = new AdjacencyListGraph<>();
         graph.addVertex("A");
@@ -61,7 +57,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Добавление ребер и проверка hasEdge / getNeighbors")
     void testAddEdge() {
         Graph<String> graph = new AdjacencyListGraph<>();
         setupGraph(graph); // A->B, A->C, C->D
@@ -80,7 +75,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Запрет на добавление дубликатов ребер")
     void testAddDuplicateEdge() {
         Graph<String> graph = new AdjacencyListGraph<>();
         graph.addVertex("A");
@@ -96,7 +90,6 @@ class AdjacencyListGraphTest {
 
 
     @Test
-    @DisplayName("Исключение при добавлении ребра к несуществующей вершине")
     void testAddEdge_VertexNotFound() {
         Graph<String> graph = new AdjacencyListGraph<>();
         graph.addVertex("A");
@@ -105,7 +98,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Удаление вершины")
     void testRemoveVertex() {
         Graph<String> graph = new AdjacencyListGraph<>();
         setupGraph(graph); // A->B, A->C, C->D
@@ -135,7 +127,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Удаление всех вершин")
     void testRemoveAllVertices() {
         Graph<String> graph = new AdjacencyListGraph<>();
         setupGraph(graph);
@@ -150,7 +141,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Удаление ребра")
     void testRemoveEdge() {
         Graph<String> graph = new AdjacencyListGraph<>();
         setupGraph(graph); // A->B, A->C, C->D
@@ -164,7 +154,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Метод clear()")
     void testClear() {
         Graph<String> graph = new AdjacencyListGraph<>();
         setupGraph(graph);
@@ -182,7 +171,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Чтение из файла (readFromFile)")
     void testReadFromFile(@TempDir Path tempDir) throws IOException {
         Graph<String> graph = new AdjacencyListGraph<>();
         graph.addVertex("TRASH");
@@ -215,7 +203,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Топологическая сортировка (успех)")
     void testTopologicalSort() {
         Graph<String> graph = new AdjacencyListGraph<>();
         graph.addVertex("1");
@@ -237,7 +224,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Топологическая сортировка (обнаружение цикла)")
     void testTopologicalSort_Cycle() {
         Graph<String> graph = new AdjacencyListGraph<>();
         graph.addVertex("A");
@@ -251,7 +237,6 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    @DisplayName("Проверка equals() и hashCode()")
     void testEqualsAndHashCode() {
         Graph<String> graph1 = new AdjacencyListGraph<>();
         setupGraph(graph1);

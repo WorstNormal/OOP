@@ -1,24 +1,27 @@
 package ru.nsu.gaev;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
-import java.util.List; // Добавлено
-import java.util.Map; // Добавлено
-import java.util.HashMap; // Добавлено
-import java.util.Queue; // Добавлено
-import java.util.LinkedList; // Добавлено
-import java.util.ArrayList; // Добавлено
 
 /**
  * Интерфейс, представляющий структуру данных "Граф".
+ *
  * @param <V> Тип данных, хранящихся в вершинах.
  */
 public interface Graph<V> {
 
-
     void clear();
+
     /**
      * Добавляет вершину в граф.
+     *
      * @param vertex Вершина для добавления.
      * @return true, если вершина была успешно добавлена.
      */
@@ -26,6 +29,7 @@ public interface Graph<V> {
 
     /**
      * Удаляет вершину из графа.
+     *
      * @param vertex Вершина для удаления.
      * @return true, если вершина была успешно удалена.
      */
@@ -33,6 +37,7 @@ public interface Graph<V> {
 
     /**
      * Добавляет направленное ребро между двумя вершинами.
+     *
      * @param source Начальная вершина.
      * @param destination Конечная вершина.
      * @return true, если ребро было успешно добавлено.
@@ -41,6 +46,7 @@ public interface Graph<V> {
 
     /**
      * Удаляет ребро между двумя вершинами.
+     *
      * @param source Начальная вершина.
      * @param destination Конечная вершина.
      * @return true, если ребро было успешно удалено.
@@ -49,6 +55,7 @@ public interface Graph<V> {
 
     /**
      * Возвращает множество всех "соседей" (смежных вершин) для данной вершины.
+     *
      * @param vertex Вершина, для которой ищутся соседи.
      * @return Множество смежных вершин.
      */
@@ -56,12 +63,14 @@ public interface Graph<V> {
 
     /**
      * Возвращает множество всех вершин в графе.
+     *
      * @return Множество вершин.
      */
     Set<V> getVertices();
 
     /**
      * Проверяет наличие ребра между двумя вершинами.
+     *
      * @param source Начальная вершина.
      * @param destination Конечная вершина.
      * @return true, если ребро существует.
@@ -70,6 +79,7 @@ public interface Graph<V> {
 
     /**
      * Считывает граф из файла определенного формата.
+     *
      * @param filePath Путь к файлу.
      * @throws IOException если возникает ошибка чтения.
      */
@@ -77,6 +87,7 @@ public interface Graph<V> {
 
     /**
      * Выполняет топологическую сортировку графа.
+     *
      * @return Список вершин в топологическом порядке.
      * @throws IllegalStateException если в графе есть цикл.
      */
@@ -88,7 +99,8 @@ public interface Graph<V> {
 
         for (V vertex : this.getVertices()) {
             for (V neighbor : this.getNeighbors(vertex)) {
-                // Обработка случая, когда neighbor может не быть в inDegree (хотя по логике getVertices должен)
+                // Обработка случая, когда neighbor может не быть в inDegree
+                // (хотя по логике getVertices должен)
                 inDegree.put(neighbor, inDegree.getOrDefault(neighbor, 0) + 1);
             }
         }

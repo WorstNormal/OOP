@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Set;
-
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -17,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Тесты для IncidenceMatrixGraph
+ * Тесты для IncidenceMatrixGraph.
  */
 class IncidenceMatrixGraphTest {
 
@@ -39,7 +37,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Добавление вершин и проверка getVertices")
     void testAddVertex() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         assertTrue(graph.addVertex("A"));
@@ -52,7 +49,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Запрет на добавление дубликатов вершин")
     void testAddDuplicateVertex() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         graph.addVertex("A");
@@ -61,7 +57,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Добавление ребер и проверка hasEdge / getNeighbors")
     void testAddEdge() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         setupGraph(graph); // A->B, A->C, C->D
@@ -80,7 +75,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Добавление дубликатов ребер (возвращает false)")
     void testAddDuplicateEdge() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         graph.addVertex("A");
@@ -97,7 +91,6 @@ class IncidenceMatrixGraphTest {
 
 
     @Test
-    @DisplayName("Исключение при добавлении ребра к несуществующей вершине")
     void testAddEdge_VertexNotFound() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         graph.addVertex("A");
@@ -106,7 +99,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Удаление вершины (с переиндексацией)")
     void testRemoveVertex() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         setupGraph(graph); // A->B, A->C, C->D
@@ -132,7 +124,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Удаление всех вершин")
     void testRemoveAllVertices() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         setupGraph(graph);
@@ -147,7 +138,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Удаление ребра (поддерживается)")
     void testRemoveEdge() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         setupGraph(graph); // A->B, A->C, C->D
@@ -164,7 +154,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Метод clear()")
     void testClear() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         setupGraph(graph);
@@ -182,7 +171,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Чтение из файла (readFromFile)")
     void testReadFromFile(@TempDir Path tempDir) throws IOException {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         graph.addVertex("TRASH");
@@ -215,7 +203,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Топологическая сортировка (успех)")
     void testTopologicalSort() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         graph.addVertex("1");
@@ -237,7 +224,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Топологическая сортировка (обнаружение цикла)")
     void testTopologicalSort_Cycle() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         graph.addVertex("A");
@@ -251,7 +237,6 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    @DisplayName("Проверка equals() и hashCode()")
     void testEqualsAndHashCode() {
         Graph<String> graph1 = new IncidenceMatrixGraph<>();
         setupGraph(graph1);

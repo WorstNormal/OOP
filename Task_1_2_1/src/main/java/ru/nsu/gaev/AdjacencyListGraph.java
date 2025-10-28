@@ -1,13 +1,21 @@
 package ru.nsu.gaev;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
-// Наследуемся от "чистого" AbstractGraph
+/**
+ * Реализация графа через список смежности.
+ *
+ * @param <V> тип вершины
+ */
 public class AdjacencyListGraph<V> extends AbstractGraph<V> {
     private final Map<V, Set<V>> adjList = new HashMap<>();
 
     /**
-     * Реализуем clear() из AbstractGraph
+     * Реализуем clear() из AbstractGraph.
      */
     @Override
     public void clear() {
@@ -15,7 +23,7 @@ public class AdjacencyListGraph<V> extends AbstractGraph<V> {
     }
 
     /**
-     * Реализуем addVertex() из AbstractGraph
+     * Реализуем addVertex() из AbstractGraph.
      * Логика не использует индексы.
      */
     @Override
@@ -28,7 +36,7 @@ public class AdjacencyListGraph<V> extends AbstractGraph<V> {
     }
 
     /**
-     * Реализуем removeVertex() из AbstractGraph
+     * Реализуем removeVertex() из AbstractGraph.
      * Логика не использует индексы.
      */
     @Override
@@ -42,7 +50,7 @@ public class AdjacencyListGraph<V> extends AbstractGraph<V> {
     }
 
     /**
-     * Реализуем getVertices() из AbstractGraph
+     * Реализуем getVertices() из AbstractGraph.
      */
     @Override
     public Set<V> getVertices() {

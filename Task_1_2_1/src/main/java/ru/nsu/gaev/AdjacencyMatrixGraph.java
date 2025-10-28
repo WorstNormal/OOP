@@ -1,8 +1,15 @@
 package ru.nsu.gaev;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-// Наследуемся от AbstractIndexBasedGraph
+/**
+ * Реализация графа через матрицу смежности.
+ * Наследуется от AbstractIndexBasedGraph.
+ *
+ * @param <V> тип вершины
+ */
 public class AdjacencyMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
     private int[][] matrix = new int[0][0];
 
