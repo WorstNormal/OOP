@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Абстрактный класс для реализаций графа, основанных на индексах (матрицы).
- * Он инкапсулирует логику отображения Vertex <-> Integer.
+ * Он инкапсулирует логику отображения Vertex - Integer.
  */
 public abstract class AbstractIndexBasedGraph<V> extends AbstractGraph<V> {
 
