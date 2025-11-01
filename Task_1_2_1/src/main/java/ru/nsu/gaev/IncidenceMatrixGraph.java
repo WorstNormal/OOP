@@ -17,14 +17,13 @@ public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
 
     @Override
     public void clear() {
-        super.clear(); // Очищаем карты (vertexToIndex, indexToVertex)
-        matrix = new int[0][0]; // Очищаем свои структуры
+        super.clear();
+        matrix = new int[0][0];
         edgeCount = 0;
     }
 
     @Override
     public boolean addVertex(V vertex) {
-        // Вызываем super.addVertex() из AbstractIndexBasedGraph
         if (super.addVertex(vertex)) {
             int newSize = indexToVertex.size();
             int[][] newMatrix = new int[newSize][edgeCount];
@@ -58,23 +57,20 @@ public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
         int newEdgeCount = edgeCount - edgesToRemove.size();
 
         if (newVertexCount == 0) {
-            clear(); // Вызовет super.clear() и очистит matrix
+            clear();
             return true;
         }
 
         int[][] newMatrix = new int[newVertexCount][newEdgeCount];
 
-        // 2. Удаляем вершину из списков (в super-классе)
         vertexToIndex.remove(vertex);
         indexToVertex.remove((int) idxToRemove);
 
-        // 3. Перестраиваем карту vertexToIndex (в super-классе)
         vertexToIndex.clear();
         for (int i = 0; i < newVertexCount; i++) {
             vertexToIndex.put(indexToVertex.get(i), i);
         }
 
-        // 4. Перестраиваем матрицу
         int r = 0;
         for (int i = 0; i < oldVertexCount; i++) {
             if (i == idxToRemove) {
@@ -107,7 +103,6 @@ public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
             throw new IllegalArgumentException("Vertex not found.");
         }
 
-        // Проверка на существование ребра (дорогая операция, но нужная)
         if (hasEdge(source, destination)) {
             return false;
         }
@@ -131,7 +126,6 @@ public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
             return false;
         }
 
-        // Находим столбец (edge) где src->1 и dest->-1
         int foundCol = -1;
         for (int j = 0; j < edgeCount; j++) {
             if (matrix[srcIdx][j] == 1 && matrix[destIdx][j] == -1) {
@@ -141,10 +135,9 @@ public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
         }
 
         if (foundCol == -1) {
-            return false; // ребро не найдено
+            return false;
         }
 
-        // Если это единственный столбец, просто обнулим матрицу столбцов
         if (edgeCount == 1) {
             matrix = new int[indexToVertex.size()][0];
             edgeCount = 0;
@@ -178,9 +171,9 @@ public class IncidenceMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
 
         Set<V> neighbors = new LinkedHashSet<>();
         for (int j = 0; j < edgeCount; j++) {
-            if (matrix[index][j] == 1) { // Если это исходящее ребро
+            if (matrix[index][j] == 1) {
                 for (int i = 0; i < indexToVertex.size(); i++) {
-                    if (matrix[i][j] == -1) { // Находим, куда оно входит
+                    if (matrix[i][j] == -1) {
                         neighbors.add(indexToVertex.get(i));
                         break;
                     }

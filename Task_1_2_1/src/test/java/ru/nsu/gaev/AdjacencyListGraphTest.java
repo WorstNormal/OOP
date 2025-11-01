@@ -59,13 +59,13 @@ class AdjacencyListGraphTest {
     @Test
     void testAddEdge() {
         Graph<String> graph = new AdjacencyListGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
+        setupGraph(graph);
 
         assertTrue(graph.hasEdge("A", "B"));
         assertTrue(graph.hasEdge("A", "C"));
         assertTrue(graph.hasEdge("C", "D"));
 
-        assertFalse(graph.hasEdge("B", "A")); // Направленный граф
+        assertFalse(graph.hasEdge("B", "A"));
         assertFalse(graph.hasEdge("A", "D"));
 
         assertEquals(Set.of("B", "C"), graph.getNeighbors("A"));
@@ -80,8 +80,6 @@ class AdjacencyListGraphTest {
         graph.addVertex("A");
         graph.addVertex("B");
         assertTrue(graph.addEdge("A", "B"));
-
-        // AdjacencyListGraph.addEdge() возвращает false для дубликатов
         assertFalse(graph.addEdge("A", "B"));
 
         assertTrue(graph.hasEdge("A", "B"));
@@ -100,30 +98,24 @@ class AdjacencyListGraphTest {
     @Test
     void testRemoveVertex() {
         Graph<String> graph = new AdjacencyListGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
-        graph.addVertex("E"); // Изолированная
-        graph.addEdge("B", "C"); // B -> C
+        setupGraph(graph);
+        graph.addVertex("E");
+        graph.addEdge("B", "C");
 
         assertTrue(graph.removeVertex("C"));
-
-        // Проверяем, что вершина удалена
         assertEquals(4, graph.getVertices().size());
         assertFalse(graph.getVertices().contains("C"));
 
-        // Проверяем, что все связанные ребра удалены
-        assertFalse(graph.hasEdge("A", "C")); // A -> C (исходящее)
-        assertFalse(graph.hasEdge("B", "C")); // B -> C (исходящее)
-        assertFalse(graph.hasEdge("C", "D")); // C -> D (входящее)
+        assertFalse(graph.hasEdge("A", "C"));
+        assertFalse(graph.hasEdge("B", "C"));
+        assertFalse(graph.hasEdge("C", "D"));
 
-        // Проверяем, что остальные ребра на месте
         assertTrue(graph.hasEdge("A", "B"));
-
-        // Проверяем соседей
         assertEquals(Set.of("B"), graph.getNeighbors("A"));
         assertEquals(Set.of(), graph.getNeighbors("B"));
 
         assertFalse(graph.removeVertex("Z"));
-        assertFalse(graph.removeVertex("C")); // Уже удалена
+        assertFalse(graph.removeVertex("C"));
     }
 
     @Test
@@ -143,14 +135,14 @@ class AdjacencyListGraphTest {
     @Test
     void testRemoveEdge() {
         Graph<String> graph = new AdjacencyListGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
+        setupGraph(graph);
 
         assertTrue(graph.removeEdge("A", "C"));
         assertFalse(graph.hasEdge("A", "C"));
-        assertEquals(Set.of("B"), graph.getNeighbors("A")); // A->B осталось
+        assertEquals(Set.of("B"), graph.getNeighbors("A"));
 
         assertFalse(graph.removeEdge("A", "D"));
-        assertFalse(graph.removeEdge("A", "C")); // Уже удалено
+        assertFalse(graph.removeEdge("A", "C"));
     }
 
     @Test
@@ -196,7 +188,7 @@ class AdjacencyListGraphTest {
         graph.readFromFile(file.toString());
 
         assertEquals(5, graph.getVertices().size());
-        assertFalse(graph.getVertices().contains("TRASH")); // Проверка очистки
+        assertFalse(graph.getVertices().contains("TRASH"));
         assertTrue(graph.hasEdge("V1", "V2"));
         assertTrue(graph.hasEdge("V1", "V3"));
         assertFalse(graph.hasEdge("V2", "V1"));
@@ -231,7 +223,7 @@ class AdjacencyListGraphTest {
         graph.addVertex("C");
         graph.addEdge("A", "B");
         graph.addEdge("B", "C");
-        graph.addEdge("C", "A"); // Цикл
+        graph.addEdge("C", "A");
 
         assertThrows(IllegalStateException.class, graph::topologicalSort);
     }

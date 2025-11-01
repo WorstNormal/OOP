@@ -59,7 +59,7 @@ class IncidenceMatrixGraphTest {
     @Test
     void testAddEdge() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
+        setupGraph(graph);
 
         assertTrue(graph.hasEdge("A", "B"));
         assertTrue(graph.hasEdge("A", "C"));
@@ -80,12 +80,9 @@ class IncidenceMatrixGraphTest {
         graph.addVertex("A");
         graph.addVertex("B");
         assertTrue(graph.addEdge("A", "B"));
-
-        // IncidenceMatrixGraph.addEdge() возвращает false для дубликатов
         assertFalse(graph.addEdge("A", "B"));
 
         assertTrue(graph.hasEdge("A", "B"));
-        // Убедимся, что ребро не добавилось дважды
         assertEquals(1, graph.getNeighbors("A").size());
     }
 
@@ -101,9 +98,9 @@ class IncidenceMatrixGraphTest {
     @Test
     void testRemoveVertex() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
-        graph.addVertex("E"); // Изолированная
-        graph.addEdge("B", "C"); // B -> C
+        setupGraph(graph);
+        graph.addVertex("E");
+        graph.addEdge("B", "C");
 
         assertTrue(graph.removeVertex("C"));
 
@@ -140,15 +137,11 @@ class IncidenceMatrixGraphTest {
     @Test
     void testRemoveEdge() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
+        setupGraph(graph);
 
-        // Удаляем существующее ребро A -> B
         assertTrue(graph.removeEdge("A", "B"));
         assertFalse(graph.hasEdge("A", "B"));
-        // После удаления у A должен остаться только C
         assertEquals(Set.of("C"), graph.getNeighbors("A"));
-
-        // Попытка удалить несуществующее ребро должна вернуть false
         assertFalse(graph.removeEdge("A", "B"));
         assertFalse(graph.removeEdge("A", "Z"));
     }
@@ -231,7 +224,7 @@ class IncidenceMatrixGraphTest {
         graph.addVertex("C");
         graph.addEdge("A", "B");
         graph.addEdge("B", "C");
-        graph.addEdge("C", "A"); // Цикл
+        graph.addEdge("C", "A");
 
         assertThrows(IllegalStateException.class, graph::topologicalSort);
     }

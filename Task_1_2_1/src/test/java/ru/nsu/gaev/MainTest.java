@@ -30,7 +30,6 @@ class MainTest {
 
     @AfterEach
     void tearDown() {
-        // Восстанавливаем оригинальные System.out и System.err
         System.setOut(standardOut);
         System.setErr(standardErr);
     }

@@ -99,8 +99,6 @@ public interface Graph<V> {
 
         for (V vertex : this.getVertices()) {
             for (V neighbor : this.getNeighbors(vertex)) {
-                // Обработка случая, когда neighbor может не быть в inDegree
-                // (хотя по логике getVertices должен)
                 inDegree.put(neighbor, inDegree.getOrDefault(neighbor, 0) + 1);
             }
         }

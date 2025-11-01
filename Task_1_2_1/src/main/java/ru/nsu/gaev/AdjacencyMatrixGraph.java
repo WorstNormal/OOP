@@ -15,13 +15,12 @@ public class AdjacencyMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
 
     @Override
     public void clear() {
-        super.clear(); // Очищаем карты (vertexToIndex, indexToVertex)
-        matrix = new int[0][0]; // Очищаем свою структуру
+        super.clear();
+        matrix = new int[0][0];
     }
 
     @Override
     public boolean addVertex(V vertex) {
-        // Вызываем super.addVertex() из AbstractIndexBasedGraph
         if (super.addVertex(vertex)) {
             int newSize = indexToVertex.size();
             int[][] newMatrix = new int[newSize][newSize];
@@ -45,23 +44,17 @@ public class AdjacencyMatrixGraph<V> extends AbstractIndexBasedGraph<V> {
         int newSize = oldSize - 1;
 
         if (newSize == 0) {
-            clear(); // Вызовет super.clear() и очистит matrix
+            clear();
             return true;
         }
 
         int[][] newMatrix = new int[newSize][newSize];
-
-        // 1. Удаляем вершину из списков (они в super-классе)
         vertexToIndex.remove(vertex);
         indexToVertex.remove((int) idxToRemove);
-
-        // 2. Перестраиваем карту vertexToIndex
         vertexToIndex.clear();
         for (int i = 0; i < newSize; i++) {
             vertexToIndex.put(indexToVertex.get(i), i);
         }
-
-        // 3. Перестраиваем матрицу
         int r = 0;
         for (int i = 0; i < oldSize; i++) {
             if (i == idxToRemove) {

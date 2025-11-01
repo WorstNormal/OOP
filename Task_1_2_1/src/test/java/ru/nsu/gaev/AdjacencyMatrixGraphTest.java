@@ -59,7 +59,7 @@ class AdjacencyMatrixGraphTest {
     @Test
     void testAddEdge() {
         Graph<String> graph = new AdjacencyMatrixGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
+        setupGraph(graph);
 
         assertTrue(graph.hasEdge("A", "B"));
         assertTrue(graph.hasEdge("A", "C"));
@@ -80,8 +80,6 @@ class AdjacencyMatrixGraphTest {
         graph.addVertex("A");
         graph.addVertex("B");
         assertTrue(graph.addEdge("A", "B"));
-
-        // AdjacencyMatrixGraph.addEdge() возвращает false для дубликатов
         assertFalse(graph.addEdge("A", "B"));
 
         assertTrue(graph.hasEdge("A", "B"));
@@ -100,9 +98,9 @@ class AdjacencyMatrixGraphTest {
     @Test
     void testRemoveVertex() {
         Graph<String> graph = new AdjacencyMatrixGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
-        graph.addVertex("E"); // Изолированная
-        graph.addEdge("B", "C"); // B -> C
+        setupGraph(graph);
+        graph.addVertex("E");
+        graph.addEdge("B", "C");
 
         assertTrue(graph.removeVertex("C"));
 
@@ -139,7 +137,7 @@ class AdjacencyMatrixGraphTest {
     @Test
     void testRemoveEdge() {
         Graph<String> graph = new AdjacencyMatrixGraph<>();
-        setupGraph(graph); // A->B, A->C, C->D
+        setupGraph(graph);
 
         assertTrue(graph.removeEdge("A", "C"));
         assertFalse(graph.hasEdge("A", "C"));
@@ -227,7 +225,7 @@ class AdjacencyMatrixGraphTest {
         graph.addVertex("C");
         graph.addEdge("A", "B");
         graph.addEdge("B", "C");
-        graph.addEdge("C", "A"); // Цикл
+        graph.addEdge("C", "A");
 
         assertThrows(IllegalStateException.class, graph::topologicalSort);
     }

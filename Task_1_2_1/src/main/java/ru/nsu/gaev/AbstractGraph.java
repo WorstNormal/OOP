@@ -31,7 +31,6 @@ public abstract class AbstractGraph<V> implements Graph<V> {
     @Override
     public void readFromFile(String filePath) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            // Очищаем конкретную реализацию графа
             this.clear();
 
             String line;
@@ -56,7 +55,6 @@ public abstract class AbstractGraph<V> implements Graph<V> {
                 }
                 @SuppressWarnings("unchecked")
                 V vertex = (V) line.trim();
-                // Вызываем абстрактный addVertex, который реализуют наследники
                 this.addVertex(vertex);
             }
 
@@ -101,28 +99,19 @@ public abstract class AbstractGraph<V> implements Graph<V> {
         if (!(o instanceof Graph<?>)) {
             return false;
         }
-
-        // Используем raw-тип для безопасного взаимодействия с возможными различными
-        // параметризациями Graph<?> у сравниваемого объекта. Это устраняет проблему
-        // "incompatible types: V cannot be converted to capture of ?" при вызове
-        // getNeighbors у объекта с другой параметризацией.
         Graph<?> other = (Graph<?>) o;
 
-        // Сравнение множеств вершин (equals корректно сравнивает по элементам).
+
         if (!this.getVertices().equals(other.getVertices())) {
             return false;
         }
 
         for (V vertex : this.getVertices()) {
             Set<V> thisNeighbors = this.getNeighbors(vertex);
-
-            // Проверяем, что у другого графа есть такая вершина (множество вершин уже равно,
-            // но на всякий случай оставим проверку).
             if (!other.getVertices().contains(vertex)) {
                 return false;
             }
 
-            // Получаем соседей другого графа через raw-тип, затем безопасно приводим к Set<V>.
             @SuppressWarnings("unchecked")
             Set<V> otherNeighbors = (Set<V>) ((Graph) other).getNeighbors(vertex);
 
