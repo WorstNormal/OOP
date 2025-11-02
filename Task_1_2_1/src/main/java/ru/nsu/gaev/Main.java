@@ -31,8 +31,16 @@ public class Main {
             System.out.println("List vs Incidence equals: " + listGraph.equals(incidenceGraph));
             System.out.println("----------------------------------------");
 
-            System.out.println("Topological Sort (from Adjacency List implementation):");
+            System.out.println("Topological Sort (Kahn's algorithm - default):");
             List<String> sortedVertices = listGraph.topologicalSort();
+            System.out.println(sortedVertices);
+
+            System.out.println("\nTopological Sort (Kahn's algorithm - explicit):");
+            sortedVertices = listGraph.topologicalSort(new KahnTopologicalSortStrategy<>());
+            System.out.println(sortedVertices);
+
+            System.out.println("\nTopological Sort (DFS algorithm):");
+            sortedVertices = listGraph.topologicalSort(new DFSTopologicalSortStrategy<>());
             System.out.println(sortedVertices);
 
         } catch (IOException e) {

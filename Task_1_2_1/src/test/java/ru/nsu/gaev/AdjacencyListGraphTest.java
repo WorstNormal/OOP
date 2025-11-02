@@ -242,4 +242,136 @@ class AdjacencyListGraphTest {
         graph2.addVertex("E");
         assertNotEquals(graph1, graph2);
     }
+
+    @Test
+    void testSetAndGetTopologicalSortStrategy() {
+        Graph<String> graph = new AdjacencyListGraph<>();
+        setupGraph(graph);
+
+        // Изначально стратегия не установлена
+        assertEquals(null, graph.getTopologicalSortStrategy());
+
+        // Устанавливаем стратегию DFS
+        TopologicalSortStrategy<String> dfsStrategy = new DFSTopologicalSortStrategy<>();
+        graph.setTopologicalSortStrategy(dfsStrategy);
+        assertEquals(dfsStrategy, graph.getTopologicalSortStrategy());
+
+        // Меняем на стратегию Кана
+        TopologicalSortStrategy<String> kahnStrategy = new KahnTopologicalSortStrategy<>();
+        graph.setTopologicalSortStrategy(kahnStrategy);
+        assertEquals(kahnStrategy, graph.getTopologicalSortStrategy());
+        assertNotEquals(dfsStrategy, graph.getTopologicalSortStrategy());
+
+        // Устанавливаем null
+        graph.setTopologicalSortStrategy(null);
+        assertEquals(null, graph.getTopologicalSortStrategy());
+    }
+
+    @Test
+    void testTopologicalSortWithKahnStrategy() {
+        Graph<String> graph = new AdjacencyListGraph<>();
+        graph.addVertex("1");
+        graph.addVertex("2");
+        graph.addVertex("3");
+        graph.addEdge("1", "2");
+        graph.addEdge("2", "3");
+
+        List<String> sorted = graph.topologicalSort(new KahnTopologicalSortStrategy<>());
+        assertEquals(3, sorted.size());
+        assertTrue(sorted.indexOf("1") < sorted.indexOf("2"));
+        assertTrue(sorted.indexOf("2") < sorted.indexOf("3"));
+    }
+
+    @Test
+    void testTopologicalSortWithDFSStrategy() {
+        Graph<String> graph = new AdjacencyListGraph<>();
+        graph.addVertex("1");
+        graph.addVertex("2");
+        graph.addVertex("3");
+        graph.addEdge("1", "2");
+        graph.addEdge("2", "3");
+
+        List<String> sorted = graph.topologicalSort(new DFSTopologicalSortStrategy<>());
+        assertEquals(3, sorted.size());
+        assertTrue(sorted.indexOf("1") < sorted.indexOf("2"));
+        assertTrue(sorted.indexOf("2") < sorted.indexOf("3"));
+    }
+
+    @Test
+    void testTopologicalSortWithDefaultStrategy() {
+        Graph<String> graph = new AdjacencyListGraph<>();
+        setupGraph(graph);
+
+        // Используем дефолтную стратегию (Kahn)
+        List<String> defaultSorted = graph.topologicalSort();
+        assertEquals(4, defaultSorted.size());
+
+        // Устанавливаем DFS как стратегию по умолчанию
+        graph.setTopologicalSortStrategy(new DFSTopologicalSortStrategy<>());
+        List<String> dfsSorted = graph.topologicalSort();
+        assertEquals(4, dfsSorted.size());
+
+        // Оба результата должны быть валидными топологическими сортировками
+        validateTopologicalOrder(defaultSorted, graph);
+        validateTopologicalOrder(dfsSorted, graph);
+    }
+
+    @Test
+    void testTopologicalSortStrategyPersistsAfterOperations() {
+        Graph<String> graph = new AdjacencyListGraph<>();
+        graph.addVertex("A");
+        graph.addVertex("B");
+
+        TopologicalSortStrategy<String> dfsStrategy = new DFSTopologicalSortStrategy<>();
+        graph.setTopologicalSortStrategy(dfsStrategy);
+
+        // Проверяем, что стратегия сохраняется после добавления вершины
+        graph.addVertex("C");
+        assertEquals(dfsStrategy, graph.getTopologicalSortStrategy());
+
+        // Проверяем, что стратегия сохраняется после добавления ребра
+        graph.addEdge("A", "B");
+        assertEquals(dfsStrategy, graph.getTopologicalSortStrategy());
+
+        // Проверяем, что стратегия сохраняется после сортировки
+        graph.topologicalSort();
+        assertEquals(dfsStrategy, graph.getTopologicalSortStrategy());
+    }
+
+    @Test
+    void testBothStrategiesProduceValidSort() {
+        Graph<String> graph = new AdjacencyListGraph<>();
+        graph.addVertex("1");
+        graph.addVertex("2");
+        graph.addVertex("3");
+        graph.addVertex("4");
+        graph.addEdge("1", "2");
+        graph.addEdge("1", "3");
+        graph.addEdge("2", "4");
+        graph.addEdge("3", "4");
+
+        List<String> kahnResult = graph.topologicalSort(new KahnTopologicalSortStrategy<>());
+        List<String> dfsResult = graph.topologicalSort(new DFSTopologicalSortStrategy<>());
+
+        // Оба должны содержать все вершины
+        assertEquals(4, kahnResult.size());
+        assertEquals(4, dfsResult.size());
+        assertTrue(kahnResult.containsAll(graph.getVertices()));
+        assertTrue(dfsResult.containsAll(graph.getVertices()));
+
+        // Оба должны быть валидными топологическими сортировками
+        validateTopologicalOrder(kahnResult, graph);
+        validateTopologicalOrder(dfsResult, graph);
+    }
+
+    private void validateTopologicalOrder(List<String> sorted, Graph<String> graph) {
+        for (String vertex : graph.getVertices()) {
+            int vertexIndex = sorted.indexOf(vertex);
+            for (String neighbor : graph.getNeighbors(vertex)) {
+                int neighborIndex = sorted.indexOf(neighbor);
+                assertTrue(vertexIndex < neighborIndex,
+                        "Vertex " + vertex + " should come before " + neighbor);
+            }
+        }
+    }
 }

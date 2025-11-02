@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.nsu.gaev.AdjacencyMatrixGraphTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2025-10-28T04:28:11.437Z" hostname="DESKTOP-5DMEAV6" time="0.041">
+<testsuite name="ru.nsu.gaev.AdjacencyMatrixGraphTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2025-11-02T15:20:47.819Z" hostname="DESKTOP-5DMEAV6" time="0.072">
   <properties/>
-  <testcase name="Исключение при добавлении ребра к несуществующей вершине" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.008"/>
-  <testcase name="Удаление всех вершин" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
-  <testcase name="Чтение из файла (readFromFile)" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.008"/>
-  <testcase name="Добавление ребер и проверка hasEdge / getNeighbors" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
-  <testcase name="Запрет на добавление дубликатов вершин" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.002"/>
-  <testcase name="Метод clear()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
-  <testcase name="Удаление вершины (с переиндексацией)" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
-  <testcase name="Удаление ребра" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
-  <testcase name="Добавление вершин и проверка getVertices" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
-  <testcase name="Проверка equals() и hashCode()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.0"/>
-  <testcase name="Топологическая сортировка (обнаружение цикла)" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
-  <testcase name="Топологическая сортировка (успех)" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
-  <testcase name="Добавление дубликатов ребер" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.0"/>
+  <testcase name="testAddEdge_VertexNotFound()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.012"/>
+  <testcase name="testRemoveAllVertices()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="testReadFromFile(Path)" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.011"/>
+  <testcase name="testAddEdge()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="testSetAndGetTopologicalSortStrategy()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testAddDuplicateVertex()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testClear()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="testBothStrategiesProduceValidSort()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testTopologicalSortWithDefaultStrategy()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testTopologicalSortWithDFSStrategy()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testRemoveVertex()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="testRemoveEdge()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testAddVertex()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="testTopologicalSortWithKahnStrategy()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testEqualsAndHashCode()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testTopologicalSort_Cycle()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.003"/>
+  <testcase name="testTopologicalSort()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testAddDuplicateEdge()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

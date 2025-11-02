@@ -1,13 +1,7 @@
 package ru.nsu.gaev;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
 
 /**
@@ -86,48 +80,42 @@ public interface Graph<V> {
     void readFromFile(String filePath) throws IOException;
 
     /**
-     * Выполняет топологическую сортировку графа.
+     * Устанавливает стратегию топологической сортировки по умолчанию для данного графа.
+     *
+     * @param strategy Стратегия сортировки для установки.
+     */
+    void setTopologicalSortStrategy(TopologicalSortStrategy<V> strategy);
+
+    /**
+     * Возвращает текущую стратегию топологической сортировки по умолчанию.
+     *
+     * @return Стратегия сортировки или null, если стратегия не установлена.
+     */
+    TopologicalSortStrategy<V> getTopologicalSortStrategy();
+
+    /**
+     * Выполняет топологическую сортировку графа с использованием стратегии по умолчанию.
+     * Если стратегия не установлена, используется алгоритм Кана.
      *
      * @return Список вершин в топологическом порядке.
      * @throws IllegalStateException если в графе есть цикл.
      */
     default List<V> topologicalSort() {
-        Map<V, Integer> inDegree = new HashMap<>();
-        for (V vertex : this.getVertices()) {
-            inDegree.put(vertex, 0);
+        TopologicalSortStrategy<V> strategy = getTopologicalSortStrategy();
+        if (strategy != null) {
+            return topologicalSort(strategy);
         }
+        return topologicalSort(new KahnTopologicalSortStrategy<>());
+    }
 
-        for (V vertex : this.getVertices()) {
-            for (V neighbor : this.getNeighbors(vertex)) {
-                inDegree.put(neighbor, inDegree.getOrDefault(neighbor, 0) + 1);
-            }
-        }
-
-        Queue<V> queue = new LinkedList<>();
-        for (Map.Entry<V, Integer> entry : inDegree.entrySet()) {
-            if (entry.getValue() == 0) {
-                queue.add(entry.getKey());
-            }
-        }
-
-        List<V> sortedOrder = new ArrayList<>();
-        while (!queue.isEmpty()) {
-            V vertex = queue.poll();
-            sortedOrder.add(vertex);
-
-            for (V neighbor : this.getNeighbors(vertex)) {
-                int newDegree = inDegree.get(neighbor) - 1;
-                inDegree.put(neighbor, newDegree);
-                if (newDegree == 0) {
-                    queue.add(neighbor);
-                }
-            }
-        }
-
-        if (sortedOrder.size() != this.getVertices().size()) {
-            throw new IllegalStateException("Graph has a cycle, topological sort is not possible.");
-        }
-
-        return sortedOrder;
+    /**
+     * Выполняет топологическую сортировку графа с использованием указанной стратегии.
+     *
+     * @param strategy Стратегия сортировки для использования.
+     * @return Список вершин в топологическом порядке.
+     * @throws IllegalStateException если в графе есть цикл.
+     */
+    default List<V> topologicalSort(TopologicalSortStrategy<V> strategy) {
+        return strategy.sort(this);
     }
 }

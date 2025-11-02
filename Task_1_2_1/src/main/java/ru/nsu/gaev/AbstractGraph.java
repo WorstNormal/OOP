@@ -14,6 +14,12 @@ import java.util.Set;
 public abstract class AbstractGraph<V> implements Graph<V> {
 
     /**
+     * Стратегия топологической сортировки по умолчанию для данного графа.
+     * Может быть установлена через метод setTopologicalSortStrategy().
+     */
+    private TopologicalSortStrategy<V> topologicalSortStrategy;
+
+    /**
      * Очищает все внутренние структуры графа (ребра и т.д.),
      * подготавливая его к чтению новых данных из файла.
      */
@@ -113,7 +119,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
             }
 
             @SuppressWarnings("unchecked")
-            Set<V> otherNeighbors = (Set<V>) ((Graph) other).getNeighbors(vertex);
+            Set<V> otherNeighbors = (Set<V>) ((Graph<V>) other).getNeighbors(vertex);
 
             if (!thisNeighbors.equals(otherNeighbors)) {
                 return false;
@@ -130,5 +136,15 @@ public abstract class AbstractGraph<V> implements Graph<V> {
             result = 31 * result + getNeighbors(v1).hashCode();
         }
         return result;
+    }
+
+    @Override
+    public void setTopologicalSortStrategy(TopologicalSortStrategy<V> strategy) {
+        this.topologicalSortStrategy = strategy;
+    }
+
+    @Override
+    public TopologicalSortStrategy<V> getTopologicalSortStrategy() {
+        return this.topologicalSortStrategy;
     }
 }
