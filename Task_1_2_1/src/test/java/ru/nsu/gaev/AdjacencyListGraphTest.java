@@ -283,7 +283,7 @@ class AdjacencyListGraphTest {
     }
 
     @Test
-    void testTopologicalSortWithDFSStrategy() {
+    void testTopologicalSortWithDfsStrategy() {
         Graph<String> graph = new AdjacencyListGraph<>();
         graph.addVertex("1");
         graph.addVertex("2");

@@ -10,6 +10,7 @@ import java.util.Set;
  * Реализация топологической сортировки с использованием алгоритма DFS (Depth-First Search).
  * Алгоритм использует поиск в глубину с временными метками.
  */
+@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
 public class DFSTopologicalSortStrategy<V> implements TopologicalSortStrategy<V> {
 
     @Override
@@ -21,7 +22,8 @@ public class DFSTopologicalSortStrategy<V> implements TopologicalSortStrategy<V>
         for (V vertex : graph.getVertices()) {
             if (!visited.contains(vertex)) {
                 if (!dfsVisit(graph, vertex, visited, recursionStack, result)) {
-                    throw new IllegalStateException("Graph has a cycle, topological sort is not possible.");
+                    throw new IllegalStateException(
+                            "Graph has a cycle, topological sort is not possible.");
                 }
             }
         }
@@ -29,7 +31,8 @@ public class DFSTopologicalSortStrategy<V> implements TopologicalSortStrategy<V>
         return new ArrayList<>(result);
     }
 
-    private boolean dfsVisit(Graph<V> graph, V vertex, Set<V> visited, Set<V> recursionStack, LinkedList<V> result) {
+    private boolean dfsVisit(Graph<V> graph, V vertex, Set<V> visited,
+                             Set<V> recursionStack, LinkedList<V> result) {
         if (recursionStack.contains(vertex)) {
             return false; // Найден цикл
         }

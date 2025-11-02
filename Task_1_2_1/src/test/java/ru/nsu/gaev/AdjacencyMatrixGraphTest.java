@@ -280,7 +280,7 @@ class AdjacencyMatrixGraphTest {
     }
 
     @Test
-    void testTopologicalSortWithDFSStrategy() {
+    void testTopologicalSortWithDfsStrategy() {
         Graph<String> graph = new AdjacencyMatrixGraph<>();
         graph.addVertex("1");
         graph.addVertex("2");

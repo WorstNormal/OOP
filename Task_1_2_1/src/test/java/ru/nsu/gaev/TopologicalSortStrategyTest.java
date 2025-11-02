@@ -19,7 +19,7 @@ class TopologicalSortStrategyTest {
      * Создает тестовый граф:
      * 1 -> 2 -> 4
      * 1 -> 3 -> 4
-     * 5 (изолированная вершина)
+     * 5 (изолированная вершина).
      */
     @BeforeEach
     void setUp() {
@@ -51,7 +51,7 @@ class TopologicalSortStrategyTest {
     }
 
     @Test
-    void testDFSTopologicalSort() {
+    void testDfsTopologicalSort() {
         TopologicalSortStrategy<String> strategy = new DFSTopologicalSortStrategy<>();
         List<String> sorted = strategy.sort(graph);
 
@@ -66,7 +66,7 @@ class TopologicalSortStrategyTest {
     }
 
     @Test
-    void testKahnAndDFSProduceValidSort() {
+    void testKahnAndDfsProduceValidSort() {
         TopologicalSortStrategy<String> kahnStrategy = new KahnTopologicalSortStrategy<>();
         TopologicalSortStrategy<String> dfsStrategy = new DFSTopologicalSortStrategy<>();
 
@@ -101,7 +101,7 @@ class TopologicalSortStrategyTest {
     }
 
     @Test
-    void testDFSTopologicalSort_Cycle() {
+    void testDfsTopologicalSortCycle() {
         Graph<String> cyclicGraph = new AdjacencyListGraph<>();
         cyclicGraph.addVertex("A");
         cyclicGraph.addVertex("B");
@@ -127,7 +127,7 @@ class TopologicalSortStrategyTest {
     }
 
     @Test
-    void testDFSTopologicalSort_SingleVertex() {
+    void testDfsTopologicalSortSingleVertex() {
         Graph<String> singleVertexGraph = new AdjacencyListGraph<>();
         singleVertexGraph.addVertex("A");
 
@@ -150,7 +150,7 @@ class TopologicalSortStrategyTest {
     }
 
     @Test
-    void testDFSTopologicalSort_EmptyGraph() {
+    void testDfsTopologicalSortEmptyGraph() {
         Graph<String> emptyGraph = new AdjacencyListGraph<>();
 
         TopologicalSortStrategy<String> strategy = new DFSTopologicalSortStrategy<>();
@@ -179,7 +179,7 @@ class TopologicalSortStrategyTest {
     }
 
     @Test
-    void testDFSTopologicalSort_LinearGraph() {
+    void testDfsTopologicalSortLinearGraph() {
         Graph<String> linearGraph = new AdjacencyListGraph<>();
         linearGraph.addVertex("1");
         linearGraph.addVertex("2");

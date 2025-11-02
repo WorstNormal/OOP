@@ -279,7 +279,7 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
-    void testTopologicalSortWithDFSStrategy() {
+    void testTopologicalSortWithDfsStrategy() {
         Graph<String> graph = new IncidenceMatrixGraph<>();
         graph.addVertex("1");
         graph.addVertex("2");
