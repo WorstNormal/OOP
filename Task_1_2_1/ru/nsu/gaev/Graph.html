@@ -114,37 +114,52 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Возвращает множество всех "соседей" (смежных вершин) для данной вершины.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getTopologicalSortStrategy()" class="member-name-link">getTopologicalSortStrategy</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Возвращает текущую стратегию топологической сортировки по умолчанию.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Возвращает множество всех вершин в графе.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasEdge(V,V)" class="member-name-link">hasEdge</a><wbr>(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasEdge(V,V)" class="member-name-link">hasEdge</a><wbr>(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;source,
  <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;destination)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Проверяет наличие ребра между двумя вершинами.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#readFromFile(java.lang.String)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filePath)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#readFromFile(java.lang.String)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filePath)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Считывает граф из файла определенного формата.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeEdge(V,V)" class="member-name-link">removeEdge</a><wbr>(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeEdge(V,V)" class="member-name-link">removeEdge</a><wbr>(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;source,
  <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;destination)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Удаляет ребро между двумя вершинами.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeVertex(V)" class="member-name-link">removeVertex</a><wbr>(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vertex)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeVertex(V)" class="member-name-link">removeVertex</a><wbr>(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vertex)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Удаляет вершину из графа.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setTopologicalSortStrategy(ru.nsu.gaev.TopologicalSortStrategy)" class="member-name-link">setTopologicalSortStrategy</a><wbr>(<a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Устанавливает стратегию топологической сортировки по умолчанию для данного графа.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#topologicalSort()" class="member-name-link">topologicalSort</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
-<div class="block">Выполняет топологическую сортировку графа.</div>
+<div class="block">Выполняет топологическую сортировку графа с использованием стратегии по умолчанию.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#topologicalSort(ru.nsu.gaev.TopologicalSortStrategy)" class="member-name-link">topologicalSort</a><wbr>(<a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Выполняет топологическую сортировку графа с использованием указанной стратегии.</div>
 </div>
 </div>
 </div>
@@ -276,11 +291,49 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="setTopologicalSortStrategy(ru.nsu.gaev.TopologicalSortStrategy)">
+<h3>setTopologicalSortStrategy</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setTopologicalSortStrategy</span><wbr><span class="parameters">(<a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</span></div>
+<div class="block">Устанавливает стратегию топологической сортировки по умолчанию для данного графа.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>strategy</code> - Стратегия сортировки для установки.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getTopologicalSortStrategy()">
+<h3>getTopologicalSortStrategy</h3>
+<div class="member-signature"><span class="return-type"><a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</span>&nbsp;<span class="element-name">getTopologicalSortStrategy</span>()</div>
+<div class="block">Возвращает текущую стратегию топологической сортировки по умолчанию.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Стратегия сортировки или null, если стратегия не установлена.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="topologicalSort()">
 <h3>topologicalSort</h3>
 <div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span>()</div>
-<div class="block">Выполняет топологическую сортировку графа.</div>
+<div class="block">Выполняет топологическую сортировку графа с использованием стратегии по умолчанию.
+ Если стратегия не установлена, используется алгоритм Кана.</div>
 <dl class="notes">
+<dt>Returns:</dt>
+<dd>Список вершин в топологическом порядке.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - если в графе есть цикл.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="topologicalSort(ru.nsu.gaev.TopologicalSortStrategy)">
+<h3>topologicalSort</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</span></div>
+<div class="block">Выполняет топологическую сортировку графа с использованием указанной стратегии.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>strategy</code> - Стратегия сортировки для использования.</dd>
 <dt>Returns:</dt>
 <dd>Список вершин в топологическом порядке.</dd>
 <dt>Throws:</dt>
