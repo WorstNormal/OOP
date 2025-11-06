@@ -1,10 +1,5 @@
 package ru.nsu.gaev;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.gaev.algorithms.DFSTopologicalSortStrategy;
@@ -12,6 +7,10 @@ import ru.nsu.gaev.algorithms.KahnTopologicalSortStrategy;
 import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
 import ru.nsu.gaev.graph.Graph;
 import ru.nsu.gaev.impl.AdjacencyListGraph;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Тесты для стратегий топологической сортировки.

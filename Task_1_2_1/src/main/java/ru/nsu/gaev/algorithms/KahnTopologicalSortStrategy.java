@@ -2,12 +2,7 @@ package ru.nsu.gaev.algorithms;
 
 import ru.nsu.gaev.graph.Graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Реализация топологической сортировки с использованием алгоритма Кана (Kahn's algorithm).

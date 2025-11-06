@@ -2,11 +2,7 @@ package ru.nsu.gaev.algorithms;
 
 import ru.nsu.gaev.graph.Graph;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Реализация топологической сортировки с использованием алгоритма DFS (Depth-First Search).

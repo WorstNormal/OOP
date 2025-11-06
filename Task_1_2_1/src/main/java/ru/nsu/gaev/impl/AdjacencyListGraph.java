@@ -2,11 +2,7 @@ package ru.nsu.gaev.impl;
 
 import ru.nsu.gaev.graph.AbstractGraph;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Реализация графа через список смежности.

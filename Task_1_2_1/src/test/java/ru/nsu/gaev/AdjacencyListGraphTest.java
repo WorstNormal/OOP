@@ -1,16 +1,5 @@
 package ru.nsu.gaev;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import ru.nsu.gaev.algorithms.DFSTopologicalSortStrategy;
@@ -18,6 +7,14 @@ import ru.nsu.gaev.algorithms.KahnTopologicalSortStrategy;
 import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
 import ru.nsu.gaev.graph.Graph;
 import ru.nsu.gaev.impl.AdjacencyListGraph;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Тесты для AdjacencyListGraph.
