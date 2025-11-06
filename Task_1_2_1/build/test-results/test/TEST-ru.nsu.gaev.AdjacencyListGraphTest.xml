@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.nsu.gaev.AdjacencyListGraphTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2025-11-02T15:20:47.571Z" hostname="DESKTOP-5DMEAV6" time="0.235">
+<testsuite name="ru.nsu.gaev.AdjacencyListGraphTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2025-11-06T05:43:45.620Z" hostname="DESKTOP-5DMEAV6" time="0.204">
   <properties/>
-  <testcase name="testAddEdge_VertexNotFound()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.095"/>
-  <testcase name="testRemoveAllVertices()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.01"/>
-  <testcase name="testReadFromFile(Path)" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.044"/>
-  <testcase name="testAddEdge()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.007"/>
+  <testcase name="testAddEdge_VertexNotFound()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.083"/>
+  <testcase name="testRemoveAllVertices()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.009"/>
+  <testcase name="testReadFromFile(Path)" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.045"/>
+  <testcase name="testAddEdge()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.005"/>
   <testcase name="testSetAndGetTopologicalSortStrategy()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.011"/>
-  <testcase name="testAddDuplicateVertex()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
+  <testcase name="testAddDuplicateVertex()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
   <testcase name="testClear()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
-  <testcase name="testBothStrategiesProduceValidSort()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.008"/>
+  <testcase name="testBothStrategiesProduceValidSort()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.004"/>
   <testcase name="testTopologicalSortWithDefaultStrategy()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
-  <testcase name="testTopologicalSortWithDFSStrategy()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
-  <testcase name="testRemoveVertex()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.003"/>
+  <testcase name="testRemoveVertex()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
   <testcase name="testRemoveEdge()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
-  <testcase name="testAddVertex()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
+  <testcase name="testTopologicalSortWithDfsStrategy()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="testAddVertex()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
   <testcase name="testTopologicalSortWithKahnStrategy()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
   <testcase name="testTopologicalSortStrategyPersistsAfterOperations()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
-  <testcase name="testEqualsAndHashCode()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
-  <testcase name="testTopologicalSort_Cycle()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.004"/>
-  <testcase name="testTopologicalSort()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
+  <testcase name="testEqualsAndHashCode()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
+  <testcase name="testTopologicalSort_Cycle()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.002"/>
+  <testcase name="testTopologicalSort()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
   <testcase name="testAddDuplicateEdge()" classname="ru.nsu.gaev.AdjacencyListGraphTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

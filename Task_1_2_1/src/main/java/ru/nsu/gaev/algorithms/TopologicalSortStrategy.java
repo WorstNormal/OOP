@@ -1,4 +1,6 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.algorithms;
+
+import ru.nsu.gaev.graph.Graph;
 
 import java.util.List;
 

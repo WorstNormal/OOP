@@ -1,5 +1,12 @@
 package ru.nsu.gaev;
 
+import ru.nsu.gaev.algorithms.DFSTopologicalSortStrategy;
+import ru.nsu.gaev.algorithms.KahnTopologicalSortStrategy;
+import ru.nsu.gaev.graph.AdjacencyMatrixGraph;
+import ru.nsu.gaev.graph.Graph;
+import ru.nsu.gaev.impl.AdjacencyListGraph;
+import ru.nsu.gaev.impl.IncidenceMatrixGraph;
+
 import java.io.IOException;
 import java.util.List;
 

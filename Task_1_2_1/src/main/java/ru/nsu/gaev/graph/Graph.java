@@ -1,4 +1,7 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.graph;
+
+import ru.nsu.gaev.algorithms.KahnTopologicalSortStrategy;
+import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
 
 import java.io.IOException;
 import java.util.List;

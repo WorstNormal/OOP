@@ -1,4 +1,6 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.graph;
+
+import ru.nsu.gaev.impl.AbstractIndexBasedGraph;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;

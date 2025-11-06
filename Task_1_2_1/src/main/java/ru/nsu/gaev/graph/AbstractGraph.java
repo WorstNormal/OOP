@@ -1,4 +1,6 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.graph;
+
+import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

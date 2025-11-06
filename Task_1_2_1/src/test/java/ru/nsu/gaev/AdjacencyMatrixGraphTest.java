@@ -13,6 +13,11 @@ import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import ru.nsu.gaev.algorithms.DFSTopologicalSortStrategy;
+import ru.nsu.gaev.algorithms.KahnTopologicalSortStrategy;
+import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
+import ru.nsu.gaev.graph.AdjacencyMatrixGraph;
+import ru.nsu.gaev.graph.Graph;
 
 /**
  * Тесты для AdjacencyMatrixGraph.

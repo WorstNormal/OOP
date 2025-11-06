@@ -1,4 +1,4 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.impl;
 
 import java.util.Collections;
 import java.util.HashSet;

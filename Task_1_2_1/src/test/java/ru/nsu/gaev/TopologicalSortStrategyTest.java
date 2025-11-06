@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.nsu.gaev.algorithms.DFSTopologicalSortStrategy;
+import ru.nsu.gaev.algorithms.KahnTopologicalSortStrategy;
+import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
+import ru.nsu.gaev.graph.Graph;
+import ru.nsu.gaev.impl.AdjacencyListGraph;
 
 /**
  * Тесты для стратегий топологической сортировки.
