@@ -5,21 +5,21 @@
 <title>AbstractIndexBasedGraph (Task_1_2_1 1.0-SNAPSHOT API)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="declaration: package: ru.nsu.gaev, class: AbstractIndexBasedGraph">
+<meta name="description" content="declaration: package: ru.nsu.gaev.impl, class: AbstractIndexBasedGraph">
 <meta name="generator" content="javadoc/ClassWriterImpl">
-<link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../script-dir/jquery-ui.min.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../jquery-ui.overrides.css" title="Style">
-<script type="text/javascript" src="../../../script.js"></script>
-<script type="text/javascript" src="../../../script-dir/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="../../../script-dir/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../script-dir/jquery-ui.min.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../jquery-ui.overrides.css" title="Style">
+<script type="text/javascript" src="../../../../script.js"></script>
+<script type="text/javascript" src="../../../../script-dir/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
 <script type="text/javascript">var evenRowColor = "even-row-color";
 var oddRowColor = "odd-row-color";
 var tableTab = "table-tab";
 var activeTableTab = "active-table-tab";
-var pathtoroot = "../../../";
+var pathtoroot = "../../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -31,11 +31,12 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
-<li><a href="../../../index-all.html">Index</a></li>
-<li><a href="../../../help-doc.html#class">Help</a></li>
+<li><a href="../../../../index-all.html">Index</a></li>
+<li><a href="../../../../help-doc.html#class">Help</a></li>
 </ul>
 </div>
 <div class="sub-nav">
@@ -66,26 +67,26 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.gaev</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.gaev.impl</a></div>
 <h1 title="Class AbstractIndexBasedGraph" class="title">Class AbstractIndexBasedGraph&lt;V&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="AbstractGraph.html" title="class in ru.nsu.gaev">ru.nsu.gaev.AbstractGraph</a>&lt;V&gt;
-<div class="inheritance">ru.nsu.gaev.AbstractIndexBasedGraph&lt;V&gt;</div>
+<div class="inheritance"><a href="../graph/AbstractGraph.html" title="class in ru.nsu.gaev.graph">ru.nsu.gaev.graph.AbstractGraph</a>&lt;V&gt;
+<div class="inheritance">ru.nsu.gaev.impl.AbstractIndexBasedGraph&lt;V&gt;</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="Graph.html" title="interface in ru.nsu.gaev">Graph</a>&lt;V&gt;</code></dd>
+<dd><code><a href="../graph/Graph.html" title="interface in ru.nsu.gaev.graph">Graph</a>&lt;V&gt;</code></dd>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="AdjacencyMatrixGraph.html" title="class in ru.nsu.gaev">AdjacencyMatrixGraph</a></code>, <code><a href="IncidenceMatrixGraph.html" title="class in ru.nsu.gaev">IncidenceMatrixGraph</a></code></dd>
+<dd><code><a href="../graph/AdjacencyMatrixGraph.html" title="class in ru.nsu.gaev.graph">AdjacencyMatrixGraph</a></code>, <code><a href="IncidenceMatrixGraph.html" title="class in ru.nsu.gaev.impl">IncidenceMatrixGraph</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">AbstractIndexBasedGraph&lt;V&gt;</span>
-<span class="extends-implements">extends <a href="AbstractGraph.html" title="class in ru.nsu.gaev">AbstractGraph</a>&lt;V&gt;</span></div>
+<span class="extends-implements">extends <a href="../graph/AbstractGraph.html" title="class in ru.nsu.gaev.graph">AbstractGraph</a>&lt;V&gt;</span></div>
 <div class="block">Абстрактный класс для реализаций графа, основанных на индексах (матрицы).
  Он инкапсулирует логику отображения Vertex - Integer.</div>
 </section>
@@ -152,14 +153,14 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-ru.nsu.gaev.AbstractGraph">Methods inherited from class&nbsp;ru.nsu.gaev.<a href="AbstractGraph.html" title="class in ru.nsu.gaev">AbstractGraph</a></h3>
-<code><a href="AbstractGraph.html#equals(java.lang.Object)">equals</a>, <a href="AbstractGraph.html#getTopologicalSortStrategy()">getTopologicalSortStrategy</a>, <a href="AbstractGraph.html#hashCode()">hashCode</a>, <a href="AbstractGraph.html#readFromFile(java.lang.String)">readFromFile</a>, <a href="AbstractGraph.html#removeVertex(V)">removeVertex</a>, <a href="AbstractGraph.html#setTopologicalSortStrategy(ru.nsu.gaev.TopologicalSortStrategy)">setTopologicalSortStrategy</a></code></div>
+<h3 id="methods-inherited-from-class-ru.nsu.gaev.graph.AbstractGraph">Methods inherited from class&nbsp;ru.nsu.gaev.graph.<a href="../graph/AbstractGraph.html" title="class in ru.nsu.gaev.graph">AbstractGraph</a></h3>
+<code><a href="../graph/AbstractGraph.html#equals(java.lang.Object)">equals</a>, <a href="../graph/AbstractGraph.html#getTopologicalSortStrategy()">getTopologicalSortStrategy</a>, <a href="../graph/AbstractGraph.html#hashCode()">hashCode</a>, <a href="../graph/AbstractGraph.html#readFromFile(java.lang.String)">readFromFile</a>, <a href="../graph/AbstractGraph.html#removeVertex(V)">removeVertex</a>, <a href="../graph/AbstractGraph.html#setTopologicalSortStrategy(ru.nsu.gaev.algorithms.TopologicalSortStrategy)">setTopologicalSortStrategy</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-ru.nsu.gaev.Graph">Methods inherited from interface&nbsp;ru.nsu.gaev.<a href="Graph.html" title="interface in ru.nsu.gaev">Graph</a></h3>
-<code><a href="Graph.html#addEdge(V,V)">addEdge</a>, <a href="Graph.html#getNeighbors(V)">getNeighbors</a>, <a href="Graph.html#hasEdge(V,V)">hasEdge</a>, <a href="Graph.html#removeEdge(V,V)">removeEdge</a>, <a href="Graph.html#topologicalSort()">topologicalSort</a>, <a href="Graph.html#topologicalSort(ru.nsu.gaev.TopologicalSortStrategy)">topologicalSort</a></code></div>
+<h3 id="methods-inherited-from-class-ru.nsu.gaev.graph.Graph">Methods inherited from interface&nbsp;ru.nsu.gaev.graph.<a href="../graph/Graph.html" title="interface in ru.nsu.gaev.graph">Graph</a></h3>
+<code><a href="../graph/Graph.html#addEdge(V,V)">addEdge</a>, <a href="../graph/Graph.html#getNeighbors(V)">getNeighbors</a>, <a href="../graph/Graph.html#hasEdge(V,V)">hasEdge</a>, <a href="../graph/Graph.html#removeEdge(V,V)">removeEdge</a>, <a href="../graph/Graph.html#topologicalSort()">topologicalSort</a>, <a href="../graph/Graph.html#topologicalSort(ru.nsu.gaev.algorithms.TopologicalSortStrategy)">topologicalSort</a></code></div>
 </section>
 </li>
 </ul>
@@ -213,9 +214,9 @@ loadScripts(document, 'script');</script>
  Наследники должны вызывать super.clear()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#clear()">clear</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.gaev">Graph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
+<dd><code><a href="../graph/Graph.html#clear()">clear</a></code>&nbsp;in interface&nbsp;<code><a href="../graph/Graph.html" title="interface in ru.nsu.gaev.graph">Graph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractGraph.html#clear()">clear</a></code>&nbsp;in class&nbsp;<code><a href="AbstractGraph.html" title="class in ru.nsu.gaev">AbstractGraph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
+<dd><code><a href="../graph/AbstractGraph.html#clear()">clear</a></code>&nbsp;in class&nbsp;<code><a href="../graph/AbstractGraph.html" title="class in ru.nsu.gaev.graph">AbstractGraph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
 </dl>
 </section>
 </li>
@@ -223,13 +224,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getVertices()">
 <h3>getVertices</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#getVertices()">Graph</a></code></span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../graph/Graph.html#getVertices()">Graph</a></code></span></div>
 <div class="block">Возвращает множество всех вершин в графе.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.gaev">Graph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
+<dd><code><a href="../graph/Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="../graph/Graph.html" title="interface in ru.nsu.gaev.graph">Graph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractGraph.html#getVertices()">getVertices</a></code>&nbsp;in class&nbsp;<code><a href="AbstractGraph.html" title="class in ru.nsu.gaev">AbstractGraph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
+<dd><code><a href="../graph/AbstractGraph.html#getVertices()">getVertices</a></code>&nbsp;in class&nbsp;<code><a href="../graph/AbstractGraph.html" title="class in ru.nsu.gaev.graph">AbstractGraph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
 <dt>Returns:</dt>
 <dd>Множество вершин.</dd>
 </dl>
@@ -239,13 +240,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addVertex(V)">
 <h3 id="addVertex(java.lang.Object)">addVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&nbsp;vertex)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#addVertex(V)">Graph</a></code></span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../graph/Graph.html#addVertex(V)">Graph</a></code></span></div>
 <div class="block">Добавляет вершину в граф.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#addVertex(V)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.gaev">Graph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
+<dd><code><a href="../graph/Graph.html#addVertex(V)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../graph/Graph.html" title="interface in ru.nsu.gaev.graph">Graph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractGraph.html#addVertex(V)">addVertex</a></code>&nbsp;in class&nbsp;<code><a href="AbstractGraph.html" title="class in ru.nsu.gaev">AbstractGraph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
+<dd><code><a href="../graph/AbstractGraph.html#addVertex(V)">addVertex</a></code>&nbsp;in class&nbsp;<code><a href="../graph/AbstractGraph.html" title="class in ru.nsu.gaev.graph">AbstractGraph</a>&lt;<a href="AbstractIndexBasedGraph.html" title="type parameter in AbstractIndexBasedGraph">V</a>&gt;</code></dd>
 <dt>Parameters:</dt>
 <dd><code>vertex</code> - Вершина для добавления.</dd>
 <dt>Returns:</dt>

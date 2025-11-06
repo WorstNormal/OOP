@@ -5,21 +5,21 @@
 <title>Graph (Task_1_2_1 1.0-SNAPSHOT API)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="declaration: package: ru.nsu.gaev, interface: Graph">
+<meta name="description" content="declaration: package: ru.nsu.gaev.graph, interface: Graph">
 <meta name="generator" content="javadoc/ClassWriterImpl">
-<link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../script-dir/jquery-ui.min.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../jquery-ui.overrides.css" title="Style">
-<script type="text/javascript" src="../../../script.js"></script>
-<script type="text/javascript" src="../../../script-dir/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="../../../script-dir/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../script-dir/jquery-ui.min.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../jquery-ui.overrides.css" title="Style">
+<script type="text/javascript" src="../../../../script.js"></script>
+<script type="text/javascript" src="../../../../script-dir/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
 <script type="text/javascript">var evenRowColor = "even-row-color";
 var oddRowColor = "odd-row-color";
 var tableTab = "table-tab";
 var activeTableTab = "active-table-tab";
-var pathtoroot = "../../../";
+var pathtoroot = "../../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -31,11 +31,12 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
-<li><a href="../../../index-all.html">Index</a></li>
-<li><a href="../../../help-doc.html#class">Help</a></li>
+<li><a href="../../../../index-all.html">Index</a></li>
+<li><a href="../../../../help-doc.html#class">Help</a></li>
 </ul>
 </div>
 <div class="sub-nav">
@@ -66,7 +67,7 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.gaev</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.gaev.graph</a></div>
 <h1 title="Interface Graph" class="title">Interface Graph&lt;V&gt;</h1>
 </div>
 <section class="class-description" id="class-description">
@@ -76,7 +77,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="AbstractGraph.html" title="class in ru.nsu.gaev">AbstractGraph</a></code>, <code><a href="AbstractIndexBasedGraph.html" title="class in ru.nsu.gaev">AbstractIndexBasedGraph</a></code>, <code><a href="AdjacencyListGraph.html" title="class in ru.nsu.gaev">AdjacencyListGraph</a></code>, <code><a href="AdjacencyMatrixGraph.html" title="class in ru.nsu.gaev">AdjacencyMatrixGraph</a></code>, <code><a href="IncidenceMatrixGraph.html" title="class in ru.nsu.gaev">IncidenceMatrixGraph</a></code></dd>
+<dd><code><a href="AbstractGraph.html" title="class in ru.nsu.gaev.graph">AbstractGraph</a></code>, <code><a href="../impl/AbstractIndexBasedGraph.html" title="class in ru.nsu.gaev.impl">AbstractIndexBasedGraph</a></code>, <code><a href="../impl/AdjacencyListGraph.html" title="class in ru.nsu.gaev.impl">AdjacencyListGraph</a></code>, <code><a href="AdjacencyMatrixGraph.html" title="class in ru.nsu.gaev.graph">AdjacencyMatrixGraph</a></code>, <code><a href="../impl/IncidenceMatrixGraph.html" title="class in ru.nsu.gaev.impl">IncidenceMatrixGraph</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Graph&lt;V&gt;</span></div>
@@ -114,7 +115,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Возвращает множество всех "соседей" (смежных вершин) для данной вершины.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../algorithms/TopologicalSortStrategy.html" title="interface in ru.nsu.gaev.algorithms">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getTopologicalSortStrategy()" class="member-name-link">getTopologicalSortStrategy</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Возвращает текущую стратегию топологической сортировки по умолчанию.</div>
@@ -147,7 +148,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Удаляет вершину из графа.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setTopologicalSortStrategy(ru.nsu.gaev.TopologicalSortStrategy)" class="member-name-link">setTopologicalSortStrategy</a><wbr>(<a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setTopologicalSortStrategy(ru.nsu.gaev.algorithms.TopologicalSortStrategy)" class="member-name-link">setTopologicalSortStrategy</a><wbr>(<a href="../algorithms/TopologicalSortStrategy.html" title="interface in ru.nsu.gaev.algorithms">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Устанавливает стратегию топологической сортировки по умолчанию для данного графа.</div>
 </div>
@@ -157,7 +158,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Выполняет топологическую сортировку графа с использованием стратегии по умолчанию.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#topologicalSort(ru.nsu.gaev.TopologicalSortStrategy)" class="member-name-link">topologicalSort</a><wbr>(<a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#topologicalSort(ru.nsu.gaev.algorithms.TopologicalSortStrategy)" class="member-name-link">topologicalSort</a><wbr>(<a href="../algorithms/TopologicalSortStrategy.html" title="interface in ru.nsu.gaev.algorithms">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Выполняет топологическую сортировку графа с использованием указанной стратегии.</div>
 </div>
@@ -291,9 +292,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="setTopologicalSortStrategy(ru.nsu.gaev.TopologicalSortStrategy)">
+<section class="detail" id="setTopologicalSortStrategy(ru.nsu.gaev.algorithms.TopologicalSortStrategy)">
 <h3>setTopologicalSortStrategy</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setTopologicalSortStrategy</span><wbr><span class="parameters">(<a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setTopologicalSortStrategy</span><wbr><span class="parameters">(<a href="../algorithms/TopologicalSortStrategy.html" title="interface in ru.nsu.gaev.algorithms">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</span></div>
 <div class="block">Устанавливает стратегию топологической сортировки по умолчанию для данного графа.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -304,7 +305,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getTopologicalSortStrategy()">
 <h3>getTopologicalSortStrategy</h3>
-<div class="member-signature"><span class="return-type"><a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</span>&nbsp;<span class="element-name">getTopologicalSortStrategy</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="../algorithms/TopologicalSortStrategy.html" title="interface in ru.nsu.gaev.algorithms">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</span>&nbsp;<span class="element-name">getTopologicalSortStrategy</span>()</div>
 <div class="block">Возвращает текущую стратегию топологической сортировки по умолчанию.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -327,9 +328,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="topologicalSort(ru.nsu.gaev.TopologicalSortStrategy)">
+<section class="detail" id="topologicalSort(ru.nsu.gaev.algorithms.TopologicalSortStrategy)">
 <h3>topologicalSort</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="../algorithms/TopologicalSortStrategy.html" title="interface in ru.nsu.gaev.algorithms">TopologicalSortStrategy</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;strategy)</span></div>
 <div class="block">Выполняет топологическую сортировку графа с использованием указанной стратегии.</div>
 <dl class="notes">
 <dt>Parameters:</dt>

@@ -5,21 +5,21 @@
 <title>TopologicalSortStrategy (Task_1_2_1 1.0-SNAPSHOT API)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="declaration: package: ru.nsu.gaev, interface: TopologicalSortStrategy">
+<meta name="description" content="declaration: package: ru.nsu.gaev.algorithms, interface: TopologicalSortStrategy">
 <meta name="generator" content="javadoc/ClassWriterImpl">
-<link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../script-dir/jquery-ui.min.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../jquery-ui.overrides.css" title="Style">
-<script type="text/javascript" src="../../../script.js"></script>
-<script type="text/javascript" src="../../../script-dir/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="../../../script-dir/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../script-dir/jquery-ui.min.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../jquery-ui.overrides.css" title="Style">
+<script type="text/javascript" src="../../../../script.js"></script>
+<script type="text/javascript" src="../../../../script-dir/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
 <script type="text/javascript">var evenRowColor = "even-row-color";
 var oddRowColor = "odd-row-color";
 var tableTab = "table-tab";
 var activeTableTab = "active-table-tab";
-var pathtoroot = "../../../";
+var pathtoroot = "../../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -31,11 +31,12 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
-<li><a href="../../../index-all.html">Index</a></li>
-<li><a href="../../../help-doc.html#class">Help</a></li>
+<li><a href="../../../../index-all.html">Index</a></li>
+<li><a href="../../../../help-doc.html#class">Help</a></li>
 </ul>
 </div>
 <div class="sub-nav">
@@ -66,7 +67,7 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.gaev</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.gaev.algorithms</a></div>
 <h1 title="Interface TopologicalSortStrategy" class="title">Interface TopologicalSortStrategy&lt;V&gt;</h1>
 </div>
 <section class="class-description" id="class-description">
@@ -76,7 +77,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="DFSTopologicalSortStrategy.html" title="class in ru.nsu.gaev">DFSTopologicalSortStrategy</a></code>, <code><a href="KahnTopologicalSortStrategy.html" title="class in ru.nsu.gaev">KahnTopologicalSortStrategy</a></code></dd>
+<dd><code><a href="DFSTopologicalSortStrategy.html" title="class in ru.nsu.gaev.algorithms">DFSTopologicalSortStrategy</a></code>, <code><a href="KahnTopologicalSortStrategy.html" title="class in ru.nsu.gaev.algorithms">KahnTopologicalSortStrategy</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TopologicalSortStrategy&lt;V&gt;</span></div>
@@ -96,7 +97,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="TopologicalSortStrategy.html" title="type parameter in TopologicalSortStrategy">V</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#sort(ru.nsu.gaev.Graph)" class="member-name-link">sort</a><wbr>(<a href="Graph.html" title="interface in ru.nsu.gaev">Graph</a>&lt;<a href="TopologicalSortStrategy.html" title="type parameter in TopologicalSortStrategy">V</a>&gt;&nbsp;graph)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#sort(ru.nsu.gaev.graph.Graph)" class="member-name-link">sort</a><wbr>(<a href="../graph/Graph.html" title="interface in ru.nsu.gaev.graph">Graph</a>&lt;<a href="TopologicalSortStrategy.html" title="type parameter in TopologicalSortStrategy">V</a>&gt;&nbsp;graph)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Выполняет топологическую сортировку графа.</div>
 </div>
@@ -115,9 +116,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="sort(ru.nsu.gaev.Graph)">
+<section class="detail" id="sort(ru.nsu.gaev.graph.Graph)">
 <h3>sort</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="TopologicalSortStrategy.html" title="type parameter in TopologicalSortStrategy">V</a>&gt;</span>&nbsp;<span class="element-name">sort</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in ru.nsu.gaev">Graph</a>&lt;<a href="TopologicalSortStrategy.html" title="type parameter in TopologicalSortStrategy">V</a>&gt;&nbsp;graph)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="TopologicalSortStrategy.html" title="type parameter in TopologicalSortStrategy">V</a>&gt;</span>&nbsp;<span class="element-name">sort</span><wbr><span class="parameters">(<a href="../graph/Graph.html" title="interface in ru.nsu.gaev.graph">Graph</a>&lt;<a href="TopologicalSortStrategy.html" title="type parameter in TopologicalSortStrategy">V</a>&gt;&nbsp;graph)</span></div>
 <div class="block">Выполняет топологическую сортировку графа.</div>
 <dl class="notes">
 <dt>Parameters:</dt>

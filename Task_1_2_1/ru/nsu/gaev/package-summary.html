@@ -15,11 +15,7 @@
 <script type="text/javascript" src="../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="package-declaration-page">
-<script type="text/javascript">var evenRowColor = "even-row-color";
-var oddRowColor = "odd-row-color";
-var tableTab = "table-tab";
-var activeTableTab = "active-table-tab";
-var pathtoroot = "../../../";
+<script type="text/javascript">var pathtoroot = "../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -31,6 +27,7 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../index.html">Overview</a></li>
 <li class="nav-bar-cell1-rev">Package</li>
 <li>Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -43,7 +40,7 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Package:&nbsp;</li>
 <li>Description&nbsp;|&nbsp;</li>
-<li>Related Packages&nbsp;|&nbsp;</li>
+<li><a href="#related-package-summary">Related Packages</a>&nbsp;|&nbsp;</li>
 <li><a href="#class-summary">Classes and Interfaces</a></li>
 </ul>
 </div>
@@ -65,52 +62,29 @@ loadScripts(document, 'script');</script>
 <section class="summary">
 <ul class="summary-list">
 <li>
+<div id="related-package-summary">
+<div class="caption"><span>Related Packages</span></div>
+<div class="summary-table two-column-summary">
+<div class="table-header col-first">Package</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><a href="algorithms/package-summary.html">ru.nsu.gaev.algorithms</a></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><a href="graph/package-summary.html">ru.nsu.gaev.graph</a></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><a href="impl/package-summary.html">ru.nsu.gaev.impl</a></div>
+<div class="col-last even-row-color">&nbsp;</div>
+</div>
+</div>
+</li>
+<li>
 <div id="class-summary">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="class-summary-tab0" role="tab" aria-selected="true" aria-controls="class-summary.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="class-summary-tab1" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab1', 2)" class="table-tab">Interfaces</button><button id="class-summary-tab2" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab2', 2)" class="table-tab">Classes</button></div>
-<div id="class-summary.tabpanel" role="tabpanel" aria-labelledby="class-summary-tab0">
+<div class="caption"><span>Classes</span></div>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="AbstractGraph.html" title="class in ru.nsu.gaev">AbstractGraph</a>&lt;V&gt;</div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Абстрактный базовый класс для всех реализаций графа.</div>
-</div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="AbstractIndexBasedGraph.html" title="class in ru.nsu.gaev">AbstractIndexBasedGraph</a>&lt;V&gt;</div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Абстрактный класс для реализаций графа, основанных на индексах (матрицы).</div>
-</div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="AdjacencyListGraph.html" title="class in ru.nsu.gaev">AdjacencyListGraph</a>&lt;V&gt;</div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Реализация графа через список смежности.</div>
-</div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="AdjacencyMatrixGraph.html" title="class in ru.nsu.gaev">AdjacencyMatrixGraph</a>&lt;V&gt;</div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Реализация графа через матрицу смежности.</div>
-</div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="DFSTopologicalSortStrategy.html" title="class in ru.nsu.gaev">DFSTopologicalSortStrategy</a>&lt;V&gt;</div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Реализация топологической сортировки с использованием алгоритма DFS (Depth-First Search).</div>
-</div>
-<div class="col-first odd-row-color class-summary class-summary-tab1"><a href="Graph.html" title="interface in ru.nsu.gaev">Graph</a>&lt;V&gt;</div>
-<div class="col-last odd-row-color class-summary class-summary-tab1">
-<div class="block">Интерфейс, представляющий структуру данных "Граф".</div>
-</div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="IncidenceMatrixGraph.html" title="class in ru.nsu.gaev">IncidenceMatrixGraph</a>&lt;V&gt;</div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Реализация графа через матрицу инцидентности.</div>
-</div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="KahnTopologicalSortStrategy.html" title="class in ru.nsu.gaev">KahnTopologicalSortStrategy</a>&lt;V&gt;</div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Реализация топологической сортировки с использованием алгоритма Кана (Kahn's algorithm).</div>
-</div>
 <div class="col-first even-row-color class-summary class-summary-tab2"><a href="Main.html" title="class in ru.nsu.gaev">Main</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Утилитный класс для запуска демонстрации и тестирования реализаций Graph.</div>
-</div>
-<div class="col-first odd-row-color class-summary class-summary-tab1"><a href="TopologicalSortStrategy.html" title="interface in ru.nsu.gaev">TopologicalSortStrategy</a>&lt;V&gt;</div>
-<div class="col-last odd-row-color class-summary class-summary-tab1">
-<div class="block">Интерфейс для стратегий топологической сортировки графа.</div>
-</div>
 </div>
 </div>
 </div>
