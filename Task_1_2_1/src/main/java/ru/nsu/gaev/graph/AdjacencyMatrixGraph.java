@@ -1,10 +1,9 @@
 package ru.nsu.gaev.graph;
 
-import ru.nsu.gaev.impl.AbstractIndexBasedGraph;
-
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import ru.nsu.gaev.impl.AbstractIndexBasedGraph;
 
 /**
  * Реализация графа через матрицу смежности.

@@ -1,8 +1,7 @@
 package ru.nsu.gaev.algorithms;
 
-import ru.nsu.gaev.graph.Graph;
-
 import java.util.List;
+import ru.nsu.gaev.graph.Graph;
 
 /**
  * Интерфейс для стратегий топологической сортировки графа.

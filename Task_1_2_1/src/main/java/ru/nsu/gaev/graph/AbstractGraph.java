@@ -1,11 +1,10 @@
 package ru.nsu.gaev.graph;
 
-import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Set;
+import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
 
 /**
  * Абстрактный базовый класс для всех реализаций графа.

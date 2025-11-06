@@ -1,11 +1,10 @@
 package ru.nsu.gaev.graph;
 
-import ru.nsu.gaev.algorithms.KahnTopologicalSortStrategy;
-import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
+import ru.nsu.gaev.algorithms.KahnTopologicalSortStrategy;
+import ru.nsu.gaev.algorithms.TopologicalSortStrategy;
 
 /**
  * Интерфейс, представляющий структуру данных "Граф".
