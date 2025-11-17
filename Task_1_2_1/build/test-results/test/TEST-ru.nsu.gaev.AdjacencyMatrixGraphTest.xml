@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.gaev.AdjacencyMatrixGraphTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2025-11-06T05:43:45.831Z" hostname="DESKTOP-5DMEAV6" time="0.053">
+  <properties/>
+  <testcase name="testAddEdge_VertexNotFound()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.012"/>
+  <testcase name="testRemoveAllVertices()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testReadFromFile(Path)" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.007"/>
+  <testcase name="testAddEdge()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testSetAndGetTopologicalSortStrategy()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testAddDuplicateVertex()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.0"/>
+  <testcase name="testClear()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testBothStrategiesProduceValidSort()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testTopologicalSortWithDefaultStrategy()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testRemoveVertex()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testRemoveEdge()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.0"/>
+  <testcase name="testTopologicalSortWithDfsStrategy()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testAddVertex()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testTopologicalSortWithKahnStrategy()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testEqualsAndHashCode()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testTopologicalSort_Cycle()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="testTopologicalSort()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testAddDuplicateEdge()" classname="ru.nsu.gaev.AdjacencyMatrixGraphTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
