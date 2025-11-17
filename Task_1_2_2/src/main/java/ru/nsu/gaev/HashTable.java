@@ -29,15 +29,6 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
     }
 
     /**
-     * Вспомогательная хеш-функция для получения индекса бакета.
-     * Использует встроенный hashCode и сжимает его по емкости.
-     */
-    private int getIndex(K key) {
-        if (key == null) throw new IllegalArgumentException("Key cannot be null");
-        return (key.hashCode() & 0x7FFFFFFF) % capacity;
-    }
-
-    /**
      * Добавление пары ключ-значение (k, v).
      * @return Предыдущее значение, связанное с ключом, или null, если ключ новый.
      */
@@ -129,28 +120,6 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         return get(key) != null;
     }
 
-    private void resizeAndRehash() {
-        int oldCapacity = capacity;
-        capacity *= 2;
-        List<Entry<K, V>>[] newTable = new LinkedList[capacity];
-
-        for (int i = 0; i < capacity; i++) {
-            newTable[i] = new LinkedList<>();
-        }
-
-
-        for (int i = 0; i < oldCapacity; i++) {
-            for (Entry<K, V> entry : table[i]) {
-                int newIndex = getIndex(entry.key);
-                newTable[newIndex].add(entry);
-            }
-        }
-
-        this.table = newTable;
-        modCount.incrementAndGet();
-    }
-
-
 
     /**
      * Итерирование по элементам коллекции с обработкой ConcurrentModificationException.
@@ -161,7 +130,8 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
     }
 
     private class HashTableIterator implements Iterator<Entry<K, V>> {
-        private final int expectedModCount = modCount.get();
+        // ИСПРАВЛЕНИЕ: убрали модификатор final
+        private int expectedModCount = modCount.get();
         private int currentBucket = 0;
         private Iterator<Entry<K, V>> currentIterator = null;
         private Entry<K, V> lastReturned = null;
@@ -196,6 +166,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
             currentIterator.remove();
             size--;
             modCount.incrementAndGet();
+            expectedModCount = modCount.get();
         }
 
         private void checkForComodification() {
@@ -263,4 +234,36 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         sb.append("}");
         return sb.toString();
     }
+
+    /**
+     * Вспомогательная хеш-функция для получения индекса бакета.
+     * Использует встроенный hashCode и сжимает его по емкости.
+     */
+    private int getIndex(K key) {
+        if (key == null) throw new IllegalArgumentException("Key cannot be null");
+        return (key.hashCode() & 0x7FFFFFFF) % capacity;
+    }
+
+
+    private void resizeAndRehash() {
+        int oldCapacity = capacity;
+        capacity *= 2;
+        List<Entry<K, V>>[] newTable = new LinkedList[capacity];
+
+        for (int i = 0; i < capacity; i++) {
+            newTable[i] = new LinkedList<>();
+        }
+
+
+        for (int i = 0; i < oldCapacity; i++) {
+            for (Entry<K, V> entry : table[i]) {
+                int newIndex = getIndex(entry.key);
+                newTable[newIndex].add(entry);
+            }
+        }
+
+        this.table = newTable;
+        modCount.incrementAndGet();
+    }
+
 }
