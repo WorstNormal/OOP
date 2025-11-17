@@ -1,14 +1,19 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class HashTableTest {
 
@@ -49,7 +54,6 @@ class HashTableTest {
     @Test
     @DisplayName("Update throws exception for non-existent key")
     void testUpdateThrowsException() {
-        // Согласно вашей реализации update бросает NoSuchElementException
         assertThrows(NoSuchElementException.class, () -> {
             hashTable.update("non_existent", 5);
         });
@@ -81,7 +85,6 @@ class HashTableTest {
     @Test
     @DisplayName("Null keys are not allowed")
     void testNullKeys() {
-        // Ваша реализация getIndex бросает IllegalArgumentException
         assertThrows(IllegalArgumentException.class, () -> hashTable.put(null, 1));
         assertThrows(IllegalArgumentException.class, () -> hashTable.get(null));
         assertThrows(IllegalArgumentException.class, () -> hashTable.remove(null));
@@ -90,14 +93,10 @@ class HashTableTest {
     @Test
     @DisplayName("Resize and Rehash handles capacity expansion")
     void testResize() {
-        // Создаем маленькую таблицу (capacity=2, loadFactor=0.75)
-        // Threshold = 1.5 (округлится до поведения при >= 1.5)
         HashTable<String, Integer> smallTable = new HashTable<>(2, 0.75f);
 
         smallTable.put("1", 1);
         smallTable.put("2", 2);
-        // Здесь или при следующем добавлении произойдет resize,
-        // главное проверить, что данные не потерялись
         smallTable.put("3", 3);
         smallTable.put("4", 4);
 
@@ -128,7 +127,6 @@ class HashTableTest {
 
         assertThrows(ConcurrentModificationException.class, () -> {
             for (Entry<String, Integer> entry : hashTable) {
-                // Модификация таблицы во время итерации
                 hashTable.put("B", 2);
             }
         });
@@ -150,7 +148,9 @@ class HashTableTest {
 
         assertFalse(hashTable.containsKey("A"));
         assertTrue(hashTable.containsKey("B"));
-        assertEquals(1, hashTable.toString().split(",").length < 2 ? 1 : 0); // Проверка размера косвенно через toString или просто get
+        // Разбиваем длинную строку для CheckStyle
+        int size = hashTable.toString().split(",").length < 2 ? 1 : 0;
+        assertEquals(1, size);
     }
 
     @Test
@@ -166,9 +166,9 @@ class HashTableTest {
 
         HashTable<String, Integer> table3 = new HashTable<>();
         table3.put("a", 1);
-        table3.put("b", 3); // Другое значение
+        table3.put("b", 3);
 
-        assertEquals(table1, table2); // Порядок добавления не важен
+        assertEquals(table1, table2);
         assertNotEquals(table1, table3);
     }
 }

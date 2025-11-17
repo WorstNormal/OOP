@@ -1,9 +1,10 @@
 package ru.nsu.gaev;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class EntryTest {
 
@@ -21,8 +22,8 @@ class EntryTest {
     void testEquals() {
         Entry<String, Integer> entry1 = new Entry<>("test", 1);
         Entry<String, Integer> entry2 = new Entry<>("test", 1);
-        Entry<String, Integer> entry3 = new Entry<>("other", 1);
-        Entry<String, Integer> entry4 = new Entry<>("test", 2);
+        final Entry<String, Integer> entry3 = new Entry<>("other", 1);
+        final Entry<String, Integer> entry4 = new Entry<>("test", 2);
 
         // Рефлексивность
         assertEquals(entry1, entry1);

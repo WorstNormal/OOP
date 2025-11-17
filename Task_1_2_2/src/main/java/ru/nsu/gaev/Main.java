@@ -1,6 +1,14 @@
 package ru.nsu.gaev;
 
+/**
+ * Main class to demonstrate HashTable usage.
+ */
 public class Main {
+    /**
+     * Main entry point.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         HashTable<String, Number> hashTable = new HashTable<>();
         hashTable.put("one", 1);
@@ -10,8 +18,9 @@ public class Main {
         hashTable.put("two", 2);
         System.out.println("Does it contain key 'two': " + hashTable.containsKey("two"));
 
-        hashTable.remove("two"); // Operation 3
-        System.out.println("Does it contain key 'two' after removal: " + hashTable.containsKey("two"));
+        hashTable.remove("two");
+        System.out.println("Does it contain key 'two' after removal: "
+                + hashTable.containsKey("two"));
         System.out.println("Table state: " + hashTable.toString());
         System.out.println("--- Iterator and ConcurrentModificationException check ---");
         for (Entry<String, Number> entry : hashTable) {

@@ -1,8 +1,18 @@
 package ru.nsu.gaev;
 
-import java.util.*;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Hash table implementation using separate chaining.
+ *
+ * @param <K> the type of keys maintained by this map
+ * @param <V> the type of mapped values
+ */
 public class HashTable<K, V> implements Iterable<Entry<K, V>> {
 
     private static final int DEFAULT_CAPACITY = 16;
@@ -14,10 +24,20 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
     private final float loadFactor;
     private AtomicInteger modCount = new AtomicInteger(0);
 
+    /**
+     * Constructs a new, empty hashtable with a default capacity (16) and load factor (0.75).
+     */
     public HashTable() {
         this(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR);
     }
 
+    /**
+     * Constructs a new, empty hashtable with the specified initial capacity and load factor.
+     *
+     * @param initialCapacity the initial capacity of the hashtable.
+     * @param loadFactor      the load factor.
+     */
+    @SuppressWarnings("unchecked")
     public HashTable(int initialCapacity, float loadFactor) {
         this.capacity = initialCapacity;
         this.loadFactor = loadFactor;
@@ -30,6 +50,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
 
     /**
      * Добавление пары ключ-значение (k, v).
+     *
      * @return Предыдущее значение, связанное с ключом, или null, если ключ новый.
      */
     public V put(K key, V value) {
@@ -58,6 +79,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
 
     /**
      * Поиск значения по ключу.
+     *
      * @return Значение, связанное с ключом, или null, если ключ не найден.
      */
     public V get(K key) {
@@ -74,6 +96,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
 
     /**
      * Удаление пары ключ-значение.
+     *
      * @return Значение, связанное с удаленным ключом, или null, если ключ не найден.
      */
     public V remove(K key) {
@@ -84,7 +107,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         while (iterator.hasNext()) {
             Entry<K, V> entry = iterator.next();
             if (entry.key.equals(key)) {
-                V removedValue = entry.value;
+                final V removedValue = entry.value;
                 iterator.remove();
                 size--;
                 modCount.incrementAndGet();
@@ -96,7 +119,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
 
     /**
      * Обновление значения по ключу.
-     * Для простоты, делегируем к 'put', но может быть реализовано с исключением, если ключ отсутствует.
+     * Делегируем к 'put', но может быть реализовано с исключением, если ключ отсутствует.
      */
     public V update(K key, V newValue) {
         int index = getIndex(key);
@@ -120,7 +143,6 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         return get(key) != null;
     }
 
-
     /**
      * Итерирование по элементам коллекции с обработкой ConcurrentModificationException.
      */
@@ -130,7 +152,6 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
     }
 
     private class HashTableIterator implements Iterator<Entry<K, V>> {
-        // ИСПРАВЛЕНИЕ: убрали модификатор final
         private int expectedModCount = modCount.get();
         private int currentBucket = 0;
         private Iterator<Entry<K, V>> currentIterator = null;
@@ -139,7 +160,8 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         @Override
         public boolean hasNext() {
             checkForComodification();
-            while ((currentIterator == null || !currentIterator.hasNext()) && currentBucket < capacity) {
+            while ((currentIterator == null || !currentIterator.hasNext())
+                    && currentBucket < capacity) {
                 if (!table[currentBucket].isEmpty()) {
                     currentIterator = table[currentBucket].iterator();
                 }
@@ -165,6 +187,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
             checkForComodification();
             currentIterator.remove();
             size--;
+
             modCount.incrementAndGet();
             expectedModCount = modCount.get();
         }
@@ -176,17 +199,23 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         }
     }
 
-
     /**
      * Сравнение на равенство с другой хеш-таблицей.
      */
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         HashTable<Object, Object> that = (HashTable<Object, Object>) o;
 
-        if (this.size != that.size) return false;
+        if (this.size != that.size) {
+            return false;
+        }
         for (List<Entry<K, V>> bucket : table) {
             for (Entry<K, V> entry : bucket) {
                 Object otherValue = that.get(entry.key);
@@ -210,13 +239,14 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         return h;
     }
 
-
     /**
      * Вывод в строку.
      */
     @Override
     public String toString() {
-        if (size == 0) return "{}";
+        if (size == 0) {
+            return "{}";
+        }
 
         StringBuilder sb = new StringBuilder();
         sb.append("{");
@@ -240,11 +270,13 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
      * Использует встроенный hashCode и сжимает его по емкости.
      */
     private int getIndex(K key) {
-        if (key == null) throw new IllegalArgumentException("Key cannot be null");
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
         return (key.hashCode() & 0x7FFFFFFF) % capacity;
     }
 
-
+    @SuppressWarnings("unchecked")
     private void resizeAndRehash() {
         int oldCapacity = capacity;
         capacity *= 2;
@@ -253,7 +285,6 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         for (int i = 0; i < capacity; i++) {
             newTable[i] = new LinkedList<>();
         }
-
 
         for (int i = 0; i < oldCapacity; i++) {
             for (Entry<K, V> entry : table[i]) {
@@ -265,5 +296,4 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         this.table = newTable;
         modCount.incrementAndGet();
     }
-
 }

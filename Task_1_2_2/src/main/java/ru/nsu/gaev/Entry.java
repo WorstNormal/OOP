@@ -3,6 +3,7 @@ package ru.nsu.gaev;
 class Entry<K, V> {
     K key;
     V value;
+
     public Entry(K key, V value) {
         this.key = key;
         this.value = value;
@@ -10,8 +11,12 @@ class Entry<K, V> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Entry<?, ?> entry = (Entry<?, ?>) o;
         return key.equals(entry.key) && value.equals(entry.value);
     }
