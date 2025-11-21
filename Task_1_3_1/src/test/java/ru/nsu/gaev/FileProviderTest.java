@@ -22,12 +22,18 @@ class FileProviderTest {
 
     @BeforeEach
     void setUp() throws IOException {
+        // ВАЖНО: Для тестов ставим размер 1 МБ, чтобы тест не вис
+        FileProvider.GENERATION_SIZE_MB = 1;
+
         // Создаем маленький тестовый файл
         Files.writeString(Path.of(TEST_FILENAME), "test content");
     }
 
     @AfterEach
     void tearDown() throws IOException {
+        // Возвращаем стандартный размер на всякий случай
+        FileProvider.GENERATION_SIZE_MB = 200;
+
         // Удаляем файлы после теста
         Files.deleteIfExists(Path.of(TEST_FILENAME));
         Files.deleteIfExists(Path.of(BIG_FILENAME));
