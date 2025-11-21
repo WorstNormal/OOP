@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.gaev","l":"FileProvider"},{"p":"ru.nsu.gaev","l":"KmpLogic"},{"p":"ru.nsu.gaev","l":"SearchApp"},{"p":"ru.nsu.gaev","l":"SearchConsole"}];updateSearchResults();
