@@ -14,7 +14,8 @@ public class SearchConsole {
 
     /** Печатает подсказку о генерации файла или использовании существующего. */
     public void askForFileGeneration() {
-        System.out.println("Type 'generate' to create a large test file, or 'input' to use existing file:");
+        System.out.println("Type 'generate' to create a large test file, "
+                + "or 'input' to use existing file:");
     }
 
     /** Сообщение о начале генерации файла. */

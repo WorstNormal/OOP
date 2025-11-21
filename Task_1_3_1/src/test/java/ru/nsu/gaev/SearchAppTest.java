@@ -1,8 +1,7 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,9 +10,9 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Расширенные тесты для SearchApp.
@@ -91,7 +90,8 @@ class SearchAppTest {
         SearchApp.main(new String[]{});
 
         String output = outputStream.toString();
-        assertTrue(output.contains("Total occurrences found: 1"), "Должен найти 'secret' в кастомном файле");
+        assertTrue(output.contains("Total occurrences found: 1"),
+                "Должен найти 'secret' в кастомном файле");
     }
 
     /**
@@ -106,7 +106,8 @@ class SearchAppTest {
 
         String output = outputStream.toString();
         assertTrue(output.contains("Error occurred"), "Должно быть сообщение об ошибке");
-        assertTrue(output.contains("Perform another search?"), "Приложение должно предложить повторить после ошибки");
+        assertTrue(output.contains("Perform another search?"),
+                "Приложение должно предложить повторить после ошибки");
     }
 
     /**
@@ -121,7 +122,8 @@ class SearchAppTest {
 
         String output = outputStream.toString();
         assertTrue(output.contains("Generating large file"), "Должно начаться создание файла");
-        assertTrue(output.contains("Search finished"), "Поиск должен пройти по сгенерированному файлу");
+        assertTrue(output.contains("Search finished"),
+                "Поиск должен пройти по сгенерированному файлу");
     }
 
     /**
@@ -156,7 +158,8 @@ class SearchAppTest {
         SearchApp.main(new String[]{});
 
         String output = outputStream.toString();
-        assertTrue(output.contains("Please enter 'yes' or 'no'"), "Должно быть предупреждение о неверном вводе");
+        assertTrue(output.contains("Please enter 'yes' or 'no'"),
+                "Должно быть предупреждение о неверном вводе");
     }
 
     /**
@@ -169,7 +172,8 @@ class SearchAppTest {
         SearchApp.main(new String[]{});
 
         String output = outputStream.toString();
-        assertFalse(output.contains("Exiting application"), "Может не успеть дойти до штатного выхода, но не должно падать");
+        assertFalse(output.contains("Exiting application"),
+                "Может не успеть дойти до штатного выхода, но не должно падать");
     }
 
     private void provideInput(String data) {
