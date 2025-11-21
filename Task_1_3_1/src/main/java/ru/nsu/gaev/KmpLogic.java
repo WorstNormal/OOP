@@ -48,10 +48,6 @@ public class KmpLogic {
 
             globalIndex++;
         }
-
-        // ВАЖНО: Мы НЕ закрываем reader здесь.
-        // Его закроет try-with-resources в классе SearchApp.
-
         return occurrences;
     }
 

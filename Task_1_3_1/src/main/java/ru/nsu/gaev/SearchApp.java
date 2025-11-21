@@ -27,7 +27,9 @@ public class SearchApp {
                 message.askForFileGeneration();
 
                 // Если ввода нет (Ctrl+D), выходим
-                if (!scanner.hasNextLine()) break;
+                if (!scanner.hasNextLine()) {
+                    break;
+                }
 
                 String choice = scanner.nextLine().trim().toLowerCase();
                 String fileName = "input.txt";
@@ -75,12 +77,12 @@ public class SearchApp {
                 message.errorMessage(e.getMessage());
             }
 
-            // --- Логика запроса на повторение (Исправленная часть) ---
-
             message.searchAgain();
 
             // Если пользователь закрыл поток ввода (Ctrl+D), прерываем цикл
-            if (!scanner.hasNextLine()) break;
+            if (!scanner.hasNextLine()) {
+                break;
+            }
 
             String answer = scanner.nextLine().trim().toLowerCase();
 
@@ -92,14 +94,10 @@ public class SearchApp {
                 }
                 answer = scanner.nextLine().trim().toLowerCase();
             }
-
-            // ЗДЕСЬ БЫЛА ОШИБКА: || !scanner.hasNextLine()
-            // Мы убрали лишнюю проверку, которая ждала ввода.
             if (answer.equals("no")) {
                 message.goodbye();
                 break;
             }
-            // Если "yes", цикл просто продолжается
         }
     }
 }

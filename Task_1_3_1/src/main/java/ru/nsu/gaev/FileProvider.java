@@ -1,6 +1,13 @@
 package ru.nsu.gaev;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
@@ -16,6 +23,7 @@ public class FileProvider {
 
     /**
      * Возвращает буферизированный Reader для файла с кодировкой UTF-8.
+     *
      * @param fileName имя файла
      */
     public static BufferedReader getReader(String fileName) throws FileNotFoundException {
@@ -47,7 +55,9 @@ public class FileProvider {
                 }
 
                 // Периодический сброс буфера для экономии памяти
-                if (i % 8192 == 0) writer.flush();
+                if (i % 8192 == 0) {
+                    writer.flush();
+                }
             }
         }
     }

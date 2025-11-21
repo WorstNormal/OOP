@@ -1,12 +1,12 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -56,8 +56,6 @@ class SearchConsoleTest {
     @Test
     void errorMessageTest() {
         console.errorMessage("File not found");
-        // System.err перехватывать сложнее, но проверим, что метод не падает
-        // Если нужно тестировать System.err, нужно делать System.setErr(...)
     }
 
     /**
