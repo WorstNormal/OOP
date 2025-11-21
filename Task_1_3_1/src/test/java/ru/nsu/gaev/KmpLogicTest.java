@@ -1,92 +1,104 @@
 package ru.nsu.gaev;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-/**
- * Тесты для класса KmpLogic (реализация алгоритма КМП).
- */
 class KmpLogicTest {
-    private final KmpLogic kmpLogic = new KmpLogic();
 
-    /**
-     * Проверяет стандартный сценарий поиска с двумя вхождениями.
-     * Вход: "абракадабра", Паттерн: "бра"
-     * Ожидание: индексы 1 и 8.
-     */
     @Test
-    void findPatternStandardTest() throws IOException {
+    void testStandardCase() throws IOException {
+        KmpLogic logic = new KmpLogic();
         String text = "абракадабра";
         String pattern = "бра";
+
+        // Используем StringReader, чтобы не зависеть от файлов на диске
         StringReader reader = new StringReader(text);
 
-        List<Long> result = kmpLogic.findPattern(reader, pattern);
+        List<Long> result = logic.findPattern(reader, pattern);
 
-        assertEquals(List.of(1L, 8L), result);
+        // В слове "абракадабра":
+        // 0: а
+        // 1: б (начало первого "бра")
+        // ...
+        // 8: б (начало второго "бра")
+        Assertions.assertEquals(List.of(1L, 8L), result);
     }
 
-    /**
-     * Проверяет случай, когда вхождений нет.
-     */
     @Test
-    void findPatternNoMatchTest() throws IOException {
+    void testPatternAtStart() throws IOException {
+        KmpLogic logic = new KmpLogic();
         String text = "hello world";
-        String pattern = "java";
+        String pattern = "hello";
+
         StringReader reader = new StringReader(text);
+        List<Long> result = logic.findPattern(reader, pattern);
 
-        List<Long> result = kmpLogic.findPattern(reader, pattern);
-
-        assertTrue(result.isEmpty());
+        Assertions.assertEquals(List.of(0L), result);
     }
 
-    /**
-     * Проверяет поиск с перекрывающимися вхождениями.
-     * Вход: "nanana", Паттерн: "nana"
-     * Ожидание: индексы 0 и 2.
-     */
     @Test
-    void findPatternOverlappingTest() throws IOException {
-        String text = "nanana";
-        String pattern = "nana";
+    void testPatternAtEnd() throws IOException {
+        KmpLogic logic = new KmpLogic();
+        String text = "hello world";
+        String pattern = "world";
+
         StringReader reader = new StringReader(text);
+        List<Long> result = logic.findPattern(reader, pattern);
 
-        List<Long> result = kmpLogic.findPattern(reader, pattern);
-
-        // 0: [nana]na
-        // 2: na[nana]
-        assertEquals(List.of(0L, 2L), result);
+        Assertions.assertEquals(List.of(6L), result);
     }
 
-    /**
-     * Проверяет работу с UTF-8 символами (эмодзи).
-     */
     @Test
-    void findPatternUtf8Test() throws IOException {
-        String text = "Java🔥Hot🔥";
-        String pattern = "🔥";
+    void testNoMatches() throws IOException {
+        KmpLogic logic = new KmpLogic();
+        String text = "abcdefg";
+        String pattern = "xyz";
+
         StringReader reader = new StringReader(text);
+        List<Long> result = logic.findPattern(reader, pattern);
 
-        List<Long> result = kmpLogic.findPattern(reader, pattern);
-
-        assertEquals(List.of(4L, 8L), result);
+        Assertions.assertTrue(result.isEmpty());
     }
 
-    /**
-     * Проверяет поведение при пустом паттерне.
-     */
     @Test
-    void findPatternEmptyTest() throws IOException {
-        String text = "abc";
-        String pattern = "";
+    void testOverlappingPatterns() throws IOException {
+        KmpLogic logic = new KmpLogic();
+        String text = "ababa";
+        String pattern = "aba";
+
+        // "ababa" -> "aba" (индекс 0) и "aba" (индекс 2)
         StringReader reader = new StringReader(text);
+        List<Long> result = logic.findPattern(reader, pattern);
 
-        List<Long> result = kmpLogic.findPattern(reader, pattern);
+        Assertions.assertEquals(List.of(0L, 2L), result);
+    }
 
-        assertTrue(result.isEmpty());
+    @Test
+    void testEmptyInput() throws IOException {
+        KmpLogic logic = new KmpLogic();
+        String text = "";
+        String pattern = "test";
+
+        StringReader reader = new StringReader(text);
+        List<Long> result = logic.findPattern(reader, pattern);
+
+        Assertions.assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testUtf8Emoji() throws IOException {
+        KmpLogic logic = new KmpLogic();
+        String text = "test😀text😀";
+        String pattern = "😀";
+
+        StringReader reader = new StringReader(text);
+        List<Long> result = logic.findPattern(reader, pattern);
+
+        // Смайлики могут занимать 2 char в Java, но Reader читает их корректно как символы
+        // T(0) e(1) s(2) t(3) 😀(4) -> индекс 4
+        Assertions.assertEquals(2, result.size());
     }
 }

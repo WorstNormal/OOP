@@ -1,6 +1,5 @@
 package ru.nsu.gaev;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class KmpLogic {
         int j = 0; // Индекс в паттерне
         int nextChar;
 
-        // Читаем посимвольно из буфера (не грузим весь файл в память)
+        // Читаем посимвольно из буфера
         while ((nextChar = reader.read()) != -1) {
             char character = (char) nextChar;
 
@@ -50,9 +49,8 @@ public class KmpLogic {
             globalIndex++;
         }
 
-        // Закрываем поток здесь или в вызывающем коде (лучше в try-with-resources в App,
-        // но для простоты аналогии с blackjack оставим Reader открытым до конца метода)
-        reader.close();
+        // ВАЖНО: Мы НЕ закрываем reader здесь.
+        // Его закроет try-with-resources в классе SearchApp.
 
         return occurrences;
     }

@@ -16,7 +16,7 @@ public class SearchConsole {
     }
 
     public void generationStarted(String fileName) {
-        System.out.println("Generating large file '" + fileName + "' (~10MB)... Please wait.");
+        System.out.println("Generating large file '" + fileName + "' (~0.2GB)... Please wait.");
     }
 
     public void generationFinished() {
@@ -51,11 +51,13 @@ public class SearchConsole {
     }
 
     public void errorMessage(String error) {
-        System.err.println("Error occurred: " + error);
+        // Используем System.out вместо System.err, чтобы сообщения не перемешивались
+        System.out.println("Error occurred: " + error);
     }
 
     public void searchAgain() {
-        System.out.print("\nPerform another search? (yes/no): ");
+        // println гарантирует, что текст появится сразу
+        System.out.println("\nPerform another search? (yes/no): ");
     }
 
     public void yesOrNo() {

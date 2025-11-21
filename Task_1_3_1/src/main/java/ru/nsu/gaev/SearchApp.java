@@ -1,5 +1,6 @@
 package ru.nsu.gaev;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -9,46 +10,60 @@ import java.util.Scanner;
  * Связывает пользовательский ввод, файловую систему и алгоритм поиска.
  */
 public class SearchApp {
-    public static final Scanner scanner = new Scanner(System.in);
+
     public static SearchConsole message = new SearchConsole();
 
     /**
      * Точка входа в приложение.
      */
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         message.welcomeSearch();
 
         while (true) {
             try {
-                // Шаг 1: Подготовка файла (выбор существующего или генерация теста)
+                // Шаг 1: Подготовка файла
                 message.askForFileGeneration();
-                String choice = scanner.nextLine().toLowerCase();
-                String fileName = "input.txt"; // Имя по умолчанию
+
+                // Если ввода нет (Ctrl+D), выходим
+                if (!scanner.hasNextLine()) break;
+
+                String choice = scanner.nextLine().trim().toLowerCase();
+                String fileName = "input.txt";
 
                 if (choice.equals("generate")) {
                     fileName = "large_test_input.txt";
                     message.generationStarted(fileName);
-                    FileProvider.generateBigFile(fileName, "бра"); // Генерируем файл с паттерном "бра"
+                    FileProvider.generateBigFile(fileName, "бра");
                     message.generationFinished();
                 } else {
                     message.askFileName();
-                    String inputName = scanner.nextLine();
-                    if (!inputName.isBlank()) {
-                        fileName = inputName;
+                    if (scanner.hasNextLine()) {
+                        String inputName = scanner.nextLine().trim();
+                        if (!inputName.isBlank()) {
+                            fileName = inputName;
+                        }
                     }
                 }
 
                 // Шаг 2: Ввод подстроки
                 message.askPattern();
-                String pattern = scanner.nextLine();
+                String pattern = "";
+                if (scanner.hasNextLine()) {
+                    pattern = scanner.nextLine();
+                }
 
                 // Шаг 3: Запуск поиска
                 message.searchStarted();
                 long startTime = System.currentTimeMillis();
 
                 KmpLogic logic = new KmpLogic();
-                // Передаем Reader, который создает FileProvider
-                List<Long> results = logic.findPattern(FileProvider.getReader(fileName), pattern);
+                List<Long> results;
+
+                try (BufferedReader reader = FileProvider.getReader(fileName)) {
+                    results = logic.findPattern(reader, pattern);
+                }
 
                 long endTime = System.currentTimeMillis();
 
@@ -60,17 +75,31 @@ public class SearchApp {
                 message.errorMessage(e.getMessage());
             }
 
-            // Вопрос о повторении (как в Blackjack)
+            // --- Логика запроса на повторение (Исправленная часть) ---
+
             message.searchAgain();
-            String answer = scanner.nextLine().toLowerCase();
+
+            // Если пользователь закрыл поток ввода (Ctrl+D), прерываем цикл
+            if (!scanner.hasNextLine()) break;
+
+            String answer = scanner.nextLine().trim().toLowerCase();
+
             while (!answer.equals("yes") && !answer.equals("no")) {
                 message.yesOrNo();
-                answer = scanner.nextLine().toLowerCase();
+                if (!scanner.hasNextLine()) {
+                    answer = "no"; // Принудительный выход если поток закрылся
+                    break;
+                }
+                answer = scanner.nextLine().trim().toLowerCase();
             }
+
+            // ЗДЕСЬ БЫЛА ОШИБКА: || !scanner.hasNextLine()
+            // Мы убрали лишнюю проверку, которая ждала ввода.
             if (answer.equals("no")) {
                 message.goodbye();
                 break;
             }
+            // Если "yes", цикл просто продолжается
         }
     }
 }

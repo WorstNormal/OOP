@@ -10,6 +10,10 @@ import java.util.Random;
  */
 public class FileProvider {
 
+    // Делаем переменную доступной для изменения в тестах
+    // По умолчанию 200 МБ (как в задании)
+    public static int GENERATION_SIZE_MB = 200;
+
     /**
      * Возвращает буферизированный Reader для файла с кодировкой UTF-8.
      * @param fileName имя файла
@@ -25,14 +29,14 @@ public class FileProvider {
      */
     public static void generateBigFile(String fileName, String patternToInsert) throws IOException {
         Random random = new Random();
-        int sizeMB = 10; // Размер ~10 МБ
-        long charsToWrite = sizeMB * 1024L * 1024L;
+
+        // Используем переменную вместо хардкода
+        long charsToWrite = GENERATION_SIZE_MB * 1024L * 1024L;
 
         try (BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(fileName), StandardCharsets.UTF_8))) {
 
             for (long i = 0; i < charsToWrite; i++) {
-                // С вероятностью ~0.001% вставляем искомую подстроку
                 if (random.nextInt(100000) == 42) {
                     writer.write(patternToInsert);
                     i += patternToInsert.length() - 1;
