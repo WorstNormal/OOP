@@ -76,6 +76,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ElectronicGradeBook</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Класс электронной зачетной книжки.
+ Хранит список сданных предметов и содержит логику вычисления
+ среднего балла, возможности получения стипендии и красного диплома.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +92,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(boolean,int)" class="member-name-link">ElectronicGradeBook</a><wbr>(boolean&nbsp;isPaidEducation,
  int&nbsp;currentSemester)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор зачетной книжки.</div>
+</div>
 </div>
 </section>
 </li>
@@ -109,16 +114,24 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculateAverageGrade()" class="member-name-link">calculateAverageGrade</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Вычисляет текущий средний балл за все время обучения.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canGetIncreasedScholarship()" class="member-name-link">canGetIncreasedScholarship</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет возможность получения повышенной стипендии в текущем семестре.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canTransferToBudget()" class="member-name-link">canTransferToBudget</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет возможность перевода с платного на бюджет.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRedDiplomaLikely()" class="member-name-link">isRedDiplomaLikely</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет возможность получения красного диплома (с отличием).</div>
+</div>
 </div>
 </div>
 </div>
@@ -141,6 +154,12 @@ loadScripts(document, 'script');</script>
 <h3>ElectronicGradeBook</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ElectronicGradeBook</span><wbr><span class="parameters">(boolean&nbsp;isPaidEducation,
  int&nbsp;currentSemester)</span></div>
+<div class="block">Конструктор зачетной книжки.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>isPaidEducation</code> - true, если обучение платное.</dd>
+<dd><code>currentSemester</code> - текущий семестр обучения.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -161,24 +180,48 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="calculateAverageGrade()">
 <h3>calculateAverageGrade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculateAverageGrade</span>()</div>
+<div class="block">Вычисляет текущий средний балл за все время обучения.
+ Учитываются только дифференцированные оценки.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Средний балл или 0.0, если оценок нет.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="canTransferToBudget()">
 <h3>canTransferToBudget</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canTransferToBudget</span>()</div>
+<div class="block">Проверяет возможность перевода с платного на бюджет.
+ Условие: отсутствие троек за экзамены за последние две сессии.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true, если перевод возможен.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isRedDiplomaLikely()">
 <h3>isRedDiplomaLikely</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isRedDiplomaLikely</span>()</div>
+<div class="block">Проверяет возможность получения красного диплома (с отличием).
+ Требования: 75% оценок "отлично", отсутствие троек, ВКР на "отлично".</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true, если условия выполняются (прогноз).</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="canGetIncreasedScholarship()">
 <h3>canGetIncreasedScholarship</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetIncreasedScholarship</span>()</div>
+<div class="block">Проверяет возможность получения повышенной стипендии в текущем семестре.
+ Условие: все оценки за текущий семестр - "отлично".</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true, если положена повышенная стипендия.</dd>
+</dl>
 </section>
 </li>
 </ul>
