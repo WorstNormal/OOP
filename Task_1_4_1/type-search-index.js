@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.gaev","l":"ControlType"},{"p":"ru.nsu.gaev","l":"ElectronicGradeBook"},{"p":"ru.nsu.gaev","l":"Main"},{"p":"ru.nsu.gaev","l":"SubjectRecord"}];updateSearchResults();
