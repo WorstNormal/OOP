@@ -11,7 +11,6 @@ public class Main {
      * @param args Аргументы командной строки (не используются).
      */
     public static void main(String[] args) {
-        // Создание учебного плана для программиста
         Curriculum computerScienceCurriculum = new Curriculum(
                 "Информатика и вычислительная техника");
         computerScienceCurriculum.addRequiredSubject(
@@ -33,7 +32,6 @@ public class Main {
                 new CurriculumSubject("Английский", new Semester(2),
                         ControlType.EXAM));
 
-        // Создание первого студента - платное обучение
         Student student1 = new Student("Иван Петров", "БИ-210001", true,
                 computerScienceCurriculum);
         student1.addRecord(new SubjectRecord("Математика", 1,
@@ -65,7 +63,6 @@ public class Main {
 
         System.out.println("\n=== Студент 2: Отличник ===");
 
-        // Создание учебного плана для отличника
         Curriculum honorCurriculum = new Curriculum("Почетный учебный план");
         honorCurriculum.addRequiredSubject(
                 new CurriculumSubject("Java", new Semester(8),
@@ -114,7 +111,6 @@ public class Main {
         }
 
         System.out.println("\n=== Совместимость со старым API ===");
-        // Демонстрация, что старый код с int оценками все еще работает
         Student legacyStudent = new Student("Петр Сидоров", "БИ-210002",
                 true);
         legacyStudent.addRecord(new SubjectRecord("Математика", 1,

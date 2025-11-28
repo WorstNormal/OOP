@@ -31,22 +31,18 @@ class ElectronicGradeBookExtraTests {
     @Test
     @DisplayName("canTransferToBudget: paid/unpaid and failing cases")
     void testCanTransferToBudget() {
-        // unpaid should always return true
         ElectronicGradeBook unpaid = new ElectronicGradeBook(false);
         assertTrue(unpaid.canTransferToBudget(1));
 
         ElectronicGradeBook paid = new ElectronicGradeBook(true);
-        // currentSemester = 1 -> previous < 1 -> false
         assertFalse(paid.canTransferToBudget(1));
 
-        // prepare semesters 1 and 2 with passing grades
         paid.addRecord(new SubjectRecord("A", 1, ControlType.EXAM,
                 new DifferentiatedGrade(4)));
         paid.addRecord(new SubjectRecord("B", 2, ControlType.DIFF_CREDIT,
                 new DifferentiatedGrade(3)));
         assertTrue(paid.canTransferToBudget(2));
 
-        // exam == 3 should disqualify
         ElectronicGradeBook paid2 = new ElectronicGradeBook(true);
         paid2.addRecord(new SubjectRecord("X", 1, ControlType.EXAM,
                 new DifferentiatedGrade(3)));
@@ -54,7 +50,6 @@ class ElectronicGradeBookExtraTests {
                 new DifferentiatedGrade(4)));
         assertFalse(paid2.canTransferToBudget(2));
 
-        // grade < 3 should disqualify
         ElectronicGradeBook paid3 = new ElectronicGradeBook(true);
         paid3.addRecord(new SubjectRecord("X", 1, ControlType.EXAM,
                 new DifferentiatedGrade(2)));
@@ -73,15 +68,12 @@ class ElectronicGradeBookExtraTests {
                 new Semester(1), ControlType.DIFF_CREDIT));
 
         ElectronicGradeBook book = new ElectronicGradeBook(true, curriculum);
-        // missing subjects -> false
         assertFalse(book.canGetRedDiploma());
 
-        // add required completed subjects
         book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
         book.addRecord(new SubjectRecord("Phys", 1, ControlType.DIFF_CREDIT,
                 new DifferentiatedGrade(5)));
-        // add other non-credit records including thesis
         book.addRecord(new SubjectRecord("Other", 2, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
         book.addRecord(new SubjectRecord("Thesis", 8, ControlType.THESIS,
@@ -89,7 +81,6 @@ class ElectronicGradeBookExtraTests {
 
         assertTrue(book.canGetRedDiploma());
 
-        // if any grade == 3 -> false
         ElectronicGradeBook book2 = new ElectronicGradeBook(true, curriculum);
         book2.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
@@ -99,7 +90,6 @@ class ElectronicGradeBookExtraTests {
                 new DifferentiatedGrade(5)));
         assertFalse(book2.canGetRedDiploma());
 
-        // thesis not excellent -> false
         ElectronicGradeBook book3 = new ElectronicGradeBook(true, curriculum);
         book3.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
@@ -109,7 +99,6 @@ class ElectronicGradeBookExtraTests {
                 new DifferentiatedGrade(4)));
         assertFalse(book3.canGetRedDiploma());
 
-        // less than 75% excellent -> false
         ElectronicGradeBook book4 = new ElectronicGradeBook(true, curriculum);
         book4.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
@@ -119,10 +108,8 @@ class ElectronicGradeBookExtraTests {
                 new DifferentiatedGrade(5)));
         book4.addRecord(new SubjectRecord("Thesis", 8, ControlType.THESIS,
                 new DifferentiatedGrade(5)));
-        // Math(5), Phys(4), Other(5), Thesis(5) -> excellent=3/4 = 0.75
         assertTrue(book4.canGetRedDiploma());
 
-        // now make it 2/4 -> 0.5
         ElectronicGradeBook book5 = new ElectronicGradeBook(true, curriculum);
         book5.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
                 new DifferentiatedGrade(4)));
@@ -139,17 +126,14 @@ class ElectronicGradeBookExtraTests {
     @DisplayName("canGetIncreasedScholarship: success and failure cases")
     void testCanGetIncreasedScholarship() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        // empty current session -> false
         assertFalse(book.canGetIncreasedScholarship(1));
 
-        // success: all non-credit grades 5 and credits passed
         book.addRecord(new SubjectRecord("A", 2, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
         book.addRecord(new SubjectRecord("B", 2, ControlType.CREDIT,
                 new CreditGrade(true)));
         assertTrue(book.canGetIncreasedScholarship(2));
 
-        // fail if any non-credit < 5
         ElectronicGradeBook book2 = new ElectronicGradeBook(true);
         book2.addRecord(new SubjectRecord("A", 2, ControlType.EXAM,
                 new DifferentiatedGrade(4)));
@@ -157,7 +141,6 @@ class ElectronicGradeBookExtraTests {
                 new CreditGrade(true)));
         assertFalse(book2.canGetIncreasedScholarship(2));
 
-        // fail if credit not passed
         ElectronicGradeBook book3 = new ElectronicGradeBook(true);
         book3.addRecord(new SubjectRecord("A", 2, ControlType.EXAM,
                 new DifferentiatedGrade(5)));

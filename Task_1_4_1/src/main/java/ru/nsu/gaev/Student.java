@@ -25,8 +25,6 @@ public class Student {
         this.studentId = studentId;
         this.isPaidEducation = isPaidEducation;
         this.curriculum = curriculum;
-        // Передаем учебный план в зачетную книжку,
-        // чтобы их состояние было согласовано
         this.gradeBook = new ElectronicGradeBook(isPaidEducation, curriculum);
     }
 

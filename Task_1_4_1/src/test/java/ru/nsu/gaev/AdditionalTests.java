@@ -67,7 +67,6 @@ class AdditionalTests {
         assertEquals(1, out.size());
 
         out.clear();
-        // internal records should remain unchanged
         assertEquals(1, book.getRecords().size());
     }
 

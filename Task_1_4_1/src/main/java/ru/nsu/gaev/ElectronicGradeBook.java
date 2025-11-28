@@ -84,7 +84,7 @@ public class ElectronicGradeBook {
      */
     public boolean canTransferToBudget(int currentSemester) {
         if (!isPaidEducation) {
-            return true; // Уже на бюджете
+            return true;
         }
 
         int previousSemester = currentSemester - 1;
@@ -120,14 +120,12 @@ public class ElectronicGradeBook {
      * @return true, если условия выполняются.
      */
     public boolean canGetRedDiploma() {
-        // Проверка учебного плана
         if (curriculum != null) {
             if (!curriculum.areAllSubjectsCompleted(records)) {
                 return false;
             }
         }
 
-        // Проверка оценок
         List<SubjectRecord> diplomaRecords = records.stream()
                 .filter(r -> r.getControlType() != ControlType.CREDIT)
                 .collect(Collectors.toList());
@@ -138,7 +136,7 @@ public class ElectronicGradeBook {
 
         int excellentCount = 0;
         boolean hasThree = false;
-        boolean thesisFound = false; // теперь ВКР обязателен
+        boolean thesisFound = false;
 
         for (SubjectRecord r : diplomaRecords) {
             if (r.getGradeValue() == 5) {
@@ -150,7 +148,6 @@ public class ElectronicGradeBook {
             if (r.getControlType() == ControlType.THESIS) {
                 thesisFound = true;
                 if (r.getGradeValue() < 5) {
-                    // ВКР есть, но оценка менее 5 — сразу fail
                     return false;
                 }
             }
@@ -160,7 +157,6 @@ public class ElectronicGradeBook {
             return false;
         }
 
-        // Требуем, чтобы ВКР был обязательно найден и оценен на 5
         if (!thesisFound) {
             return false;
         }

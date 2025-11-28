@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 class ElectronicGradeBookTest {
 
-    // --- Тесты для SubjectRecord (покрываем геттеры и toString) ---
     @Test
     @DisplayName("SubjectRecord: проверка геттеров и toString с новым Grade API")
     void testSubjectRecordMethods() {
@@ -23,7 +22,6 @@ class ElectronicGradeBookTest {
         assertEquals(ControlType.EXAM, record.getControlType());
         assertEquals(5, record.getGradeValue());
 
-        // Проверяем, что toString не падает и возвращает непустую строку
         assertNotNull(record.toString());
         assertTrue(record.toString().contains("OOP"));
     }
@@ -40,18 +38,15 @@ class ElectronicGradeBookTest {
         assertEquals(1, creditRecord.getGradeValue());
     }
 
-    // --- Тесты для ControlType (покрываем enum методы) ---
     @Test
     @DisplayName("ControlType: проверка displayName и values")
     void testControlType() {
         assertEquals("Экзамен", ControlType.EXAM.getDisplayName());
 
-        // Вызов values() и valueOf() нужен для 100% покрытия enum
         assertNotNull(ControlType.values());
         assertEquals(ControlType.EXAM, ControlType.valueOf("EXAM"));
     }
 
-    // --- Тесты для Grade интерфейса ---
     @Test
     @DisplayName("DifferentiatedGrade: проверка значений")
     void testDifferentiatedGrade() {
@@ -82,8 +77,6 @@ class ElectronicGradeBookTest {
         assertFalse(notPassed.isPassed());
     }
 
-    // --- Тесты для ElectronicGradeBook ---
-
     @Test
     @DisplayName("Средний балл: пустая зачетка")
     void testAverageGrade_Empty() {
@@ -102,7 +95,6 @@ class ElectronicGradeBookTest {
         book.addRecord(new SubjectRecord("History", 1,
                 ControlType.DIFF_CREDIT, new DifferentiatedGrade(5)));
 
-        // (4 + 5) / 2 = 4.5
         assertEquals(4.5, book.calculateAverageGrade());
     }
 
@@ -119,7 +111,6 @@ class ElectronicGradeBookTest {
     @DisplayName("Бюджет: первый семестр (недостаточно данных)")
     void testBudget_FirstSemester() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        // Нет предыдущего семестра
         assertFalse(book.canTransferToBudget(1));
     }
 
@@ -127,7 +118,6 @@ class ElectronicGradeBookTest {
     @DisplayName("Бюджет: нет записей за последние сессии")
     void testBudget_NoRecords() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        // Семестр 3, но записей нет
         assertFalse(book.canTransferToBudget(3));
     }
 
@@ -193,7 +183,6 @@ class ElectronicGradeBookTest {
     @DisplayName("Диплом: меньше 75% пятерок (fail)")
     void testDiploma_FailPercentage() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        // 1 пятерка, 1 четверка = 50%
         book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
         book.addRecord(new SubjectRecord("Phys", 2, ControlType.EXAM,
@@ -207,7 +196,6 @@ class ElectronicGradeBookTest {
     @DisplayName("Диплом: успех")
     void testDiploma_Success() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        // 3 пятерки, 1 четверка = 75%
         book.addRecord(new SubjectRecord("S1", 1, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
         book.addRecord(new SubjectRecord("S2", 2, ControlType.EXAM,
@@ -216,7 +204,6 @@ class ElectronicGradeBookTest {
                 new DifferentiatedGrade(5)));
         book.addRecord(new SubjectRecord("S4", 4, ControlType.EXAM,
                 new DifferentiatedGrade(4)));
-        // ВКР
         book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS,
                 new DifferentiatedGrade(5)));
 
@@ -235,7 +222,6 @@ class ElectronicGradeBookTest {
                         ControlType.EXAM));
 
         ElectronicGradeBook book = new ElectronicGradeBook(true, curriculum);
-        // Студент сдал только один предмет из двух
         book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
                 new DifferentiatedGrade(5)));
         book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS,
@@ -284,7 +270,6 @@ class ElectronicGradeBookTest {
         assertTrue(book.canGetIncreasedScholarship(2));
     }
 
-    // --- Тесты для Semester ---
     @Test
     @DisplayName("Semester: создание и геттер")
     void testSemester() {
@@ -297,7 +282,6 @@ class ElectronicGradeBookTest {
                 () -> new Semester(-1));
     }
 
-    // --- Тесты для Student ---
     @Test
     @DisplayName("Student: создание и геттеры")
     void testStudent() {
@@ -322,7 +306,6 @@ class ElectronicGradeBookTest {
         assertEquals(1, student.getGradeBook().getRecords().size());
     }
 
-    // --- Тесты для Curriculum ---
     @Test
     @DisplayName("Curriculum: добавление предметов и проверка завершения")
     void testCurriculum() {
@@ -364,11 +347,9 @@ class ElectronicGradeBookTest {
         assertEquals(1, curriculum.getMissingSubjects(records).size());
     }
 
-    // --- Тест для Main (чтобы класс Main не был 0%) ---
     @Test
     @DisplayName("Main: запуск")
     void testMainClass() {
-        // Просто вызываем main, чтобы покрытие засчиталось
         Main.main(new String[]{});
     }
 }
