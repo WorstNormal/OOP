@@ -42,8 +42,10 @@ class AdditionalTests {
     @Test
     @DisplayName("SubjectRecord: invalid differentiated grade throws")
     void testSubjectRecordInvalidDifferentiatedGrade() {
-        assertThrows(IllegalArgumentException.class, () -> new SubjectRecord("X", 1, ControlType.EXAM, 1));
-        assertThrows(IllegalArgumentException.class, () -> new SubjectRecord("X", 1, ControlType.EXAM, 6));
+        assertThrows(IllegalArgumentException.class,
+                () -> new SubjectRecord("X", 1, ControlType.EXAM, 1));
+        assertThrows(IllegalArgumentException.class,
+                () -> new SubjectRecord("X", 1, ControlType.EXAM, 6));
     }
 
     @Test
@@ -58,7 +60,8 @@ class AdditionalTests {
     @DisplayName("ElectronicGradeBook: getRecords returns defensive copy")
     void testGetRecordsImmutable() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
 
         List<SubjectRecord> out = book.getRecords();
         assertEquals(1, out.size());
@@ -69,10 +72,11 @@ class AdditionalTests {
     }
 
     @Test
-    @DisplayName("Curriculum: getRequiredSubjects returns defensive copy and toString")
+    @DisplayName("Curriculum: getRequiredSubjects returns defensive copy")
     void testCurriculumListImmutabilityAndToString() {
         Curriculum cur = new Curriculum("CS Test");
-        CurriculumSubject s1 = new CurriculumSubject("Math", new Semester(1), ControlType.EXAM);
+        CurriculumSubject s1 = new CurriculumSubject("Math",
+                new Semester(1), ControlType.EXAM);
         cur.addRequiredSubject(s1);
 
         List<CurriculumSubject> list = cur.getRequiredSubjects();
@@ -87,9 +91,12 @@ class AdditionalTests {
     @Test
     @DisplayName("CurriculumSubject: equals/hashCode/toString")
     void testCurriculumSubjectEqualsHashCodeToString() {
-        CurriculumSubject a = new CurriculumSubject("Phys", new Semester(2), ControlType.EXAM);
-        CurriculumSubject b = new CurriculumSubject("Phys", new Semester(2), ControlType.EXAM);
-        CurriculumSubject c = new CurriculumSubject("Phys", new Semester(3), ControlType.EXAM);
+        CurriculumSubject a = new CurriculumSubject("Phys",
+                new Semester(2), ControlType.EXAM);
+        CurriculumSubject b = new CurriculumSubject("Phys",
+                new Semester(2), ControlType.EXAM);
+        CurriculumSubject c = new CurriculumSubject("Phys",
+                new Semester(3), ControlType.EXAM);
 
         assertEquals(a, b);
         assertEquals(a.hashCode(), b.hashCode());
@@ -105,11 +112,11 @@ class AdditionalTests {
         String s = student.toString();
         assertTrue(s.contains("John Doe"));
         assertTrue(s.contains("ID123"));
-        assertTrue(s.contains("бюджетная") || s.contains("платная") || s.contains("Форма"));
+        assertTrue(s.contains("бюджетная") || s.contains("платная")
+                || s.contains("Форма"));
 
         Curriculum cur = new Curriculum("Eng Program");
         student.setCurriculum(cur);
         assertTrue(student.toString().contains("Eng Program"));
     }
 }
-

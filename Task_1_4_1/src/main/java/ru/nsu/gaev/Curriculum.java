@@ -5,7 +5,8 @@ import java.util.List;
 
 /**
  * Класс, представляющий учебный план студента.
- * Содержит информацию о том, какие предметы и в каких семестрах должны быть сданы.
+ * Содержит информацию о том, какие предметы и в каких семестрах должны быть
+ * пройдены.
  */
 public class Curriculum {
     private final String curriculumName;
@@ -49,9 +50,12 @@ public class Curriculum {
         for (CurriculumSubject required : requiredSubjects) {
             boolean found = completedSubjects.stream()
                     .anyMatch(completed ->
-                            completed.getSubjectName().equals(required.getSubjectName())
-                                    && completed.getSemester() == required.getSemester().getSemesterNumber()
-                                    && completed.getControlType() == required.getControlType()
+                            completed.getSubjectName()
+                                    .equals(required.getSubjectName())
+                                    && completed.getSemester()
+                                    == required.getSemester().getSemesterNumber()
+                                    && completed.getControlType()
+                                    == required.getControlType()
                     );
             if (!found) {
                 return false;
@@ -66,14 +70,18 @@ public class Curriculum {
      * @param completedSubjects список пройденных предметов
      * @return список требуемых предметов, которые ещё не пройдены
      */
-    public List<CurriculumSubject> getMissingSubjects(List<SubjectRecord> completedSubjects) {
+    public List<CurriculumSubject> getMissingSubjects(
+            List<SubjectRecord> completedSubjects) {
         List<CurriculumSubject> missing = new ArrayList<>();
         for (CurriculumSubject required : requiredSubjects) {
             boolean found = completedSubjects.stream()
                     .anyMatch(completed ->
-                            completed.getSubjectName().equals(required.getSubjectName())
-                                    && completed.getSemester() == required.getSemester().getSemesterNumber()
-                                    && completed.getControlType() == required.getControlType()
+                            completed.getSubjectName()
+                                    .equals(required.getSubjectName())
+                                    && completed.getSemester()
+                                    == required.getSemester().getSemesterNumber()
+                                    && completed.getControlType()
+                                    == required.getControlType()
                     );
             if (!found) {
                 missing.add(required);
@@ -88,6 +96,7 @@ public class Curriculum {
 
     @Override
     public String toString() {
-        return "Учебный план: " + curriculumName + " (" + requiredSubjects.size() + " предметов)";
+        return "Учебный план: " + curriculumName + " ("
+                + requiredSubjects.size() + " предметов)";
     }
 }

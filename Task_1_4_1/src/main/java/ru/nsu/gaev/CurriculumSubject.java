@@ -16,7 +16,8 @@ public class CurriculumSubject {
      * @param semester семестр, в котором должен быть пройден предмет
      * @param controlType тип контроля (экзамен, зачет и т.д.)
      */
-    public CurriculumSubject(String subjectName, Semester semester, ControlType controlType) {
+    public CurriculumSubject(String subjectName, Semester semester,
+                             ControlType controlType) {
         this.subjectName = subjectName;
         this.semester = semester;
         this.controlType = controlType;
@@ -36,8 +37,12 @@ public class CurriculumSubject {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CurriculumSubject that = (CurriculumSubject) o;
         return subjectName.equals(that.subjectName)
                 && semester.equals(that.semester)
@@ -46,11 +51,13 @@ public class CurriculumSubject {
 
     @Override
     public int hashCode() {
-        return subjectName.hashCode() * 31 + semester.hashCode() * 31 + controlType.hashCode();
+        return subjectName.hashCode() * 31 + semester.hashCode() * 31
+                + controlType.hashCode();
     }
 
     @Override
     public String toString() {
-        return subjectName + " (" + controlType.getDisplayName() + ") - " + semester;
+        return subjectName + " (" + controlType.getDisplayName() + ") - "
+                + semester;
     }
 }

@@ -14,7 +14,9 @@ public class DifferentiatedGrade implements Grade {
      */
     public DifferentiatedGrade(int gradeValue) {
         if (gradeValue < 2 || gradeValue > 5) {
-            throw new IllegalArgumentException("Оценка должна быть в диапазоне 2-5");
+            throw new IllegalArgumentException(
+                    "Оценка должна быть в диапазоне 2-5"
+            );
         }
         this.gradeValue = gradeValue;
     }
@@ -36,8 +38,12 @@ public class DifferentiatedGrade implements Grade {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         DifferentiatedGrade that = (DifferentiatedGrade) o;
         return gradeValue == that.gradeValue;
     }

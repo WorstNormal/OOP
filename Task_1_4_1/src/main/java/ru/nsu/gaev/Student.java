@@ -19,12 +19,14 @@ public class Student {
      * @param isPaidEducation true, если обучение платное
      * @param curriculum учебный план студента
      */
-    public Student(String fullName, String studentId, boolean isPaidEducation, Curriculum curriculum) {
+    public Student(String fullName, String studentId,
+                   boolean isPaidEducation, Curriculum curriculum) {
         this.fullName = fullName;
         this.studentId = studentId;
         this.isPaidEducation = isPaidEducation;
         this.curriculum = curriculum;
-        // Передаем учебный план в зачетную книжку, чтобы их состояние было согласовано
+        // Передаем учебный план в зачетную книжку,
+        // чтобы их состояние было согласовано
         this.gradeBook = new ElectronicGradeBook(isPaidEducation, curriculum);
     }
 
@@ -35,7 +37,8 @@ public class Student {
      * @param studentId номер зачетной книжки
      * @param isPaidEducation true, если обучение платное
      */
-    public Student(String fullName, String studentId, boolean isPaidEducation) {
+    public Student(String fullName, String studentId,
+                   boolean isPaidEducation) {
         this(fullName, studentId, isPaidEducation, null);
     }
 
@@ -60,7 +63,8 @@ public class Student {
     }
 
     /**
-     * Устанавливает учебный план для студента и синхронизирует его с зачетной книжкой.
+     * Устанавливает учебный план для студента и синхронизирует его
+     * с зачетной книжкой.
      *
      * @param curriculum учебный план
      */
@@ -87,8 +91,9 @@ public class Student {
      */
     @Override
     public String toString() {
-        return "Студент: " + fullName + " (ID: " + studentId + ")" +
-                " | Форма обучения: " + (isPaidEducation ? "платная" : "бюджетная") +
-                (curriculum != null ? " | " + curriculum : "");
+        return "Студент: " + fullName + " (ID: " + studentId + ")"
+                + " | Форма обучения: "
+                + (isPaidEducation ? "платная" : "бюджетная")
+                + (curriculum != null ? " | " + curriculum : "");
     }
 }

@@ -18,7 +18,8 @@ public class SubjectRecord {
      * @param controlType тип контроля (экзамен, зачет и т.д.)
      * @param grade оценка (DifferentiatedGrade или CreditGrade)
      */
-    public SubjectRecord(String subjectName, int semester, ControlType controlType, Grade grade) {
+    public SubjectRecord(String subjectName, int semester,
+                         ControlType controlType, Grade grade) {
         this.subjectName = subjectName;
         this.semester = semester;
         this.controlType = controlType;
@@ -34,7 +35,8 @@ public class SubjectRecord {
      * @param controlType тип контроля
      * @param gradeValue числовое значение оценки
      */
-    public SubjectRecord(String subjectName, int semester, ControlType controlType, int gradeValue) {
+    public SubjectRecord(String subjectName, int semester,
+                         ControlType controlType, int gradeValue) {
         this.subjectName = subjectName;
         this.semester = semester;
         this.controlType = controlType;
@@ -43,7 +45,9 @@ public class SubjectRecord {
             this.grade = new CreditGrade(gradeValue == 1);
         } else {
             if (gradeValue < 2 || gradeValue > 5) {
-                throw new IllegalArgumentException("Для дифференцированной оценки значение должно быть 2-5");
+                throw new IllegalArgumentException(
+                        "Для дифференцированной оценки значение должно быть 2-5"
+                );
             }
             this.grade = new DifferentiatedGrade(gradeValue);
         }
@@ -63,6 +67,7 @@ public class SubjectRecord {
 
     /**
      * Получить числовое значение оценки для совместимости.
+     *
      * @return числовое значение оценки
      */
     public int getGradeValue() {
@@ -75,6 +80,8 @@ public class SubjectRecord {
 
     @Override
     public String toString() {
-        return "Семестр " + semester + " | " + subjectName + " (" + controlType.getDisplayName() + "): " + grade.getDisplayName();
+        return "Семестр " + semester + " | " + subjectName + " ("
+                + controlType.getDisplayName() + "): "
+                + grade.getDisplayName();
     }
 }

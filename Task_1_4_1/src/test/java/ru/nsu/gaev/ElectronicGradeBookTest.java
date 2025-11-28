@@ -15,7 +15,8 @@ class ElectronicGradeBookTest {
     @Test
     @DisplayName("SubjectRecord: проверка геттеров и toString с новым Grade API")
     void testSubjectRecordMethods() {
-        SubjectRecord record = new SubjectRecord("OOP", 2, ControlType.EXAM, new DifferentiatedGrade(5));
+        SubjectRecord record = new SubjectRecord("OOP", 2, ControlType.EXAM,
+                new DifferentiatedGrade(5));
 
         assertEquals("OOP", record.getSubjectName());
         assertEquals(2, record.getSemester());
@@ -30,10 +31,12 @@ class ElectronicGradeBookTest {
     @Test
     @DisplayName("SubjectRecord: совместимость со старым int API")
     void testSubjectRecordLegacyInt() {
-        SubjectRecord examRecord = new SubjectRecord("Math", 1, ControlType.EXAM, 4);
+        SubjectRecord examRecord = new SubjectRecord("Math", 1,
+                ControlType.EXAM, 4);
         assertEquals(4, examRecord.getGradeValue());
 
-        SubjectRecord creditRecord = new SubjectRecord("PE", 1, ControlType.CREDIT, 1);
+        SubjectRecord creditRecord = new SubjectRecord("PE", 1,
+                ControlType.CREDIT, 1);
         assertEquals(1, creditRecord.getGradeValue());
     }
 
@@ -59,8 +62,10 @@ class ElectronicGradeBookTest {
         DifferentiatedGrade grade2 = new DifferentiatedGrade(2);
         assertEquals(2, grade2.getValue());
 
-        assertThrows(IllegalArgumentException.class, () -> new DifferentiatedGrade(1));
-        assertThrows(IllegalArgumentException.class, () -> new DifferentiatedGrade(6));
+        assertThrows(IllegalArgumentException.class,
+                () -> new DifferentiatedGrade(1));
+        assertThrows(IllegalArgumentException.class,
+                () -> new DifferentiatedGrade(6));
     }
 
     @Test
@@ -90,9 +95,12 @@ class ElectronicGradeBookTest {
     @DisplayName("Средний балл: игнорирование зачетов и расчет")
     void testAverageGrade_Calculation() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(4)));
-        book.addRecord(new SubjectRecord("PE", 1, ControlType.CREDIT, new CreditGrade(true))); // Игнор
-        book.addRecord(new SubjectRecord("History", 1, ControlType.DIFF_CREDIT, new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(4)));
+        book.addRecord(new SubjectRecord("PE", 1, ControlType.CREDIT,
+                new CreditGrade(true)));
+        book.addRecord(new SubjectRecord("History", 1,
+                ControlType.DIFF_CREDIT, new DifferentiatedGrade(5)));
 
         // (4 + 5) / 2 = 4.5
         assertEquals(4.5, book.calculateAverageGrade());
@@ -102,7 +110,8 @@ class ElectronicGradeBookTest {
     @DisplayName("Бюджет: уже на бюджете (early exit)")
     void testBudget_AlreadyBudget() {
         ElectronicGradeBook book = new ElectronicGradeBook(false);
-        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM, new DifferentiatedGrade(2)));
+        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM,
+                new DifferentiatedGrade(2)));
         assertTrue(book.canTransferToBudget(2));
     }
 
@@ -126,7 +135,8 @@ class ElectronicGradeBookTest {
     @DisplayName("Бюджет: тройка за экзамен (fail)")
     void testBudget_FailExamThree() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM, new DifferentiatedGrade(3)));
+        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM,
+                new DifferentiatedGrade(3)));
         assertFalse(book.canTransferToBudget(2));
     }
 
@@ -134,7 +144,8 @@ class ElectronicGradeBookTest {
     @DisplayName("Бюджет: двойка (fail)")
     void testBudget_FailGradeTwo() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("History", 2, ControlType.DIFF_CREDIT, new DifferentiatedGrade(2)));
+        book.addRecord(new SubjectRecord("History", 2,
+                ControlType.DIFF_CREDIT, new DifferentiatedGrade(2)));
         assertFalse(book.canTransferToBudget(2));
     }
 
@@ -142,8 +153,10 @@ class ElectronicGradeBookTest {
     @DisplayName("Бюджет: успех (тройка за диф.зачет допустима)")
     void testBudget_Success() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(4)));
-        book.addRecord(new SubjectRecord("Physics", 2, ControlType.DIFF_CREDIT, new DifferentiatedGrade(3)));
+        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(4)));
+        book.addRecord(new SubjectRecord("Physics", 2,
+                ControlType.DIFF_CREDIT, new DifferentiatedGrade(3)));
         assertTrue(book.canTransferToBudget(2));
     }
 
@@ -158,17 +171,21 @@ class ElectronicGradeBookTest {
     @DisplayName("Диплом: есть тройка (fail)")
     void testDiploma_FailOnThree() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("History", 2, ControlType.EXAM, new DifferentiatedGrade(3)));
+        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("History", 2, ControlType.EXAM,
+                new DifferentiatedGrade(3)));
         assertFalse(book.canGetRedDiploma());
     }
 
     @Test
-    @DisplayName("Диплом: ВКР не на отлично (fail)")
+    @DisplayName("Диплом: ВКР не на отлич (fail)")
     void testDiploma_FailThesis() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS, new DifferentiatedGrade(4)));
+        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS,
+                new DifferentiatedGrade(4)));
         assertFalse(book.canGetRedDiploma());
     }
 
@@ -177,9 +194,12 @@ class ElectronicGradeBookTest {
     void testDiploma_FailPercentage() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
         // 1 пятерка, 1 четверка = 50%
-        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("Phys", 2, ControlType.EXAM, new DifferentiatedGrade(4)));
-        book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS, new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("Phys", 2, ControlType.EXAM,
+                new DifferentiatedGrade(4)));
+        book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS,
+                new DifferentiatedGrade(5)));
         assertFalse(book.canGetRedDiploma());
     }
 
@@ -188,12 +208,17 @@ class ElectronicGradeBookTest {
     void testDiploma_Success() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
         // 3 пятерки, 1 четверка = 75%
-        book.addRecord(new SubjectRecord("S1", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("S2", 2, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("S3", 3, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("S4", 4, ControlType.EXAM, new DifferentiatedGrade(4)));
+        book.addRecord(new SubjectRecord("S1", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("S2", 2, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("S3", 3, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("S4", 4, ControlType.EXAM,
+                new DifferentiatedGrade(4)));
         // ВКР
-        book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS, new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS,
+                new DifferentiatedGrade(5)));
 
         assertTrue(book.canGetRedDiploma());
     }
@@ -202,13 +227,19 @@ class ElectronicGradeBookTest {
     @DisplayName("Диплом: проверка учебного плана")
     void testDiploma_WithCurriculum() {
         Curriculum curriculum = new Curriculum("Test Plan");
-        curriculum.addRequiredSubject(new CurriculumSubject("Math", new Semester(1), ControlType.EXAM));
-        curriculum.addRequiredSubject(new CurriculumSubject("Physics", new Semester(2), ControlType.EXAM));
+        curriculum.addRequiredSubject(
+                new CurriculumSubject("Math", new Semester(1),
+                        ControlType.EXAM));
+        curriculum.addRequiredSubject(
+                new CurriculumSubject("Physics", new Semester(2),
+                        ControlType.EXAM));
 
         ElectronicGradeBook book = new ElectronicGradeBook(true, curriculum);
         // Студент сдал только один предмет из двух
-        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS, new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("WKR", 8, ControlType.THESIS,
+                new DifferentiatedGrade(5)));
 
         assertFalse(book.canGetRedDiploma());
     }
@@ -217,7 +248,8 @@ class ElectronicGradeBookTest {
     @DisplayName("Стипендия: нет предметов в текущем семестре")
     void testScholarship_NoCurrentSubjects() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
         assertFalse(book.canGetIncreasedScholarship(2));
     }
 
@@ -225,7 +257,8 @@ class ElectronicGradeBookTest {
     @DisplayName("Стипендия: есть четверка (fail)")
     void testScholarship_FailGrade() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM, new DifferentiatedGrade(4)));
+        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM,
+                new DifferentiatedGrade(4)));
         assertFalse(book.canGetIncreasedScholarship(2));
     }
 
@@ -233,8 +266,10 @@ class ElectronicGradeBookTest {
     @DisplayName("Стипендия: незачет (fail)")
     void testScholarship_FailCredit() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("PE", 2, ControlType.CREDIT, new CreditGrade(false)));
+        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("PE", 2, ControlType.CREDIT,
+                new CreditGrade(false)));
         assertFalse(book.canGetIncreasedScholarship(2));
     }
 
@@ -242,8 +277,10 @@ class ElectronicGradeBookTest {
     @DisplayName("Стипендия: успех")
     void testScholarship_Success() {
         ElectronicGradeBook book = new ElectronicGradeBook(true);
-        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM, new DifferentiatedGrade(5)));
-        book.addRecord(new SubjectRecord("PE", 2, ControlType.CREDIT, new CreditGrade(true)));
+        book.addRecord(new SubjectRecord("Math", 2, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        book.addRecord(new SubjectRecord("PE", 2, ControlType.CREDIT,
+                new CreditGrade(true)));
         assertTrue(book.canGetIncreasedScholarship(2));
     }
 
@@ -254,8 +291,10 @@ class ElectronicGradeBookTest {
         Semester sem1 = new Semester(1);
         assertEquals(1, sem1.getSemesterNumber());
 
-        assertThrows(IllegalArgumentException.class, () -> new Semester(0));
-        assertThrows(IllegalArgumentException.class, () -> new Semester(-1));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Semester(0));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Semester(-1));
     }
 
     // --- Тесты для Student ---
@@ -263,7 +302,8 @@ class ElectronicGradeBookTest {
     @DisplayName("Student: создание и геттеры")
     void testStudent() {
         Curriculum curriculum = new Curriculum("Test");
-        Student student = new Student("John Doe", "123456", true, curriculum);
+        Student student = new Student("John Doe", "123456", true,
+                curriculum);
 
         assertEquals("John Doe", student.getFullName());
         assertEquals("123456", student.getStudentId());
@@ -276,7 +316,8 @@ class ElectronicGradeBookTest {
     @DisplayName("Student: добавление оценок")
     void testStudent_AddRecords() {
         Student student = new Student("Jane Smith", "654321", false);
-        student.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
+        student.addRecord(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
 
         assertEquals(1, student.getGradeBook().getRecords().size());
     }
@@ -286,8 +327,10 @@ class ElectronicGradeBookTest {
     @DisplayName("Curriculum: добавление предметов и проверка завершения")
     void testCurriculum() {
         Curriculum curriculum = new Curriculum("CS Program");
-        CurriculumSubject subject1 = new CurriculumSubject("Math", new Semester(1), ControlType.EXAM);
-        CurriculumSubject subject2 = new CurriculumSubject("Physics", new Semester(2), ControlType.EXAM);
+        CurriculumSubject subject1 = new CurriculumSubject("Math",
+                new Semester(1), ControlType.EXAM);
+        CurriculumSubject subject2 = new CurriculumSubject("Physics",
+                new Semester(2), ControlType.EXAM);
 
         curriculum.addRequiredSubject(subject1);
         curriculum.addRequiredSubject(subject2);
@@ -295,8 +338,10 @@ class ElectronicGradeBookTest {
         assertEquals(2, curriculum.getRequiredSubjects().size());
 
         java.util.List<SubjectRecord> records = new java.util.ArrayList<>();
-        records.add(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
-        records.add(new SubjectRecord("Physics", 2, ControlType.EXAM, new DifferentiatedGrade(4)));
+        records.add(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
+        records.add(new SubjectRecord("Physics", 2, ControlType.EXAM,
+                new DifferentiatedGrade(4)));
 
         assertTrue(curriculum.areAllSubjectsCompleted(records));
         assertEquals(0, curriculum.getMissingSubjects(records).size());
@@ -306,11 +351,14 @@ class ElectronicGradeBookTest {
     @DisplayName("Curriculum: проверка недостающих предметов")
     void testCurriculum_MissingSubjects() {
         Curriculum curriculum = new Curriculum("CS Program");
-        curriculum.addRequiredSubject(new CurriculumSubject("Math", new Semester(1), ControlType.EXAM));
-        curriculum.addRequiredSubject(new CurriculumSubject("Physics", new Semester(2), ControlType.EXAM));
+        curriculum.addRequiredSubject(new CurriculumSubject("Math",
+                new Semester(1), ControlType.EXAM));
+        curriculum.addRequiredSubject(new CurriculumSubject("Physics",
+                new Semester(2), ControlType.EXAM));
 
         java.util.List<SubjectRecord> records = new java.util.ArrayList<>();
-        records.add(new SubjectRecord("Math", 1, ControlType.EXAM, new DifferentiatedGrade(5)));
+        records.add(new SubjectRecord("Math", 1, ControlType.EXAM,
+                new DifferentiatedGrade(5)));
 
         assertFalse(curriculum.areAllSubjectsCompleted(records));
         assertEquals(1, curriculum.getMissingSubjects(records).size());
@@ -324,4 +372,3 @@ class ElectronicGradeBookTest {
         Main.main(new String[]{});
     }
 }
-

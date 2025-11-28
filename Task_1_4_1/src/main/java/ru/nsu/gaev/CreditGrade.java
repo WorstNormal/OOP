@@ -36,8 +36,12 @@ public class CreditGrade implements Grade {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CreditGrade that = (CreditGrade) o;
         return passed == that.passed;
     }

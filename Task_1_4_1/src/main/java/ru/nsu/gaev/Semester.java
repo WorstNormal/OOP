@@ -14,7 +14,9 @@ public class Semester {
      */
     public Semester(int semesterNumber) {
         if (semesterNumber < 1) {
-            throw new IllegalArgumentException("Номер семестра должен быть >= 1");
+            throw new IllegalArgumentException(
+                    "Номер семестра должен быть >= 1"
+            );
         }
         this.semesterNumber = semesterNumber;
     }
@@ -25,8 +27,12 @@ public class Semester {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Semester semester = (Semester) o;
         return semesterNumber == semester.semesterNumber;
     }
