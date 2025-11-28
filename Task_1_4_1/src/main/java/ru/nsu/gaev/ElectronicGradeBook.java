@@ -10,24 +10,47 @@ import java.util.stream.Collectors;
  * среднего балла, возможности получения стипендии и красного диплома.
  */
 public class ElectronicGradeBook {
-    private List<SubjectRecord> records;
-    private boolean isPaidEducation; // Платное обучение или нет
-    private int currentSemester;
+    private final List<SubjectRecord> records;
+    private final boolean isPaidEducation;
+    private Curriculum curriculum;
 
     /**
      * Конструктор зачетной книжки.
      *
      * @param isPaidEducation true, если обучение платное.
-     * @param currentSemester текущий семестр обучения.
      */
-    public ElectronicGradeBook(boolean isPaidEducation, int currentSemester) {
+    public ElectronicGradeBook(boolean isPaidEducation) {
         this.records = new ArrayList<>();
         this.isPaidEducation = isPaidEducation;
-        this.currentSemester = currentSemester;
+        this.curriculum = null;
+    }
+
+    /**
+     * Конструктор зачетной книжки с учебным планом.
+     *
+     * @param isPaidEducation true, если обучение платное.
+     * @param curriculum учебный план студента.
+     */
+    public ElectronicGradeBook(boolean isPaidEducation, Curriculum curriculum) {
+        this.records = new ArrayList<>();
+        this.isPaidEducation = isPaidEducation;
+        this.curriculum = curriculum;
     }
 
     public void addRecord(SubjectRecord record) {
         this.records.add(record);
+    }
+
+    public List<SubjectRecord> getRecords() {
+        return new ArrayList<>(records);
+    }
+
+    public Curriculum getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(Curriculum curriculum) {
+        this.curriculum = curriculum;
     }
 
     /**
@@ -38,7 +61,7 @@ public class ElectronicGradeBook {
      */
     public double calculateAverageGrade() {
         List<SubjectRecord> gradedRecords = records.stream()
-                .filter(r -> r.getControlType() != ControlType.CREDIT && r.getGrade() > 1)
+                .filter(r -> r.getControlType() != ControlType.CREDIT && r.getGradeValue() > 1)
                 .collect(Collectors.toList());
 
         if (gradedRecords.isEmpty()) {
@@ -47,7 +70,7 @@ public class ElectronicGradeBook {
 
         double sum = 0;
         for (SubjectRecord r : gradedRecords) {
-            sum += r.getGrade();
+            sum += r.getGradeValue();
         }
         return sum / gradedRecords.size();
     }
@@ -56,9 +79,10 @@ public class ElectronicGradeBook {
      * Проверяет возможность перевода с платного на бюджет.
      * Условие: отсутствие троек за экзамены за последние две сессии.
      *
+     * @param currentSemester текущий номер семестра.
      * @return true, если перевод возможен.
      */
-    public boolean canTransferToBudget() {
+    public boolean canTransferToBudget(int currentSemester) {
         if (!isPaidEducation) {
             return true; // Уже на бюджете
         }
@@ -78,10 +102,10 @@ public class ElectronicGradeBook {
         }
 
         for (SubjectRecord r : lastTwoSessions) {
-            if (r.getControlType() == ControlType.EXAM && r.getGrade() == 3) {
+            if (r.getControlType() == ControlType.EXAM && r.getGradeValue() == 3) {
                 return false;
             }
-            if (r.getGrade() < 3) {
+            if (r.getGradeValue() < 3) {
                 return false;
             }
         }
@@ -90,11 +114,20 @@ public class ElectronicGradeBook {
 
     /**
      * Проверяет возможность получения красного диплома (с отличием).
-     * Требования: 75% оценок "отлично", отсутствие троек, ВКР на "отлично".
+     * Требования: 75% оценок "отлично", отсутствие троек, ВКР на "отлично",
+     * и все предметы из учебного плана должны быть пройдены.
      *
-     * @return true, если условия выполняются (прогноз).
+     * @return true, если условия выполняются.
      */
-    public boolean isRedDiplomaLikely() {
+    public boolean canGetRedDiploma() {
+        // Проверка учебного плана
+        if (curriculum != null) {
+            if (!curriculum.areAllSubjectsCompleted(records)) {
+                return false;
+            }
+        }
+
+        // Проверка оценок
         List<SubjectRecord> diplomaRecords = records.stream()
                 .filter(r -> r.getControlType() != ControlType.CREDIT)
                 .collect(Collectors.toList());
@@ -105,18 +138,20 @@ public class ElectronicGradeBook {
 
         int excellentCount = 0;
         boolean hasThree = false;
-        boolean thesisIsExcellent = true;
+        boolean thesisFound = false; // теперь ВКР обязателен
 
         for (SubjectRecord r : diplomaRecords) {
-            if (r.getGrade() == 5) {
+            if (r.getGradeValue() == 5) {
                 excellentCount++;
             }
-            if (r.getGrade() == 3) {
+            if (r.getGradeValue() == 3) {
                 hasThree = true;
             }
             if (r.getControlType() == ControlType.THESIS) {
-                if (r.getGrade() < 5) {
-                    thesisIsExcellent = false;
+                thesisFound = true;
+                if (r.getGradeValue() < 5) {
+                    // ВКР есть, но оценка менее 5 — сразу fail
+                    return false;
                 }
             }
         }
@@ -124,7 +159,9 @@ public class ElectronicGradeBook {
         if (hasThree) {
             return false;
         }
-        if (!thesisIsExcellent) {
+
+        // Требуем, чтобы ВКР был обязательно найден и оценен на 5
+        if (!thesisFound) {
             return false;
         }
 
@@ -136,9 +173,10 @@ public class ElectronicGradeBook {
      * Проверяет возможность получения повышенной стипендии в текущем семестре.
      * Условие: все оценки за текущий семестр - "отлично".
      *
+     * @param currentSemester текущий номер семестра.
      * @return true, если положена повышенная стипендия.
      */
-    public boolean canGetIncreasedScholarship() {
+    public boolean canGetIncreasedScholarship(int currentSemester) {
         List<SubjectRecord> currentSession = records.stream()
                 .filter(r -> r.getSemester() == currentSemester)
                 .collect(Collectors.toList());
@@ -149,12 +187,15 @@ public class ElectronicGradeBook {
 
         for (SubjectRecord r : currentSession) {
             if (r.getControlType() != ControlType.CREDIT) {
-                if (r.getGrade() < 5) {
+                if (r.getGradeValue() < 5) {
                     return false;
                 }
             }
-            if (r.getControlType() == ControlType.CREDIT && r.getGrade() == 0) {
-                return false;
+            if (r.getControlType() == ControlType.CREDIT) {
+                CreditGrade creditGrade = (CreditGrade) r.getGrade();
+                if (!creditGrade.isPassed()) {
+                    return false;
+                }
             }
         }
         return true;
