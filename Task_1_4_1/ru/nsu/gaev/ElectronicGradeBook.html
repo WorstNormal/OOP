@@ -90,10 +90,14 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(boolean,int)" class="member-name-link">ElectronicGradeBook</a><wbr>(boolean&nbsp;isPaidEducation,
- int&nbsp;currentSemester)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(boolean)" class="member-name-link">ElectronicGradeBook</a><wbr>(boolean&nbsp;isPaidEducation)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Конструктор зачетной книжки.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(boolean,ru.nsu.gaev.Curriculum)" class="member-name-link">ElectronicGradeBook</a><wbr>(boolean&nbsp;isPaidEducation,
+ <a href="Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a>&nbsp;curriculum)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Конструктор зачетной книжки с учебным планом.</div>
 </div>
 </div>
 </section>
@@ -118,20 +122,29 @@ loadScripts(document, 'script');</script>
 <div class="block">Вычисляет текущий средний балл за все время обучения.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canGetIncreasedScholarship()" class="member-name-link">canGetIncreasedScholarship</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canGetIncreasedScholarship(int)" class="member-name-link">canGetIncreasedScholarship</a><wbr>(int&nbsp;currentSemester)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Проверяет возможность получения повышенной стипендии в текущем семестре.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canTransferToBudget()" class="member-name-link">canTransferToBudget</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canGetRedDiploma()" class="member-name-link">canGetRedDiploma</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Проверяет возможность перевода с платного на бюджет.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRedDiplomaLikely()" class="member-name-link">isRedDiplomaLikely</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Проверяет возможность получения красного диплома (с отличием).</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canTransferToBudget(int)" class="member-name-link">canTransferToBudget</a><wbr>(int&nbsp;currentSemester)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет возможность перевода с платного на бюджет.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCurriculum()" class="member-name-link">getCurriculum</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRecords()" class="member-name-link">getRecords</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCurriculum(ru.nsu.gaev.Curriculum)" class="member-name-link">setCurriculum</a><wbr>(<a href="Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a>&nbsp;curriculum)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -150,15 +163,26 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(boolean,int)">
+<section class="detail" id="&lt;init&gt;(boolean)">
 <h3>ElectronicGradeBook</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ElectronicGradeBook</span><wbr><span class="parameters">(boolean&nbsp;isPaidEducation,
- int&nbsp;currentSemester)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ElectronicGradeBook</span><wbr><span class="parameters">(boolean&nbsp;isPaidEducation)</span></div>
 <div class="block">Конструктор зачетной книжки.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>isPaidEducation</code> - true, если обучение платное.</dd>
-<dd><code>currentSemester</code> - текущий семестр обучения.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(boolean,ru.nsu.gaev.Curriculum)">
+<h3>ElectronicGradeBook</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ElectronicGradeBook</span><wbr><span class="parameters">(boolean&nbsp;isPaidEducation,
+ <a href="Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a>&nbsp;curriculum)</span></div>
+<div class="block">Конструктор зачетной книжки с учебным планом.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>isPaidEducation</code> - true, если обучение платное.</dd>
+<dd><code>curriculum</code> - учебный план студента.</dd>
 </dl>
 </section>
 </li>
@@ -177,6 +201,24 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="getRecords()">
+<h3>getRecords</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a>&gt;</span>&nbsp;<span class="element-name">getRecords</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getCurriculum()">
+<h3>getCurriculum</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></span>&nbsp;<span class="element-name">getCurriculum</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="setCurriculum(ru.nsu.gaev.Curriculum)">
+<h3>setCurriculum</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCurriculum</span><wbr><span class="parameters">(<a href="Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a>&nbsp;curriculum)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="calculateAverageGrade()">
 <h3>calculateAverageGrade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculateAverageGrade</span>()</div>
@@ -189,36 +231,41 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="canTransferToBudget()">
+<section class="detail" id="canTransferToBudget(int)">
 <h3>canTransferToBudget</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canTransferToBudget</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canTransferToBudget</span><wbr><span class="parameters">(int&nbsp;currentSemester)</span></div>
 <div class="block">Проверяет возможность перевода с платного на бюджет.
  Условие: отсутствие троек за экзамены за последние две сессии.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>currentSemester</code> - текущий номер семестра.</dd>
 <dt>Returns:</dt>
 <dd>true, если перевод возможен.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="isRedDiplomaLikely()">
-<h3>isRedDiplomaLikely</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isRedDiplomaLikely</span>()</div>
+<section class="detail" id="canGetRedDiploma()">
+<h3>canGetRedDiploma</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetRedDiploma</span>()</div>
 <div class="block">Проверяет возможность получения красного диплома (с отличием).
- Требования: 75% оценок "отлично", отсутствие троек, ВКР на "отлично".</div>
+ Требования: 75% оценок "отлично", отсутствие троек, ВКР на "отлично",
+ и все предметы из учебного плана должны быть пройдены.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true, если условия выполняются (прогноз).</dd>
+<dd>true, если условия выполняются.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="canGetIncreasedScholarship()">
+<section class="detail" id="canGetIncreasedScholarship(int)">
 <h3>canGetIncreasedScholarship</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetIncreasedScholarship</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetIncreasedScholarship</span><wbr><span class="parameters">(int&nbsp;currentSemester)</span></div>
 <div class="block">Проверяет возможность получения повышенной стипендии в текущем семестре.
  Условие: все оценки за текущий семестр - "отлично".</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>currentSemester</code> - текущий номер семестра.</dd>
 <dt>Returns:</dt>
 <dd>true, если положена повышенная стипендия.</dd>
 </dl>

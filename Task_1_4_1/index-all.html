@@ -48,11 +48,23 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#addRecord(ru.nsu.gaev.SubjectRecord)" class="member-name-link">addRecord(SubjectRecord)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Student.html#addRecord(ru.nsu.gaev.SubjectRecord)" class="member-name-link">addRecord(SubjectRecord)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>
+<div class="block">Добавляет запись об оценке в зачетную книжку.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Curriculum.html#addRequiredSubject(ru.nsu.gaev.CurriculumSubject)" class="member-name-link">addRequiredSubject(CurriculumSubject)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></dt>
+<dd>
+<div class="block">Добавляет требуемый предмет в учебный план.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Curriculum.html#areAllSubjectsCompleted(java.util.List)" class="member-name-link">areAllSubjectsCompleted(List&lt;SubjectRecord&gt;)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></dt>
+<dd>
+<div class="block">Проверяет, прошёл ли студент все требуемые предметы.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
@@ -60,11 +72,15 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Вычисляет текущий средний балл за все время обучения.</div>
 </dd>
-<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#canGetIncreasedScholarship()" class="member-name-link">canGetIncreasedScholarship()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
+<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#canGetIncreasedScholarship(int)" class="member-name-link">canGetIncreasedScholarship(int)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
 <dd>
 <div class="block">Проверяет возможность получения повышенной стипендии в текущем семестре.</div>
 </dd>
-<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#canTransferToBudget()" class="member-name-link">canTransferToBudget()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
+<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#canGetRedDiploma()" class="member-name-link">canGetRedDiploma()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
+<dd>
+<div class="block">Проверяет возможность получения красного диплома (с отличием).</div>
+</dd>
+<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#canTransferToBudget(int)" class="member-name-link">canTransferToBudget(int)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
 <dd>
 <div class="block">Проверяет возможность перевода с платного на бюджет.</div>
 </dd>
@@ -76,11 +92,43 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/ControlType.html#CREDIT" class="member-name-link">CREDIT</a> - Enum constant in enum class ru.nsu.gaev.<a href="ru/nsu/gaev/ControlType.html" title="enum class in ru.nsu.gaev">ControlType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CreditGrade.html" class="type-name-link" title="class in ru.nsu.gaev">CreditGrade</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
+<dd>
+<div class="block">Класс, представляющий простой зачет (зачет/не зачет).</div>
+</dd>
+<dt><a href="ru/nsu/gaev/CreditGrade.html#%3Cinit%3E(boolean)" class="member-name-link">CreditGrade(boolean)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/CreditGrade.html" title="class in ru.nsu.gaev">CreditGrade</a></dt>
+<dd>
+<div class="block">Конструктор зачета.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Curriculum.html" class="type-name-link" title="class in ru.nsu.gaev">Curriculum</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
+<dd>
+<div class="block">Класс, представляющий учебный план студента.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Curriculum.html#%3Cinit%3E(java.lang.String)" class="member-name-link">Curriculum(String)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></dt>
+<dd>
+<div class="block">Конструктор учебного плана.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/CurriculumSubject.html" class="type-name-link" title="class in ru.nsu.gaev">CurriculumSubject</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
+<dd>
+<div class="block">Класс, представляющий требуемый предмет в учебном плане.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/CurriculumSubject.html#%3Cinit%3E(java.lang.String,ru.nsu.gaev.Semester,ru.nsu.gaev.ControlType)" class="member-name-link">CurriculumSubject(String, Semester, ControlType)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/CurriculumSubject.html" title="class in ru.nsu.gaev">CurriculumSubject</a></dt>
+<dd>
+<div class="block">Конструктор требуемого предмета.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/ControlType.html#DIFF_CREDIT" class="member-name-link">DIFF_CREDIT</a> - Enum constant in enum class ru.nsu.gaev.<a href="ru/nsu/gaev/ControlType.html" title="enum class in ru.nsu.gaev">ControlType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/DifferentiatedGrade.html" class="type-name-link" title="class in ru.nsu.gaev">DifferentiatedGrade</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
+<dd>
+<div class="block">Класс, представляющий дифференцированную оценку (2-5).</div>
+</dd>
+<dt><a href="ru/nsu/gaev/DifferentiatedGrade.html#%3Cinit%3E(int)" class="member-name-link">DifferentiatedGrade(int)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/DifferentiatedGrade.html" title="class in ru.nsu.gaev">DifferentiatedGrade</a></dt>
+<dd>
+<div class="block">Конструктор дифференцированной оценки.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
@@ -88,32 +136,109 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Класс электронной зачетной книжки.</div>
 </dd>
-<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#%3Cinit%3E(boolean,int)" class="member-name-link">ElectronicGradeBook(boolean, int)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
+<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#%3Cinit%3E(boolean)" class="member-name-link">ElectronicGradeBook(boolean)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
 <dd>
 <div class="block">Конструктор зачетной книжки.</div>
 </dd>
+<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#%3Cinit%3E(boolean,ru.nsu.gaev.Curriculum)" class="member-name-link">ElectronicGradeBook(boolean, Curriculum)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
+<dd>
+<div class="block">Конструктор зачетной книжки с учебным планом.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/CreditGrade.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CreditGrade.html" title="class in ru.nsu.gaev">CreditGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CurriculumSubject.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CurriculumSubject.html" title="class in ru.nsu.gaev">CurriculumSubject</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/DifferentiatedGrade.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/DifferentiatedGrade.html" title="class in ru.nsu.gaev">DifferentiatedGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Semester.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Semester.html" title="class in ru.nsu.gaev">Semester</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/ControlType.html#EXAM" class="member-name-link">EXAM</a> - Enum constant in enum class ru.nsu.gaev.<a href="ru/nsu/gaev/ControlType.html" title="enum class in ru.nsu.gaev">ControlType</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
+<dt><a href="ru/nsu/gaev/CurriculumSubject.html#getControlType()" class="member-name-link">getControlType()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CurriculumSubject.html" title="class in ru.nsu.gaev">CurriculumSubject</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/SubjectRecord.html#getControlType()" class="member-name-link">getControlType()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#getCurriculum()" class="member-name-link">getCurriculum()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Student.html#getCurriculum()" class="member-name-link">getCurriculum()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Curriculum.html#getCurriculumName()" class="member-name-link">getCurriculumName()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/ControlType.html#getDisplayName()" class="member-name-link">getDisplayName()</a> - Method in enum class ru.nsu.gaev.<a href="ru/nsu/gaev/ControlType.html" title="enum class in ru.nsu.gaev">ControlType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CreditGrade.html#getDisplayName()" class="member-name-link">getDisplayName()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CreditGrade.html" title="class in ru.nsu.gaev">CreditGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/DifferentiatedGrade.html#getDisplayName()" class="member-name-link">getDisplayName()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/DifferentiatedGrade.html" title="class in ru.nsu.gaev">DifferentiatedGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Grade.html#getDisplayName()" class="member-name-link">getDisplayName()</a> - Method in interface ru.nsu.gaev.<a href="ru/nsu/gaev/Grade.html" title="interface in ru.nsu.gaev">Grade</a></dt>
+<dd>
+<div class="block">Возвращает строковое представление оценки.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Student.html#getFullName()" class="member-name-link">getFullName()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/SubjectRecord.html#getGrade()" class="member-name-link">getGrade()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Student.html#getGradeBook()" class="member-name-link">getGradeBook()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/SubjectRecord.html#getGradeValue()" class="member-name-link">getGradeValue()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a></dt>
+<dd>
+<div class="block">Получить числовое значение оценки для совместимости.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Curriculum.html#getMissingSubjects(java.util.List)" class="member-name-link">getMissingSubjects(List&lt;SubjectRecord&gt;)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></dt>
+<dd>
+<div class="block">Возвращает список недостающих предметов относительно пройденных.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#getRecords()" class="member-name-link">getRecords()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Curriculum.html#getRequiredSubjects()" class="member-name-link">getRequiredSubjects()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></dt>
+<dd>
+<div class="block">Возвращает список всех требуемых предметов.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/CurriculumSubject.html#getSemester()" class="member-name-link">getSemester()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CurriculumSubject.html" title="class in ru.nsu.gaev">CurriculumSubject</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/SubjectRecord.html#getSemester()" class="member-name-link">getSemester()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Semester.html#getSemesterNumber()" class="member-name-link">getSemesterNumber()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Semester.html" title="class in ru.nsu.gaev">Semester</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Student.html#getStudentId()" class="member-name-link">getStudentId()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CurriculumSubject.html#getSubjectName()" class="member-name-link">getSubjectName()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CurriculumSubject.html" title="class in ru.nsu.gaev">CurriculumSubject</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/SubjectRecord.html#getSubjectName()" class="member-name-link">getSubjectName()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CreditGrade.html#getValue()" class="member-name-link">getValue()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CreditGrade.html" title="class in ru.nsu.gaev">CreditGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/DifferentiatedGrade.html#getValue()" class="member-name-link">getValue()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/DifferentiatedGrade.html" title="class in ru.nsu.gaev">DifferentiatedGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Grade.html#getValue()" class="member-name-link">getValue()</a> - Method in interface ru.nsu.gaev.<a href="ru/nsu/gaev/Grade.html" title="interface in ru.nsu.gaev">Grade</a></dt>
+<dd>
+<div class="block">Возвращает числовое представление оценки.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Grade.html" class="type-name-link" title="interface in ru.nsu.gaev">Grade</a> - Interface in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
+<dd>
+<div class="block">Интерфейс для представления оценки за предмет.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:H">H</h2>
+<dl class="index">
+<dt><a href="ru/nsu/gaev/CreditGrade.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CreditGrade.html" title="class in ru.nsu.gaev">CreditGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CurriculumSubject.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CurriculumSubject.html" title="class in ru.nsu.gaev">CurriculumSubject</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/DifferentiatedGrade.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/DifferentiatedGrade.html" title="class in ru.nsu.gaev">DifferentiatedGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Semester.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Semester.html" title="class in ru.nsu.gaev">Semester</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
-<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#isRedDiplomaLikely()" class="member-name-link">isRedDiplomaLikely()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
-<dd>
-<div class="block">Проверяет возможность получения красного диплома (с отличием).</div>
-</dd>
+<dt><a href="ru/nsu/gaev/Student.html#isPaidEducation()" class="member-name-link">isPaidEducation()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CreditGrade.html#isPassed()" class="member-name-link">isPassed()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CreditGrade.html" title="class in ru.nsu.gaev">CreditGrade</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
@@ -140,15 +265,63 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
+<dt><a href="ru/nsu/gaev/Semester.html" class="type-name-link" title="class in ru.nsu.gaev">Semester</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
+<dd>
+<div class="block">Класс, представляющий семестр обучения.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Semester.html#%3Cinit%3E(int)" class="member-name-link">Semester(int)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/Semester.html" title="class in ru.nsu.gaev">Semester</a></dt>
+<dd>
+<div class="block">Конструктор семестра.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/ElectronicGradeBook.html#setCurriculum(ru.nsu.gaev.Curriculum)" class="member-name-link">setCurriculum(Curriculum)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/ElectronicGradeBook.html" title="class in ru.nsu.gaev">ElectronicGradeBook</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Student.html#setCurriculum(ru.nsu.gaev.Curriculum)" class="member-name-link">setCurriculum(Curriculum)</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>
+<div class="block">Устанавливает учебный план для студента и синхронизирует его с зачетной книжкой.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Student.html" class="type-name-link" title="class in ru.nsu.gaev">Student</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
+<dd>
+<div class="block">Класс, представляющий студента.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Student.html#%3Cinit%3E(java.lang.String,java.lang.String,boolean)" class="member-name-link">Student(String, String, boolean)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>
+<div class="block">Альтернативный конструктор без учебного плана.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/Student.html#%3Cinit%3E(java.lang.String,java.lang.String,boolean,ru.nsu.gaev.Curriculum)" class="member-name-link">Student(String, String, boolean, Curriculum)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>
+<div class="block">Конструктор студента.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/SubjectRecord.html" class="type-name-link" title="class in ru.nsu.gaev">SubjectRecord</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Класс, представляющий запись об оценке по предмету в зачетной книжке.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/SubjectRecord.html#%3Cinit%3E(java.lang.String,int,ru.nsu.gaev.ControlType,int)" class="member-name-link">SubjectRecord(String, int, ControlType, int)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Альтернативный конструктор для совместимости со старым кодом.</div>
+</dd>
+<dt><a href="ru/nsu/gaev/SubjectRecord.html#%3Cinit%3E(java.lang.String,int,ru.nsu.gaev.ControlType,ru.nsu.gaev.Grade)" class="member-name-link">SubjectRecord(String, int, ControlType, Grade)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a></dt>
+<dd>
+<div class="block">Конструктор записи об оценке.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/ControlType.html#THESIS" class="member-name-link">THESIS</a> - Enum constant in enum class ru.nsu.gaev.<a href="ru/nsu/gaev/ControlType.html" title="enum class in ru.nsu.gaev">ControlType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CreditGrade.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CreditGrade.html" title="class in ru.nsu.gaev">CreditGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Curriculum.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Curriculum.html" title="class in ru.nsu.gaev">Curriculum</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/CurriculumSubject.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/CurriculumSubject.html" title="class in ru.nsu.gaev">CurriculumSubject</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/DifferentiatedGrade.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/DifferentiatedGrade.html" title="class in ru.nsu.gaev">DifferentiatedGrade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Semester.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Semester.html" title="class in ru.nsu.gaev">Semester</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/Student.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Student.html" title="class in ru.nsu.gaev">Student</a></dt>
+<dd>
+<div class="block">Возвращает строковое представление студента.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/SubjectRecord.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/SubjectRecord.html" title="class in ru.nsu.gaev">SubjectRecord</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -164,7 +337,7 @@ loadScripts(document, 'script');</script>
 the order they are declared.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>
