@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.gaev"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.gaev"},{"l":"ru.nsu.gaev.curriculum"},{"l":"ru.nsu.gaev.grade"},{"l":"ru.nsu.gaev.model"},{"l":"ru.nsu.gaev.record"}];updateSearchResults();
