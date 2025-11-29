@@ -1,14 +1,15 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.curriculum;
 
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.gaev.record.SubjectRecord;
 
 /**
  * Класс, представляющий учебный план студента.
  * Содержит информацию о том, какие предметы и в каких семестрах должны быть
  * пройдены.
  */
-public class Curriculum {
+public final class Curriculum {
     private final String curriculumName;
     private final List<CurriculumSubject> requiredSubjects;
 
@@ -46,14 +47,17 @@ public class Curriculum {
      * @param completedSubjects список пройденных предметов (SubjectRecord)
      * @return true, если все требуемые предметы пройдены
      */
-    public boolean areAllSubjectsCompleted(List<SubjectRecord> completedSubjects) {
+    public boolean areAllSubjectsCompleted(
+            List<SubjectRecord> completedSubjects) {
         for (CurriculumSubject required : requiredSubjects) {
             boolean found = completedSubjects.stream()
                     .anyMatch(completed ->
                             completed.getSubjectName()
                                     .equals(required.getSubjectName())
                                     && completed.getSemester()
-                                    == required.getSemester().getSemesterNumber()
+                                    .getSemesterNumber()
+                                    == required.getSemester()
+                                    .getSemesterNumber()
                                     && completed.getControlType()
                                     == required.getControlType()
                     );
@@ -79,7 +83,9 @@ public class Curriculum {
                             completed.getSubjectName()
                                     .equals(required.getSubjectName())
                                     && completed.getSemester()
-                                    == required.getSemester().getSemesterNumber()
+                                    .getSemesterNumber()
+                                    == required.getSemester()
+                                    .getSemesterNumber()
                                     && completed.getControlType()
                                     == required.getControlType()
                     );
@@ -100,3 +106,4 @@ public class Curriculum {
                 + requiredSubjects.size() + " предметов)";
     }
 }
+

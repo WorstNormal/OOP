@@ -1,4 +1,4 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.curriculum;
 
 /**
  * Перечисление типов контроля успеваемости.
@@ -22,3 +22,4 @@ public enum ControlType {
         return displayName;
     }
 }
+

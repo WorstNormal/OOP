@@ -1,10 +1,10 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.curriculum;
 
 /**
  * Класс, представляющий семестр обучения.
  * Содержит информацию о номере семестра.
  */
-public class Semester {
+public final class Semester {
     private final int semesterNumber;
 
     /**
@@ -47,3 +47,4 @@ public class Semester {
         return "Семестр " + semesterNumber;
     }
 }
+

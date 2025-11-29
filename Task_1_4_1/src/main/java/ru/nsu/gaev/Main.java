@@ -1,125 +1,70 @@
 package ru.nsu.gaev;
 
+import ru.nsu.gaev.curriculum.ControlType;
+import ru.nsu.gaev.curriculum.Curriculum;
+import ru.nsu.gaev.curriculum.CurriculumSubject;
+import ru.nsu.gaev.curriculum.Semester;
+import ru.nsu.gaev.grade.CreditStatus;
+import ru.nsu.gaev.grade.Mark;
+import ru.nsu.gaev.model.ElectronicGradeBook;
+import ru.nsu.gaev.model.Student;
+import ru.nsu.gaev.record.SubjectRecord;
+
 /**
- * Главный класс для демонстрации работы электронной зачетной книжки.
+ * Короткая демонстрация использования модели электронной зачетной книжки.
  */
 public class Main {
     /**
-     * Точка входа в программу.
-     * Создает студентов с учебным планом и выводит результаты расчетов.
+     * Точка входа приложения-примера.
      *
-     * @param args Аргументы командной строки (не используются).
+     * @param args аргументы командной строки (не используются)
      */
     public static void main(String[] args) {
-        Curriculum computerScienceCurriculum = new Curriculum(
-                "Информатика и вычислительная техника");
-        computerScienceCurriculum.addRequiredSubject(
-                new CurriculumSubject("Математика", new Semester(1),
-                        ControlType.EXAM));
-        computerScienceCurriculum.addRequiredSubject(
-                new CurriculumSubject("Программирование", new Semester(1),
-                        ControlType.DIFF_CREDIT));
-        computerScienceCurriculum.addRequiredSubject(
-                new CurriculumSubject("История", new Semester(1),
-                        ControlType.CREDIT));
-        computerScienceCurriculum.addRequiredSubject(
-                new CurriculumSubject("Физика", new Semester(2),
-                        ControlType.DIFF_CREDIT));
-        computerScienceCurriculum.addRequiredSubject(
-                new CurriculumSubject("Алгоритмы", new Semester(2),
-                        ControlType.EXAM));
-        computerScienceCurriculum.addRequiredSubject(
-                new CurriculumSubject("Английский", new Semester(2),
-                        ControlType.EXAM));
+        Semester s1 = new Semester(1);
+        Semester s2 = new Semester(2);
+        Semester s8 = new Semester(8);
 
-        Student student1 = new Student("Иван Петров", "БИ-210001", true,
-                computerScienceCurriculum);
-        student1.addRecord(new SubjectRecord("Математика", 1,
-                ControlType.EXAM, new DifferentiatedGrade(4)));
-        student1.addRecord(new SubjectRecord("Программирование", 1,
-                ControlType.DIFF_CREDIT, new DifferentiatedGrade(5)));
-        student1.addRecord(new SubjectRecord("История", 1,
-                ControlType.CREDIT, new CreditGrade(true)));
-        student1.addRecord(new SubjectRecord("Физика", 2,
-                ControlType.DIFF_CREDIT, new DifferentiatedGrade(3)));
-        student1.addRecord(new SubjectRecord("Алгоритмы", 2,
-                ControlType.EXAM, new DifferentiatedGrade(4)));
-        student1.addRecord(new SubjectRecord("Английский", 2,
-                ControlType.EXAM, new DifferentiatedGrade(5)));
-
-        System.out.println("=== Студент 1: Платное обучение ===");
-        System.out.println(student1);
-        System.out.printf("Средний балл: %.2f\n",
-                student1.getGradeBook().calculateAverageGrade());
-        System.out.println("Возможность перевода на бюджет (семестр 2): "
-                + (student1.getGradeBook().canTransferToBudget(2)
-                ? "ДА" : "НЕТ"));
-        System.out.println("Повышенная стипендия в семестре 2: "
-                + (student1.getGradeBook().canGetIncreasedScholarship(2)
-                ? "ДА" : "НЕТ"));
-        System.out.println("Прогноз на красный диплом: "
-                + (student1.getGradeBook().canGetRedDiploma()
-                ? "ДА" : "НЕТ (Есть тройки)"));
-
-        System.out.println("\n=== Студент 2: Отличник ===");
-
-        Curriculum honorCurriculum = new Curriculum("Почетный учебный план");
-        honorCurriculum.addRequiredSubject(
-                new CurriculumSubject("Java", new Semester(8),
+        Curriculum curriculum = new Curriculum("ОПП ФИТ");
+        curriculum.addRequiredSubject(
+                new CurriculumSubject("Математический анализ", s1,
                         ControlType.EXAM));
-        honorCurriculum.addRequiredSubject(
-                new CurriculumSubject("Базы данных", new Semester(8),
-                        ControlType.DIFF_CREDIT));
-        honorCurriculum.addRequiredSubject(
-                new CurriculumSubject("Диплом", new Semester(8),
+        curriculum.addRequiredSubject(
+                new CurriculumSubject("Программирование", s1,
+                        ControlType.EXAM));
+        curriculum.addRequiredSubject(
+                new CurriculumSubject("Дискретная математика", s2,
+                        ControlType.EXAM));
+        curriculum.addRequiredSubject(
+                new CurriculumSubject("Защита ВКР", s8,
                         ControlType.THESIS));
-        honorCurriculum.addRequiredSubject(
-                new CurriculumSubject("Философия", new Semester(1),
-                        ControlType.EXAM));
 
-        Student excellentStudent = new Student("Алексей Иванов",
-                "БИ-200001", false, honorCurriculum);
-        excellentStudent.addRecord(new SubjectRecord("Java", 8,
-                ControlType.EXAM, new DifferentiatedGrade(5)));
-        excellentStudent.addRecord(new SubjectRecord("Базы данных", 8,
-                ControlType.DIFF_CREDIT, new DifferentiatedGrade(5)));
-        excellentStudent.addRecord(new SubjectRecord("Диплом", 8,
-                ControlType.THESIS, new DifferentiatedGrade(5)));
-        excellentStudent.addRecord(new SubjectRecord("Философия", 1,
-                ControlType.EXAM, new DifferentiatedGrade(5)));
+        ElectronicGradeBook book = new ElectronicGradeBook(true, s8, curriculum);
 
-        System.out.println(excellentStudent);
-        System.out.printf("Средний балл: %.2f\n",
-                excellentStudent.getGradeBook().calculateAverageGrade());
-        System.out.println("Повышенная стипендия в семестре 8: "
-                + (excellentStudent.getGradeBook()
-                .canGetIncreasedScholarship(8) ? "ДА" : "НЕТ"));
-        System.out.println("Прогноз на красный диплом: "
-                + (excellentStudent.getGradeBook().canGetRedDiploma()
-                ? "ДА" : "НЕТ"));
+        
+        book.addRecord(new SubjectRecord(
+                "Математический анализ", s1, ControlType.EXAM,
+                Mark.EXCELLENT_PLUS));
+        book.addRecord(new SubjectRecord(
+                "Программирование", s1, ControlType.EXAM,
+                Mark.EXCELLENT_PLUS));
+        book.addRecord(new SubjectRecord(
+                "Физкультура", s1, ControlType.CREDIT,
+                CreditStatus.PASSED));
+        book.addRecord(new SubjectRecord(
+                "Дискретная математика", s2, ControlType.EXAM,
+                Mark.EXCELLENT_PLUS));
+        
+        book.addRecord(new SubjectRecord(
+                "Защита ВКР", s8, ControlType.THESIS,
+                Mark.EXCELLENT_PLUS));
 
-        System.out.println("\n=== Демонстрация учебного плана ===");
-        if (excellentStudent.getCurriculum() != null) {
-            System.out.println("Все предметы пройдены: "
-                    + excellentStudent.getCurriculum()
-                    .areAllSubjectsCompleted(
-                            excellentStudent.getGradeBook().getRecords()));
-            System.out.println("Недостающих предметов: "
-                    + excellentStudent.getCurriculum().getMissingSubjects(
-                            excellentStudent.getGradeBook().getRecords())
-                    .size());
-        }
+        Student student = new Student("Иванов И.И.", "123456", book);
 
-        System.out.println("\n=== Совместимость со старым API ===");
-        Student legacyStudent = new Student("Петр Сидоров", "БИ-210002",
-                true);
-        legacyStudent.addRecord(new SubjectRecord("Математика", 1,
-                ControlType.EXAM, 4));
-        legacyStudent.addRecord(new SubjectRecord("История", 1,
-                ControlType.CREDIT, 1));
-
-        System.out.println(legacyStudent);
-        System.out.printf("Средний балл: %.2f\n",
-                legacyStudent.getGradeBook().calculateAverageGrade());
+        System.out.println(student);
+        System.out.println("Средний балл: " + book.calculateAverageGrade());
+        System.out.println("Может перевестись на бюджет: " + book.canTransferToBudget());
+        System.out.println("Может получить красный диплом: " + book.canGetRedDiploma());
+        System.out.println("Может получить повышенную стипендию (текущий семестр): "
+                + book.canGetIncreasedScholarship());
     }
 }

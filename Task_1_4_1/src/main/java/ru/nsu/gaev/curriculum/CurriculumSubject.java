@@ -1,10 +1,10 @@
-package ru.nsu.gaev;
+package ru.nsu.gaev.curriculum;
 
 /**
  * Класс, представляющий требуемый предмет в учебном плане.
  * Содержит информацию о названии предмета, семестре и типе контроля.
  */
-public class CurriculumSubject {
+public final class CurriculumSubject {
     private final String subjectName;
     private final Semester semester;
     private final ControlType controlType;
@@ -61,3 +61,4 @@ public class CurriculumSubject {
                 + semester;
     }
 }
+

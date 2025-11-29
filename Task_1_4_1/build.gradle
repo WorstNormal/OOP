@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'checkstyle'
 }
 
 group = 'org.example'
@@ -14,6 +15,12 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+checkstyle {
+    toolVersion = '10.12.0'
+    configFile = file('config/checkstyle/google_checks.xml')
+    showViolations = true
 }
 
 test {
