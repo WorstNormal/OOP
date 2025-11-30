@@ -28,7 +28,7 @@ public class StudentTest {
         gradeBook = new ElectronicGradeBook(false, semester1);
         gradeBook.addRecord(new SubjectRecord(
                 "Математика", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         student = new Student("Иван Иванович Иванов", "232302", gradeBook);
     }

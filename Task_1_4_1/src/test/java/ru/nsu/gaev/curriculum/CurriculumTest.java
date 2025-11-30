@@ -50,12 +50,12 @@ public class CurriculumTest {
         List<SubjectRecord> completed = new ArrayList<>();
         completed.add(new SubjectRecord(
                 "Математика", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         completed.add(new SubjectRecord(
                 "Программирование", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         completed.add(new SubjectRecord(
-                "БД", semester2, ControlType.EXAM, Mark.EXCELLENT_PLUS));
+                "БД", semester2, ControlType.EXAM, Mark.EXCELLENT));
 
         assertTrue(curriculum.areAllSubjectsCompleted(completed));
     }
@@ -65,10 +65,10 @@ public class CurriculumTest {
         List<SubjectRecord> completed = new ArrayList<>();
         completed.add(new SubjectRecord(
                 "Математика", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         completed.add(new SubjectRecord(
                 "Программирование", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         
 
         assertFalse(curriculum.areAllSubjectsCompleted(completed));
@@ -79,10 +79,10 @@ public class CurriculumTest {
         List<SubjectRecord> completed = new ArrayList<>();
         completed.add(new SubjectRecord(
                 "Математика", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         completed.add(new SubjectRecord(
                 "Программирование", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         List<CurriculumSubject> missing =
                 curriculum.getMissingSubjects(completed);

@@ -49,13 +49,13 @@ public class ElectronicGradeBookTest {
     public void testAverageGradeWithMarks() {
         gradeBook.addRecord(new SubjectRecord(
                 "Предмет1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Предмет2", semester1, ControlType.EXAM,
-                Mark.GOOD));
+                Mark.SATISFACTORY));
         gradeBook.addRecord(new SubjectRecord(
                 "Предмет3", semester2, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         double expected = (5.0 + 3.0 + 5.0) / 3;
         assertEquals(expected,
@@ -66,7 +66,7 @@ public class ElectronicGradeBookTest {
     public void testAverageGradeIgnoresCredits() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Зачет", semester1, ControlType.CREDIT,
                 CreditStatus.PASSED));
@@ -93,15 +93,15 @@ public class ElectronicGradeBookTest {
 
         paidBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester2, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         paidBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester2, ControlType.EXAM,
-                Mark.GOOD));
+                Mark.SATISFACTORY));
         paidBook.addRecord(new SubjectRecord(
                 "Экзамен3", semester3, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
-        assertTrue(paidBook.canTransferToBudget());
+        assertFalse(paidBook.canTransferToBudget());
     }
 
     @Test
@@ -110,10 +110,10 @@ public class ElectronicGradeBookTest {
 
         paidBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester2, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         paidBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester3, ControlType.EXAM,
-                Mark.SATISFACTORY));
+                Mark.BAD));
 
         assertFalse(paidBook.canTransferToBudget());
     }
@@ -122,10 +122,10 @@ public class ElectronicGradeBookTest {
     public void testRedDiplomaNoThesis() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertFalse(gradeBook.canGetRedDiploma());
     }
@@ -134,10 +134,10 @@ public class ElectronicGradeBookTest {
     public void testRedDiplomaThesisNotExcellent() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.GOOD));
+                Mark.SATISFACTORY));
 
         assertFalse(gradeBook.canGetRedDiploma());
     }
@@ -146,13 +146,13 @@ public class ElectronicGradeBookTest {
     public void testRedDiplomaWithThree() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester1, ControlType.EXAM,
-                Mark.SATISFACTORY));
+                Mark.BAD));
         gradeBook.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertFalse(gradeBook.canGetRedDiploma());
     }
@@ -161,19 +161,19 @@ public class ElectronicGradeBookTest {
     public void testRedDiplomaSuccess() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен3", semester2, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен4", semester2, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertTrue(gradeBook.canGetRedDiploma());
     }
@@ -182,40 +182,40 @@ public class ElectronicGradeBookTest {
     public void testRedDiploma75PercentExcellent() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен3", semester2, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен4", semester2, ControlType.EXAM,
-                Mark.GOOD));
+                Mark.SATISFACTORY));
         gradeBook.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
-        assertTrue(gradeBook.canGetRedDiploma());
+        assertFalse(gradeBook.canGetRedDiploma());
     }
 
     @Test
     public void testRedDiplomaLessThan75PercentExcellent() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен3", semester2, ControlType.EXAM,
-                Mark.GOOD));
+                Mark.SATISFACTORY));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен4", semester2, ControlType.EXAM,
-                Mark.GOOD));
+                Mark.SATISFACTORY));
         gradeBook.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertFalse(gradeBook.canGetRedDiploma());
     }
@@ -234,10 +234,10 @@ public class ElectronicGradeBookTest {
 
         bookWithCurriculum.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         bookWithCurriculum.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertTrue(bookWithCurriculum.canGetRedDiploma());
     }
@@ -259,10 +259,10 @@ public class ElectronicGradeBookTest {
 
         bookWithCurriculum.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         bookWithCurriculum.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertFalse(bookWithCurriculum.canGetRedDiploma());
     }
@@ -276,10 +276,10 @@ public class ElectronicGradeBookTest {
     public void testIncreasedScholarshipAllExcellent() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester3, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester3, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Зачет", semester3, ControlType.CREDIT,
                 CreditStatus.PASSED));
@@ -291,10 +291,10 @@ public class ElectronicGradeBookTest {
     public void testIncreasedScholarshipWithNonExcellent() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester3, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester3, ControlType.EXAM,
-                Mark.GOOD));
+                Mark.SATISFACTORY));
 
         assertFalse(gradeBook.canGetIncreasedScholarship());
     }
@@ -303,7 +303,7 @@ public class ElectronicGradeBookTest {
     public void testIncreasedScholarshipWithFailedCredit() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester3, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Зачет", semester3, ControlType.CREDIT,
                 CreditStatus.NOT_PASSED));
@@ -315,10 +315,10 @@ public class ElectronicGradeBookTest {
     public void testIncreasedScholarshipOnlyInCurrentSemester() {
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         gradeBook.addRecord(new SubjectRecord(
                 "Экзамен2", semester3, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertTrue(gradeBook.canGetIncreasedScholarship());
     }
@@ -335,10 +335,10 @@ public class ElectronicGradeBookTest {
 
         paidBook.addRecord(new SubjectRecord(
                 "ПредметДифф", semester2, ControlType.DIFF_CREDIT,
-                Mark.SATISFACTORY));
+                Mark.BAD));
         paidBook.addRecord(new SubjectRecord(
                 "ЭкзаменТекущий", semester3, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertTrue(paidBook.canTransferToBudget(),
                 "DIFF_CREDIT с удовлетворительно не должен блокировать перевод");
@@ -350,13 +350,13 @@ public class ElectronicGradeBookTest {
 
         book.addRecord(new SubjectRecord(
                 "Экзамен1", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         book.addRecord(new SubjectRecord(
                 "Экзамен2", semester2, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         book.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertTrue(book.canGetRedDiploma());
 
@@ -376,7 +376,7 @@ public class ElectronicGradeBookTest {
 
         book.addRecord(new SubjectRecord(
                 "Экзамен3", semester3, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertTrue(book.canGetRedDiploma());
     }
@@ -396,7 +396,7 @@ public class ElectronicGradeBookTest {
         ElectronicGradeBook paidBook = new ElectronicGradeBook(true, semester3);
         paidBook.addRecord(new SubjectRecord(
                 "Давний", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertFalse(paidBook.canTransferToBudget());
     }
@@ -406,7 +406,7 @@ public class ElectronicGradeBookTest {
         ElectronicGradeBook book = new ElectronicGradeBook(false, semester8);
         book.addRecord(new SubjectRecord(
                 "ВКР", semester8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         assertFalse(book.canGetRedDiploma());
     }

@@ -27,12 +27,12 @@ public class SubjectRecordTest {
     public void testSubjectRecordWithMark() {
         SubjectRecord record = new SubjectRecord(
                 "Математика", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS);
+                Mark.EXCELLENT);
 
         assertEquals("Математика", record.getSubjectName());
         assertEquals(semester1, record.getSemester());
         assertEquals(ControlType.EXAM, record.getControlType());
-        assertEquals(Mark.EXCELLENT_PLUS, record.getMark());
+        assertEquals(Mark.EXCELLENT, record.getMark());
         assertNull(record.getCreditStatus());
         assertEquals(5, record.getGradeValue());
     }
@@ -73,10 +73,10 @@ public class SubjectRecordTest {
     public void testSubjectRecordEquality() {
         SubjectRecord record1 = new SubjectRecord(
                 "Математика", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS);
+                Mark.EXCELLENT);
         SubjectRecord record1Copy = new SubjectRecord(
                 "Математика", semester1, ControlType.EXAM,
-                Mark.GOOD);
+                Mark.SATISFACTORY);
 
         assertEquals(record1, record1Copy);
         assertEquals(record1.hashCode(), record1Copy.hashCode());
@@ -86,7 +86,7 @@ public class SubjectRecordTest {
     public void testSubjectRecordToString() {
         SubjectRecord record = new SubjectRecord(
                 "Математика", semester1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS);
+                Mark.EXCELLENT);
 
         String expected = "Семестр 1 | Математика (Экзамен): Отлично";
         assertEquals(expected, record.toString());
@@ -97,18 +97,18 @@ public class SubjectRecordTest {
         assertEquals(2,
                 new SubjectRecord(
                         "Предмет", semester1, ControlType.EXAM,
-                        Mark.SATISFACTORY).getGradeValue());
+                        Mark.BAD).getGradeValue());
         assertEquals(3,
                 new SubjectRecord(
                         "Предмет", semester1, ControlType.EXAM,
-                        Mark.GOOD).getGradeValue());
+                        Mark.SATISFACTORY).getGradeValue());
         assertEquals(4,
                 new SubjectRecord(
                         "Предмет", semester1, ControlType.EXAM,
-                        Mark.EXCELLENT).getGradeValue());
+                        Mark.GOOD).getGradeValue());
         assertEquals(5,
                 new SubjectRecord(
                         "Предмет", semester1, ControlType.EXAM,
-                        Mark.EXCELLENT_PLUS).getGradeValue());
+                        Mark.EXCELLENT).getGradeValue());
     }
 }

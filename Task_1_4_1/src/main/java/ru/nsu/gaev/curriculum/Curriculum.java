@@ -55,9 +55,7 @@ public final class Curriculum {
                             completed.getSubjectName()
                                     .equals(required.getSubjectName())
                                     && completed.getSemester()
-                                    .getSemesterNumber()
-                                    == required.getSemester()
-                                    .getSemesterNumber()
+                                    .equals(required.getSemester())
                                     && completed.getControlType()
                                     == required.getControlType()
                     );
@@ -83,9 +81,7 @@ public final class Curriculum {
                             completed.getSubjectName()
                                     .equals(required.getSubjectName())
                                     && completed.getSemester()
-                                    .getSemesterNumber()
-                                    == required.getSemester()
-                                    .getSemesterNumber()
+                                    .equals(required.getSemester())
                                     && completed.getControlType()
                                     == required.getControlType()
                     );
@@ -106,4 +102,3 @@ public final class Curriculum {
                 + requiredSubjects.size() + " предметов)";
     }
 }
-

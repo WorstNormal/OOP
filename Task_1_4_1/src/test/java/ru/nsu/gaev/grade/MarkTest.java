@@ -13,10 +13,10 @@ public class MarkTest {
 
     @Test
     public void testMarkFromValueValid() {
-        assertEquals(Mark.SATISFACTORY, Mark.fromValue(2));
-        assertEquals(Mark.GOOD, Mark.fromValue(3));
-        assertEquals(Mark.EXCELLENT, Mark.fromValue(4));
-        assertEquals(Mark.EXCELLENT_PLUS, Mark.fromValue(5));
+        assertEquals(Mark.BAD, Mark.fromValue(2));
+        assertEquals(Mark.SATISFACTORY, Mark.fromValue(3));
+        assertEquals(Mark.GOOD, Mark.fromValue(4));
+        assertEquals(Mark.EXCELLENT, Mark.fromValue(5));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class MarkTest {
 
     @Test
     public void testGetters() {
-        assertEquals(2, Mark.SATISFACTORY.getValue());
-        assertNotNull(Mark.EXCELLENT_PLUS.getDisplayName());
+        assertEquals(2, Mark.BAD.getValue());
+        assertNotNull(Mark.EXCELLENT.getDisplayName());
     }
 }

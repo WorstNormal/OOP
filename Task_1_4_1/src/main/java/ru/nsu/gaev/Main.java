@@ -20,9 +20,10 @@ public class Main {
      * @param args аргументы командной строки (не используются)
      */
     public static void main(String[] args) {
-        Semester s1 = new Semester(1);
-        Semester s2 = new Semester(2);
-        Semester s8 = new Semester(8);
+        // Используем удобный статический метод: курс, семестр
+        Semester s1 = Semester.of(1, 1);
+        Semester s2 = Semester.of(1, 2);
+        Semester s8 = Semester.of(4, 2);
 
         Curriculum curriculum = new Curriculum("ОПП ФИТ");
         curriculum.addRequiredSubject(
@@ -40,23 +41,22 @@ public class Main {
 
         ElectronicGradeBook book = new ElectronicGradeBook(true, s8, curriculum);
 
-        
         book.addRecord(new SubjectRecord(
                 "Математический анализ", s1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         book.addRecord(new SubjectRecord(
                 "Программирование", s1, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
         book.addRecord(new SubjectRecord(
                 "Физкультура", s1, ControlType.CREDIT,
                 CreditStatus.PASSED));
         book.addRecord(new SubjectRecord(
                 "Дискретная математика", s2, ControlType.EXAM,
-                Mark.EXCELLENT_PLUS));
-        
+                Mark.EXCELLENT));
+
         book.addRecord(new SubjectRecord(
                 "Защита ВКР", s8, ControlType.THESIS,
-                Mark.EXCELLENT_PLUS));
+                Mark.EXCELLENT));
 
         Student student = new Student("Иванов И.И.", "123456", book);
 

@@ -5,10 +5,10 @@ package ru.nsu.gaev.grade;
  * Использование enum гарантирует типобезопасность и исключает недопустимые значения.
  */
 public enum Mark {
-    SATISFACTORY(2, "Удовлетворительно"),
-    GOOD(3, "Хорошо"),
-    EXCELLENT(4, "Очень хорошо"),
-    EXCELLENT_PLUS(5, "Отлично");
+    BAD(2, "Неудовлетворительно"),
+    SATISFACTORY(3, "Удовлетворительно"),
+    GOOD(4, "Хорошо"),
+    EXCELLENT(5, "Отлично");
 
     private final int value;
     private final String displayName;

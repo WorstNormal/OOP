@@ -32,7 +32,7 @@ public class SubjectRecordExtraTest {
     public void testEqualsNullAndOtherType() {
         Semester s1 = new Semester(1);
         SubjectRecord r1 = new SubjectRecord(
-                "Математика", s1, ControlType.EXAM, Mark.EXCELLENT_PLUS);
+                "Математика", s1, ControlType.EXAM, Mark.EXCELLENT);
         assertNotEquals(null, r1);
         assertNotEquals("string", r1);
     }
@@ -42,11 +42,11 @@ public class SubjectRecordExtraTest {
         Semester s1 = new Semester(1);
         Semester s2 = new Semester(2);
         SubjectRecord a = new SubjectRecord(
-                "A", s1, ControlType.EXAM, Mark.EXCELLENT_PLUS);
+                "A", s1, ControlType.EXAM, Mark.EXCELLENT);
         SubjectRecord b = new SubjectRecord(
-                "B", s1, ControlType.EXAM, Mark.EXCELLENT_PLUS);
+                "B", s1, ControlType.EXAM, Mark.EXCELLENT);
         SubjectRecord c = new SubjectRecord(
-                "A", s2, ControlType.EXAM, Mark.EXCELLENT_PLUS);
+                "A", s2, ControlType.EXAM, Mark.EXCELLENT);
         SubjectRecord d = new SubjectRecord(
                 "A", s1, ControlType.CREDIT, CreditStatus.PASSED);
 
@@ -67,7 +67,7 @@ public class SubjectRecordExtraTest {
         assertEquals(0, creditNotPassed.getGradeValue());
 
         SubjectRecord mark2 = new SubjectRecord(
-                "Алгебра", s1, ControlType.EXAM, Mark.SATISFACTORY);
+                "Алгебра", s1, ControlType.EXAM, Mark.BAD);
         assertEquals(2, mark2.getGradeValue());
     }
 }

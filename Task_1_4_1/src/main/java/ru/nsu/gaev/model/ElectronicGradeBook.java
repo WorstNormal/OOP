@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import ru.nsu.gaev.curriculum.ControlType;
 import ru.nsu.gaev.curriculum.Curriculum;
 import ru.nsu.gaev.curriculum.Semester;
-import ru.nsu.gaev.grade.CreditStatus;
+import ru.nsu.gaev.grade.Mark;
 import ru.nsu.gaev.record.SubjectRecord;
 
 /**
@@ -78,7 +78,6 @@ public final class ElectronicGradeBook {
      * Вычисляет текущий средний балл за все время обучения.
      * Учитываются только дифференцированные оценки (не зачеты).
      *
-
      * @return Средний балл или 0.0, если оценок нет.
      */
     public double calculateAverageGrade() {
@@ -99,9 +98,9 @@ public final class ElectronicGradeBook {
 
     /**
      * Проверяет возможность перевода с платного на бюджет.
-     * Условие: отсутствие троек (оценка 2) за экзамены за последние две сессии.
+     * Требование: отсутствие оценок "удовлетворительно" (и ниже) за экзамены
+     * за последние две экзаменационные сессии (текущую и предыдущую).
      *
-
      * @return true, если перевод возможен.
      */
     public boolean canTransferToBudget() {
@@ -109,16 +108,11 @@ public final class ElectronicGradeBook {
             return true;
         }
 
-        int previousSemester = currentSemester.getSemesterNumber() - 1;
-        if (previousSemester < 1) {
-            return false;
-        }
+        Semester previousSemester = currentSemester.previous().orElse(null);
 
         List<SubjectRecord> lastTwoSessions = records.stream()
-                .filter(r -> r.getSemester().getSemesterNumber()
-                        == currentSemester.getSemesterNumber()
-                        || r.getSemester().getSemesterNumber()
-                        == previousSemester)
+                .filter(r -> r.getSemester().equals(currentSemester)
+                        || r.getSemester().equals(previousSemester))
                 .collect(Collectors.toList());
 
         if (lastTwoSessions.isEmpty()) {
@@ -126,12 +120,11 @@ public final class ElectronicGradeBook {
         }
 
         for (SubjectRecord r : lastTwoSessions) {
-            
-            if (r.getControlType() == ControlType.EXAM && r.getMark() != null
-                    && r.getMark().getValue() == 2) {
-                return false;
+            if (r.getControlType() == ControlType.EXAM && r.getMark() != null) {
+                if (r.getMark().getValue() <= Mark.SATISFACTORY.getValue()) {
+                    return false;
+                }
             }
-            
             if (r.getMark() == null && r.getCreditStatus() == null) {
                 return false;
             }
@@ -142,23 +135,20 @@ public final class ElectronicGradeBook {
     /**
      * Проверяет возможность получения красного диплома (с отличием).
      * Требования:
-     * - 75% оценок "отлично" (5) в приложении к диплому
-     * - отсутствие оценок "удовлетворительно" (2)
-     * - ВКР на "отлично"
-     * - все предметы из учебного плана должны быть пройдены
+     * - 75% оценок "отлично" (5) в приложении к диплому (без учета ВКР);
+     * - отсутствие итоговых оценок "удовлетворительно" или "неудовлетворительно";
+     * - квалификационная работа (THESIS) на "отлично";
+     * - все предметы из учебного плана должны быть пройдены.
      *
-
      * @return true, если условия выполняются.
      */
     public boolean canGetRedDiploma() {
-        
         if (curriculum != null) {
             if (!curriculum.areAllSubjectsCompleted(records)) {
                 return false;
             }
         }
 
-        
         List<SubjectRecord> diplomaRecords = records.stream()
                 .filter(r -> r.getMark() != null)
                 .collect(Collectors.toList());
@@ -167,21 +157,18 @@ public final class ElectronicGradeBook {
             return false;
         }
 
-        
         boolean hasThesisExcellent = diplomaRecords.stream()
                 .filter(r -> r.getControlType() == ControlType.THESIS)
-                .anyMatch(r -> r.getMark().getValue() == 5);
+                .anyMatch(r -> r.getMark().getValue() == Mark.EXCELLENT.getValue());
 
         if (!hasThesisExcellent) {
             return false;
         }
 
-        
         int excellentCount = 0;
         int totalCount = 0;
 
         for (SubjectRecord r : diplomaRecords) {
-            
             if (r.getControlType() == ControlType.THESIS) {
                 continue;
             }
@@ -189,12 +176,11 @@ public final class ElectronicGradeBook {
             totalCount++;
             int markValue = r.getMark().getValue();
 
-            
-            if (markValue == 2) {
+            if (markValue <= Mark.SATISFACTORY.getValue()) {
                 return false;
             }
 
-            if (markValue == 5) {
+            if (markValue == Mark.EXCELLENT.getValue()) {
                 excellentCount++;
             }
         }
@@ -212,13 +198,11 @@ public final class ElectronicGradeBook {
      * Условие: все оценки за текущий семестр - "отлично" (5),
      * все зачеты - сданы.
      *
-
      * @return true, если положена повышенная стипендия.
      */
     public boolean canGetIncreasedScholarship() {
         List<SubjectRecord> currentSession = records.stream()
-                .filter(r -> r.getSemester().getSemesterNumber()
-                        == currentSemester.getSemesterNumber())
+                .filter(r -> r.getSemester().equals(currentSemester))
                 .collect(Collectors.toList());
 
         if (currentSession.isEmpty()) {
@@ -227,13 +211,11 @@ public final class ElectronicGradeBook {
 
         for (SubjectRecord r : currentSession) {
             if (r.getMark() != null) {
-                
-                if (r.getMark().getValue() != 5) {
+                if (r.getMark().getValue() != Mark.EXCELLENT.getValue()) {
                     return false;
                 }
             }
             if (r.getCreditStatus() != null) {
-                
                 if (!r.getCreditStatus().isPassed()) {
                     return false;
                 }
@@ -242,4 +224,3 @@ public final class ElectronicGradeBook {
         return true;
     }
 }
-
