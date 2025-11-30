@@ -74,11 +74,18 @@ loadScripts(document, 'script');</script>
 <div class="inheritance">ru.nsu.gaev.curriculum.Semester</div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&gt;</code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">Semester</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Класс, представляющий семестр обучения.
- Содержит информацию о номере семестра.</div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&gt;</span></div>
+<div class="block">Представляет определенный семестр в учебном плане.
+
+ <p>Этот класс является неизменяемым и предоставляет методы для навигации между семестрами
+ и получения контекстной информации, такой как номер курса.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -92,7 +99,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">Semester</a><wbr>(int&nbsp;semesterNumber)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Конструктор семестра.</div>
+<div class="block">Создает новый экземпляр класса Semester.</div>
 </div>
 </div>
 </section>
@@ -102,24 +109,60 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#compareTo(ru.nsu.gaev.curriculum.Semester)" class="member-name-link">compareTo</a><wbr>(<a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&nbsp;other)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCourseNumber()" class="member-name-link">getCourseNumber</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Вычисляет номер курса, соответствующий данному семестру.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSemesterNumber()" class="member-name-link">getSemesterNumber</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает номер семестра.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEven()" class="member-name-link">isEven</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, является ли семестр чётным.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOdd()" class="member-name-link">isOdd</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, является ли семестр нечётным.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#next()" class="member-name-link">next</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Создает новый экземпляр Semester, представляющий следующий семестр.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#of(int,int)" class="member-name-link">of</a><wbr>(int&nbsp;course,
+ int&nbsp;semesterInYear)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Создает семестр на основе номера курса и порядкового номера семестра в учебном году.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#previous()" class="member-name-link">previous</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Создает Optional, содержащий предыдущий семестр, если он существует.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -141,10 +184,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>Semester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Semester</span><wbr><span class="parameters">(int&nbsp;semesterNumber)</span></div>
-<div class="block">Конструктор семестра.</div>
+<div class="block">Создает новый экземпляр класса Semester.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>semesterNumber</code> - номер семестра (1, 2, 3 и т.д.)</dd>
+<dd><code>semesterNumber</code> - номер семестра (должен быть больше или равен 1)</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если номер семестра меньше 1</dd>
 </dl>
 </section>
 </li>
@@ -157,9 +202,96 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="of(int,int)">
+<h3>of</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></span>&nbsp;<span class="element-name">of</span><wbr><span class="parameters">(int&nbsp;course,
+ int&nbsp;semesterInYear)</span></div>
+<div class="block">Создает семестр на основе номера курса и порядкового номера семестра в учебном году.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>course</code> - номер курса (1, 2, ...)</dd>
+<dd><code>semesterInYear</code> - номер семестра в учебном году (1 или 2)</dd>
+<dt>Returns:</dt>
+<dd>новый экземпляр класса Semester</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если аргументы некорректны</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getSemesterNumber()">
 <h3>getSemesterNumber</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getSemesterNumber</span>()</div>
+<div class="block">Возвращает номер семестра.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>целое число, представляющее номер семестра</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCourseNumber()">
+<h3>getCourseNumber</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCourseNumber</span>()</div>
+<div class="block">Вычисляет номер курса, соответствующий данному семестру.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>номер курса (например, 1 для 1-го и 2-го семестров)</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isEven()">
+<h3>isEven</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isEven</span>()</div>
+<div class="block">Проверяет, является ли семестр чётным.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true, если номер семестра чётный</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isOdd()">
+<h3>isOdd</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isOdd</span>()</div>
+<div class="block">Проверяет, является ли семестр нечётным.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true, если номер семестра нечётный</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="next()">
+<h3>next</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></span>&nbsp;<span class="element-name">next</span>()</div>
+<div class="block">Создает новый экземпляр Semester, представляющий следующий семестр.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>следующий семестр</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="previous()">
+<h3>previous</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&gt;</span>&nbsp;<span class="element-name">previous</span>()</div>
+<div class="block">Создает Optional, содержащий предыдущий семестр, если он существует.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Optional с предыдущим семестром или пустой Optional, если текущий семестр первый</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="compareTo(ru.nsu.gaev.curriculum.Semester)">
+<h3>compareTo</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">compareTo</span><wbr><span class="parameters">(<a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&nbsp;other)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html#compareTo(T)" title="class or interface in java.lang" class="external-link">compareTo</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&gt;</code></dd>
+</dl>
 </section>
 </li>
 <li>

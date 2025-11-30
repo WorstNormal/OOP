@@ -260,7 +260,8 @@ loadScripts(document, 'script');</script>
 <h3>canTransferToBudget</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canTransferToBudget</span>()</div>
 <div class="block">Проверяет возможность перевода с платного на бюджет.
- Условие: отсутствие троек (оценка 2) за экзамены за последние две сессии.</div>
+ Требование: отсутствие оценок "удовлетворительно" (и ниже) за экзамены
+ за последние две экзаменационные сессии (текущую и предыдущую).</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>true, если перевод возможен.</dd>
@@ -273,10 +274,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetRedDiploma</span>()</div>
 <div class="block">Проверяет возможность получения красного диплома (с отличием).
  Требования:
- - 75% оценок "отлично" (5) в приложении к диплому
- - отсутствие оценок "удовлетворительно" (2)
- - ВКР на "отлично"
- - все предметы из учебного плана должны быть пройдены</div>
+ - 75% оценок "отлично" (5) в приложении к диплому (без учета ВКР);
+ - отсутствие итоговых оценок "удовлетворительно" или "неудовлетворительно";
+ - квалификационная работа (THESIS) на "отлично";
+ - все предметы из учебного плана должны быть пройдены.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>true, если условия выполняются.</dd>
