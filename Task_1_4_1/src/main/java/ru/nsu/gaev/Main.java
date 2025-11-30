@@ -32,7 +32,8 @@ public class Main {
         ElectronicGradeBook initialBook = new ElectronicGradeBook(true, s8, curriculum);
         initialBook.addRecord(new SubjectRecord("Матан", s1, ControlType.EXAM, Mark.EXCELLENT));
         initialBook.addRecord(new SubjectRecord("Прога", s1, ControlType.EXAM, Mark.EXCELLENT));
-        initialBook.addRecord(new SubjectRecord("Физра", s1, ControlType.CREDIT, CreditStatus.PASSED));
+        initialBook.addRecord(new SubjectRecord("Физра", s1,
+                ControlType.CREDIT, CreditStatus.PASSED));
         initialBook.addRecord(new SubjectRecord("ВКР", s8, ControlType.THESIS, Mark.EXCELLENT));
 
         Student student = new Student("Иванов И.И.", "123456", initialBook);
@@ -51,7 +52,8 @@ public class Main {
         Semester current = studentBook.getCurrentSemester();
         System.out.println("   - Текущий курс: " + current.getCourseNumber());
         System.out.println("   - Средний балл: " + studentBook.calculateAverageGrade());
-        System.out.println("   - Красный диплом: " + (studentBook.canGetRedDiploma() ? "Да" : "Нет"));
+        System.out.println("   - Красный диплом: "
+                + (studentBook.canGetRedDiploma() ? "Да" : "Нет"));
 
         Student sameIdStudent = new Student("Петров П.П.", "123456", null);
         boolean areEqual = student.equals(sameIdStudent);
