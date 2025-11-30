@@ -1,8 +1,7 @@
 package ru.nsu.gaev.grade;
 
 /**
- * Перечисление для представления оценок (дифференцированных) в системе.
- * Использование enum гарантирует типобезопасность и исключает недопустимые значения.
+ * Перечисление для дифференцированных оценок.
  */
 public enum Mark {
     BAD(2, "Неудовлетворительно"),
@@ -18,20 +17,29 @@ public enum Mark {
         this.displayName = displayName;
     }
 
+    /**
+     * Возвращает числовое значение оценки.
+     *
+     * @return значение (2-5)
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * Возвращает текстовое представление.
+     *
+     * @return название оценки
+     */
     public String getDisplayName() {
         return displayName;
     }
 
     /**
-     * Преобразует числовое значение в перечисление Mark.
+     * Получает enum по числовому значению.
      *
-     * @param value числовое значение (2-5)
-     * @return соответствующее значение Mark
-     * @throws IllegalArgumentException если значение вне диапазона 2-5
+     * @param value число (2-5)
+     * @return соответствующий Mark
      */
     public static Mark fromValue(int value) {
         for (Mark mark : Mark.values()) {
@@ -39,9 +47,6 @@ public enum Mark {
                 return mark;
             }
         }
-        throw new IllegalArgumentException(
-                "Оценка должна быть в диапазоне 2-5, получено: " + value
-        );
+        throw new IllegalArgumentException("Некорректное значение оценки: " + value);
     }
 }
-

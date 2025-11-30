@@ -1,7 +1,7 @@
 package ru.nsu.gaev.grade;
 
 /**
- * Перечисление для представления статуса зачета.
+ * Статус зачета (сдан/не сдан).
  */
 public enum CreditStatus {
     PASSED("Зачет"),
@@ -13,12 +13,21 @@ public enum CreditStatus {
         this.displayName = displayName;
     }
 
+    /**
+     * Возвращает текстовое представление.
+     *
+     * @return название статуса
+     */
     public String getDisplayName() {
         return displayName;
     }
 
+    /**
+     * Проверяет, сдан ли зачет.
+     *
+     * @return true если сдан
+     */
     public boolean isPassed() {
         return this == PASSED;
     }
 }
-

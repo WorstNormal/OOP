@@ -5,18 +5,18 @@ import java.util.List;
 import ru.nsu.gaev.record.SubjectRecord;
 
 /**
- * Класс, представляющий учебный план студента.
- * Содержит информацию о том, какие предметы и в каких семестрах должны быть
- * пройдены.
+ * Представляет учебный план.
+ *
+ * <p>Содержит список обязательных предметов и логику проверки их прохождения.
  */
 public final class Curriculum {
     private final String curriculumName;
     private final List<CurriculumSubject> requiredSubjects;
 
     /**
-     * Конструктор учебного плана.
+     * Создает новый учебный план.
      *
-     * @param curriculumName название учебного плана
+     * @param curriculumName название плана
      */
     public Curriculum(String curriculumName) {
         this.curriculumName = curriculumName;
@@ -24,7 +24,7 @@ public final class Curriculum {
     }
 
     /**
-     * Добавляет требуемый предмет в учебный план.
+     * Добавляет обязательный предмет в план.
      *
      * @param subject требуемый предмет
      */
@@ -33,31 +33,27 @@ public final class Curriculum {
     }
 
     /**
-     * Возвращает список всех требуемых предметов.
+     * Возвращает список всех требований.
      *
-     * @return список требуемых предметов
+     * @return список предметов
      */
     public List<CurriculumSubject> getRequiredSubjects() {
         return new ArrayList<>(requiredSubjects);
     }
 
     /**
-     * Проверяет, прошёл ли студент все требуемые предметы.
+     * Проверяет, что в переданном списке записей присутствуют все предметы из плана.
      *
-     * @param completedSubjects список пройденных предметов (SubjectRecord)
-     * @return true, если все требуемые предметы пройдены
+     * @param completedSubjects список сданных предметов
+     * @return true, если все обязательные предметы найдены
      */
-    public boolean areAllSubjectsCompleted(
-            List<SubjectRecord> completedSubjects) {
+    public boolean areAllSubjectsCompleted(List<SubjectRecord> completedSubjects) {
         for (CurriculumSubject required : requiredSubjects) {
             boolean found = completedSubjects.stream()
                     .anyMatch(completed ->
-                            completed.getSubjectName()
-                                    .equals(required.getSubjectName())
-                                    && completed.getSemester()
-                                    .equals(required.getSemester())
-                                    && completed.getControlType()
-                                    == required.getControlType()
+                            completed.getSubjectName().equals(required.getSubjectName())
+                                    && completed.getSemester().equals(required.getSemester())
+                                    && completed.getControlType() == required.getControlType()
                     );
             if (!found) {
                 return false;
@@ -67,38 +63,11 @@ public final class Curriculum {
     }
 
     /**
-     * Возвращает список недостающих предметов относительно пройденных.
+     * Возвращает название учебного плана.
      *
-     * @param completedSubjects список пройденных предметов
-     * @return список требуемых предметов, которые ещё не пройдены
+     * @return название
      */
-    public List<CurriculumSubject> getMissingSubjects(
-            List<SubjectRecord> completedSubjects) {
-        List<CurriculumSubject> missing = new ArrayList<>();
-        for (CurriculumSubject required : requiredSubjects) {
-            boolean found = completedSubjects.stream()
-                    .anyMatch(completed ->
-                            completed.getSubjectName()
-                                    .equals(required.getSubjectName())
-                                    && completed.getSemester()
-                                    .equals(required.getSemester())
-                                    && completed.getControlType()
-                                    == required.getControlType()
-                    );
-            if (!found) {
-                missing.add(required);
-            }
-        }
-        return missing;
-    }
-
     public String getCurriculumName() {
         return curriculumName;
-    }
-
-    @Override
-    public String toString() {
-        return "Учебный план: " + curriculumName + " ("
-                + requiredSubjects.size() + " предметов)";
     }
 }

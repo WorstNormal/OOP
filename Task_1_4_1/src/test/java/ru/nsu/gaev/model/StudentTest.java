@@ -1,68 +1,50 @@
 package ru.nsu.gaev.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.gaev.curriculum.ControlType;
 import ru.nsu.gaev.curriculum.Semester;
-import ru.nsu.gaev.grade.Mark;
-import ru.nsu.gaev.record.SubjectRecord;
 
-/**
- * Тесты для класса Student (студент).
- */
-public class StudentTest {
+class StudentTest {
 
-    private Student student;
-    private ElectronicGradeBook gradeBook;
+    @Test
+    void testConstructorAndGetters() {
+        Semester s1 = new Semester(1);
+        ElectronicGradeBook book = new ElectronicGradeBook(true, s1);
+        Student student = new Student("Ivanov", "123", book);
 
-    /**
-     * Подготовка фикстур перед каждым тестом: создаём семестр и зачетную книжку,
-     * добавляем одну запись и создаём объект студента.
-     */
-    @BeforeEach
-    public void setUp() {
-        Semester semester1 = new Semester(1);
-        gradeBook = new ElectronicGradeBook(false, semester1);
-        gradeBook.addRecord(new SubjectRecord(
-                "Математика", semester1, ControlType.EXAM,
-                Mark.EXCELLENT));
-
-        student = new Student("Иван Иванович Иванов", "232302", gradeBook);
+        assertEquals("Ivanov", student.getFullName());
+        assertEquals("123", student.getStudentId());
+        assertEquals(book, student.getGradeBook());
     }
 
     @Test
-    public void testStudentCreation() {
-        assertNotNull(student);
-        assertEquals("Иван Иванович Иванов", student.getFullName());
-        assertEquals("232302", student.getStudentId());
-        assertNotNull(student.getGradeBook());
+    void testEqualsAndHashCode() {
+        // Равенство определяется только по studentId
+        Semester s1 = new Semester(1);
+        ElectronicGradeBook book = new ElectronicGradeBook(true, s1);
+
+        Student st1 = new Student("Ivanov", "123", book);
+        Student st2 = new Student("Petrov", "123", book); // То же ID
+        Student st3 = new Student("Ivanov", "999", book); // Другой ID
+
+        assertEquals(st1, st2);
+        assertEquals(st1.hashCode(), st2.hashCode());
+
+        assertNotEquals(st1, st3);
+        assertNotEquals(st1, null);
+        assertNotEquals(st1, new Object());
     }
 
     @Test
-    public void testStudentGradeBook() {
-        assertEquals(gradeBook, student.getGradeBook());
-        assertEquals(1, student.getGradeBook().getRecords().size());
-    }
+    void testToString() {
+        Student student = new Student("Ivanov", "123", null);
+        String str = student.toString();
 
-    @Test
-    public void testStudentEquality() {
-        Semester semester1 = new Semester(1);
-        ElectronicGradeBook otherGradeBook =
-                new ElectronicGradeBook(false, semester1);
-        Student student2 = new Student(
-                "Петр Петрович Петров", "232302", otherGradeBook);
-
-        assertEquals(student, student2);
-    }
-
-    @Test
-    public void testStudentToString() {
-        String expected =
-                "Студент: Иван Иванович Иванов (номер зачетной книжки: "
-                        + "232302)";
-        assertEquals(expected, student.toString());
+        assertNotNull(str);
+        // Простая проверка формата: "Ivanov (123)"
+        assertEquals("Ivanov (123)", str);
     }
 }

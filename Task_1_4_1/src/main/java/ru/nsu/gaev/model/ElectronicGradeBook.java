@@ -10,9 +10,10 @@ import ru.nsu.gaev.grade.Mark;
 import ru.nsu.gaev.record.SubjectRecord;
 
 /**
- * Класс электронной зачетной книжки.
- * Хранит список сданных предметов и содержит логику вычисления
- * среднего балла, возможности получения стипендии и красного диплома.
+ * Электронная зачетная книжка.
+ *
+ * <p>Отвечает за хранение оценок и расчет академических показателей:
+ * среднего балла, стипендии, красного диплома.
  */
 public final class ElectronicGradeBook {
     private final List<SubjectRecord> records;
@@ -21,25 +22,21 @@ public final class ElectronicGradeBook {
     private Curriculum curriculum;
 
     /**
-     * Конструктор зачетной книжки.
+     * Конструктор без начального учебного плана.
      *
-     * @param isPaidEducation true, если обучение платное.
-     * @param currentSemester текущий семестр обучения.
+     * @param isPaidEducation платное ли обучение
+     * @param currentSemester текущий семестр
      */
-    public ElectronicGradeBook(boolean isPaidEducation,
-                               Semester currentSemester) {
-        this.records = new ArrayList<>();
-        this.isPaidEducation = isPaidEducation;
-        this.currentSemester = currentSemester;
-        this.curriculum = null;
+    public ElectronicGradeBook(boolean isPaidEducation, Semester currentSemester) {
+        this(isPaidEducation, currentSemester, null);
     }
 
     /**
-     * Конструктор зачетной книжки с учебным планом.
+     * Полный конструктор.
      *
-     * @param isPaidEducation true, если обучение платное.
-     * @param currentSemester текущий семестр обучения.
-     * @param curriculum учебный план студента.
+     * @param isPaidEducation платное ли обучение
+     * @param currentSemester текущий семестр
+     * @param curriculum учебный план
      */
     public ElectronicGradeBook(boolean isPaidEducation,
                                Semester currentSemester,
@@ -50,35 +47,61 @@ public final class ElectronicGradeBook {
         this.curriculum = curriculum;
     }
 
-    public void addRecord(SubjectRecord record) {
-        this.records.add(record);
-    }
+    // --- Геттеры (методы доступа), которых не хватало ---
 
+    /**
+     * Возвращает список всех записей в зачетной книжке.
+     * Возвращает копию списка для безопасности.
+     */
     public List<SubjectRecord> getRecords() {
         return new ArrayList<>(records);
     }
 
-    public Curriculum getCurriculum() {
-        return curriculum;
-    }
-
-    public void setCurriculum(Curriculum curriculum) {
-        this.curriculum = curriculum;
-    }
-
+    /**
+     * Возвращает текущий семестр обучения.
+     */
     public Semester getCurrentSemester() {
         return currentSemester;
     }
 
+    /**
+     * Возвращает true, если обучение платное.
+     */
     public boolean isPaidEducation() {
         return isPaidEducation;
     }
 
     /**
-     * Вычисляет текущий средний балл за все время обучения.
-     * Учитываются только дифференцированные оценки (не зачеты).
+     * Возвращает текущий учебный план.
+     */
+    public Curriculum getCurriculum() {
+        return curriculum;
+    }
+
+    // ----------------------------------------------------
+
+    /**
+     * Добавляет запись в зачетку.
      *
-     * @return Средний балл или 0.0, если оценок нет.
+     * @param record запись предмета
+     */
+    public void addRecord(SubjectRecord record) {
+        records.add(record);
+    }
+
+    /**
+     * Устанавливает или обновляет учебный план.
+     *
+     * @param curriculum новый план
+     */
+    public void setCurriculum(Curriculum curriculum) {
+        this.curriculum = curriculum;
+    }
+
+    /**
+     * Вычисляет средний балл (только дифференцированные оценки).
+     *
+     * @return средний балл
      */
     public double calculateAverageGrade() {
         List<SubjectRecord> gradedRecords = records.stream()
@@ -89,64 +112,64 @@ public final class ElectronicGradeBook {
             return 0.0;
         }
 
-        double sum = 0;
-        for (SubjectRecord r : gradedRecords) {
-            sum += r.getMark().getValue();
-        }
+        double sum = gradedRecords.stream()
+                .mapToInt(r -> r.getMark().getValue())
+                .sum();
+
         return sum / gradedRecords.size();
     }
 
     /**
-     * Проверяет возможность перевода с платного на бюджет.
-     * Требование: отсутствие оценок "удовлетворительно" (и ниже) за экзамены
-     * за последние две экзаменационные сессии (текущую и предыдущую).
+     * Проверяет возможность перевода на бюджет.
      *
-     * @return true, если перевод возможен.
+     * <p>Условие: отсутствие троек за экзамены в двух последних сессиях.
+     *
+     * @return true если перевод возможен
      */
     public boolean canTransferToBudget() {
         if (!isPaidEducation) {
             return true;
         }
 
-        Semester previousSemester = currentSemester.previous().orElse(null);
+        Semester prev1 = currentSemester.previous().orElse(null);
+        Semester prev2 = (prev1 != null) ? prev1.previous().orElse(null) : null;
 
-        List<SubjectRecord> lastTwoSessions = records.stream()
-                .filter(r -> r.getSemester().equals(currentSemester)
-                        || r.getSemester().equals(previousSemester))
-                .collect(Collectors.toList());
-
-        if (lastTwoSessions.isEmpty()) {
+        if (prev1 == null) {
             return false;
         }
 
-        for (SubjectRecord r : lastTwoSessions) {
+        // Собираем записи за две последние сессии
+        List<SubjectRecord> lastSessionRecords = records.stream()
+                .filter(r -> r.getSemester().equals(prev1)
+                        || (prev2 != null && r.getSemester().equals(prev2)))
+                .collect(Collectors.toList());
+
+        if (lastSessionRecords.isEmpty()) {
+            return false;
+        }
+
+        for (SubjectRecord r : lastSessionRecords) {
+            // "Удовлетворительно" запрещено только для ЭКЗАМЕНОВ
             if (r.getControlType() == ControlType.EXAM && r.getMark() != null) {
                 if (r.getMark().getValue() <= Mark.SATISFACTORY.getValue()) {
                     return false;
                 }
-            }
-            if (r.getMark() == null && r.getCreditStatus() == null) {
-                return false;
             }
         }
         return true;
     }
 
     /**
-     * Проверяет возможность получения красного диплома (с отличием).
-     * Требования:
-     * - 75% оценок "отлично" (5) в приложении к диплому (без учета ВКР);
-     * - отсутствие итоговых оценок "удовлетворительно" или "неудовлетворительно";
-     * - квалификационная работа (THESIS) на "отлично";
-     * - все предметы из учебного плана должны быть пройдены.
+     * Проверяет возможность получения красного диплома.
      *
-     * @return true, если условия выполняются.
+     * <p>Условия: выполнение плана, 75% отлично, нет троек, ВКР на 5.
+     *
+     * @return true если условия выполнены
      */
     public boolean canGetRedDiploma() {
-        if (curriculum != null) {
-            if (!curriculum.areAllSubjectsCompleted(records)) {
-                return false;
-            }
+        // 1. Проверка учебного плана
+        if (curriculum != null && !curriculum.areAllSubjectsCompleted(records)) {
+            return false;
         }
 
         List<SubjectRecord> diplomaRecords = records.stream()
@@ -157,68 +180,72 @@ public final class ElectronicGradeBook {
             return false;
         }
 
-        boolean hasThesisExcellent = diplomaRecords.stream()
+        // 2. Проверка ВКР
+        boolean thesisExcellent = diplomaRecords.stream()
                 .filter(r -> r.getControlType() == ControlType.THESIS)
-                .anyMatch(r -> r.getMark().getValue() == Mark.EXCELLENT.getValue());
+                .anyMatch(r -> r.getMark() == Mark.EXCELLENT);
 
-        if (!hasThesisExcellent) {
+        if (!thesisExcellent) {
+            // Если ВКР нет в записях (еще не сдавалась) или она не на 5 -> false
             return false;
         }
 
-        int excellentCount = 0;
-        int totalCount = 0;
+        long totalGraded = 0;
+        long excellentCount = 0;
 
+        // 3. Проверка процентов и отсутствия троек
         for (SubjectRecord r : diplomaRecords) {
+            // ВКР обычно не учитывается в проценте оценок (по разным правилам),
+            // но даже если учитывать - логика останется похожей.
+            // Здесь мы считаем процент среди всех дифференцированных оценок кроме ВКР (частая практика).
             if (r.getControlType() == ControlType.THESIS) {
                 continue;
             }
+            totalGraded++;
+            int val = r.getMark().getValue();
 
-            totalCount++;
-            int markValue = r.getMark().getValue();
-
-            if (markValue <= Mark.SATISFACTORY.getValue()) {
-                return false;
+            if (val <= Mark.SATISFACTORY.getValue()) {
+                return false; // Есть тройка
             }
-
-            if (markValue == Mark.EXCELLENT.getValue()) {
+            if (val == Mark.EXCELLENT.getValue()) {
                 excellentCount++;
             }
         }
 
-        if (totalCount == 0) {
-            return false;
-        }
+        if (totalGraded == 0) return false;
 
-        double excellentPercentage = (double) excellentCount / totalCount;
-        return excellentPercentage >= 0.75;
+        return ((double) excellentCount / totalGraded) >= 0.75;
     }
 
     /**
-     * Проверяет возможность получения повышенной стипендии в текущем семестре.
-     * Условие: все оценки за текущий семестр - "отлично" (5),
-     * все зачеты - сданы.
+     * Проверяет право на повышенную стипендию.
      *
-     * @return true, если положена повышенная стипендия.
+     * <p>Условие: прошлая сессия закрыта только на отлично.
+     *
+     * @return true если положена стипендия
      */
     public boolean canGetIncreasedScholarship() {
-        List<SubjectRecord> currentSession = records.stream()
-                .filter(r -> r.getSemester().equals(currentSemester))
-                .collect(Collectors.toList());
-
-        if (currentSession.isEmpty()) {
+        Semester prev = currentSemester.previous().orElse(null);
+        if (prev == null) {
             return false;
         }
 
-        for (SubjectRecord r : currentSession) {
-            if (r.getMark() != null) {
-                if (r.getMark().getValue() != Mark.EXCELLENT.getValue()) {
-                    return false;
-                }
+        List<SubjectRecord> prevSession = records.stream()
+                .filter(r -> r.getSemester().equals(prev))
+                .collect(Collectors.toList());
+
+        if (prevSession.isEmpty()) {
+            return false;
+        }
+
+        for (SubjectRecord r : prevSession) {
+            // Если есть оценка и она не 5 -> нет стипендии
+            if (r.getMark() != null && r.getMark() != Mark.EXCELLENT) {
+                return false;
             }
-            if (r.getCreditStatus() != null) {
-                if (!r.getCreditStatus().isPassed()) {
-                    return false;
-                }
+            // Если есть зачет и он не сдан -> нет стипендии
+            if (r.getCreditStatus() != null && !r.getCreditStatus().isPassed()) {
+                return false;
             }
         }
         return true;

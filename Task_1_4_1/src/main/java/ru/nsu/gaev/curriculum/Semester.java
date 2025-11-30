@@ -6,8 +6,8 @@ import java.util.Optional;
 /**
  * Представляет определенный семестр в учебном плане.
  *
- * <p>Этот класс является неизменяемым и предоставляет методы для навигации между семестрами
- * и получения контекстной информации, такой как номер курса.
+ * <p>Класс неизменяем. Предоставляет навигацию (предыдущий/следующий)
+ * и методы создания через статические фабрики.
  */
 public final class Semester implements Comparable<Semester> {
 
@@ -16,8 +16,7 @@ public final class Semester implements Comparable<Semester> {
     /**
      * Создает новый экземпляр класса Semester.
      *
-     * @param semesterNumber номер семестра (должен быть больше или равен 1)
-     * @throws IllegalArgumentException если номер семестра меньше 1
+     * @param semesterNumber номер семестра (должен быть >= 1)
      */
     public Semester(int semesterNumber) {
         if (semesterNumber < 1) {
@@ -27,40 +26,39 @@ public final class Semester implements Comparable<Semester> {
     }
 
     /**
-     * Создает семестр на основе номера курса и порядкового номера семестра в учебном году.
+     * Создает семестр по номеру курса и номеру семестра в году.
      *
-     * @param course номер курса (1, 2, ...)
-     * @param semesterInYear номер семестра в учебном году (1 или 2)
-     * @return новый экземпляр класса Semester
-     * @throws IllegalArgumentException если аргументы некорректны
+     * @param course курс (1..)
+     * @param semesterInYear семестр в году (1 или 2)
+     * @return экземпляр Semester
      */
     public static Semester of(int course, int semesterInYear) {
         if (course < 1 || semesterInYear < 1 || semesterInYear > 2) {
-            throw new IllegalArgumentException("Некорректный номер курса или семестра в году");
+            throw new IllegalArgumentException("Некорректные данные курса/семестра");
         }
         return new Semester((course - 1) * 2 + semesterInYear);
     }
 
     /**
-     * Возвращает номер семестра.
+     * Возвращает абсолютный номер семестра.
      *
-     * @return целое число, представляющее номер семестра
+     * @return номер семестра
      */
     public int getSemesterNumber() {
         return semesterNumber;
     }
 
     /**
-     * Вычисляет номер курса, соответствующий данному семестру.
+     * Возвращает номер курса для текущего семестра.
      *
-     * @return номер курса (например, 1 для 1-го и 2-го семестров)
+     * @return номер курса
      */
     public int getCourseNumber() {
         return (semesterNumber + 1) / 2;
     }
 
     /**
-     * Проверяет, является ли семестр чётным.
+     * Проверяет, является ли семестр чётным (весенним).
      *
      * @return true, если номер семестра чётный
      */
@@ -69,7 +67,7 @@ public final class Semester implements Comparable<Semester> {
     }
 
     /**
-     * Проверяет, является ли семестр нечётным.
+     * Проверяет, является ли семестр нечётным (осенним).
      *
      * @return true, если номер семестра нечётный
      */
@@ -78,18 +76,18 @@ public final class Semester implements Comparable<Semester> {
     }
 
     /**
-     * Создает новый экземпляр Semester, представляющий следующий семестр.
+     * Возвращает следующий семестр.
      *
-     * @return следующий семестр
+     * @return новый экземпляр Semester
      */
     public Semester next() {
         return new Semester(semesterNumber + 1);
     }
 
     /**
-     * Создает Optional, содержащий предыдущий семестр, если он существует.
+     * Возвращает предыдущий семестр, если он существует.
      *
-     * @return Optional с предыдущим семестром или пустой Optional, если текущий семестр первый
+     * @return Optional с предыдущим семестром или empty
      */
     public Optional<Semester> previous() {
         if (semesterNumber <= 1) {

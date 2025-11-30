@@ -1,8 +1,9 @@
 package ru.nsu.gaev.model;
 
+import java.util.Objects;
+
 /**
- * Класс, представляющий студента.
- * Содержит информацию о студенте и его электронную зачетную книжку.
+ * Класс студента.
  */
 public final class Student {
     private final String fullName;
@@ -10,14 +11,13 @@ public final class Student {
     private final ElectronicGradeBook gradeBook;
 
     /**
-     * Конструктор студента.
+     * Создает студента.
      *
-     * @param fullName полное имя студента
-     * @param studentId номер зачетной книжки
-     * @param gradeBook электронная зачетная книжка
+     * @param fullName ФИО
+     * @param studentId номер зачетки
+     * @param gradeBook зачетная книжка
      */
-    public Student(String fullName, String studentId,
-                   ElectronicGradeBook gradeBook) {
+    public Student(String fullName, String studentId, ElectronicGradeBook gradeBook) {
         this.fullName = fullName;
         this.studentId = studentId;
         this.gradeBook = gradeBook;
@@ -36,12 +36,6 @@ public final class Student {
     }
 
     @Override
-    public String toString() {
-        return "Студент: " + fullName + " (номер зачетной книжки: "
-                + studentId + ")";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -50,11 +44,16 @@ public final class Student {
             return false;
         }
         Student student = (Student) o;
-        return studentId.equals(student.studentId);
+        return Objects.equals(studentId, student.studentId);
     }
 
     @Override
     public int hashCode() {
-        return studentId.hashCode();
+        return Objects.hash(studentId);
+    }
+
+    @Override
+    public String toString() {
+        return fullName + " (" + studentId + ")";
     }
 }

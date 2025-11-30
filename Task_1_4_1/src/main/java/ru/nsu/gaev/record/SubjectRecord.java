@@ -1,13 +1,13 @@
 package ru.nsu.gaev.record;
 
+import java.util.Objects;
 import ru.nsu.gaev.curriculum.ControlType;
 import ru.nsu.gaev.curriculum.Semester;
 import ru.nsu.gaev.grade.CreditStatus;
 import ru.nsu.gaev.grade.Mark;
 
 /**
- * Класс, представляющий запись об оценке по предмету в зачетной книжке.
- * Может содержать либо дифференцированную оценку (Mark), либо статус зачета.
+ * Запись в зачетной книжке о сдаче предмета.
  */
 public final class SubjectRecord {
     private final String subjectName;
@@ -17,12 +17,12 @@ public final class SubjectRecord {
     private final CreditStatus creditStatus;
 
     /**
-     * Конструктор записи с дифференцированной оценкой.
+     * Создает запись с оценкой.
      *
-     * @param subjectName название предмета
-     * @param semester семестр обучения
-     * @param controlType тип контроля (экзамен, зачет и т.д.)
-     * @param mark дифференцированная оценка
+     * @param subjectName предмет
+     * @param semester семестр
+     * @param controlType тип контроля
+     * @param mark оценка
      */
     public SubjectRecord(String subjectName, Semester semester,
                          ControlType controlType, Mark mark) {
@@ -34,19 +34,17 @@ public final class SubjectRecord {
     }
 
     /**
-     * Конструктор записи со статусом зачета.
+     * Создает запись с зачетом.
      *
-     * @param subjectName название предмета
-     * @param semester семестр обучения
-     * @param controlType тип контроля (должен быть CREDIT)
-     * @param creditStatus статус зачета (зачет/не зачет)
+     * @param subjectName предмет
+     * @param semester семестр
+     * @param controlType тип контроля (CREDIT)
+     * @param creditStatus статус
      */
     public SubjectRecord(String subjectName, Semester semester,
                          ControlType controlType, CreditStatus creditStatus) {
         if (controlType != ControlType.CREDIT) {
-            throw new IllegalArgumentException(
-                    "CreditStatus используется только для CREDIT"
-            );
+            throw new IllegalArgumentException("CreditStatus только для CREDIT");
         }
         this.subjectName = subjectName;
         this.semester = semester;
@@ -76,12 +74,9 @@ public final class SubjectRecord {
     }
 
     /**
-     * Получить числовое значение оценки.
-     * Для дифференцированной оценки возвращает значение Mark,
-     * для зачета возвращает 1 (зачет) или 0 (не зачет).
+     * Возвращает числовое представление оценки.
      *
-
-     * @return числовое значение оценки
+     * @return значение оценки (2-5) или статус зачета (1 - сдан, 0 - не сдан)
      */
     public int getGradeValue() {
         if (mark != null) {
@@ -94,21 +89,6 @@ public final class SubjectRecord {
     }
 
     @Override
-    public String toString() {
-        String gradeDisplay;
-        if (mark != null) {
-            gradeDisplay = mark.getDisplayName();
-        } else if (creditStatus != null) {
-            gradeDisplay = creditStatus.getDisplayName();
-        } else {
-            gradeDisplay = "Нет оценки";
-        }
-
-        return semester + " | " + subjectName + " ("
-                + controlType.getDisplayName() + "): " + gradeDisplay;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -117,15 +97,20 @@ public final class SubjectRecord {
             return false;
         }
         SubjectRecord that = (SubjectRecord) o;
-        return subjectName.equals(that.subjectName)
-                && semester.equals(that.semester)
+        return Objects.equals(subjectName, that.subjectName)
+                && Objects.equals(semester, that.semester)
                 && controlType == that.controlType;
     }
 
     @Override
     public int hashCode() {
-        return subjectName.hashCode() * 31 + semester.hashCode() * 31
-                + controlType.hashCode();
+        return Objects.hash(subjectName, semester, controlType);
+    }
+
+    @Override
+    public String toString() {
+        String result = (mark != null) ? mark.getDisplayName()
+                : (creditStatus != null ? creditStatus.getDisplayName() : "N/A");
+        return semester + ": " + subjectName + " - " + result;
     }
 }
-

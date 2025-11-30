@@ -2,7 +2,6 @@ package ru.nsu.gaev.curriculum;
 
 /**
  * Перечисление типов контроля успеваемости.
- * Используется для разграничения логики перевода на бюджет и красного диплома.
  */
 public enum ControlType {
     EXAM("Экзамен"),
@@ -18,8 +17,12 @@ public enum ControlType {
         this.displayName = displayName;
     }
 
+    /**
+     * Возвращает читаемое название типа контроля.
+     *
+     * @return название
+     */
     public String getDisplayName() {
         return displayName;
     }
 }
-
