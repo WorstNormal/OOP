@@ -10,6 +10,7 @@ import ru.nsu.gaev.record.SubjectRecord;
  * <p>Содержит список обязательных предметов и логику проверки их прохождения.
  */
 public final class Curriculum {
+
     private final String curriculumName;
     private final List<CurriculumSubject> requiredSubjects;
 

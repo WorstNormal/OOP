@@ -10,6 +10,7 @@ import ru.nsu.gaev.grade.Mark;
  * Запись в зачетной книжке о сдаче предмета.
  */
 public final class SubjectRecord {
+
     private final String subjectName;
     private final Semester semester;
     private final ControlType controlType;

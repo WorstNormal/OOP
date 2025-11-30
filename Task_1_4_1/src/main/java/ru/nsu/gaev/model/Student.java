@@ -6,6 +6,7 @@ import java.util.Objects;
  * Класс студента.
  */
 public final class Student {
+
     private final String fullName;
     private final String studentId;
     private final ElectronicGradeBook gradeBook;

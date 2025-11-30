@@ -8,6 +8,7 @@ import java.util.Objects;
  * <p>Определяет, какой предмет, в каком семестре и с каким типом контроля должен быть сдан.
  */
 public final class CurriculumSubject {
+
     private final String subjectName;
     private final Semester semester;
     private final ControlType controlType;

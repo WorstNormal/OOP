@@ -16,6 +16,7 @@ import ru.nsu.gaev.record.SubjectRecord;
  * среднего балла, стипендии, красного диплома.
  */
 public final class ElectronicGradeBook {
+
     private final List<SubjectRecord> records;
     private final boolean isPaidEducation;
     private final Semester currentSemester;
@@ -47,11 +48,8 @@ public final class ElectronicGradeBook {
         this.curriculum = curriculum;
     }
 
-    // --- Геттеры (методы доступа), которых не хватало ---
-
     /**
-     * Возвращает список всех записей в зачетной книжке.
-     * Возвращает копию списка для безопасности.
+     * Возвращает список всех записей в зачетной книжке. Возвращает копию списка для безопасности.
      */
     public List<SubjectRecord> getRecords() {
         return new ArrayList<>(records);
@@ -77,8 +75,6 @@ public final class ElectronicGradeBook {
     public Curriculum getCurriculum() {
         return curriculum;
     }
-
-    // ----------------------------------------------------
 
     /**
      * Добавляет запись в зачетку.
@@ -138,7 +134,6 @@ public final class ElectronicGradeBook {
             return false;
         }
 
-        // Собираем записи за две последние сессии
         List<SubjectRecord> lastSessionRecords = records.stream()
                 .filter(r -> r.getSemester().equals(prev1)
                         || (prev2 != null && r.getSemester().equals(prev2)))
@@ -149,7 +144,6 @@ public final class ElectronicGradeBook {
         }
 
         for (SubjectRecord r : lastSessionRecords) {
-            // "Удовлетворительно" запрещено только для ЭКЗАМЕНОВ
             if (r.getControlType() == ControlType.EXAM && r.getMark() != null) {
                 if (r.getMark().getValue() <= Mark.SATISFACTORY.getValue()) {
                     return false;
@@ -167,7 +161,6 @@ public final class ElectronicGradeBook {
      * @return true если условия выполнены
      */
     public boolean canGetRedDiploma() {
-        // 1. Проверка учебного плана
         if (curriculum != null && !curriculum.areAllSubjectsCompleted(records)) {
             return false;
         }
@@ -180,24 +173,18 @@ public final class ElectronicGradeBook {
             return false;
         }
 
-        // 2. Проверка ВКР
         boolean thesisExcellent = diplomaRecords.stream()
                 .filter(r -> r.getControlType() == ControlType.THESIS)
                 .anyMatch(r -> r.getMark() == Mark.EXCELLENT);
 
         if (!thesisExcellent) {
-            // Если ВКР нет в записях (еще не сдавалась) или она не на 5 -> false
             return false;
         }
 
         long totalGraded = 0;
         long excellentCount = 0;
 
-        // 3. Проверка процентов и отсутствия троек
         for (SubjectRecord r : diplomaRecords) {
-            // ВКР обычно не учитывается в проценте оценок (по разным правилам),
-            // но даже если учитывать - логика останется похожей.
-            // Здесь мы считаем процент среди всех дифференцированных оценок кроме ВКР (частая практика).
             if (r.getControlType() == ControlType.THESIS) {
                 continue;
             }
@@ -205,14 +192,16 @@ public final class ElectronicGradeBook {
             int val = r.getMark().getValue();
 
             if (val <= Mark.SATISFACTORY.getValue()) {
-                return false; // Есть тройка
+                return false;
             }
             if (val == Mark.EXCELLENT.getValue()) {
                 excellentCount++;
             }
         }
 
-        if (totalGraded == 0) return false;
+        if (totalGraded == 0) {
+            return false;
+        }
 
         return ((double) excellentCount / totalGraded) >= 0.75;
     }
@@ -239,11 +228,9 @@ public final class ElectronicGradeBook {
         }
 
         for (SubjectRecord r : prevSession) {
-            // Если есть оценка и она не 5 -> нет стипендии
             if (r.getMark() != null && r.getMark() != Mark.EXCELLENT) {
                 return false;
             }
-            // Если есть зачет и он не сдан -> нет стипендии
             if (r.getCreditStatus() != null && !r.getCreditStatus().isPassed()) {
                 return false;
             }
