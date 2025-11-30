@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import ru.nsu.gaev.curriculum.ControlType;
@@ -28,7 +29,8 @@ class SubjectRecordTest {
     @Test
     void testConstructorWithCredit() {
         Semester s1 = new Semester(1);
-        SubjectRecord record = new SubjectRecord("PE", s1, ControlType.CREDIT, CreditStatus.PASSED);
+        SubjectRecord record = new SubjectRecord("PE", s1,
+                ControlType.CREDIT, CreditStatus.PASSED);
 
         assertEquals(CreditStatus.PASSED, record.getCreditStatus());
         assertEquals(1, record.getGradeValue());
@@ -37,7 +39,8 @@ class SubjectRecordTest {
     @Test
     void testConstructorWithCreditNotPassed() {
         Semester s1 = new Semester(1);
-        SubjectRecord record = new SubjectRecord("PE", s1, ControlType.CREDIT, CreditStatus.NOT_PASSED);
+        SubjectRecord record = new SubjectRecord("PE", s1,
+                ControlType.CREDIT, CreditStatus.NOT_PASSED);
         assertEquals(0, record.getGradeValue());
     }
 
@@ -52,41 +55,49 @@ class SubjectRecordTest {
     @Test
     void testEqualsAndHashCode() {
         Semester s1 = new Semester(1);
-        SubjectRecord r1 = new SubjectRecord("Math", s1, ControlType.EXAM, Mark.EXCELLENT);
-        SubjectRecord r2 = new SubjectRecord("Math", s1, ControlType.EXAM, Mark.EXCELLENT);
-        SubjectRecord rDifferentName = new SubjectRecord("Java", s1, ControlType.EXAM, Mark.EXCELLENT);
-        SubjectRecord rDifferentSem = new SubjectRecord("Math", new Semester(2), ControlType.EXAM, Mark.EXCELLENT);
-        SubjectRecord rDifferentType = new SubjectRecord("Math", s1, ControlType.CREDIT, CreditStatus.PASSED);
+        SubjectRecord record1 = new SubjectRecord("Math", s1, ControlType.EXAM, Mark.EXCELLENT);
+        SubjectRecord record2 = new SubjectRecord("Math", s1, ControlType.EXAM, Mark.EXCELLENT);
 
         // 1. Рефлексивность (this == o)
-        assertEquals(r1, r1);
+        assertEquals(record1, record1);
 
         // 2. Симметричность
-        assertEquals(r1, r2);
-        assertEquals(r2, r1);
-        assertEquals(r1.hashCode(), r2.hashCode());
+        assertEquals(record1, record2);
+        assertEquals(record2, record1);
+        assertEquals(record1.hashCode(), record2.hashCode());
 
         // 3. Неравенство (null и другой класс)
-        assertNotEquals(r1, null);
-        assertNotEquals(r1, "Some String");
+        assertNotEquals(record1, null);
+        assertNotEquals(record1, "Some String");
 
         // 4. Неравенство по полям
-        assertNotEquals(r1, rDifferentName);
-        assertNotEquals(r1, rDifferentSem);
-        assertNotEquals(r1, rDifferentType);
+        SubjectRecord diffNameRecord = new SubjectRecord("Java", s1,
+                ControlType.EXAM, Mark.EXCELLENT);
+        assertNotEquals(record1, diffNameRecord);
+
+        SubjectRecord diffSemRecord = new SubjectRecord("Math", new Semester(2),
+                ControlType.EXAM, Mark.EXCELLENT);
+        assertNotEquals(record1, diffSemRecord);
+
+        SubjectRecord diffTypeRecord = new SubjectRecord("Math", s1,
+                ControlType.CREDIT, CreditStatus.PASSED);
+        assertNotEquals(record1, diffTypeRecord);
     }
 
     @Test
     void testToString() {
         Semester s1 = new Semester(1);
-        SubjectRecord rMark = new SubjectRecord("Math", s1, ControlType.EXAM, Mark.EXCELLENT);
-        SubjectRecord rCredit = new SubjectRecord("PE", s1, ControlType.CREDIT, CreditStatus.PASSED);
+        SubjectRecord markRecord = new SubjectRecord("Math", s1,
+                ControlType.EXAM, Mark.EXCELLENT);
+        assertNotNull(markRecord.toString());
+        assertTrue(markRecord.toString().contains("Отлично"));
 
-        // Исправлена ошибка Ambiguous method call: явно приводим null к типу Mark
-        SubjectRecord rEmpty = new SubjectRecord("Lost", s1, ControlType.EXAM, (Mark) null);
+        SubjectRecord creditRecord = new SubjectRecord("PE", s1,
+                ControlType.CREDIT, CreditStatus.PASSED);
+        assertNotNull(creditRecord.toString());
 
-        assertNotNull(rMark.toString());
-        assertNotNull(rCredit.toString());
-        assertNotNull(rEmpty.toString()); // Покрывает ветку "Нет оценки" или N/A
+        // Явно приводим null к типу Mark
+        SubjectRecord emptyRecord = new SubjectRecord("Lost", s1, ControlType.EXAM, (Mark) null);
+        assertNotNull(emptyRecord.toString());
     }
 }

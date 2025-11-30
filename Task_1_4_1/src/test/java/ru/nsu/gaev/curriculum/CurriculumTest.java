@@ -46,16 +46,11 @@ class CurriculumTest {
         assertTrue(c.getRequiredSubjects().isEmpty());
     }
 
-    // --- Тесты для CurriculumSubject (повышают покрытие equals/hashCode) ---
-
     @Test
     void testCurriculumSubjectEquals() {
         Semester s1 = new Semester(1);
         CurriculumSubject cs1 = new CurriculumSubject("Math", s1, ControlType.EXAM);
         CurriculumSubject cs2 = new CurriculumSubject("Math", s1, ControlType.EXAM);
-        CurriculumSubject csDiffName = new CurriculumSubject("Java", s1, ControlType.EXAM);
-        CurriculumSubject csDiffSem = new CurriculumSubject("Math", new Semester(2), ControlType.EXAM);
-        CurriculumSubject csDiffType = new CurriculumSubject("Math", s1, ControlType.CREDIT);
 
         assertEquals(cs1, cs1); // this == o
         assertEquals(cs1, cs2); // full match
@@ -63,9 +58,16 @@ class CurriculumTest {
 
         assertNotEquals(cs1, null);
         assertNotEquals(cs1, new Object());
-        assertNotEquals(cs1, csDiffName);
-        assertNotEquals(cs1, csDiffSem);
-        assertNotEquals(cs1, csDiffType);
+
+        CurriculumSubject diffNameSubj = new CurriculumSubject("Java", s1, ControlType.EXAM);
+        assertNotEquals(cs1, diffNameSubj);
+
+        CurriculumSubject diffSemSubj = new CurriculumSubject("Math", new Semester(2),
+                ControlType.EXAM);
+        assertNotEquals(cs1, diffSemSubj);
+
+        CurriculumSubject diffTypeSubj = new CurriculumSubject("Math", s1, ControlType.CREDIT);
+        assertNotEquals(cs1, diffTypeSubj);
     }
 
     @Test

@@ -20,10 +20,15 @@ class ElectronicGradeBookTest {
         ElectronicGradeBook book = new ElectronicGradeBook(true, new Semester(1));
         assertEquals(0.0, book.calculateAverageGrade());
 
-        book.addRecord(new SubjectRecord("Math", new Semester(1), ControlType.EXAM, Mark.EXCELLENT)); // 5
-        book.addRecord(new SubjectRecord("Java", new Semester(1), ControlType.EXAM, Mark.SATISFACTORY)); // 3
+        // 5
+        book.addRecord(new SubjectRecord("Math", new Semester(1),
+                ControlType.EXAM, Mark.EXCELLENT));
+        // 3
+        book.addRecord(new SubjectRecord("Java", new Semester(1),
+                ControlType.EXAM, Mark.SATISFACTORY));
         // Зачеты игнорируются
-        book.addRecord(new SubjectRecord("PE", new Semester(1), ControlType.CREDIT, CreditStatus.PASSED));
+        book.addRecord(new SubjectRecord("PE", new Semester(1),
+                ControlType.CREDIT, CreditStatus.PASSED));
 
         assertEquals(4.0, book.calculateAverageGrade(), 0.001);
     }
@@ -48,7 +53,8 @@ class ElectronicGradeBookTest {
 
         // 4. Платник с тройкой за ДИФФ ЗАЧЕТ -> True (по условию задачи)
         book = new ElectronicGradeBook(true, s2);
-        book.addRecord(new SubjectRecord("Project", s1, ControlType.DIFF_CREDIT, Mark.SATISFACTORY));
+        book.addRecord(new SubjectRecord("Project", s1,
+                ControlType.DIFF_CREDIT, Mark.SATISFACTORY));
         assertTrue(book.canTransferToBudget());
     }
 
@@ -69,7 +75,8 @@ class ElectronicGradeBookTest {
         assertTrue(book.canGetRedDiploma());
 
         // Добавили тройку -> False
-        book.addRecord(new SubjectRecord("FailSubject", s1, ControlType.EXAM, Mark.SATISFACTORY));
+        book.addRecord(new SubjectRecord("FailSubject", s1,
+                ControlType.EXAM, Mark.SATISFACTORY));
         assertFalse(book.canGetRedDiploma());
     }
 
