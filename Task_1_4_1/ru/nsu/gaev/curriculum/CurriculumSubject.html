@@ -77,8 +77,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">CurriculumSubject</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Класс, представляющий требуемый предмет в учебном плане.
- Содержит информацию о названии предмета, семестре и типе контроля.</div>
+<div class="block">Представляет требование учебного плана по конкретному предмету.
+
+ <p>Определяет, какой предмет, в каком семестре и с каким типом контроля должен быть сдан.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -94,7 +95,7 @@ loadScripts(document, 'script');</script>
  <a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&nbsp;semester,
  <a href="ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a>&nbsp;controlType)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Конструктор требуемого предмета.</div>
+<div class="block">Создает требование к предмету.</div>
 </div>
 </div>
 </section>
@@ -115,13 +116,19 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getControlType()" class="member-name-link">getControlType</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает тип контроля.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSemester()" class="member-name-link">getSemester</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает семестр сдачи.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSubjectName()" class="member-name-link">getSubjectName</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает название предмета.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -151,12 +158,12 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">CurriculumSubject</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;subjectName,
  <a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&nbsp;semester,
  <a href="ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a>&nbsp;controlType)</span></div>
-<div class="block">Конструктор требуемого предмета.</div>
+<div class="block">Создает требование к предмету.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>subjectName</code> - название предмета</dd>
-<dd><code>semester</code> - семестр, в котором должен быть пройден предмет</dd>
-<dd><code>controlType</code> - тип контроля (экзамен, зачет и т.д.)</dd>
+<dd><code>semester</code> - семестр сдачи</dd>
+<dd><code>controlType</code> - тип контроля</dd>
 </dl>
 </section>
 </li>
@@ -172,18 +179,33 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getSubjectName()">
 <h3>getSubjectName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSubjectName</span>()</div>
+<div class="block">Возвращает название предмета.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>название</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getSemester()">
 <h3>getSemester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></span>&nbsp;<span class="element-name">getSemester</span>()</div>
+<div class="block">Возвращает семестр сдачи.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>семестр</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getControlType()">
 <h3>getControlType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a></span>&nbsp;<span class="element-name">getControlType</span>()</div>
+<div class="block">Возвращает тип контроля.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>тип контроля</dd>
+</dl>
 </section>
 </li>
 <li>

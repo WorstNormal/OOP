@@ -83,8 +83,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">Mark</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a>&gt;</span></div>
-<div class="block">Перечисление для представления оценок (дифференцированных) в системе.
- Использование enum гарантирует типобезопасность и исключает недопустимые значения.</div>
+<div class="block">Перечисление для дифференцированных оценок.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -130,14 +129,18 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fromValue(int)" class="member-name-link">fromValue</a><wbr>(int&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Преобразует числовое значение в перечисление Mark.</div>
+<div class="block">Получает enum по числовому значению.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDisplayName()" class="member-name-link">getDisplayName</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает текстовое представление.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getValue()" class="member-name-link">getValue</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает числовое значение оценки.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -236,26 +239,34 @@ not permitted.)</div>
 <section class="detail" id="getValue()">
 <h3>getValue</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getValue</span>()</div>
+<div class="block">Возвращает числовое значение оценки.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>значение (2-5)</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getDisplayName()">
 <h3>getDisplayName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getDisplayName</span>()</div>
+<div class="block">Возвращает текстовое представление.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>название оценки</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="fromValue(int)">
 <h3>fromValue</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a></span>&nbsp;<span class="element-name">fromValue</span><wbr><span class="parameters">(int&nbsp;value)</span></div>
-<div class="block">Преобразует числовое значение в перечисление Mark.</div>
+<div class="block">Получает enum по числовому значению.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>value</code> - числовое значение (2-5)</dd>
+<dd><code>value</code> - число (2-5)</dd>
 <dt>Returns:</dt>
-<dd>соответствующее значение Mark</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если значение вне диапазона 2-5</dd>
+<dd>соответствующий Mark</dd>
 </dl>
 </section>
 </li>

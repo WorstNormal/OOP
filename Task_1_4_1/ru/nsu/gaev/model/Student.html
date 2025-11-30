@@ -77,8 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">Student</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Класс, представляющий студента.
- Содержит информацию о студенте и его электронную зачетную книжку.</div>
+<div class="block">Класс студента.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -94,7 +93,7 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentId,
  <a href="ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a>&nbsp;gradeBook)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Конструктор студента.</div>
+<div class="block">Создает студента.</div>
 </div>
 </div>
 </section>
@@ -151,12 +150,12 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Student</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fullName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentId,
  <a href="ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a>&nbsp;gradeBook)</span></div>
-<div class="block">Конструктор студента.</div>
+<div class="block">Создает студента.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>fullName</code> - полное имя студента</dd>
-<dd><code>studentId</code> - номер зачетной книжки</dd>
-<dd><code>gradeBook</code> - электронная зачетная книжка</dd>
+<dd><code>fullName</code> - ФИО</dd>
+<dd><code>studentId</code> - номер зачетки</dd>
+<dd><code>gradeBook</code> - зачетная книжка</dd>
 </dl>
 </section>
 </li>
@@ -187,16 +186,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="toString()">
-<h3>toString</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
-<dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="equals(java.lang.Object)">
 <h3>equals</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</span></div>
@@ -213,6 +202,16 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="toString()">
+<h3>toString</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
 </dl>
 </section>
 </li>

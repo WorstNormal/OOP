@@ -77,9 +77,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">Curriculum</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Класс, представляющий учебный план студента.
- Содержит информацию о том, какие предметы и в каких семестрах должны быть
- пройдены.</div>
+<div class="block">Представляет учебный план.
+
+ <p>Содержит список обязательных предметов и логику проверки их прохождения.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -93,7 +93,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">Curriculum</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;curriculumName)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Конструктор учебного плана.</div>
+<div class="block">Создает новый учебный план.</div>
 </div>
 </div>
 </section>
@@ -112,35 +112,29 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addRequiredSubject(ru.nsu.gaev.curriculum.CurriculumSubject)" class="member-name-link">addRequiredSubject</a><wbr>(<a href="CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a>&nbsp;subject)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Добавляет требуемый предмет в учебный план.</div>
+<div class="block">Добавляет обязательный предмет в план.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#areAllSubjectsCompleted(java.util.List)" class="member-name-link">areAllSubjectsCompleted</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a>&gt;&nbsp;completedSubjects)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Проверяет, прошёл ли студент все требуемые предметы.</div>
+<div class="block">Проверяет, что в переданном списке записей присутствуют все предметы из плана.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCurriculumName()" class="member-name-link">getCurriculumName</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMissingSubjects(java.util.List)" class="member-name-link">getMissingSubjects</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a>&gt;&nbsp;completedSubjects)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает список недостающих предметов относительно пройденных.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRequiredSubjects()" class="member-name-link">getRequiredSubjects</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает список всех требуемых предметов.</div>
+<div class="block">Возвращает название учебного плана.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRequiredSubjects()" class="member-name-link">getRequiredSubjects</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает список всех требований.</div>
+</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 </section>
 </li>
 </ul>
@@ -156,10 +150,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>Curriculum</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Curriculum</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;curriculumName)</span></div>
-<div class="block">Конструктор учебного плана.</div>
+<div class="block">Создает новый учебный план.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>curriculumName</code> - название учебного плана</dd>
+<dd><code>curriculumName</code> - название плана</dd>
 </dl>
 </section>
 </li>
@@ -175,7 +169,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addRequiredSubject(ru.nsu.gaev.curriculum.CurriculumSubject)">
 <h3>addRequiredSubject</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addRequiredSubject</span><wbr><span class="parameters">(<a href="CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a>&nbsp;subject)</span></div>
-<div class="block">Добавляет требуемый предмет в учебный план.</div>
+<div class="block">Добавляет обязательный предмет в план.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>subject</code> - требуемый предмет</dd>
@@ -186,10 +180,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getRequiredSubjects()">
 <h3>getRequiredSubjects</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a>&gt;</span>&nbsp;<span class="element-name">getRequiredSubjects</span>()</div>
-<div class="block">Возвращает список всех требуемых предметов.</div>
+<div class="block">Возвращает список всех требований.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>список требуемых предметов</dd>
+<dd>список предметов</dd>
 </dl>
 </section>
 </li>
@@ -197,25 +191,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="areAllSubjectsCompleted(java.util.List)">
 <h3>areAllSubjectsCompleted</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">areAllSubjectsCompleted</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a>&gt;&nbsp;completedSubjects)</span></div>
-<div class="block">Проверяет, прошёл ли студент все требуемые предметы.</div>
+<div class="block">Проверяет, что в переданном списке записей присутствуют все предметы из плана.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>completedSubjects</code> - список пройденных предметов (SubjectRecord)</dd>
+<dd><code>completedSubjects</code> - список сданных предметов</dd>
 <dt>Returns:</dt>
-<dd>true, если все требуемые предметы пройдены</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getMissingSubjects(java.util.List)">
-<h3>getMissingSubjects</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a>&gt;</span>&nbsp;<span class="element-name">getMissingSubjects</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a>&gt;&nbsp;completedSubjects)</span></div>
-<div class="block">Возвращает список недостающих предметов относительно пройденных.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>completedSubjects</code> - список пройденных предметов</dd>
-<dt>Returns:</dt>
-<dd>список требуемых предметов, которые ещё не пройдены</dd>
+<dd>true, если все обязательные предметы найдены</dd>
 </dl>
 </section>
 </li>
@@ -223,15 +204,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getCurriculumName()">
 <h3>getCurriculumName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getCurriculumName</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="toString()">
-<h3>toString</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">Возвращает название учебного плана.</div>
 <dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Returns:</dt>
+<dd>название</dd>
 </dl>
 </section>
 </li>

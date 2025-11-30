@@ -53,14 +53,16 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#addRecord(ru.nsu.gaev.record.SubjectRecord)" class="member-name-link">addRecord(SubjectRecord)</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Добавляет запись в зачетку.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/curriculum/Curriculum.html#addRequiredSubject(ru.nsu.gaev.curriculum.CurriculumSubject)" class="member-name-link">addRequiredSubject(CurriculumSubject)</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Curriculum.html" title="class in ru.nsu.gaev.curriculum">Curriculum</a></dt>
 <dd>
-<div class="block">Добавляет требуемый предмет в учебный план.</div>
+<div class="block">Добавляет обязательный предмет в план.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/Curriculum.html#areAllSubjectsCompleted(java.util.List)" class="member-name-link">areAllSubjectsCompleted(List&lt;SubjectRecord&gt;)</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Curriculum.html" title="class in ru.nsu.gaev.curriculum">Curriculum</a></dt>
 <dd>
-<div class="block">Проверяет, прошёл ли студент все требуемые предметы.</div>
+<div class="block">Проверяет, что в переданном списке записей присутствуют все предметы из плана.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:B">B</h2>
@@ -72,19 +74,19 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#calculateAverageGrade()" class="member-name-link">calculateAverageGrade()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
 <dd>
-<div class="block">Вычисляет текущий средний балл за все время обучения.</div>
+<div class="block">Вычисляет средний балл (только дифференцированные оценки).</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#canGetIncreasedScholarship()" class="member-name-link">canGetIncreasedScholarship()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
 <dd>
-<div class="block">Проверяет возможность получения повышенной стипендии в текущем семестре.</div>
+<div class="block">Проверяет право на повышенную стипендию.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#canGetRedDiploma()" class="member-name-link">canGetRedDiploma()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
 <dd>
-<div class="block">Проверяет возможность получения красного диплома (с отличием).</div>
+<div class="block">Проверяет возможность получения красного диплома.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#canTransferToBudget()" class="member-name-link">canTransferToBudget()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
 <dd>
-<div class="block">Проверяет возможность перевода с платного на бюджет.</div>
+<div class="block">Проверяет возможность перевода на бюджет.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/Semester.html#compareTo(ru.nsu.gaev.curriculum.Semester)" class="member-name-link">compareTo(Semester)</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></dt>
 <dd>&nbsp;</dd>
@@ -98,23 +100,23 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/grade/CreditStatus.html" class="type-name-link" title="enum class in ru.nsu.gaev.grade">CreditStatus</a> - Enum Class in <a href="ru/nsu/gaev/grade/package-summary.html">ru.nsu.gaev.grade</a></dt>
 <dd>
-<div class="block">Перечисление для представления статуса зачета.</div>
+<div class="block">Статус зачета (сдан/не сдан).</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/Curriculum.html" class="type-name-link" title="class in ru.nsu.gaev.curriculum">Curriculum</a> - Class in <a href="ru/nsu/gaev/curriculum/package-summary.html">ru.nsu.gaev.curriculum</a></dt>
 <dd>
-<div class="block">Класс, представляющий учебный план студента.</div>
+<div class="block">Представляет учебный план.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/Curriculum.html#%3Cinit%3E(java.lang.String)" class="member-name-link">Curriculum(String)</a> - Constructor for class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Curriculum.html" title="class in ru.nsu.gaev.curriculum">Curriculum</a></dt>
 <dd>
-<div class="block">Конструктор учебного плана.</div>
+<div class="block">Создает новый учебный план.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/CurriculumSubject.html" class="type-name-link" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a> - Class in <a href="ru/nsu/gaev/curriculum/package-summary.html">ru.nsu.gaev.curriculum</a></dt>
 <dd>
-<div class="block">Класс, представляющий требуемый предмет в учебном плане.</div>
+<div class="block">Представляет требование учебного плана по конкретному предмету.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/CurriculumSubject.html#%3Cinit%3E(java.lang.String,ru.nsu.gaev.curriculum.Semester,ru.nsu.gaev.curriculum.ControlType)" class="member-name-link">CurriculumSubject(String, Semester, ControlType)</a> - Constructor for class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a></dt>
 <dd>
-<div class="block">Конструктор требуемого предмета.</div>
+<div class="block">Создает требование к предмету.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
@@ -126,15 +128,15 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html" class="type-name-link" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a> - Class in <a href="ru/nsu/gaev/model/package-summary.html">ru.nsu.gaev.model</a></dt>
 <dd>
-<div class="block">Класс электронной зачетной книжки.</div>
+<div class="block">Электронная зачетная книжка.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#%3Cinit%3E(boolean,ru.nsu.gaev.curriculum.Semester)" class="member-name-link">ElectronicGradeBook(boolean, Semester)</a> - Constructor for class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
 <dd>
-<div class="block">Конструктор зачетной книжки.</div>
+<div class="block">Конструктор без начального учебного плана.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#%3Cinit%3E(boolean,ru.nsu.gaev.curriculum.Semester,ru.nsu.gaev.curriculum.Curriculum)" class="member-name-link">ElectronicGradeBook(boolean, Semester, Curriculum)</a> - Constructor for class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
 <dd>
-<div class="block">Конструктор зачетной книжки с учебным планом.</div>
+<div class="block">Полный конструктор.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/CurriculumSubject.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a></dt>
 <dd>&nbsp;</dd>
@@ -153,69 +155,87 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/grade/Mark.html#fromValue(int)" class="member-name-link">fromValue(int)</a> - Static method in enum class ru.nsu.gaev.grade.<a href="ru/nsu/gaev/grade/Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a></dt>
 <dd>
-<div class="block">Преобразует числовое значение в перечисление Mark.</div>
+<div class="block">Получает enum по числовому значению.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/curriculum/CurriculumSubject.html#getControlType()" class="member-name-link">getControlType()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает тип контроля.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html#getControlType()" class="member-name-link">getControlType()</a> - Method in class ru.nsu.gaev.record.<a href="ru/nsu/gaev/record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/curriculum/Semester.html#getCourseNumber()" class="member-name-link">getCourseNumber()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></dt>
 <dd>
-<div class="block">Вычисляет номер курса, соответствующий данному семестру.</div>
+<div class="block">Возвращает номер курса для текущего семестра.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html#getCreditStatus()" class="member-name-link">getCreditStatus()</a> - Method in class ru.nsu.gaev.record.<a href="ru/nsu/gaev/record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#getCurrentSemester()" class="member-name-link">getCurrentSemester()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает текущий семестр обучения.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#getCurriculum()" class="member-name-link">getCurriculum()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает текущий учебный план.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/curriculum/Curriculum.html#getCurriculumName()" class="member-name-link">getCurriculumName()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Curriculum.html" title="class in ru.nsu.gaev.curriculum">Curriculum</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает название учебного плана.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/curriculum/ControlType.html#getDisplayName()" class="member-name-link">getDisplayName()</a> - Method in enum class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает читаемое название типа контроля.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/grade/CreditStatus.html#getDisplayName()" class="member-name-link">getDisplayName()</a> - Method in enum class ru.nsu.gaev.grade.<a href="ru/nsu/gaev/grade/CreditStatus.html" title="enum class in ru.nsu.gaev.grade">CreditStatus</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает текстовое представление.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/grade/Mark.html#getDisplayName()" class="member-name-link">getDisplayName()</a> - Method in enum class ru.nsu.gaev.grade.<a href="ru/nsu/gaev/grade/Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает текстовое представление.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/model/Student.html#getFullName()" class="member-name-link">getFullName()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Student.html" title="class in ru.nsu.gaev.model">Student</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/model/Student.html#getGradeBook()" class="member-name-link">getGradeBook()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Student.html" title="class in ru.nsu.gaev.model">Student</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html#getGradeValue()" class="member-name-link">getGradeValue()</a> - Method in class ru.nsu.gaev.record.<a href="ru/nsu/gaev/record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a></dt>
 <dd>
-<div class="block">Получить числовое значение оценки.</div>
+<div class="block">Возвращает числовое представление оценки.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html#getMark()" class="member-name-link">getMark()</a> - Method in class ru.nsu.gaev.record.<a href="ru/nsu/gaev/record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/gaev/curriculum/Curriculum.html#getMissingSubjects(java.util.List)" class="member-name-link">getMissingSubjects(List&lt;SubjectRecord&gt;)</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Curriculum.html" title="class in ru.nsu.gaev.curriculum">Curriculum</a></dt>
-<dd>
-<div class="block">Возвращает список недостающих предметов относительно пройденных.</div>
-</dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#getRecords()" class="member-name-link">getRecords()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает список всех записей в зачетной книжке.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/curriculum/Curriculum.html#getRequiredSubjects()" class="member-name-link">getRequiredSubjects()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Curriculum.html" title="class in ru.nsu.gaev.curriculum">Curriculum</a></dt>
 <dd>
-<div class="block">Возвращает список всех требуемых предметов.</div>
+<div class="block">Возвращает список всех требований.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/CurriculumSubject.html#getSemester()" class="member-name-link">getSemester()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает семестр сдачи.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html#getSemester()" class="member-name-link">getSemester()</a> - Method in class ru.nsu.gaev.record.<a href="ru/nsu/gaev/record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/curriculum/Semester.html#getSemesterNumber()" class="member-name-link">getSemesterNumber()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></dt>
 <dd>
-<div class="block">Возвращает номер семестра.</div>
+<div class="block">Возвращает абсолютный номер семестра.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/Student.html#getStudentId()" class="member-name-link">getStudentId()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Student.html" title="class in ru.nsu.gaev.model">Student</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/curriculum/CurriculumSubject.html#getSubjectName()" class="member-name-link">getSubjectName()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает название предмета.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html#getSubjectName()" class="member-name-link">getSubjectName()</a> - Method in class ru.nsu.gaev.record.<a href="ru/nsu/gaev/record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/grade/Mark.html#getValue()" class="member-name-link">getValue()</a> - Method in enum class ru.nsu.gaev.grade.<a href="ru/nsu/gaev/grade/Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает числовое значение оценки.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/grade/Mark.html#GOOD" class="member-name-link">GOOD</a> - Enum constant in enum class ru.nsu.gaev.grade.<a href="ru/nsu/gaev/grade/Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -234,39 +254,43 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/curriculum/Semester.html#isEven()" class="member-name-link">isEven()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></dt>
 <dd>
-<div class="block">Проверяет, является ли семестр чётным.</div>
+<div class="block">Проверяет, является ли семестр чётным (весенним).</div>
 </dd>
 <dt><a href="ru/nsu/gaev/curriculum/Semester.html#isOdd()" class="member-name-link">isOdd()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></dt>
 <dd>
-<div class="block">Проверяет, является ли семестр нечётным.</div>
+<div class="block">Проверяет, является ли семестр нечётным (осенним).</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#isPaidEducation()" class="member-name-link">isPaidEducation()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает true, если обучение платное.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/grade/CreditStatus.html#isPassed()" class="member-name-link">isPassed()</a> - Method in enum class ru.nsu.gaev.grade.<a href="ru/nsu/gaev/grade/CreditStatus.html" title="enum class in ru.nsu.gaev.grade">CreditStatus</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Проверяет, сдан ли зачет.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/Main.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Main.html" title="class in ru.nsu.gaev">Main</a></dt>
 <dd>
-<div class="block">Точка входа приложения-примера.</div>
+<div class="block">Точка входа.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/Main.html" class="type-name-link" title="class in ru.nsu.gaev">Main</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
 <dd>
-<div class="block">Короткая демонстрация использования модели электронной зачетной книжки.</div>
+<div class="block">Демонстрация работы системы.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/Main.html" title="class in ru.nsu.gaev">Main</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/grade/Mark.html" class="type-name-link" title="enum class in ru.nsu.gaev.grade">Mark</a> - Enum Class in <a href="ru/nsu/gaev/grade/package-summary.html">ru.nsu.gaev.grade</a></dt>
 <dd>
-<div class="block">Перечисление для представления оценок (дифференцированных) в системе.</div>
+<div class="block">Перечисление для дифференцированных оценок.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/curriculum/Semester.html#next()" class="member-name-link">next()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></dt>
 <dd>
-<div class="block">Создает новый экземпляр Semester, представляющий следующий семестр.</div>
+<div class="block">Возвращает следующий семестр.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/grade/CreditStatus.html#NOT_PASSED" class="member-name-link">NOT_PASSED</a> - Enum constant in enum class ru.nsu.gaev.grade.<a href="ru/nsu/gaev/grade/CreditStatus.html" title="enum class in ru.nsu.gaev.grade">CreditStatus</a></dt>
 <dd>&nbsp;</dd>
@@ -275,7 +299,7 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/curriculum/Semester.html#of(int,int)" class="member-name-link">of(int, int)</a> - Static method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></dt>
 <dd>
-<div class="block">Создает семестр на основе номера курса и порядкового номера семестра в учебном году.</div>
+<div class="block">Создает семестр по номеру курса и номеру семестра в году.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
@@ -286,7 +310,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/curriculum/Semester.html#previous()" class="member-name-link">previous()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a></dt>
 <dd>
-<div class="block">Создает Optional, содержащий предыдущий семестр, если он существует.</div>
+<div class="block">Возвращает предыдущий семестр, если он существует.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
@@ -315,33 +339,33 @@ loadScripts(document, 'script');</script>
 <div class="block">Создает новый экземпляр класса Semester.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/ElectronicGradeBook.html#setCurriculum(ru.nsu.gaev.curriculum.Curriculum)" class="member-name-link">setCurriculum(Curriculum)</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/ElectronicGradeBook.html" title="class in ru.nsu.gaev.model">ElectronicGradeBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Устанавливает или обновляет учебный план.</div>
+</dd>
 <dt><a href="ru/nsu/gaev/model/Student.html" class="type-name-link" title="class in ru.nsu.gaev.model">Student</a> - Class in <a href="ru/nsu/gaev/model/package-summary.html">ru.nsu.gaev.model</a></dt>
 <dd>
-<div class="block">Класс, представляющий студента.</div>
+<div class="block">Класс студента.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/model/Student.html#%3Cinit%3E(java.lang.String,java.lang.String,ru.nsu.gaev.model.ElectronicGradeBook)" class="member-name-link">Student(String, String, ElectronicGradeBook)</a> - Constructor for class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Student.html" title="class in ru.nsu.gaev.model">Student</a></dt>
 <dd>
-<div class="block">Конструктор студента.</div>
+<div class="block">Создает студента.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html" class="type-name-link" title="class in ru.nsu.gaev.record">SubjectRecord</a> - Class in <a href="ru/nsu/gaev/record/package-summary.html">ru.nsu.gaev.record</a></dt>
 <dd>
-<div class="block">Класс, представляющий запись об оценке по предмету в зачетной книжке.</div>
+<div class="block">Запись в зачетной книжке о сдаче предмета.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html#%3Cinit%3E(java.lang.String,ru.nsu.gaev.curriculum.Semester,ru.nsu.gaev.curriculum.ControlType,ru.nsu.gaev.grade.CreditStatus)" class="member-name-link">SubjectRecord(String, Semester, ControlType, CreditStatus)</a> - Constructor for class ru.nsu.gaev.record.<a href="ru/nsu/gaev/record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a></dt>
 <dd>
-<div class="block">Конструктор записи со статусом зачета.</div>
+<div class="block">Создает запись с зачетом.</div>
 </dd>
 <dt><a href="ru/nsu/gaev/record/SubjectRecord.html#%3Cinit%3E(java.lang.String,ru.nsu.gaev.curriculum.Semester,ru.nsu.gaev.curriculum.ControlType,ru.nsu.gaev.grade.Mark)" class="member-name-link">SubjectRecord(String, Semester, ControlType, Mark)</a> - Constructor for class ru.nsu.gaev.record.<a href="ru/nsu/gaev/record/SubjectRecord.html" title="class in ru.nsu.gaev.record">SubjectRecord</a></dt>
 <dd>
-<div class="block">Конструктор записи с дифференцированной оценкой.</div>
+<div class="block">Создает запись с оценкой.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
 <dt><a href="ru/nsu/gaev/curriculum/ControlType.html#THESIS" class="member-name-link">THESIS</a> - Enum constant in enum class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/gaev/curriculum/Curriculum.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/Curriculum.html" title="class in ru.nsu.gaev.curriculum">Curriculum</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/gaev/curriculum/CurriculumSubject.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.curriculum.<a href="ru/nsu/gaev/curriculum/CurriculumSubject.html" title="class in ru.nsu.gaev.curriculum">CurriculumSubject</a></dt>
 <dd>&nbsp;</dd>

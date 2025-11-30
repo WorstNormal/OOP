@@ -83,7 +83,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">CreditStatus</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="CreditStatus.html" title="enum class in ru.nsu.gaev.grade">CreditStatus</a>&gt;</span></div>
-<div class="block">Перечисление для представления статуса зачета.</div>
+<div class="block">Статус зачета (сдан/не сдан).</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -124,10 +124,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDisplayName()" class="member-name-link">getDisplayName</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает текстовое представление.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPassed()" class="member-name-link">isPassed</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, сдан ли зачет.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="CreditStatus.html" title="enum class in ru.nsu.gaev.grade">CreditStatus</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -214,12 +218,22 @@ not permitted.)</div>
 <section class="detail" id="getDisplayName()">
 <h3>getDisplayName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getDisplayName</span>()</div>
+<div class="block">Возвращает текстовое представление.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>название статуса</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isPassed()">
 <h3>isPassed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPassed</span>()</div>
+<div class="block">Проверяет, сдан ли зачет.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true если сдан</dd>
+</dl>
 </section>
 </li>
 </ul>

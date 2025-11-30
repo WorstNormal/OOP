@@ -77,8 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">SubjectRecord</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Класс, представляющий запись об оценке по предмету в зачетной книжке.
- Может содержать либо дифференцированную оценку (Mark), либо статус зачета.</div>
+<div class="block">Запись в зачетной книжке о сдаче предмета.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -95,14 +94,14 @@ loadScripts(document, 'script');</script>
  <a href="../curriculum/ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a>&nbsp;controlType,
  <a href="../grade/CreditStatus.html" title="enum class in ru.nsu.gaev.grade">CreditStatus</a>&nbsp;creditStatus)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Конструктор записи со статусом зачета.</div>
+<div class="block">Создает запись с зачетом.</div>
 </div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,ru.nsu.gaev.curriculum.Semester,ru.nsu.gaev.curriculum.ControlType,ru.nsu.gaev.grade.Mark)" class="member-name-link">SubjectRecord</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;subjectName,
  <a href="../curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&nbsp;semester,
  <a href="../curriculum/ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a>&nbsp;controlType,
  <a href="../grade/Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a>&nbsp;mark)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Конструктор записи с дифференцированной оценкой.</div>
+<div class="block">Создает запись с оценкой.</div>
 </div>
 </div>
 </section>
@@ -130,7 +129,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGradeValue()" class="member-name-link">getGradeValue</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Получить числовое значение оценки.</div>
+<div class="block">Возвращает числовое представление оценки.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../grade/Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMark()" class="member-name-link">getMark</a>()</code></div>
@@ -171,13 +170,13 @@ loadScripts(document, 'script');</script>
  <a href="../curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&nbsp;semester,
  <a href="../curriculum/ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a>&nbsp;controlType,
  <a href="../grade/Mark.html" title="enum class in ru.nsu.gaev.grade">Mark</a>&nbsp;mark)</span></div>
-<div class="block">Конструктор записи с дифференцированной оценкой.</div>
+<div class="block">Создает запись с оценкой.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>subjectName</code> - название предмета</dd>
-<dd><code>semester</code> - семестр обучения</dd>
-<dd><code>controlType</code> - тип контроля (экзамен, зачет и т.д.)</dd>
-<dd><code>mark</code> - дифференцированная оценка</dd>
+<dd><code>subjectName</code> - предмет</dd>
+<dd><code>semester</code> - семестр</dd>
+<dd><code>controlType</code> - тип контроля</dd>
+<dd><code>mark</code> - оценка</dd>
 </dl>
 </section>
 </li>
@@ -188,13 +187,13 @@ loadScripts(document, 'script');</script>
  <a href="../curriculum/Semester.html" title="class in ru.nsu.gaev.curriculum">Semester</a>&nbsp;semester,
  <a href="../curriculum/ControlType.html" title="enum class in ru.nsu.gaev.curriculum">ControlType</a>&nbsp;controlType,
  <a href="../grade/CreditStatus.html" title="enum class in ru.nsu.gaev.grade">CreditStatus</a>&nbsp;creditStatus)</span></div>
-<div class="block">Конструктор записи со статусом зачета.</div>
+<div class="block">Создает запись с зачетом.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>subjectName</code> - название предмета</dd>
-<dd><code>semester</code> - семестр обучения</dd>
-<dd><code>controlType</code> - тип контроля (должен быть CREDIT)</dd>
-<dd><code>creditStatus</code> - статус зачета (зачет/не зачет)</dd>
+<dd><code>subjectName</code> - предмет</dd>
+<dd><code>semester</code> - семестр</dd>
+<dd><code>controlType</code> - тип контроля (CREDIT)</dd>
+<dd><code>creditStatus</code> - статус</dd>
 </dl>
 </section>
 </li>
@@ -240,22 +239,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getGradeValue()">
 <h3>getGradeValue</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getGradeValue</span>()</div>
-<div class="block">Получить числовое значение оценки.
- Для дифференцированной оценки возвращает значение Mark,
- для зачета возвращает 1 (зачет) или 0 (не зачет).</div>
+<div class="block">Возвращает числовое представление оценки.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>числовое значение оценки</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="toString()">
-<h3>toString</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
-<dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dd>значение оценки (2-5) или статус зачета (1 - сдан, 0 - не сдан)</dd>
 </dl>
 </section>
 </li>
@@ -276,6 +263,16 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="toString()">
+<h3>toString</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
 </dl>
 </section>
 </li>
