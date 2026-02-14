@@ -1,9 +1,9 @@
 package ru.nsu.gaev;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for PrimeChecker.
@@ -147,5 +147,52 @@ public class PrimeCheckerTest {
     assertTrue(checker.hasCompositeSequential());
     assertTrue(checker.hasCompositeParallel(2));
     assertTrue(checker.hasCompositeParallelStream());
+  }
+
+  @Test
+  public void testPrimeUtilsBoundaryCases() {
+    // Check numbers < 2
+    final int[] negativeAndZero = {-5, -1, 0, 1};
+    final PrimeChecker checker = new PrimeChecker(negativeAndZero);
+    // Since numbers < 2 are not prime, they are "not prime", so should return true (array has non-prime)
+    // Wait, the task says "has at least one number that is not prime".
+    // 1 is not prime. 0 is not prime. Negatives are not prime.
+    // So hasComposite... returns true if it finds a number that is !isPrime.
+    // PrimeUtils.isPrime returns false for these.
+    assertTrue(checker.hasCompositeSequential());
+  }
+
+  @Test
+  public void testPrimeUtilsCompositeOdd() {
+    // 9 is odd and composite (3*3)
+    final int[] arr = {9};
+    final PrimeChecker checker = new PrimeChecker(arr);
+    assertTrue(checker.hasCompositeSequential());
+  }
+
+  @Test
+  public void testPrimeUtilsEvenNumbers() {
+    // 4, 6, 8, 10 are even composites
+    final int[] arr = {4};
+    final PrimeChecker checker = new PrimeChecker(arr);
+    assertTrue(checker.hasCompositeSequential());
+  }
+
+  @Test
+  public void testNullArray() {
+    final ru.nsu.gaev.strategy.ParallelThreadsStrategy strategy =
+        new ru.nsu.gaev.strategy.ParallelThreadsStrategy(2);
+    assertFalse(strategy.hasComposite(null), "Null array should result in false");
+  }
+
+  @Test
+  public void testSetThreadCount() {
+     ru.nsu.gaev.strategy.ParallelThreadsStrategy strategy =
+        new ru.nsu.gaev.strategy.ParallelThreadsStrategy(1);
+     strategy.setThreadCount(4);
+     // We can indirectly verify by running it and hoping it doesn't crash,
+     // functionality should remain the same.
+     final int[] arr = {4, 5, 7};
+     assertTrue(strategy.hasComposite(arr));
   }
 }

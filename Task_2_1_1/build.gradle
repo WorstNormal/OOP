@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'checkstyle'
+    id 'application'
 }
 
 group = 'ru.nsu.gaev'
@@ -48,4 +49,8 @@ tasks.withType(Checkstyle) {
         xml.required = true
         html.required = true
     }
+}
+
+application {
+    mainClass = 'ru.nsu.gaev.Main'
 }

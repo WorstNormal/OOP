@@ -3,6 +3,7 @@ package ru.nsu.gaev;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
 
 /**
  * Main class for testing PrimeChecker performance.
@@ -25,6 +26,7 @@ public class Main {
     // Test set 3: extended set of large prime numbers
     final int[] test3 = generateLargePrimes();
 
+    // 1. Sequential execution
     System.out.println("=== Test 1: [6, 8, 7, 13, 5, 9, 4] ===");
     testAllMethods(test1, "test1_results.csv");
 
@@ -53,53 +55,68 @@ public class Main {
     // 1. Sequential execution
     System.out.println("1. Sequential execution:");
     final double[] seqTimes = new double[5];
+    // Warmup
+    checker.hasCompositeSequential();
+
     for (int run = 0; run < 5; run++) {
       final long startTime = System.nanoTime();
       final boolean result1 = checker.hasCompositeSequential();
       final long time1 = System.nanoTime() - startTime;
       final double timeMs = time1 / 1_000_000.0;
       seqTimes[run] = timeMs;
-      System.out.printf("   Run %d: %b (%.2f ms)%n", run + 1, result1,
-          timeMs);
-      csv.append(String.format("Sequential,1,%.2f%n", timeMs));
+      // System.out.printf("   Run %d: %b (%.2f ms)%n", run + 1, result1, timeMs);
     }
     final double avgSeq = average(seqTimes);
     System.out.printf("   Average: %.2f ms%n", avgSeq);
+    csv.append(String.format(Locale.US, "Sequential,1,%.2f%n", avgSeq));
 
     // 2. Parallel with Threads (different number of threads)
     System.out.println("2. Parallel with Threads:");
-    for (int threads = 1; threads <= 8; threads *= 2) {
-      System.out.printf("   Threads: %d%n", threads);
+    final int availableProcessors = Runtime.getRuntime().availableProcessors();
+    System.out.println("   Available processors: " + availableProcessors);
+
+    // Test for 1 to availableProcessors * 2 threads
+    for (int threads = 1; threads <= availableProcessors * 2; threads++) {
+      // Only test specific thread counts to keep graph readable but cover the range
+      // e.g. 1, 2, 3, 4, ... up to max, maybe skipping if too many
+      if (threads > 16 && threads % 4 != 0) {
+        continue;
+      }
+
       final double[] threadTimes = new double[5];
+      // Warmup
+      checker.hasCompositeParallel(threads);
+
       for (int run = 0; run < 5; run++) {
         final long startTime = System.nanoTime();
         final boolean result2 = checker.hasCompositeParallel(threads);
         final long time2 = System.nanoTime() - startTime;
         final double timeMs = time2 / 1_000_000.0;
         threadTimes[run] = timeMs;
-        System.out.printf("      Run %d: %b (%.2f ms)%n", run + 1, result2,
-            timeMs);
-        csv.append(String.format("Parallel,%d,%.2f%n", threads, timeMs));
       }
       final double avgThread = average(threadTimes);
-      System.out.printf("      Average: %.2f ms%n", avgThread);
+      System.out.printf("   Threads %d Average: %.2f ms%n", threads, avgThread);
+      csv.append(String.format(Locale.US, "Parallel,%d,%.2f%n", threads, avgThread));
     }
 
     // 3. ParallelStream
     System.out.println("3. ParallelStream:");
     final double[] streamTimes = new double[5];
+    // Warmup
+    checker.hasCompositeParallelStream();
+
     for (int run = 0; run < 5; run++) {
       final long startTime = System.nanoTime();
       final boolean result3 = checker.hasCompositeParallelStream();
       final long time3 = System.nanoTime() - startTime;
       final double timeMs = time3 / 1_000_000.0;
       streamTimes[run] = timeMs;
-      System.out.printf("   Run %d: %b (%.2f ms)%n", run + 1, result3,
-          timeMs);
-      csv.append(String.format("ParallelStream,AUTO,%.2f%n", timeMs));
+      // System.out.printf("   Run %d: %b (%.2f ms)%n", run + 1, result3, timeMs);
     }
     final double avgStream = average(streamTimes);
     System.out.printf("   Average: %.2f ms%n", avgStream);
+    csv.append(String.format(Locale.US, "ParallelStream,%d,%.2f%n",
+        availableProcessors, avgStream));
 
     // Save results to CSV in directory from System.getProperty("user.dir")
     final String userDir = System.getProperty("user.dir");
@@ -131,7 +148,8 @@ public class Main {
    * @return array of prime numbers
    */
   public static int[] generateLargePrimes() {
-    final int[] largePrimes = {
+    // Repeat the set of large primes to increase load
+    final int[] sourcePrimes = {
       2147483647, 2147483629, 2147483587, 2147483579, 2147483563,
       2147483549, 2147483543, 2147483539, 2147483537, 2147483527,
       2147483521, 2147483507, 2147483501, 2147483497, 2147483489,
@@ -144,6 +162,15 @@ public class Main {
       1699999837, 1600000007, 1599999937, 1599999829, 1599999827,
       1599999823
     };
+
+    // Create a larger array by repeating the source primes
+    // Increase multiplier to ensure heavy load
+    final int multiplier = 2000;
+    final int[] largePrimes = new int[sourcePrimes.length * multiplier];
+    for (int i = 0; i < multiplier; i++) {
+      System.arraycopy(sourcePrimes, 0, largePrimes, i * sourcePrimes.length,
+          sourcePrimes.length);
+    }
     return largePrimes;
   }
 }
