@@ -32,12 +32,12 @@
     &quot;assignee&quot;: &quot;WorstNormal&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/WorstNormal/OOP.git&quot;,
-    &quot;accountId&quot;: &quot;cf1dd959-809e-45cd-9890-22500731cfe9&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/WorstNormal/OOP.git",
+    "accountId": "cf1dd959-809e-45cd-9890-22500731cfe9"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -58,7 +58,7 @@
     "git-widget-placeholder": "Task__2__1__1",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/vlad/IdeaProjects/OOP/OOP/Task_1_2_2",
+    "last_opened_file_path": "C:/Users/vlad/IdeaProjects/OOP",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
