@@ -34,7 +34,7 @@ public class Main {
         testAllMethods(test2, "test2_results.csv");
 
         System.out.println("\n=== Test 3: Extended large primes ("
-            + test3.length + " numbers) ===");
+                + test3.length + " numbers) ===");
         testAllMethods(test3, "test3_results.csv");
 
         System.out.println("\nResults saved to CSV files.");
@@ -115,7 +115,7 @@ public class Main {
         final double avgStream = average(streamTimes);
         System.out.printf("   Average: %.2f ms%n", avgStream);
         csv.append(String.format(Locale.US, "ParallelStream,%d,%.2f%n",
-            availableProcessors, avgStream));
+                availableProcessors, avgStream));
 
         // Save results to CSV in directory from System.getProperty("user.dir")
         final String userDir = System.getProperty("user.dir");
@@ -167,7 +167,7 @@ public class Main {
         final int[] largePrimes = new int[sourcePrimes.length * multiplier];
         for (int i = 0; i < multiplier; i++) {
             System.arraycopy(sourcePrimes, 0, largePrimes, i * sourcePrimes.length,
-                sourcePrimes.length);
+                    sourcePrimes.length);
         }
         return largePrimes;
     }
