@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.gaev"},{"l":"ru.nsu.gaev.strategy"}];updateSearchResults();
