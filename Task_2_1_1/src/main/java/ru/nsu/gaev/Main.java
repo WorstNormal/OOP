@@ -21,7 +21,7 @@ public class Main {
 
         // Test set 2: large prime numbers
         final int[] test2 = {20319251, 6997901, 6997927, 6997937, 17858849,
-            6997967, 6998009, 6998029, 6998039, 20165149, 6998051, 6998053};
+                6997967, 6998009, 6998029, 6998039, 20165149, 6998051, 6998053};
 
         // Test set 3: extended set of large prime numbers
         final int[] test3 = generateLargePrimes();
@@ -43,7 +43,7 @@ public class Main {
     /**
      * Tests all methods with given array and saves results to CSV.
      *
-     * @param arr input array to test
+     * @param arr     input array to test
      * @param csvFile output file for results
      */
     private static void testAllMethods(int[] arr, String csvFile) {
@@ -78,6 +78,7 @@ public class Main {
         // Test for 1 to availableProcessors * 2 threads
         for (int threads = 1; threads <= availableProcessors * 2; threads++) {
             // Only test specific thread counts to keep graph readable but cover the range
+            // e.g. 1, 2, 3, 4, ... up to max, maybe skipping if too many
             if (threads > 16 && threads % 4 != 0) {
                 continue;
             }
@@ -149,20 +150,21 @@ public class Main {
     public static int[] generateLargePrimes() {
         // Repeat the set of large primes to increase load
         final int[] sourcePrimes = {
-            2147483647, 2147483629, 2147483587, 2147483579, 2147483563,
-            2147483549, 2147483543, 2147483539, 2147483537, 2147483527,
-            2147483521, 2147483507, 2147483501, 2147483497, 2147483489,
-            2147483477, 2147483471, 2147483461, 2147483459, 2147483449,
-            2147483443, 2100000037, 2099999999, 2099999927, 2099999891,
-            2099999837, 2000000011, 1999999937, 1999999829, 1999999827,
-            1999999823, 1900000007, 1899999937, 1899999831, 1899999829,
-            1899999823, 1800000023, 1799999999, 1799999927, 1799999891,
-            1799999837, 1700000003, 1699999999, 1699999927, 1699999891,
-            1699999837, 1600000007, 1599999937, 1599999829, 1599999827,
-            1599999823
+                2147483647, 2147483629, 2147483587, 2147483579, 2147483563,
+                2147483549, 2147483543, 2147483539, 2147483537, 2147483527,
+                2147483521, 2147483507, 2147483501, 2147483497, 2147483489,
+                2147483477, 2147483471, 2147483461, 2147483459, 2147483449,
+                2147483443, 2100000037, 2099999999, 2099999927, 2099999891,
+                2099999837, 2000000011, 1999999937, 1999999829, 1999999827,
+                1999999823, 1900000007, 1899999937, 1899999831, 1899999829,
+                1899999823, 1800000023, 1799999999, 1799999927, 1799999891,
+                1799999837, 1700000003, 1699999999, 1699999927, 1699999891,
+                1699999837, 1600000007, 1599999937, 1599999829, 1599999827,
+                1599999823
         };
 
         // Create a larger array by repeating the source primes
+        // Increase multiplier to ensure heavy load
         final int multiplier = 2000;
         final int[] largePrimes = new int[sourcePrimes.length * multiplier];
         for (int i = 0; i < multiplier; i++) {

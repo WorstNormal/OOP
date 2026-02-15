@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -72,16 +71,16 @@ public class MainTest {
             System.setProperty("user.dir", originalDir);
 
             // Check if CSV files were created
-            final File t1Csv = tempDir.resolve("test1_results.csv").toFile();
-            final File t2Csv = tempDir.resolve("test2_results.csv").toFile();
-            final File t3Csv = tempDir.resolve("test3_results.csv").toFile();
+            final File test1Csv = tempDir.resolve("test1_results.csv").toFile();
+            final File test2Csv = tempDir.resolve("test2_results.csv").toFile();
+            final File test3Csv = tempDir.resolve("test3_results.csv").toFile();
 
-            assertTrue(t1Csv.exists(), "test1_results.csv should exist");
-            assertTrue(t2Csv.exists(), "test2_results.csv should exist");
-            assertTrue(t3Csv.exists(), "test3_results.csv should exist");
+            assertTrue(test1Csv.exists(), "test1_results.csv should exist");
+            assertTrue(test2Csv.exists(), "test2_results.csv should exist");
+            assertTrue(test3Csv.exists(), "test3_results.csv should exist");
 
             // Verify CSV content
-            final String test1Content = Files.readString(t1Csv.toPath());
+            final String test1Content = Files.readString(test1Csv.toPath());
             assertTrue(test1Content.contains("Method,NumThreads,TimeMs"),
                     "CSV should have header");
             assertTrue(test1Content.contains("Sequential"),
