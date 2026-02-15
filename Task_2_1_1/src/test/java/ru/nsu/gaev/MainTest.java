@@ -55,7 +55,7 @@ public class MainTest {
     }
 
     @Test
-    public void testMainWithCSVFileGeneration(@TempDir Path tempDir)
+    public void testMainCsvGeneration(@TempDir Path tempDir)
             throws IOException {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         final PrintStream originalOut = System.out;

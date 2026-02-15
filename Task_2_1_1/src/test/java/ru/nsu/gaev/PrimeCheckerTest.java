@@ -154,7 +154,8 @@ public class PrimeCheckerTest {
         // Check numbers < 2
         final int[] negativeAndZero = {-5, -1, 0, 1};
         final PrimeChecker checker = new PrimeChecker(negativeAndZero);
-        // Since numbers < 2 are not prime, they are "not prime", so should return true (array has non-prime)
+        // Since numbers < 2 are not prime, they are "not prime",
+        // so should return true (array has non-prime)
         // Wait, the task says "has at least one number that is not prime".
         // 1 is not prime. 0 is not prime. Negatives are not prime.
         // So hasComposite... returns true if it finds a number that is !isPrime.

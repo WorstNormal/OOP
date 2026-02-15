@@ -1,7 +1,6 @@
 package ru.nsu.gaev.strategy;
 
 import java.util.Arrays;
-
 import ru.nsu.gaev.PrimeUtils;
 
 /**
