@@ -6,6 +6,7 @@ import ru.nsu.gaev.PrimeUtils;
  * Parallel execution strategy using java.lang.Thread.
  */
 public class ParallelThreadsStrategy implements PrimeCheckStrategy {
+
     private int threadCount;
 
     private volatile boolean foundComposite;
