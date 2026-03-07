@@ -33,7 +33,8 @@ public final class Main {
                     try {
                         // Simulate random order arrival interval (200-700 ms)
                         Thread.sleep(200 + (long) (Math.random() * 500));
-                    } catch (InterruptedException e) {
+                    } catch (InterruptedException e)
+                    {
                         Thread.currentThread().interrupt();
                         break;
                     }
