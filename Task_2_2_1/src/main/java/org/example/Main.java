@@ -1,17 +1,60 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+/**
+ * Main entry point for the pizzeria simulator.
+ */
+public final class Main {
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private Main() {
+        // Utility class
+    }
+
+    /**
+     * Main method.
+     *
+     * @param args command line arguments (not used)
+     */
+    public static void main(String[] args) {
+        try {
+            // Load configuration
+            PizzeriaConfig config = Pizzeria.loadConfig("config.json");
+
+            // Create and start the pizzeria
+            Pizzeria pizzeria = new Pizzeria(config);
+            pizzeria.start();
+
+            // Start thread that generates orders
+            Thread orderGenerator = new Thread(() -> {
+                while (pizzeria.isAcceptingOrders()) {
+                    pizzeria.placeOrder();
+                    try {
+                        // Simulate random order arrival interval (200-700 ms)
+                        Thread.sleep(200 + (long) (Math.random() * 500));
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                }
+            });
+            orderGenerator.start();
+
+            // Pizzeria works for the specified time
+            System.out.println("Pizzeria will work for " + config.getWorkingTimeMs() + " ms...");
+            Thread.sleep(config.getWorkingTimeMs());
+
+            // Shutdown
+            pizzeria.shutdown();
+
+            // Stop the order generator if it's still running
+            orderGenerator.interrupt();
+            orderGenerator.join();
+
+        } catch (Exception e) {
+            System.err.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
