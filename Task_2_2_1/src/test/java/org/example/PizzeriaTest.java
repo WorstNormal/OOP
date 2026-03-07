@@ -1,17 +1,20 @@
 package org.example;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.google.gson.Gson;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PizzeriaTest {
 
@@ -149,7 +152,7 @@ class PizzeriaTest {
         Thread.sleep(1000);
         pizzeria.shutdown();
 
-        // Все заказы должны быть доставлены
+        // Вс�� заказы должны быть доставлены
         for (Order order : orders) {
             assertEquals(OrderState.DELIVERED, order.getState());
         }
