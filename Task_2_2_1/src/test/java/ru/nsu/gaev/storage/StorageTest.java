@@ -1,8 +1,5 @@
 package ru.nsu.gaev.storage;
 
-import ru.nsu.gaev.model.Order;
-import ru.nsu.gaev.model.OrderState;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -11,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import ru.nsu.gaev.model.Order;
+import ru.nsu.gaev.model.OrderState;
 
 class StorageTest {
 

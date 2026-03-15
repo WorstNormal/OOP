@@ -1,9 +1,8 @@
 package ru.nsu.gaev.storage;
 
+import java.util.List;
 import ru.nsu.gaev.model.Order;
 import ru.nsu.gaev.model.OrderState;
-
-import java.util.List;
 
 /**
  * Склад готовой продукции вместимостью T пицц.

@@ -1,11 +1,10 @@
 package ru.nsu.gaev.staff;
 
+import java.util.List;
 import ru.nsu.gaev.model.Order;
 import ru.nsu.gaev.model.OrderState;
 import ru.nsu.gaev.storage.SharedQueue;
 import ru.nsu.gaev.storage.Storage;
-
-import java.util.List;
 
 /**
  * Пекарь - берет заказы из очереди, готовит пиццу и кладет ее на склад.

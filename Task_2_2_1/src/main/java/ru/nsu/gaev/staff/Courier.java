@@ -1,10 +1,9 @@
 package ru.nsu.gaev.staff;
 
+import java.util.List;
 import ru.nsu.gaev.model.Order;
 import ru.nsu.gaev.model.OrderState;
 import ru.nsu.gaev.storage.Storage;
-
-import java.util.List;
 
 /**
  * Курьер - берет пиццы со склада и доставляет их клиентам.

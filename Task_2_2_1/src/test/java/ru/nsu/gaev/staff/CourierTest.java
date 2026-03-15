@@ -1,15 +1,14 @@
 package ru.nsu.gaev.staff;
 
-import ru.nsu.gaev.model.Order;
-import ru.nsu.gaev.model.OrderState;
-import ru.nsu.gaev.storage.Storage;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import ru.nsu.gaev.model.Order;
+import ru.nsu.gaev.model.OrderState;
+import ru.nsu.gaev.storage.Storage;
 
 class CourierTest {
 

@@ -1,20 +1,19 @@
 package ru.nsu.gaev;
 
 import com.google.gson.Gson;
-import ru.nsu.gaev.config.PizzeriaConfig;
-import ru.nsu.gaev.model.Order;
-import ru.nsu.gaev.model.OrderState;
-import ru.nsu.gaev.storage.SharedQueue;
-import ru.nsu.gaev.storage.Storage;
-import ru.nsu.gaev.staff.Baker;
-import ru.nsu.gaev.staff.Courier;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import ru.nsu.gaev.config.PizzeriaConfig;
+import ru.nsu.gaev.model.Order;
+import ru.nsu.gaev.model.OrderState;
+import ru.nsu.gaev.staff.Baker;
+import ru.nsu.gaev.staff.Courier;
+import ru.nsu.gaev.storage.SharedQueue;
+import ru.nsu.gaev.storage.Storage;
 
 /**
  * Главный класс пиццерии - управляет производственным процессом.

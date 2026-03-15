@@ -1,9 +1,5 @@
 package ru.nsu.gaev;
 
-import ru.nsu.gaev.config.PizzeriaConfig;
-import ru.nsu.gaev.model.Order;
-import ru.nsu.gaev.model.OrderState;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -19,6 +15,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import ru.nsu.gaev.config.PizzeriaConfig;
+import ru.nsu.gaev.model.Order;
+import ru.nsu.gaev.model.OrderState;
 
 class PizzeriaTest {
 
