@@ -27,7 +27,8 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
-<li><a href="org/example/package-summary.html">Package</a></li>
+<li><a href="index.html">Overview</a></li>
+<li>Package</li>
 <li>Class</li>
 <li><a href="overview-tree.html">Tree</a></li>
 <li class="nav-bar-cell1-rev">Index</li>
@@ -51,328 +52,332 @@ loadScripts(document, 'script');</script>
 <a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
-<dt><a href="org/example/Baker.html" class="type-name-link" title="class in org.example">Baker</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Baker.html" class="type-name-link" title="class in ru.nsu.gaev.staff">Baker</a> - Class in <a href="ru/nsu/gaev/staff/package-summary.html">ru.nsu.gaev.staff</a></dt>
 <dd>
-<div class="block">Baker - takes orders from the queue, cooks pizza and puts it in storage.</div>
+<div class="block">Пекарь - берет заказы из очереди, готовит пиццу и кладет ее на склад.</div>
 </dd>
-<dt><a href="org/example/Baker.html#%3Cinit%3E(int,int,org.example.SharedQueue,org.example.Storage,java.util.List)" class="member-name-link">Baker(int, int, SharedQueue&lt;Order&gt;, Storage, List&lt;Order&gt;)</a> - Constructor for class org.example.<a href="org/example/Baker.html" title="class in org.example">Baker</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Baker.html#%3Cinit%3E(int,int,ru.nsu.gaev.storage.SharedQueue,ru.nsu.gaev.storage.Storage,java.util.List)" class="member-name-link">Baker(int, int, SharedQueue&lt;Order&gt;, Storage, List&lt;Order&gt;)</a> - Constructor for class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Baker.html" title="class in ru.nsu.gaev.staff">Baker</a></dt>
 <dd>
-<div class="block">Creates a new baker.</div>
+<div class="block">Создает нового пекаря.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.BakerConfig.html#%3Cinit%3E()" class="member-name-link">BakerConfig()</a> - Constructor for class org.example.<a href="org/example/PizzeriaConfig.BakerConfig.html" title="class in org.example">PizzeriaConfig.BakerConfig</a></dt>
-<dd>
-<div class="block">Default constructor for JSON deserialization.</div>
-</dd>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.BakerConfig.html#%3Cinit%3E()" class="member-name-link">BakerConfig()</a> - Constructor for class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.BakerConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig.BakerConfig</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
-<dt><a href="org/example/SharedQueue.html#close()" class="member-name-link">close()</a> - Method in class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#close()" class="member-name-link">close()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Closes the queue.</div>
+<div class="block">Закрывает очередь.</div>
 </dd>
-<dt><a href="org/example/Storage.html#close()" class="member-name-link">close()</a> - Method in class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#close()" class="member-name-link">close()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Closes storage (wakes up all waiting threads).</div>
+<div class="block">Закрывает склад (будит все ожидающие потоки).</div>
 </dd>
-<dt><a href="org/example/OrderState.html#COOKED" class="member-name-link">COOKED</a> - Enum constant in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#COOKED" class="member-name-link">COOKED</a> - Enum constant in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
-<div class="block">Pizza is cooked and ready for storage.</div>
+<div class="block">Пицца приготовлена и готова к отправке на склад.</div>
 </dd>
-<dt><a href="org/example/OrderState.html#COOKING" class="member-name-link">COOKING</a> - Enum constant in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#COOKING" class="member-name-link">COOKING</a> - Enum constant in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
-<div class="block">Order is being cooked by a baker.</div>
+<div class="block">Заказ готовится пекарем.</div>
 </dd>
-<dt><a href="org/example/Courier.html" class="type-name-link" title="class in org.example">Courier</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Courier.html" class="type-name-link" title="class in ru.nsu.gaev.staff">Courier</a> - Class in <a href="ru/nsu/gaev/staff/package-summary.html">ru.nsu.gaev.staff</a></dt>
 <dd>
-<div class="block">Courier - takes pizzas from storage and delivers them to customers.</div>
+<div class="block">Курьер - берет пиццы со склада и доставляет их клиентам.</div>
 </dd>
-<dt><a href="org/example/Courier.html#%3Cinit%3E(int,int,int,org.example.Storage,java.util.List)" class="member-name-link">Courier(int, int, int, Storage, List&lt;Order&gt;)</a> - Constructor for class org.example.<a href="org/example/Courier.html" title="class in org.example">Courier</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Courier.html#%3Cinit%3E(int,int,int,ru.nsu.gaev.storage.Storage,java.util.List)" class="member-name-link">Courier(int, int, int, Storage, List&lt;Order&gt;)</a> - Constructor for class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Courier.html" title="class in ru.nsu.gaev.staff">Courier</a></dt>
 <dd>
-<div class="block">Creates a new courier.</div>
+<div class="block">Создает нового курьера.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.CourierConfig.html#%3Cinit%3E()" class="member-name-link">CourierConfig()</a> - Constructor for class org.example.<a href="org/example/PizzeriaConfig.CourierConfig.html" title="class in org.example">PizzeriaConfig.CourierConfig</a></dt>
-<dd>
-<div class="block">Default constructor for JSON deserialization.</div>
-</dd>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html#%3Cinit%3E()" class="member-name-link">CourierConfig()</a> - Constructor for class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig.CourierConfig</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
-<dt><a href="org/example/OrderState.html#DELIVERED" class="member-name-link">DELIVERED</a> - Enum constant in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#DELIVERED" class="member-name-link">DELIVERED</a> - Enum constant in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
-<div class="block">Pizza has been delivered to the customer.</div>
+<div class="block">Пицца доставлена клиенту.</div>
 </dd>
-<dt><a href="org/example/OrderState.html#DELIVERING" class="member-name-link">DELIVERING</a> - Enum constant in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#DELIVERING" class="member-name-link">DELIVERING</a> - Enum constant in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
-<div class="block">Pizza is being delivered by a courier.</div>
+<div class="block">Пицца доставляется курьером.</div>
 </dd>
-<dt><a href="org/example/SharedQueue.html#drainAll()" class="member-name-link">drainAll()</a> - Method in class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#drainAll()" class="member-name-link">drainAll()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Returns all remaining elements (for serializing unfinished orders).</div>
+<div class="block">Возвращает все оставшиеся элементы (для сериализации незавершенных заказов).</div>
 </dd>
-<dt><a href="org/example/Storage.html#drainAll()" class="member-name-link">drainAll()</a> - Method in class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#drainAll()" class="member-name-link">drainAll()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Gets all remaining orders in storage (for serialization).</div>
+<div class="block">Получает все оставшиеся заказы на складе (для сериализации).</div>
 </dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
-<dt><a href="org/example/Baker.html#getBakerId()" class="member-name-link">getBakerId()</a> - Method in class org.example.<a href="org/example/Baker.html" title="class in org.example">Baker</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Baker.html#getBakerId()" class="member-name-link">getBakerId()</a> - Method in class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Baker.html" title="class in ru.nsu.gaev.staff">Baker</a></dt>
 <dd>
-<div class="block">Returns the baker's identifier.</div>
+<div class="block">Возвращает идентификатор пекаря.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.html#getBakers()" class="member-name-link">getBakers()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.html" title="class in org.example">PizzeriaConfig</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.html#getBakers()" class="member-name-link">getBakers()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the array of baker configurations.</div>
+<div class="block">Возвращает массив конфигураций пекарей.</div>
 </dd>
-<dt><a href="org/example/Storage.html#getCapacity()" class="member-name-link">getCapacity()</a> - Method in class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#getCapacity()" class="member-name-link">getCapacity()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Returns the storage capacity.</div>
+<div class="block">Возвращает вместимость склада.</div>
 </dd>
-<dt><a href="org/example/Baker.html#getCookingTimeMs()" class="member-name-link">getCookingTimeMs()</a> - Method in class org.example.<a href="org/example/Baker.html" title="class in org.example">Baker</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.BakerConfig.html#getCookingTimeMs()" class="member-name-link">getCookingTimeMs()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.BakerConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig.BakerConfig</a></dt>
 <dd>
-<div class="block">Returns the cooking time in milliseconds.</div>
+<div class="block">Возвращает время приготовления в миллисекундах.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.BakerConfig.html#getCookingTimeMs()" class="member-name-link">getCookingTimeMs()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.BakerConfig.html" title="class in org.example">PizzeriaConfig.BakerConfig</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Baker.html#getCookingTimeMs()" class="member-name-link">getCookingTimeMs()</a> - Method in class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Baker.html" title="class in ru.nsu.gaev.staff">Baker</a></dt>
 <dd>
-<div class="block">Returns the cooking time in milliseconds.</div>
+<div class="block">Возвращает время приготовления в миллисекундах.</div>
 </dd>
-<dt><a href="org/example/Courier.html#getCourierId()" class="member-name-link">getCourierId()</a> - Method in class org.example.<a href="org/example/Courier.html" title="class in org.example">Courier</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Courier.html#getCourierId()" class="member-name-link">getCourierId()</a> - Method in class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Courier.html" title="class in ru.nsu.gaev.staff">Courier</a></dt>
 <dd>
-<div class="block">Returns the courier's identifier.</div>
+<div class="block">Возвращает идентификатор курьера.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.html#getCouriers()" class="member-name-link">getCouriers()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.html" title="class in org.example">PizzeriaConfig</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.html#getCouriers()" class="member-name-link">getCouriers()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the array of courier configurations.</div>
+<div class="block">Возвращает массив конфигураций курьеров.</div>
 </dd>
-<dt><a href="org/example/Courier.html#getDeliveryTimeMs()" class="member-name-link">getDeliveryTimeMs()</a> - Method in class org.example.<a href="org/example/Courier.html" title="class in org.example">Courier</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html#getDeliveryTimeMs()" class="member-name-link">getDeliveryTimeMs()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig.CourierConfig</a></dt>
 <dd>
-<div class="block">Returns the delivery time in milliseconds.</div>
+<div class="block">Возвращает время доставки в миллисекундах.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.CourierConfig.html#getDeliveryTimeMs()" class="member-name-link">getDeliveryTimeMs()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.CourierConfig.html" title="class in org.example">PizzeriaConfig.CourierConfig</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Courier.html#getDeliveryTimeMs()" class="member-name-link">getDeliveryTimeMs()</a> - Method in class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Courier.html" title="class in ru.nsu.gaev.staff">Courier</a></dt>
 <dd>
-<div class="block">Returns the delivery time in milliseconds.</div>
+<div class="block">Возвращает время доставки в миллисекундах.</div>
 </dd>
-<dt><a href="org/example/OrderState.html#getDescription()" class="member-name-link">getDescription()</a> - Method in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#getDescription()" class="member-name-link">getDescription()</a> - Method in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
-<div class="block">Returns the human-readable description of the state.</div>
+<div class="block">Возвращает человекочитаемое описание состояния.</div>
 </dd>
-<dt><a href="org/example/Order.html#getId()" class="member-name-link">getId()</a> - Method in class org.example.<a href="org/example/Order.html" title="class in org.example">Order</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.BakerConfig.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.BakerConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig.BakerConfig</a></dt>
 <dd>
-<div class="block">Returns the order identifier.</div>
+<div class="block">Возвращает идентификатор пекаря.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.BakerConfig.html#getId()" class="member-name-link">getId()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.BakerConfig.html" title="class in org.example">PizzeriaConfig.BakerConfig</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig.CourierConfig</a></dt>
 <dd>
-<div class="block">Returns the baker's identifier.</div>
+<div class="block">Возвращает идентификатор курьера.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.CourierConfig.html#getId()" class="member-name-link">getId()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.CourierConfig.html" title="class in org.example">PizzeriaConfig.CourierConfig</a></dt>
+<dt><a href="ru/nsu/gaev/model/Order.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Order.html" title="class in ru.nsu.gaev.model">Order</a></dt>
 <dd>
-<div class="block">Returns the courier's identifier.</div>
+<div class="block">Возвращает идентификатор заказа.</div>
 </dd>
-<dt><a href="org/example/Order.html#getState()" class="member-name-link">getState()</a> - Method in class org.example.<a href="org/example/Order.html" title="class in org.example">Order</a></dt>
+<dt><a href="ru/nsu/gaev/model/Order.html#getState()" class="member-name-link">getState()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Order.html" title="class in ru.nsu.gaev.model">Order</a></dt>
 <dd>
-<div class="block">Returns the current state of the order.</div>
+<div class="block">Возвращает текущее состояние заказа.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.html#getStorageCapacity()" class="member-name-link">getStorageCapacity()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.html" title="class in org.example">PizzeriaConfig</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.html#getStorageCapacity()" class="member-name-link">getStorageCapacity()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the storage capacity.</div>
+<div class="block">Возвращает вместимость склада.</div>
 </dd>
-<dt><a href="org/example/Courier.html#getTrunkCapacity()" class="member-name-link">getTrunkCapacity()</a> - Method in class org.example.<a href="org/example/Courier.html" title="class in org.example">Courier</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html#getTrunkCapacity()" class="member-name-link">getTrunkCapacity()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig.CourierConfig</a></dt>
 <dd>
-<div class="block">Returns the trunk capacity.</div>
+<div class="block">Возвращает вместимость багажника.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.CourierConfig.html#getTrunkCapacity()" class="member-name-link">getTrunkCapacity()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.CourierConfig.html" title="class in org.example">PizzeriaConfig.CourierConfig</a></dt>
+<dt><a href="ru/nsu/gaev/staff/Courier.html#getTrunkCapacity()" class="member-name-link">getTrunkCapacity()</a> - Method in class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Courier.html" title="class in ru.nsu.gaev.staff">Courier</a></dt>
 <dd>
-<div class="block">Returns the trunk capacity.</div>
+<div class="block">Возвращает вместимость багажника.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.html#getWorkingTimeMs()" class="member-name-link">getWorkingTimeMs()</a> - Method in class org.example.<a href="org/example/PizzeriaConfig.html" title="class in org.example">PizzeriaConfig</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.html#getWorkingTimeMs()" class="member-name-link">getWorkingTimeMs()</a> - Method in class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the working time in milliseconds.</div>
+<div class="block">Возвращает время работы в миллисекундах.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
-<dt><a href="org/example/OrderState.html#IN_STORAGE" class="member-name-link">IN_STORAGE</a> - Enum constant in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#IN_STORAGE" class="member-name-link">IN_STORAGE</a> - Enum constant in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
-<div class="block">Pizza is stored in the storage.</div>
+<div class="block">Пицца находится на складе.</div>
 </dd>
-<dt><a href="org/example/Pizzeria.html#isAcceptingOrders()" class="member-name-link">isAcceptingOrders()</a> - Method in class org.example.<a href="org/example/Pizzeria.html" title="class in org.example">Pizzeria</a></dt>
+<dt><a href="ru/nsu/gaev/Pizzeria.html#isAcceptingOrders()" class="member-name-link">isAcceptingOrders()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Pizzeria.html" title="class in ru.nsu.gaev">Pizzeria</a></dt>
 <dd>
-<div class="block">Checks if the pizzeria is accepting orders.</div>
+<div class="block">Проверяет, принимает ли пиццерия заказы.</div>
 </dd>
-<dt><a href="org/example/SharedQueue.html#isClosed()" class="member-name-link">isClosed()</a> - Method in class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#isClosed()" class="member-name-link">isClosed()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Checks if the queue is closed.</div>
+<div class="block">Проверяет, закрыта ли очередь.</div>
 </dd>
-<dt><a href="org/example/Storage.html#isClosed()" class="member-name-link">isClosed()</a> - Method in class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#isClosed()" class="member-name-link">isClosed()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Checks if storage is closed.</div>
+<div class="block">Проверяет, закрыт ли склад.</div>
 </dd>
-<dt><a href="org/example/SharedQueue.html#isClosedAndEmpty()" class="member-name-link">isClosedAndEmpty()</a> - Method in class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#isClosedAndEmpty()" class="member-name-link">isClosedAndEmpty()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Checks if the queue is closed and empty.</div>
+<div class="block">Проверяет, закрыта ли очередь и пуста ли она.</div>
 </dd>
-<dt><a href="org/example/Storage.html#isClosedAndEmpty()" class="member-name-link">isClosedAndEmpty()</a> - Method in class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#isClosedAndEmpty()" class="member-name-link">isClosedAndEmpty()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Checks if storage is closed and empty.</div>
+<div class="block">Проверяет, закрыт ли склад и пуст ли он.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
-<dt><a href="org/example/Pizzeria.html#loadConfig(java.lang.String)" class="member-name-link">loadConfig(String)</a> - Static method in class org.example.<a href="org/example/Pizzeria.html" title="class in org.example">Pizzeria</a></dt>
+<dt><a href="ru/nsu/gaev/Pizzeria.html#loadConfig(java.lang.String)" class="member-name-link">loadConfig(String)</a> - Static method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Pizzeria.html" title="class in ru.nsu.gaev">Pizzeria</a></dt>
 <dd>
-<div class="block">Loads pizzeria configuration from a JSON file.</div>
+<div class="block">Загружает конфигурацию пиццерии из JSON файла.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
-<dt><a href="org/example/Main.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class org.example.<a href="org/example/Main.html" title="class in org.example">Main</a></dt>
+<dt><a href="ru/nsu/gaev/Main.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Main.html" title="class in ru.nsu.gaev">Main</a></dt>
 <dd>
-<div class="block">Main method.</div>
+<div class="block">Основной метод.</div>
 </dd>
-<dt><a href="org/example/Main.html" class="type-name-link" title="class in org.example">Main</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/Main.html" class="type-name-link" title="class in ru.nsu.gaev">Main</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
 <dd>
-<div class="block">Main entry point for the pizzeria simulator.</div>
+<div class="block">Главная точка входа в симулятор пиццерии.</div>
 </dd>
+<dt><a href="ru/nsu/gaev/Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/Main.html" title="class in ru.nsu.gaev">Main</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:O">O</h2>
 <dl class="index">
-<dt><a href="org/example/Order.html" class="type-name-link" title="class in org.example">Order</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/model/Order.html" class="type-name-link" title="class in ru.nsu.gaev.model">Order</a> - Class in <a href="ru/nsu/gaev/model/package-summary.html">ru.nsu.gaev.model</a></dt>
 <dd>
-<div class="block">Pizza order.</div>
+<div class="block">Заказ пиццы.</div>
 </dd>
-<dt><a href="org/example/Order.html#%3Cinit%3E(int)" class="member-name-link">Order(int)</a> - Constructor for class org.example.<a href="org/example/Order.html" title="class in org.example">Order</a></dt>
+<dt><a href="ru/nsu/gaev/model/Order.html#%3Cinit%3E(int)" class="member-name-link">Order(int)</a> - Constructor for class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Order.html" title="class in ru.nsu.gaev.model">Order</a></dt>
 <dd>
-<div class="block">Creates a new order with the given id.</div>
+<div class="block">Создает новый заказ с заданным id.</div>
 </dd>
-<dt><a href="org/example/OrderState.html" class="type-name-link" title="enum class in org.example">OrderState</a> - Enum Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html" class="type-name-link" title="enum class in ru.nsu.gaev.model">OrderState</a> - Enum Class in <a href="ru/nsu/gaev/model/package-summary.html">ru.nsu.gaev.model</a></dt>
 <dd>
-<div class="block">Possible states of an order in the pizzeria.</div>
+<div class="block">Возможные состояния заказа в пиццерии.</div>
 </dd>
-<dt><a href="org/example/package-summary.html">org.example</a> - package org.example</dt>
-<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
 <dl class="index">
-<dt><a href="org/example/Pizzeria.html" class="type-name-link" title="class in org.example">Pizzeria</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/Pizzeria.html" class="type-name-link" title="class in ru.nsu.gaev">Pizzeria</a> - Class in <a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a></dt>
 <dd>
-<div class="block">Main pizzeria class - manages the production process.</div>
+<div class="block">Главный класс пиццерии - управляет производственным процессом.</div>
 </dd>
-<dt><a href="org/example/Pizzeria.html#%3Cinit%3E(org.example.PizzeriaConfig)" class="member-name-link">Pizzeria(PizzeriaConfig)</a> - Constructor for class org.example.<a href="org/example/Pizzeria.html" title="class in org.example">Pizzeria</a></dt>
+<dt><a href="ru/nsu/gaev/Pizzeria.html#%3Cinit%3E(ru.nsu.gaev.config.PizzeriaConfig)" class="member-name-link">Pizzeria(PizzeriaConfig)</a> - Constructor for class ru.nsu.gaev.<a href="ru/nsu/gaev/Pizzeria.html" title="class in ru.nsu.gaev">Pizzeria</a></dt>
 <dd>
-<div class="block">Creates a new pizzeria with the given configuration.</div>
+<div class="block">Создает новую пиццерию с заданной конфигурацией.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.html" class="type-name-link" title="class in org.example">PizzeriaConfig</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.html" class="type-name-link" title="class in ru.nsu.gaev.config">PizzeriaConfig</a> - Class in <a href="ru/nsu/gaev/config/package-summary.html">ru.nsu.gaev.config</a></dt>
 <dd>
-<div class="block">Pizzeria configuration loaded from a JSON file.</div>
+<div class="block">Конфигурация пиццерии, загружаемая из JSON файла.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.html#%3Cinit%3E()" class="member-name-link">PizzeriaConfig()</a> - Constructor for class org.example.<a href="org/example/PizzeriaConfig.html" title="class in org.example">PizzeriaConfig</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.html#%3Cinit%3E()" class="member-name-link">PizzeriaConfig()</a> - Constructor for class ru.nsu.gaev.config.<a href="ru/nsu/gaev/config/PizzeriaConfig.html" title="class in ru.nsu.gaev.config">PizzeriaConfig</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.BakerConfig.html" class="type-name-link" title="class in ru.nsu.gaev.config">PizzeriaConfig.BakerConfig</a> - Class in <a href="ru/nsu/gaev/config/package-summary.html">ru.nsu.gaev.config</a></dt>
 <dd>
-<div class="block">Default constructor for JSON deserialization.</div>
+<div class="block">Конфигурация отдельного пекаря.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.BakerConfig.html" class="type-name-link" title="class in org.example">PizzeriaConfig.BakerConfig</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/config/PizzeriaConfig.CourierConfig.html" class="type-name-link" title="class in ru.nsu.gaev.config">PizzeriaConfig.CourierConfig</a> - Class in <a href="ru/nsu/gaev/config/package-summary.html">ru.nsu.gaev.config</a></dt>
 <dd>
-<div class="block">Configuration for a single baker.</div>
+<div class="block">Конфигурация отдельного курьера.</div>
 </dd>
-<dt><a href="org/example/PizzeriaConfig.CourierConfig.html" class="type-name-link" title="class in org.example">PizzeriaConfig.CourierConfig</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/Pizzeria.html#placeOrder()" class="member-name-link">placeOrder()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Pizzeria.html" title="class in ru.nsu.gaev">Pizzeria</a></dt>
 <dd>
-<div class="block">Configuration for a single courier.</div>
+<div class="block">Размещает новый заказ в очереди.</div>
 </dd>
-<dt><a href="org/example/Pizzeria.html#placeOrder()" class="member-name-link">placeOrder()</a> - Method in class org.example.<a href="org/example/Pizzeria.html" title="class in org.example">Pizzeria</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#put(ru.nsu.gaev.model.Order)" class="member-name-link">put(Order)</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Places a new order in the queue.</div>
+<div class="block">Кладет пиццу на склад.</div>
 </dd>
-<dt><a href="org/example/Storage.html#put(org.example.Order)" class="member-name-link">put(Order)</a> - Method in class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Puts a pizza in storage.</div>
-</dd>
-<dt><a href="org/example/SharedQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
-<dd>
-<div class="block">Adds an element to the queue.</div>
+<div class="block">Добавляет элемент в очередь.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:Q">Q</h2>
 <dl class="index">
-<dt><a href="org/example/OrderState.html#QUEUED" class="member-name-link">QUEUED</a> - Enum constant in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#QUEUED" class="member-name-link">QUEUED</a> - Enum constant in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
-<div class="block">Order is waiting in the queue.</div>
+<div class="block">Заказ ожидает в очереди.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
-<dt><a href="org/example/Baker.html#run()" class="member-name-link">run()</a> - Method in class org.example.<a href="org/example/Baker.html" title="class in org.example">Baker</a></dt>
+<dt><a href="ru/nsu/gaev/package-summary.html">ru.nsu.gaev</a> - package ru.nsu.gaev</dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/example/Courier.html#run()" class="member-name-link">run()</a> - Method in class org.example.<a href="org/example/Courier.html" title="class in org.example">Courier</a></dt>
+<dt><a href="ru/nsu/gaev/config/package-summary.html">ru.nsu.gaev.config</a> - package ru.nsu.gaev.config</dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/model/package-summary.html">ru.nsu.gaev.model</a> - package ru.nsu.gaev.model</dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/staff/package-summary.html">ru.nsu.gaev.staff</a> - package ru.nsu.gaev.staff</dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/storage/package-summary.html">ru.nsu.gaev.storage</a> - package ru.nsu.gaev.storage</dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/staff/Baker.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Baker.html" title="class in ru.nsu.gaev.staff">Baker</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/gaev/staff/Courier.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.gaev.staff.<a href="ru/nsu/gaev/staff/Courier.html" title="class in ru.nsu.gaev.staff">Courier</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
-<dt><a href="org/example/Order.html#setState(org.example.OrderState)" class="member-name-link">setState(OrderState)</a> - Method in class org.example.<a href="org/example/Order.html" title="class in org.example">Order</a></dt>
+<dt><a href="ru/nsu/gaev/model/Order.html#setState(ru.nsu.gaev.model.OrderState)" class="member-name-link">setState(OrderState)</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Order.html" title="class in ru.nsu.gaev.model">Order</a></dt>
 <dd>
-<div class="block">Sets the state of the order and prints a status message.</div>
+<div class="block">Устанавливает состояние заказа и выводит сообщение о статусе.</div>
 </dd>
-<dt><a href="org/example/SharedQueue.html" class="type-name-link" title="class in org.example">SharedQueue</a>&lt;<a href="org/example/SharedQueue.html" title="type parameter in SharedQueue">T</a>&gt; - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html" class="type-name-link" title="class in ru.nsu.gaev.storage">SharedQueue</a>&lt;<a href="ru/nsu/gaev/storage/SharedQueue.html" title="type parameter in SharedQueue">T</a>&gt; - Class in <a href="ru/nsu/gaev/storage/package-summary.html">ru.nsu.gaev.storage</a></dt>
 <dd>
-<div class="block">Thread-safe queue based on LinkedList and synchronized.</div>
+<div class="block">Потокобезопасная очередь, основанная на LinkedList и синхронизации.</div>
 </dd>
-<dt><a href="org/example/SharedQueue.html#%3Cinit%3E()" class="member-name-link">SharedQueue()</a> - Constructor for class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#%3Cinit%3E()" class="member-name-link">SharedQueue()</a> - Constructor for class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Creates a queue with unlimited capacity.</div>
+<div class="block">Создает очередь с неограниченной вместимостью.</div>
 </dd>
-<dt><a href="org/example/SharedQueue.html#%3Cinit%3E(int)" class="member-name-link">SharedQueue(int)</a> - Constructor for class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#%3Cinit%3E(int)" class="member-name-link">SharedQueue(int)</a> - Constructor for class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Creates a queue with the given maximum capacity.</div>
+<div class="block">Создает очередь с заданной максимальной вместимостью.</div>
 </dd>
-<dt><a href="org/example/Pizzeria.html#shutdown()" class="member-name-link">shutdown()</a> - Method in class org.example.<a href="org/example/Pizzeria.html" title="class in org.example">Pizzeria</a></dt>
+<dt><a href="ru/nsu/gaev/Pizzeria.html#shutdown()" class="member-name-link">shutdown()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Pizzeria.html" title="class in ru.nsu.gaev">Pizzeria</a></dt>
 <dd>
-<div class="block">Shuts down the pizzeria.</div>
+<div class="block">Закрывает пиццерию.</div>
 </dd>
-<dt><a href="org/example/SharedQueue.html#size()" class="member-name-link">size()</a> - Method in class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#size()" class="member-name-link">size()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Returns the current size of the queue.</div>
+<div class="block">Возвращает текущий размер очереди.</div>
 </dd>
-<dt><a href="org/example/Storage.html#size()" class="member-name-link">size()</a> - Method in class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#size()" class="member-name-link">size()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Returns the current number of pizzas in storage.</div>
+<div class="block">Возвращает текущее количество пицц на складе.</div>
 </dd>
-<dt><a href="org/example/Pizzeria.html#start()" class="member-name-link">start()</a> - Method in class org.example.<a href="org/example/Pizzeria.html" title="class in org.example">Pizzeria</a></dt>
+<dt><a href="ru/nsu/gaev/Pizzeria.html#start()" class="member-name-link">start()</a> - Method in class ru.nsu.gaev.<a href="ru/nsu/gaev/Pizzeria.html" title="class in ru.nsu.gaev">Pizzeria</a></dt>
 <dd>
-<div class="block">Starts the pizzeria: creates baker and courier threads.</div>
+<div class="block">Запускает пиццерию: создает потоки пекарей и курьеров.</div>
 </dd>
-<dt><a href="org/example/Storage.html" class="type-name-link" title="class in org.example">Storage</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html" class="type-name-link" title="class in ru.nsu.gaev.storage">Storage</a> - Class in <a href="ru/nsu/gaev/storage/package-summary.html">ru.nsu.gaev.storage</a></dt>
 <dd>
-<div class="block">Finished product storage with capacity of T pizzas.</div>
+<div class="block">Склад готовой продукции вместимостью T пицц.</div>
 </dd>
-<dt><a href="org/example/Storage.html#%3Cinit%3E(int)" class="member-name-link">Storage(int)</a> - Constructor for class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#%3Cinit%3E(int)" class="member-name-link">Storage(int)</a> - Constructor for class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Creates a storage with the given capacity.</div>
+<div class="block">Создает склад с заданной вместимостью.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
-<dt><a href="org/example/SharedQueue.html#take()" class="member-name-link">take()</a> - Method in class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#take()" class="member-name-link">take()</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Removes and returns an element from the queue.</div>
+<div class="block">Удаляет и возвращает элемент из очереди.</div>
 </dd>
-<dt><a href="org/example/SharedQueue.html#takeUpTo(int)" class="member-name-link">takeUpTo(int)</a> - Method in class org.example.<a href="org/example/SharedQueue.html" title="class in org.example">SharedQueue</a></dt>
+<dt><a href="ru/nsu/gaev/storage/SharedQueue.html#takeUpTo(int)" class="member-name-link">takeUpTo(int)</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/SharedQueue.html" title="class in ru.nsu.gaev.storage">SharedQueue</a></dt>
 <dd>
-<div class="block">Removes and returns up to maxCount elements from the queue.</div>
+<div class="block">Удаляет и возвращает до maxCount элементов из очереди.</div>
 </dd>
-<dt><a href="org/example/Storage.html#takeUpTo(int)" class="member-name-link">takeUpTo(int)</a> - Method in class org.example.<a href="org/example/Storage.html" title="class in org.example">Storage</a></dt>
+<dt><a href="ru/nsu/gaev/storage/Storage.html#takeUpTo(int)" class="member-name-link">takeUpTo(int)</a> - Method in class ru.nsu.gaev.storage.<a href="ru/nsu/gaev/storage/Storage.html" title="class in ru.nsu.gaev.storage">Storage</a></dt>
 <dd>
-<div class="block">Takes up to maxCount pizzas from storage.</div>
+<div class="block">Берет до maxCount пицц со склада.</div>
 </dd>
-<dt><a href="org/example/Order.html#toString()" class="member-name-link">toString()</a> - Method in class org.example.<a href="org/example/Order.html" title="class in org.example">Order</a></dt>
+<dt><a href="ru/nsu/gaev/model/Order.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/Order.html" title="class in ru.nsu.gaev.model">Order</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/example/OrderState.html#toString()" class="member-name-link">toString()</a> - Method in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#toString()" class="member-name-link">toString()</a> - Method in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
-<dt><a href="org/example/OrderState.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
-<dt><a href="org/example/OrderState.html#values()" class="member-name-link">values()</a> - Static method in enum class org.example.<a href="org/example/OrderState.html" title="enum class in org.example">OrderState</a></dt>
+<dt><a href="ru/nsu/gaev/model/OrderState.html#values()" class="member-name-link">values()</a> - Static method in enum class ru.nsu.gaev.model.<a href="ru/nsu/gaev/model/OrderState.html" title="enum class in ru.nsu.gaev.model">OrderState</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>

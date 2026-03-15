@@ -1,1 +1,5 @@
-org.example
+ru.nsu.gaev
+ru.nsu.gaev.config
+ru.nsu.gaev.model
+ru.nsu.gaev.staff
+ru.nsu.gaev.storage
