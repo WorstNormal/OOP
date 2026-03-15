@@ -1,9 +1,14 @@
-package org.example;
+package ru.nsu.gaev.staff;
+
+import ru.nsu.gaev.model.Order;
+import ru.nsu.gaev.model.OrderState;
+import ru.nsu.gaev.storage.SharedQueue;
+import ru.nsu.gaev.storage.Storage;
 
 import java.util.List;
 
 /**
- * Baker - takes orders from the queue, cooks pizza and puts it in storage.
+ * Пекарь - берет заказы из очереди, готовит пиццу и кладет ее на склад.
  */
 public class Baker implements Runnable {
     private final int id;
@@ -13,13 +18,13 @@ public class Baker implements Runnable {
     private final List<Order> interruptedOrders;
 
     /**
-     * Creates a new baker.
+     * Создает нового пекаря.
      *
-     * @param id                baker identifier
-     * @param cookingTimeMs     time to cook one pizza (ms)
-     * @param orderQueue        shared order queue
-     * @param storage           finished product storage
-     * @param interruptedOrders list to save interrupted orders
+     * @param id                идентификатор пекаря
+     * @param cookingTimeMs     время приготовления одной пиццы (мс)
+     * @param orderQueue        общая очередь заказов
+     * @param storage           склад готовой продукции
+     * @param interruptedOrders список для сохранения прерванных заказов
      */
     public Baker(int id, int cookingTimeMs, SharedQueue<Order> orderQueue,
                  Storage storage, List<Order> interruptedOrders) {
@@ -37,25 +42,25 @@ public class Baker implements Runnable {
             try {
                 currentOrder = orderQueue.take();
                 if (currentOrder == null) {
-                    // Queue is closed and empty - stop working
+                    // Очередь закрыта и пуста - прекращаем работу
                     break;
                 }
 
-                // Start cooking
+                // Начало приготовления
                 currentOrder.setState(OrderState.COOKING);
                 Thread.sleep(cookingTimeMs);
 
                 currentOrder.setState(OrderState.COOKED);
 
-                // Try to put in storage (wait if storage is full)
+                // Попытка положить на склад (ожидание, если склад полон)
                 if (!storage.put(currentOrder)) {
-                    // Storage is closed - save the order
+                    // Склад закрыт - сохраняем заказ
                     interruptedOrders.add(currentOrder);
                     break;
                 }
-                currentOrder = null; // Order successfully processed
+                currentOrder = null; // Заказ успешно обработан
             } catch (InterruptedException e) {
-                System.out.println("Baker #" + id + " interrupted.");
+                System.out.println("Пекарь #" + id + " прерван.");
                 if (currentOrder != null) {
                     interruptedOrders.add(currentOrder);
                 }
@@ -63,22 +68,22 @@ public class Baker implements Runnable {
                 break;
             }
         }
-        System.out.println("Baker #" + id + " finished work.");
+        System.out.println("Пекарь #" + id + " закончил работу.");
     }
 
     /**
-     * Returns the baker's identifier.
+     * Возвращает идентификатор пекаря.
      *
-     * @return baker id
+     * @return id пекаря
      */
     public int getBakerId() {
         return id;
     }
 
     /**
-     * Returns the cooking time in milliseconds.
+     * Возвращает время приготовления в миллисекундах.
      *
-     * @return cooking time in ms
+     * @return время приготовления в мс
      */
     public int getCookingTimeMs() {
         return cookingTimeMs;

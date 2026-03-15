@@ -1,4 +1,4 @@
-package org.example;
+package ru.nsu.gaev.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Timeout;
 class SharedQueueTest {
 
     @Test
-    void testPutAndTake() {
+    void testPutAndTake() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         assertTrue(queue.put(1));
         assertTrue(queue.put(2));
@@ -28,7 +28,7 @@ class SharedQueueTest {
     }
 
     @Test
-    void testQueueWithCapacity() {
+    void testQueueWithCapacity() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>(2);
         assertTrue(queue.put(1));
         assertTrue(queue.put(2));
@@ -44,7 +44,7 @@ class SharedQueueTest {
     }
 
     @Test
-    void testIsClosedAndEmpty() {
+    void testIsClosedAndEmpty() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         queue.put(1);
         assertFalse(queue.isClosedAndEmpty());
@@ -57,21 +57,21 @@ class SharedQueueTest {
     }
 
     @Test
-    void testPutOnClosedQueue() {
+    void testPutOnClosedQueue() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         queue.close();
         assertFalse(queue.put(1));
     }
 
     @Test
-    void testTakeFromClosedEmptyQueue() {
+    void testTakeFromClosedEmptyQueue() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         queue.close();
         assertNull(queue.take());
     }
 
     @Test
-    void testTakeFromClosedNonEmptyQueue() {
+    void testTakeFromClosedNonEmptyQueue() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         queue.put(1);
         queue.close();
@@ -80,7 +80,7 @@ class SharedQueueTest {
     }
 
     @Test
-    void testTakeUpTo() {
+    void testTakeUpTo() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         queue.put(1);
         queue.put(2);
@@ -94,7 +94,7 @@ class SharedQueueTest {
     }
 
     @Test
-    void testTakeUpToMoreThanAvailable() {
+    void testTakeUpToMoreThanAvailable() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         queue.put(1);
         queue.put(2);
@@ -105,7 +105,7 @@ class SharedQueueTest {
     }
 
     @Test
-    void testTakeUpToFromClosedEmptyQueue() {
+    void testTakeUpToFromClosedEmptyQueue() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         queue.close();
         List<Integer> items = queue.takeUpTo(5);
@@ -113,7 +113,7 @@ class SharedQueueTest {
     }
 
     @Test
-    void testDrainAll() {
+    void testDrainAll() throws InterruptedException {
         SharedQueue<Integer> queue = new SharedQueue<>();
         queue.put(1);
         queue.put(2);
@@ -133,7 +133,11 @@ class SharedQueueTest {
 
         Thread consumer = new Thread(() -> {
             started.countDown();
-            result.set(queue.take());
+            try {
+                result.set(queue.take());
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         consumer.start();
 
@@ -155,7 +159,11 @@ class SharedQueueTest {
 
         Thread consumer = new Thread(() -> {
             started.countDown();
-            result.set(queue.take());
+            try {
+                result.set(queue.take());
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         consumer.start();
 
@@ -179,7 +187,11 @@ class SharedQueueTest {
 
         Thread producer = new Thread(() -> {
             started.countDown();
-            added.set(queue.put(2));
+            try {
+                added.set(queue.put(2));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         producer.start();
 
@@ -203,7 +215,11 @@ class SharedQueueTest {
 
         Thread producer = new Thread(() -> {
             started.countDown();
-            added.set(queue.put(2));
+            try {
+                added.set(queue.put(2));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         producer.start();
 
@@ -225,7 +241,11 @@ class SharedQueueTest {
 
         Thread consumer = new Thread(() -> {
             started.countDown();
-            result.set(queue.takeUpTo(3));
+            try {
+                result.set(queue.takeUpTo(3));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         consumer.start();
 
@@ -247,7 +267,11 @@ class SharedQueueTest {
         queue.put(1);
 
         Thread producer = new Thread(() -> {
-            queue.put(2);
+            try {
+                queue.put(2);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         producer.start();
 
@@ -264,7 +288,11 @@ class SharedQueueTest {
         SharedQueue<Integer> queue = new SharedQueue<>();
 
         Thread consumer = new Thread(() -> {
-            queue.take();
+            try {
+                queue.take();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         consumer.start();
 
@@ -281,7 +309,11 @@ class SharedQueueTest {
         SharedQueue<Integer> queue = new SharedQueue<>();
 
         Thread consumer = new Thread(() -> {
-            queue.takeUpTo(5);
+            try {
+                queue.takeUpTo(5);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         consumer.start();
 

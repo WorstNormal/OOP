@@ -1,4 +1,8 @@
-package org.example;
+package ru.nsu.gaev;
+
+import ru.nsu.gaev.config.PizzeriaConfig;
+import ru.nsu.gaev.model.Order;
+import ru.nsu.gaev.model.OrderState;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

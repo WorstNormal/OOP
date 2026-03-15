@@ -1,4 +1,7 @@
-package org.example;
+package ru.nsu.gaev.storage;
+
+import ru.nsu.gaev.model.Order;
+import ru.nsu.gaev.model.OrderState;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,7 +15,7 @@ import org.junit.jupiter.api.Timeout;
 class StorageTest {
 
     @Test
-    void testPutAndTakeUpTo() {
+    void testPutAndTakeUpTo() throws InterruptedException {
         Storage storage = new Storage(5);
         Order order1 = new Order(1);
         Order order2 = new Order(2);
@@ -49,7 +52,7 @@ class StorageTest {
     }
 
     @Test
-    void testIsClosedAndEmpty() {
+    void testIsClosedAndEmpty() throws InterruptedException {
         Storage storage = new Storage(5);
         Order order = new Order(1);
         storage.put(order);
@@ -63,7 +66,7 @@ class StorageTest {
     }
 
     @Test
-    void testDrainAll() {
+    void testDrainAll() throws InterruptedException {
         Storage storage = new Storage(5);
         storage.put(new Order(1));
         storage.put(new Order(2));
@@ -76,7 +79,7 @@ class StorageTest {
 
     @Test
     @Timeout(5)
-    void testPutOnClosedStorage() {
+    void testPutOnClosedStorage() throws InterruptedException {
         Storage storage = new Storage(5);
         storage.close();
         Order order = new Order(1);
@@ -87,7 +90,7 @@ class StorageTest {
 
     @Test
     @Timeout(5)
-    void testTakeUpToFromClosedEmptyStorage() {
+    void testTakeUpToFromClosedEmptyStorage() throws InterruptedException {
         Storage storage = new Storage(5);
         storage.close();
         List<Order> orders = storage.takeUpTo(3);

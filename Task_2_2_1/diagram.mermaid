@@ -1,0 +1,139 @@
+classDiagram
+    class Main {
+        +main(String[] args)
+    }
+
+    class Pizzeria {
+        -PizzeriaConfig config
+        -SharedQueue orderQueue
+        -Storage storage
+        -List bakerThreads
+        -List courierThreads
+        -List interruptedOrders
+        -AtomicInteger orderCounter
+        -boolean acceptingOrders
+        +Pizzeria(PizzeriaConfig config)
+        +start()
+        +placeOrder() Order
+        +shutdown()
+        +isAcceptingOrders() boolean
+        +static loadConfig(String path) PizzeriaConfig
+    }
+
+    class PizzeriaConfig {
+        -BakerConfig[] bakers
+        -CourierConfig[] couriers
+        -int storageCapacity
+        -int workingTimeMs
+        +getBakers() BakerConfig[]
+        +getCouriers() CourierConfig[]
+        +getStorageCapacity() int
+        +getWorkingTimeMs() int
+    }
+
+    class BakerConfig {
+        -int id
+        -int cookingTimeMs
+        +getId() int
+        +getCookingTimeMs() int
+    }
+
+    class CourierConfig {
+        -int id
+        -int trunkCapacity
+        -int deliveryTimeMs
+        +getId() int
+        +getTrunkCapacity() int
+        +getDeliveryTimeMs() int
+    }
+
+    class Order {
+        -int id
+        -OrderState state
+        +Order(int id)
+        +getId() int
+        +getState() OrderState
+        +setState(OrderState state)
+        +toString() String
+    }
+
+    class OrderState {
+        <<enumeration>>
+        QUEUED
+        COOKING
+        COOKED
+        IN_STORAGE
+        DELIVERING
+        DELIVERED
+        -String description
+        +getDescription() String
+    }
+
+    class Baker {
+        -int id
+        -int cookingTimeMs
+        -SharedQueue orderQueue
+        -Storage storage
+        -List interruptedOrders
+        +run()
+        +getBakerId() int
+        +getCookingTimeMs() int
+    }
+
+    class Courier {
+        -int id
+        -int trunkCapacity
+        -int deliveryTimeMs
+        -Storage storage
+        -List interruptedOrders
+        +run()
+        +getCourierId() int
+        +getTrunkCapacity() int
+        +getDeliveryTimeMs() int
+    }
+
+    class SharedQueue {
+        -LinkedList queue
+        -int capacity
+        -boolean closed
+        +put(T item) boolean
+        +take() T
+        +takeUpTo(int maxCount) List
+        +close()
+        +isClosed() boolean
+        +isClosedAndEmpty() boolean
+        +size() int
+        +drainAll() List
+    }
+
+    class Storage {
+        -SharedQueue queue
+        -int capacity
+        +put(Order order) boolean
+        +takeUpTo(int maxCount) List
+        +close()
+        +isClosedAndEmpty() boolean
+        +isClosed() boolean
+        +size() int
+        +getCapacity() int
+        +drainAll() List
+    }
+
+    Main ..> Pizzeria : creates
+    Main ..> PizzeriaConfig : loads
+    Pizzeria --> PizzeriaConfig : uses
+    Pizzeria *-- SharedQueue : owns
+    Pizzeria *-- Storage : owns
+    Pizzeria ..> Baker : creates
+    Pizzeria ..> Courier : creates
+    PizzeriaConfig *-- BakerConfig : contains
+    PizzeriaConfig *-- CourierConfig : contains
+    Baker ..|> Runnable : implements
+    Courier ..|> Runnable : implements
+    Baker --> SharedQueue : consumes
+    Baker --> Storage : produces
+    Courier --> Storage : consumes
+    Storage *-- SharedQueue : uses
+    Order *-- OrderState : has
+    SharedQueue ..> Order : stores
+

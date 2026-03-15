@@ -1,9 +1,13 @@
-package org.example;
+package ru.nsu.gaev.staff;
+
+import ru.nsu.gaev.model.Order;
+import ru.nsu.gaev.model.OrderState;
+import ru.nsu.gaev.storage.Storage;
 
 import java.util.List;
 
 /**
- * Courier - takes pizzas from storage and delivers them to customers.
+ * Курьер - берет пиццы со склада и доставляет их клиентам.
  */
 public class Courier implements Runnable {
     private final int id;
@@ -13,13 +17,13 @@ public class Courier implements Runnable {
     private final List<Order> interruptedOrders;
 
     /**
-     * Creates a new courier.
+     * Создает нового курьера.
      *
-     * @param id                courier identifier
-     * @param trunkCapacity     trunk capacity (max pizzas per delivery)
-     * @param deliveryTimeMs    delivery time (ms)
-     * @param storage           finished product storage
-     * @param interruptedOrders list to save interrupted orders
+     * @param id                идентификатор курьера
+     * @param trunkCapacity     вместимость багажника (макс. пицц за одну доставку)
+     * @param deliveryTimeMs    время доставки (мс)
+     * @param storage           склад готовой продукции
+     * @param interruptedOrders список для сохранения прерванных заказов
      */
     public Courier(int id, int trunkCapacity, int deliveryTimeMs,
                    Storage storage, List<Order> interruptedOrders) {
@@ -37,25 +41,25 @@ public class Courier implements Runnable {
             try {
                 currentOrders = storage.takeUpTo(trunkCapacity);
                 if (currentOrders.isEmpty()) {
-                    // Storage is closed and empty - stop working
+                    // Склад закрыт и пуст - прекращаем работу
                     break;
                 }
 
-                // Set status to "Delivering"
+                // Установка статуса "Доставляется"
                 for (Order order : currentOrders) {
                     order.setState(OrderState.DELIVERING);
                 }
 
-                // Simulate delivery
+                // Имитация доставки
                 Thread.sleep(deliveryTimeMs);
 
-                // Delivered
+                // Доставлено
                 for (Order order : currentOrders) {
                     order.setState(OrderState.DELIVERED);
                 }
-                currentOrders = null; // Orders successfully delivered
+                currentOrders = null; // Заказы успешно доставлены
             } catch (InterruptedException e) {
-                System.out.println("Courier #" + id + " interrupted.");
+                System.out.println("Курьер #" + id + " прерван.");
                 if (currentOrders != null) {
                     interruptedOrders.addAll(currentOrders);
                 }
@@ -63,31 +67,31 @@ public class Courier implements Runnable {
                 break;
             }
         }
-        System.out.println("Courier #" + id + " finished work.");
+        System.out.println("Курьер #" + id + " закончил работу.");
     }
 
     /**
-     * Returns the courier's identifier.
+     * Возвращает идентификатор курьера.
      *
-     * @return courier id
+     * @return id курьера
      */
     public int getCourierId() {
         return id;
     }
 
     /**
-     * Returns the trunk capacity.
+     * Возвращает вместимость багажника.
      *
-     * @return trunk capacity
+     * @return вместимость багажника
      */
     public int getTrunkCapacity() {
         return trunkCapacity;
     }
 
     /**
-     * Returns the delivery time in milliseconds.
+     * Возвращает время доставки в миллисекундах.
      *
-     * @return delivery time in ms
+     * @return время доставки в мс
      */
     public int getDeliveryTimeMs() {
         return deliveryTimeMs;

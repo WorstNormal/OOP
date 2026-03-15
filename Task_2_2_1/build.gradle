@@ -4,11 +4,11 @@ plugins {
     id 'application'
 }
 
-group = 'org.example'
+group = 'ru.nsu.gaev'
 version = '1.0-SNAPSHOT'
 
 application {
-    mainClass = 'org.example.Main'
+    mainClass = 'ru.nsu.gaev.Main'
 }
 
 

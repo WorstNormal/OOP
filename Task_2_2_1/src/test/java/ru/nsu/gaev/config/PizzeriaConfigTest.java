@@ -1,4 +1,4 @@
-package org.example;
+package ru.nsu.gaev.config;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -49,4 +49,3 @@ class PizzeriaConfigTest {
         assertEquals(250, config.getCouriers()[1].getDeliveryTimeMs());
     }
 }
-
