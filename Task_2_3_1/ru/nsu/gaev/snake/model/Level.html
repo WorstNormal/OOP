@@ -76,9 +76,16 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-levelNumber">levelNumber</span></code> - level number.</dd>
+<dd><code><span id="param-targetScore">targetScore</span></code> - target score.</dd>
+<dd><code><span id="param-tickDurationNs">tickDurationNs</span></code> - tick duration in nanoseconds.</dd>
+</dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">Level</span>(int&nbsp;levelNumber, int&nbsp;targetScore, long&nbsp;tickDurationMs)
+<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">Level</span>(int&nbsp;levelNumber, int&nbsp;targetScore, long&nbsp;tickDurationNs)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
+<div class="block">Level record.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -92,7 +99,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,long)" class="member-name-link">Level</a><wbr>(int&nbsp;levelNumber,
  int&nbsp;targetScore,
- long&nbsp;tickDurationMs)</code></div>
+ long&nbsp;tickDurationNs)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates an instance of a <code>Level</code> record class.</div>
 </div>
@@ -123,17 +130,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#levelNumber()" class="member-name-link">levelNumber</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>levelNumber</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-levelNumber"><code>levelNumber</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#targetScore()" class="member-name-link">targetScore</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>targetScore</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-targetScore"><code>targetScore</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#tickDurationMs()" class="member-name-link">tickDurationMs</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#tickDurationNs()" class="member-name-link">tickDurationNs</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>tickDurationMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-tickDurationNs"><code>tickDurationNs</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -162,13 +169,13 @@ loadScripts(document, 'script');</script>
 <h3>Level</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Level</span><wbr><span class="parameters">(int&nbsp;levelNumber,
  int&nbsp;targetScore,
- long&nbsp;tickDurationMs)</span></div>
+ long&nbsp;tickDurationNs)</span></div>
 <div class="block">Creates an instance of a <code>Level</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>levelNumber</code> - the value for the <code>levelNumber</code> record component</dd>
-<dd><code>targetScore</code> - the value for the <code>targetScore</code> record component</dd>
-<dd><code>tickDurationMs</code> - the value for the <code>tickDurationMs</code> record component</dd>
+<dd><code>levelNumber</code> - the value for the <a href="#param-levelNumber"><code>levelNumber</code></a> record component</dd>
+<dd><code>targetScore</code> - the value for the <a href="#param-targetScore"><code>targetScore</code></a> record component</dd>
+<dd><code>tickDurationNs</code> - the value for the <a href="#param-tickDurationNs"><code>tickDurationNs</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -225,10 +232,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="levelNumber()">
 <h3>levelNumber</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">levelNumber</span>()</div>
-<div class="block">Returns the value of the <code>levelNumber</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-levelNumber"><code>levelNumber</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>levelNumber</code> record component</dd>
+<dd>the value of the <a href="#param-levelNumber"><code>levelNumber</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -236,21 +243,21 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="targetScore()">
 <h3>targetScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">targetScore</span>()</div>
-<div class="block">Returns the value of the <code>targetScore</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-targetScore"><code>targetScore</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>targetScore</code> record component</dd>
+<dd>the value of the <a href="#param-targetScore"><code>targetScore</code></a> record component</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="tickDurationMs()">
-<h3>tickDurationMs</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">tickDurationMs</span>()</div>
-<div class="block">Returns the value of the <code>tickDurationMs</code> record component.</div>
+<section class="detail" id="tickDurationNs()">
+<h3>tickDurationNs</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">tickDurationNs</span>()</div>
+<div class="block">Returns the value of the <a href="#param-tickDurationNs"><code>tickDurationNs</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>tickDurationMs</code> record component</dd>
+<dd>the value of the <a href="#param-tickDurationNs"><code>tickDurationNs</code></a> record component</dd>
 </dl>
 </section>
 </li>
