@@ -10,8 +10,9 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for GameController class.
- * Note: Full integration tests require JavaFX initialization which is complex in unit tests.
- * These tests focus on controller behavior and keyboard event handling.
+ * Note: Full integration tests require JavaFX initialization which is complex
+ * in unit tests. These tests focus on controller behavior and keyboard event
+ * handling.
  */
 class GameControllerTest {
 
@@ -85,7 +86,7 @@ class GameControllerTest {
 
     @Test
     void testWKeyCreation() {
-        KeyEvent wKeyEvent = new KeyEvent(
+        KeyEvent keyEvent = new KeyEvent(
                 KeyEvent.KEY_PRESSED,
                 "w",
                 null,
@@ -96,13 +97,13 @@ class GameControllerTest {
                 false
         );
 
-        assertNotNull(wKeyEvent);
-        assertEquals(KeyCode.W, wKeyEvent.getCode());
+        assertNotNull(keyEvent);
+        assertEquals(KeyCode.W, keyEvent.getCode());
     }
 
     @Test
     void testAKeyCreation() {
-        KeyEvent aKeyEvent = new KeyEvent(
+        KeyEvent keyEvent = new KeyEvent(
                 KeyEvent.KEY_PRESSED,
                 "a",
                 null,
@@ -113,13 +114,13 @@ class GameControllerTest {
                 false
         );
 
-        assertNotNull(aKeyEvent);
-        assertEquals(KeyCode.A, aKeyEvent.getCode());
+        assertNotNull(keyEvent);
+        assertEquals(KeyCode.A, keyEvent.getCode());
     }
 
     @Test
     void testSKeyCreation() {
-        KeyEvent sKeyEvent = new KeyEvent(
+        KeyEvent keyEvent = new KeyEvent(
                 KeyEvent.KEY_PRESSED,
                 "s",
                 null,
@@ -130,13 +131,13 @@ class GameControllerTest {
                 false
         );
 
-        assertNotNull(sKeyEvent);
-        assertEquals(KeyCode.S, sKeyEvent.getCode());
+        assertNotNull(keyEvent);
+        assertEquals(KeyCode.S, keyEvent.getCode());
     }
 
     @Test
     void testDKeyCreation() {
-        KeyEvent dKeyEvent = new KeyEvent(
+        KeyEvent keyEvent = new KeyEvent(
                 KeyEvent.KEY_PRESSED,
                 "d",
                 null,
@@ -147,17 +148,53 @@ class GameControllerTest {
                 false
         );
 
-        assertNotNull(dKeyEvent);
-        assertEquals(KeyCode.D, dKeyEvent.getCode());
+        assertNotNull(keyEvent);
+        assertEquals(KeyCode.D, keyEvent.getCode());
     }
 
     @Test
     void testMultipleKeyEventsSequence() {
         KeyEvent[] keySequence = {
-            new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.UP, false, false, false, false),
-            new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.RIGHT, false, false, false, false),
-            new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.DOWN, false, false, false, false),
-            new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.LEFT, false, false, false, false)
+            new KeyEvent(
+                KeyEvent.KEY_PRESSED,
+                null,
+                null,
+                KeyCode.UP,
+                false,
+                false,
+                false,
+                false
+            ),
+            new KeyEvent(
+                KeyEvent.KEY_PRESSED,
+                null,
+                null,
+                KeyCode.RIGHT,
+                false,
+                false,
+                false,
+                false
+            ),
+            new KeyEvent(
+                KeyEvent.KEY_PRESSED,
+                null,
+                null,
+                KeyCode.DOWN,
+                false,
+                false,
+                false,
+                false
+            ),
+            new KeyEvent(
+                KeyEvent.KEY_PRESSED,
+                null,
+                null,
+                KeyCode.LEFT,
+                false,
+                false,
+                false,
+                false
+            )
         };
 
         assertEquals(4, keySequence.length);

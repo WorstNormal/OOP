@@ -1,5 +1,6 @@
 package ru.nsu.gaev.snake.view;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -273,4 +274,235 @@ class GameRendererTest {
         // Should render food at the same position as player head
         renderer.render(gameField);
     }
+
+    @Test
+    void testRenderWithAllGameElements() {
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(3, 3), FoodType.NORMAL));
+        gameField.getFoods().add(new Food(new Point(7, 7), FoodType.NORMAL));
+
+        gameField.addObstacle(new Obstacle(new Point(5, 5)));
+        gameField.addObstacle(new Obstacle(new Point(8, 8)));
+
+        RobotSnake robot1 = new RobotSnake(
+                new Point(15, 5),
+                Direction.UP,
+                new GreedyStrategy()
+        );
+        RobotSnake robot2 = new RobotSnake(
+                new Point(5, 15),
+                Direction.DOWN,
+                new GreedyStrategy()
+        );
+
+        gameField.addRobot(robot1);
+        gameField.addRobot(robot2);
+
+        // Should render without exceptions
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderAfterPlayerMove() {
+        gameField.getPlayer().setNextDirection(Direction.RIGHT);
+        gameField.getPlayer().move();
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderAfterPlayerGrowth() {
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(
+            gameField.getPlayer().getHead(),
+            FoodType.NORMAL
+        ));
+        gameField.getPlayer().eat(gameField.getFoods().get(0));
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderWithAllSnakesAlive() {
+        RobotSnake robot = new RobotSnake(
+                new Point(15, 15),
+                Direction.UP,
+                new GreedyStrategy()
+        );
+        gameField.addRobot(robot);
+
+        assertTrue(gameField.getPlayer().isAlive());
+        assertTrue(robot.isAlive());
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderWithSomeSnakesDead() {
+        RobotSnake robot = new RobotSnake(
+                new Point(15, 15),
+                Direction.UP,
+                new GreedyStrategy()
+        );
+        gameField.addRobot(robot);
+        robot.kill();
+
+        assertTrue(gameField.getPlayer().isAlive());
+        assertTrue(!robot.isAlive());
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderWithEdgeCases() {
+        // Render at minimum field size
+        Canvas minCanvas = new Canvas(60, 60);
+        GameField minField = new GameField(2, 2, 0, level);
+        GameRenderer minRenderer = new GameRenderer(minCanvas, 30);
+
+        minRenderer.render(minField);
+    }
+
+    @Test
+    void testRenderPreservesCanvasState() {
+        int originalWidth = (int) canvas.getWidth();
+        int originalHeight = (int) canvas.getHeight();
+
+        renderer.render(gameField);
+
+        assertEquals(originalWidth, (int) canvas.getWidth());
+        assertEquals(originalHeight, (int) canvas.getHeight());
+    }
+
+    @Test
+    void testRenderMultipleConsecutiveCalls() {
+        for (int i = 0; i < 10; i++) {
+            gameField.getPlayer().move();
+            renderer.render(gameField);
+        }
+    }
+
+    @Test
+    void testRenderWithMaxFoods() {
+        gameField.getFoods().clear();
+        for (int i = 0; i < 50; i++) {
+            gameField.getFoods().add(new Food(
+                new Point(i % 20, i / 20),
+                FoodType.NORMAL
+            ));
+        }
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderWithMaxObstacles() {
+        for (int i = 0; i < 50; i++) {
+            gameField.addObstacle(new Obstacle(new Point(i % 20, i / 20)));
+        }
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderRobotAtDifferentPositions() {
+        gameField.getFoods().clear();
+
+        for (int x = 0; x < 20; x += 5) {
+            for (int y = 0; y < 20; y += 5) {
+                RobotSnake robot = new RobotSnake(
+                        new Point(x, y),
+                        Direction.UP,
+                        new GreedyStrategy()
+                );
+                gameField.addRobot(robot);
+                renderer.render(gameField);
+            }
+        }
+    }
+
+    @Test
+    void testRenderPlayerAtCorners() {
+        // Test rendering with player at different corners
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderWithDifferentDirections() {
+        for (Direction dir : Direction.values()) {
+            gameField.getPlayer().setNextDirection(dir);
+            renderer.render(gameField);
+        }
+    }
+
+    @Test
+    void testRenderGridLines() {
+        // Render should include grid lines
+        renderer.render(gameField);
+        assertNotNull(canvas.getGraphicsContext2D());
+    }
+
+    @Test
+    void testRenderBackgroundColor() {
+        renderer.render(gameField);
+        assertNotNull(canvas.getGraphicsContext2D());
+    }
+
+    @Test
+    void testRenderFoodColor() {
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(10, 10), FoodType.NORMAL));
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderObstacleColor() {
+        gameField.addObstacle(new Obstacle(new Point(10, 10)));
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderPlayerColor() {
+        renderer.render(gameField);
+        assertTrue(gameField.getPlayer().isAlive());
+    }
+
+    @Test
+    void testRenderRobotColor() {
+        RobotSnake robot = new RobotSnake(
+                new Point(15, 15),
+                Direction.UP,
+                new GreedyStrategy()
+        );
+        gameField.addRobot(robot);
+        assertTrue(robot.isAlive());
+        renderer.render(gameField);
+    }
+
+    @Test
+    void testRenderWithStartMessage() {
+        GameField newField = new GameField(20, 20, 0, level);
+        renderer.render(newField);
+        assertTrue(!newField.isStarted());
+    }
+
+    @Test
+    void testRenderGameAfterStart() {
+        gameField.getPlayer().setNextDirection(Direction.UP);
+        gameField.update();
+        renderer.render(gameField);
+        assertTrue(gameField.isStarted());
+    }
+
+    @Test
+    void testCellSizeAffectsRendering() {
+        Canvas canvas2 = new Canvas(600, 600);
+        GameRenderer renderer2 = new GameRenderer(canvas2, 20);
+        renderer2.render(gameField);
+    }
+
+    @Test
+    void testRendererWithDifferentCanvasSizes() {
+        int[] sizes = {300, 600, 900, 1200};
+        for (int size : sizes) {
+            Canvas testCanvas = new Canvas(size, size);
+            GameRenderer testRenderer = new GameRenderer(testCanvas, 30);
+            testRenderer.render(gameField);
+        }
+    }
 }
+

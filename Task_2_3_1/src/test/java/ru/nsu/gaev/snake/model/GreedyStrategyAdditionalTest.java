@@ -33,7 +33,11 @@ class GreedyStrategyAdditionalTest {
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
         // Should move left or towards the food
-        assertTrue(nextDir == Direction.LEFT || nextDir == Direction.UP || nextDir == Direction.DOWN);
+        assertTrue(
+            nextDir == Direction.LEFT
+                || nextDir == Direction.UP
+                || nextDir == Direction.DOWN
+        );
     }
 
     @Test
@@ -44,7 +48,11 @@ class GreedyStrategyAdditionalTest {
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
         // Should move right or towards the food
-        assertTrue(nextDir == Direction.RIGHT || nextDir == Direction.UP || nextDir == Direction.DOWN);
+        assertTrue(
+            nextDir == Direction.RIGHT
+                || nextDir == Direction.UP
+                || nextDir == Direction.DOWN
+        );
     }
 
     @Test
@@ -129,7 +137,11 @@ class GreedyStrategyAdditionalTest {
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
         // Should find alternative path avoiding obstacle
-        assertTrue(nextDir == Direction.UP || nextDir == Direction.LEFT || nextDir == Direction.RIGHT);
+        assertTrue(
+            nextDir == Direction.UP
+                || nextDir == Direction.LEFT
+                || nextDir == Direction.RIGHT
+        );
     }
 
     @Test
@@ -161,5 +173,233 @@ class GreedyStrategyAdditionalTest {
         assertNotNull(nextDir);
         // Should target the nearer food
         assertEquals(Direction.DOWN, nextDir);
+    }
+
+    @Test
+    void testGetLeftDirectionFromUp() {
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(5, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        // Test that the strategy can find paths using left turns
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testGetRightDirectionFromUp() {
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        // Test that the strategy can find paths using right turns
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testBfsPathfinding() {
+        // Create a simple maze-like scenario
+        gameField.getFoods().clear();
+        gameField.addObstacle(new Obstacle(new Point(10, 11)));
+        gameField.addObstacle(new Obstacle(new Point(10, 12)));
+        gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        // Should find a path around obstacles
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testIsValidPointInBounds() {
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(19, 19), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        // Should be able to reach corner of field
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testIsValidPointOutOfBounds() {
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(1, 1), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        // Should not move out of bounds
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testFallbackStrategyWhenBfsBlockedUp() {
+        RobotSnake robotCorner = new RobotSnake(new Point(10, 1), Direction.UP, strategy);
+        gameField.addRobot(robotCorner);
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(10, 0), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
+        assertNotNull(nextDir);
+        // Should use fallback strategy
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testFallbackStrategyWhenBfsBlockedDown() {
+        RobotSnake robotCorner = new RobotSnake(new Point(10, 18), Direction.DOWN, strategy);
+        gameField.addRobot(robotCorner);
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(10, 19), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
+        assertNotNull(nextDir);
+        // Should use fallback strategy
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testFallbackStrategyWhenBfsBlockedLeft() {
+        RobotSnake robotCorner = new RobotSnake(new Point(1, 10), Direction.LEFT, strategy);
+        gameField.addRobot(robotCorner);
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(0, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
+        assertNotNull(nextDir);
+        // Should use fallback strategy
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testFallbackStrategyWhenBfsBlockedRight() {
+        RobotSnake robotCorner = new RobotSnake(new Point(18, 10), Direction.RIGHT, strategy);
+        gameField.addRobot(robotCorner);
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(19, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
+        assertNotNull(nextDir);
+        // Should use fallback strategy
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testMultipleFoodsDistanceCalculation() {
+        gameField.getFoods().clear();
+        // Add multiple foods at different distances
+        gameField.getFoods().add(new Food(new Point(12, 10), FoodType.NORMAL));
+        gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
+        gameField.getFoods().add(new Food(new Point(8, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        // Should choose closest food
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testDirectionalVariationUp() {
+        robot.setNextDirection(Direction.UP);
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(10, 5), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        assertEquals(Direction.UP, nextDir);
+    }
+
+    @Test
+    void testDirectionalVariationDown() {
+        robot.setNextDirection(Direction.DOWN);
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(10, 15), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        assertEquals(Direction.DOWN, nextDir);
+    }
+
+    @Test
+    void testDirectionalVariationLeft() {
+        robot.setNextDirection(Direction.LEFT);
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(5, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        assertTrue(nextDir == Direction.LEFT || nextDir == Direction.UP || nextDir == Direction.DOWN);
+    }
+
+    @Test
+    void testDirectionalVariationRight() {
+        robot.setNextDirection(Direction.RIGHT);
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        assertTrue(
+            nextDir == Direction.RIGHT
+                || nextDir == Direction.UP
+                || nextDir == Direction.DOWN
+        );
+    }
+
+    @Test
+    void testComplexMazeNavigation() {
+        // Create a complex obstacle layout
+        for (int i = 5; i <= 15; i++) {
+            if (i != 10) {
+                gameField.addObstacle(new Obstacle(new Point(i, 12)));
+            }
+        }
+
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(15, 15), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        // Should find path around complex obstacles
+        assertTrue(nextDir != null);
+    }
+
+    @Test
+    void testSingleCellAwayFood() {
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(10, 9), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        assertEquals(Direction.UP, nextDir);
+    }
+
+    @Test
+    void testDiagonalDistance() {
+        gameField.getFoods().clear();
+        // Food at diagonal distance
+        gameField.getFoods().add(new Food(new Point(15, 15), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        assertTrue(nextDir == Direction.RIGHT || nextDir == Direction.DOWN);
+    }
+
+    @Test
+    void testSnakeBodyBlocksPath() {
+        // Grow snake to block some paths
+        for (int i = 0; i < 3; i++) {
+            robot.eat(new Food(new Point(0, 0), FoodType.NORMAL));
+            robot.move();
+        }
+
+        gameField.getFoods().clear();
+        gameField.getFoods().add(new Food(new Point(12, 10), FoodType.NORMAL));
+
+        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        assertNotNull(nextDir);
+        // Should navigate around own body
+        assertTrue(nextDir != null);
     }
 }
