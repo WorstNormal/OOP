@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
  * Tests for JavaFX Main class.
  */
 class MainTest {
+    private static volatile boolean javaFxSupported = true;
 
     @BeforeAll
     static void initJavaFxToolkit() {
@@ -26,11 +28,16 @@ class MainTest {
             });
         } catch (IllegalStateException ignored) {
             // JavaFX runtime already initialized by another test.
+        } catch (UnsupportedOperationException ignored) {
+            javaFxSupported = false;
         }
     }
 
     @Test
     void testStartConfiguresAndShowsStage() throws InterruptedException {
+        Assumptions.assumeTrue(javaFxSupported,
+                "JavaFX toolkit is not supported in current environment");
+
         Main app = new Main();
         AtomicReference<Throwable> failure = new AtomicReference<>();
         CountDownLatch latch = new CountDownLatch(1);
