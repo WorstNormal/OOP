@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.gaev"},{"l":"ru.nsu.gaev.snake"},{"l":"ru.nsu.gaev.snake.controller"},{"l":"ru.nsu.gaev.snake.model"},{"l":"ru.nsu.gaev.snake.view"}];updateSearchResults();
