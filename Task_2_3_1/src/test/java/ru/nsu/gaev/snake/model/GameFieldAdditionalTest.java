@@ -39,7 +39,8 @@ class GameFieldAdditionalTest {
         GameField field = new GameField(10, 10, 0, new Level(1, 1000, 200));
         field.setStarted(true);
 
-        RobotSnake robot = new RobotSnake(new Point(6, 5), Direction.LEFT, (r, f) -> Direction.LEFT);
+        RobotSnake robot = new RobotSnake(new Point(6, 5),
+                Direction.LEFT, (r, f) -> Direction.LEFT);
         field.addRobot(robot);
 
         field.getPlayer().eat(new Food(new Point(-1, -1), FoodType.NORMAL)); // length 2

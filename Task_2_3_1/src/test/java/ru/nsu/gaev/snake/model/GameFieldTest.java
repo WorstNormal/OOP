@@ -41,7 +41,8 @@ class GameFieldTest {
         GameField field = new GameField(20, 15, 0, startLevel);
         field.setStarted(true);
 
-        RobotSnake robot = new RobotSnake(new Point(0, 0), Direction.LEFT, (r, f) -> Direction.LEFT);
+        RobotSnake robot = new RobotSnake(new Point(0, 0),
+                Direction.LEFT, (r, f) -> Direction.LEFT);
         field.addRobot(robot);
 
         // Next tick it should hit left wall

@@ -1,4 +1,10 @@
 package ru.nsu.gaev.snake.model;
 
-public record Level(int levelNumber, int targetScore, long tickDurationMs) {
+/**
+ * Level record.
+ * @param levelNumber level number.
+ * @param targetScore target score.
+ * @param speed speed.
+ */
+public record Level(int levelNumber, int targetScore, int speed) {
 }

@@ -3,6 +3,9 @@ package ru.nsu.gaev.snake.model;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * GreedyStrategy class.
+ */
 public class GreedyStrategy implements RobotStrategy {
 
     @Override
@@ -12,7 +15,8 @@ public class GreedyStrategy implements RobotStrategy {
         Food nearestFood = null;
         int minDistance = Integer.MAX_VALUE;
         for (Food f : field.getFoods()) {
-            int dist = Math.abs(f.position().x() - head.x()) + Math.abs(f.position().y() - head.y());
+            int dist = Math.abs(f.position().x() - head.x())
+                    + Math.abs(f.position().y() - head.y());
             if (dist < minDistance) {
                 minDistance = dist;
                 nearestFood = f;
@@ -38,7 +42,9 @@ public class GreedyStrategy implements RobotStrategy {
         visited[start.x()][start.y()] = true;
 
         for (Direction d : Direction.values()) {
-            if (robot.getBody().size() > 1 && d.isOpposite(robot.getCurrentDirection())) continue;
+            if (robot.getBody().size() > 1 && d.isOpposite(robot.getCurrentDirection())) {
+                continue;
+            }
             Point next = new Point(start.x() + d.getDx(), start.y() + d.getDy());
             if (isValid(next, field)) {
                 queue.add(new Node(next, d));
@@ -48,12 +54,12 @@ public class GreedyStrategy implements RobotStrategy {
 
         while (!queue.isEmpty()) {
             Node curr = queue.poll();
-            if (curr.p.equals(target)) {
+            if (curr.point.equals(target)) {
                 return curr.firstDir;
             }
 
             for (Direction d : Direction.values()) {
-                Point next = new Point(curr.p.x() + d.getDx(), curr.p.y() + d.getDy());
+                Point next = new Point(curr.point.x() + d.getDx(), curr.point.y() + d.getDy());
                 if (isValid(next, field) && !visited[next.x()][next.y()]) {
                     visited[next.x()][next.y()] = true;
                     queue.add(new Node(next, curr.firstDir));
@@ -65,8 +71,13 @@ public class GreedyStrategy implements RobotStrategy {
     }
 
     private boolean isValid(Point p, GameField field) {
-        if (p.x() < 0 || p.x() >= field.getWidth() || p.y() < 0 || p.y() >= field.getHeight()) return false;
-        if (field.getFoods().stream().anyMatch(f -> f.position().equals(p))) return true;
+        if (p.x() < 0 || p.x() >= field.getWidth()
+                || p.y() < 0 || p.y() >= field.getHeight()) {
+            return false;
+        }
+        if (field.getFoods().stream().anyMatch(f -> f.position().equals(p))) {
+            return true;
+        }
         return field.isPointFree(p);
     }
 
@@ -100,11 +111,11 @@ public class GreedyStrategy implements RobotStrategy {
     }
 
     private static class Node {
-        Point p;
+        Point point;
         Direction firstDir;
 
-        Node(Point p, Direction firstDir) {
-            this.p = p;
+        Node(Point point, Direction firstDir) {
+            this.point = point;
             this.firstDir = firstDir;
         }
     }

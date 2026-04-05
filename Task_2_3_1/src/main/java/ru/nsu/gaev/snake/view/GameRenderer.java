@@ -10,17 +10,29 @@ import ru.nsu.gaev.snake.model.Point;
 import ru.nsu.gaev.snake.model.RobotSnake;
 import ru.nsu.gaev.snake.model.Snake;
 
+/**
+ * GameRenderer class.
+ */
 public class GameRenderer {
     private final Canvas canvas;
     private final GraphicsContext gc;
     private final int cellSize;
 
+    /**
+     * GameRenderer constructor.
+     * @param canvas canvas.
+     * @param cellSize cell size.
+     */
     public GameRenderer(Canvas canvas, int cellSize) {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
         this.cellSize = cellSize;
     }
 
+    /**
+     * Render method.
+     * @param field game field.
+     */
     public void render(GameField field) {
         // clear
         gc.setFill(Color.web("#eef2f3"));
@@ -68,7 +80,8 @@ public class GameRenderer {
         if (!field.isStarted() && !field.isGameOver() && !field.isGameWon()) {
             gc.setFill(Color.BLACK);
             gc.setFont(new javafx.scene.text.Font("Arial", 24));
-            gc.fillText("Press any arrow key to start", canvas.getWidth() / 2 - 140, canvas.getHeight() / 2);
+            gc.fillText("Press any arrow key to start",
+                    canvas.getWidth() / 2 - 140, canvas.getHeight() / 2);
         }
     }
 

@@ -1,5 +1,8 @@
 package ru.nsu.gaev.snake.model;
 
+/**
+ * FoodType enum.
+ */
 public enum FoodType {
     NORMAL(1, 100);
 
