@@ -46,7 +46,7 @@ public class GameController {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (now - lastUpdate >= gameField.getCurrentLevel().tickDurationMs()) {
+                if (now - lastUpdate >= gameField.getCurrentLevel().tickDurationNs()) {
                     gameField.update();
                     updateUI();
                     lastUpdate = now;

@@ -11,6 +11,7 @@ public class RobotSnake extends Snake {
 
     /**
      * RobotSnake constructor.
+     *
      * @param start start position.
      * @param startDirection start direction.
      * @param strategy strategy.
@@ -20,6 +21,11 @@ public class RobotSnake extends Snake {
         this.strategy = strategy;
     }
 
+    /**
+     * Determines the next move for the robot snake.
+     *
+     * @param field The game field.
+     */
     public void determineNextMove(GameField field) {
         Direction nextDir = strategy.chooseNextDirection(this, field);
         if (nextDir != null) {

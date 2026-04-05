@@ -20,6 +20,7 @@ public class GameRenderer {
 
     /**
      * GameRenderer constructor.
+     *
      * @param canvas canvas.
      * @param cellSize cell size.
      */
@@ -31,6 +32,7 @@ public class GameRenderer {
 
     /**
      * Render method.
+     *
      * @param field game field.
      */
     public void render(GameField field) {

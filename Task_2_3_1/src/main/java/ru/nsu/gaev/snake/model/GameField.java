@@ -25,6 +25,7 @@ public class GameField {
 
     /**
      * GameField constructor.
+     *
      * @param width width.
      * @param height height.
      * @param numFoods number of foods.
@@ -70,6 +71,7 @@ public class GameField {
 
     /**
      * isPointFree method.
+     *
      * @param p point.
      * @return boolean.
      */
