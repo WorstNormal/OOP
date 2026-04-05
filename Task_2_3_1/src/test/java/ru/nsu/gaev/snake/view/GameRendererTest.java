@@ -3,10 +3,7 @@ package ru.nsu.gaev.snake.view;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.paint.Color;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.gaev.snake.model.Direction;
@@ -27,14 +24,6 @@ class GameRendererTest {
     private Canvas canvas;
     private GameField gameField;
     private Level level;
-
-    @BeforeAll
-    static void initToolkit() {
-        // Initialize JavaFX toolkit
-        if (!Platform.isFxApplicationThread()) {
-            Platform.startup(() -> {});
-        }
-    }
 
     @BeforeEach
     void setUp() {
@@ -150,7 +139,7 @@ class GameRendererTest {
     @Test
     void testRenderWithDeadPlayer() {
         // Kill the player
-        gameField.getPlayer().die();
+        gameField.getPlayer().kill();
 
         // Should not throw exception
         renderer.render(gameField);
@@ -164,7 +153,7 @@ class GameRendererTest {
                 new GreedyStrategy()
         );
         gameField.addRobot(robot);
-        robot.die();
+        robot.kill();
 
         // Should not throw exception
         renderer.render(gameField);
@@ -285,4 +274,3 @@ class GameRendererTest {
         renderer.render(gameField);
     }
 }
-
