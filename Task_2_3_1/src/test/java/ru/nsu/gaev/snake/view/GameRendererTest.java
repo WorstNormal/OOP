@@ -102,8 +102,7 @@ class GameRendererTest {
         RobotSnake robot = new RobotSnake(
                 new Point(15, 15),
                 Direction.LEFT,
-                new GreedyStrategy()
-        );
+                new GreedyStrategy());
         gameField.addRobot(robot);
 
         // Should not throw exception
@@ -129,8 +128,7 @@ class GameRendererTest {
         RobotSnake robot = new RobotSnake(
                 new Point(15, 15),
                 Direction.UP,
-                new GreedyStrategy()
-        );
+                new GreedyStrategy());
         gameField.addRobot(robot);
 
         // Should not throw exception
@@ -151,8 +149,7 @@ class GameRendererTest {
         RobotSnake robot = new RobotSnake(
                 new Point(15, 15),
                 Direction.UP,
-                new GreedyStrategy()
-        );
+                new GreedyStrategy());
         gameField.addRobot(robot);
         robot.kill();
 
@@ -224,8 +221,7 @@ class GameRendererTest {
             RobotSnake robot = new RobotSnake(
                     new Point(5 + i * 3, 5),
                     Direction.UP,
-                    new GreedyStrategy()
-            );
+                    new GreedyStrategy());
             gameField.addRobot(robot);
         }
 
@@ -287,13 +283,11 @@ class GameRendererTest {
         RobotSnake robot1 = new RobotSnake(
                 new Point(15, 5),
                 Direction.UP,
-                new GreedyStrategy()
-        );
+                new GreedyStrategy());
         RobotSnake robot2 = new RobotSnake(
                 new Point(5, 15),
                 Direction.DOWN,
-                new GreedyStrategy()
-        );
+                new GreedyStrategy());
 
         gameField.addRobot(robot1);
         gameField.addRobot(robot2);
@@ -313,9 +307,8 @@ class GameRendererTest {
     void testRenderAfterPlayerGrowth() {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(
-            gameField.getPlayer().getHead(),
-            FoodType.NORMAL
-        ));
+                gameField.getPlayer().getHead(),
+                FoodType.NORMAL));
         gameField.getPlayer().eat(gameField.getFoods().get(0));
         renderer.render(gameField);
     }
@@ -325,8 +318,7 @@ class GameRendererTest {
         RobotSnake robot = new RobotSnake(
                 new Point(15, 15),
                 Direction.UP,
-                new GreedyStrategy()
-        );
+                new GreedyStrategy());
         gameField.addRobot(robot);
 
         assertTrue(gameField.getPlayer().isAlive());
@@ -339,8 +331,7 @@ class GameRendererTest {
         RobotSnake robot = new RobotSnake(
                 new Point(15, 15),
                 Direction.UP,
-                new GreedyStrategy()
-        );
+                new GreedyStrategy());
         gameField.addRobot(robot);
         robot.kill();
 
@@ -383,9 +374,8 @@ class GameRendererTest {
         gameField.getFoods().clear();
         for (int i = 0; i < 50; i++) {
             gameField.getFoods().add(new Food(
-                new Point(i % 20, i / 20),
-                FoodType.NORMAL
-            ));
+                    new Point(i % 20, i / 20),
+                    FoodType.NORMAL));
         }
         renderer.render(gameField);
     }
@@ -407,8 +397,7 @@ class GameRendererTest {
                 RobotSnake robot = new RobotSnake(
                         new Point(x, y),
                         Direction.UP,
-                        new GreedyStrategy()
-                );
+                        new GreedyStrategy());
                 gameField.addRobot(robot);
                 renderer.render(gameField);
             }
@@ -466,8 +455,7 @@ class GameRendererTest {
         RobotSnake robot = new RobotSnake(
                 new Point(15, 15),
                 Direction.UP,
-                new GreedyStrategy()
-        );
+                new GreedyStrategy());
         gameField.addRobot(robot);
         assertTrue(robot.isAlive());
         renderer.render(gameField);
@@ -482,6 +470,7 @@ class GameRendererTest {
 
     @Test
     void testRenderGameAfterStart() {
+        gameField.setStarted(true);
         gameField.getPlayer().setNextDirection(Direction.UP);
         gameField.update();
         renderer.render(gameField);
@@ -497,7 +486,7 @@ class GameRendererTest {
 
     @Test
     void testRendererWithDifferentCanvasSizes() {
-        int[] sizes = {300, 600, 900, 1200};
+        int[] sizes = { 300, 600, 900, 1200 };
         for (int size : sizes) {
             Canvas testCanvas = new Canvas(size, size);
             GameRenderer testRenderer = new GameRenderer(testCanvas, 30);
@@ -505,4 +494,3 @@ class GameRendererTest {
         }
     }
 }
-
