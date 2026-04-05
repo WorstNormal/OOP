@@ -32,19 +32,19 @@ public class Snake {
         }
         this.nextDirection = dir;
     }
-    
+
     public Direction getCurrentDirection() {
         return currentDirection;
     }
 
     public void eat(Food food) {
-        segmentsToGrow += food.getType().getGrowthAmount();
+        segmentsToGrow += food.type().getGrowthAmount();
     }
-    
+
     public void kill() {
         this.alive = false;
     }
-    
+
     public boolean isAlive() {
         return alive;
     }
@@ -65,11 +65,11 @@ public class Snake {
             body.removeLast(); // Remove tail
         }
     }
-    
+
     public boolean occupies(Point p) {
         return body.contains(p);
     }
-    
+
     public boolean checkSelfCollision() {
         if (!alive || body.size() <= 4) return false;
         Point head = getHead();

@@ -14,8 +14,13 @@ public enum Direction {
         this.dy = dy;
     }
 
-    public int getDx() { return dx; }
-    public int getDy() { return dy; }
+    public int getDx() {
+        return dx;
+    }
+
+    public int getDy() {
+        return dy;
+    }
 
     public boolean isOpposite(Direction other) {
         return this.dx + other.dx == 0 && this.dy + other.dy == 0;

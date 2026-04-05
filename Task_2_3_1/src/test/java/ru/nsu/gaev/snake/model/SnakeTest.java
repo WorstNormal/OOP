@@ -1,7 +1,10 @@
 package ru.nsu.gaev.snake.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SnakeTest {
     @Test
@@ -40,12 +43,16 @@ class SnakeTest {
         snake.eat(new Food(new Point(0, 0), FoodType.NORMAL));
         snake.eat(new Food(new Point(0, 0), FoodType.NORMAL));
         snake.eat(new Food(new Point(0, 0), FoodType.NORMAL));
-        
-        snake.setNextDirection(Direction.RIGHT); snake.move();
-        snake.setNextDirection(Direction.DOWN); snake.move();
-        snake.setNextDirection(Direction.LEFT); snake.move();
-        snake.setNextDirection(Direction.UP); snake.move(); 
-        
+
+        snake.setNextDirection(Direction.RIGHT);
+        snake.move();
+        snake.setNextDirection(Direction.DOWN);
+        snake.move();
+        snake.setNextDirection(Direction.LEFT);
+        snake.move();
+        snake.setNextDirection(Direction.UP);
+        snake.move();
+
         assertTrue(snake.checkSelfCollision());
     }
 

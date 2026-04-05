@@ -1,7 +1,11 @@
 package ru.nsu.gaev.snake.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ModelTest {
     @Test
@@ -22,7 +26,7 @@ class ModelTest {
         assertTrue(Direction.UP.isOpposite(Direction.DOWN));
         assertTrue(Direction.LEFT.isOpposite(Direction.RIGHT));
         assertFalse(Direction.UP.isOpposite(Direction.LEFT));
-        
+
         assertEquals(1, Direction.RIGHT.getDx());
         assertEquals(0, Direction.RIGHT.getDy());
     }
@@ -30,22 +34,22 @@ class ModelTest {
     @Test
     void testFoodAndLevelAndObstacle() {
         Food food = new Food(new Point(0, 0), FoodType.NORMAL);
-        assertEquals(new Point(0, 0), food.getPosition());
-        assertEquals(FoodType.NORMAL, food.getType());
+        assertEquals(new Point(0, 0), food.position());
+        assertEquals(FoodType.NORMAL, food.type());
 
         Level level = new Level(2, 500, 150);
-        assertEquals(2, level.getLevelNumber());
-        assertEquals(500, level.getTargetScore());
+        assertEquals(2, level.levelNumber());
+        assertEquals(500, level.targetScore());
 
         Obstacle obs = new Obstacle(new Point(3, 3));
-        assertEquals(new Point(3, 3), obs.getPosition());
+        assertEquals(new Point(3, 3), obs.position());
     }
 
     @Test
     void testRobotSnake() {
         RobotStrategy dummy = (r, f) -> Direction.DOWN;
         RobotSnake rs = new RobotSnake(new Point(0, 0), Direction.RIGHT, dummy);
-        
+
         GameField field = new GameField(10, 10, 0, new Level(1, 100, 200));
         rs.determineNextMove(field);
         rs.move();
@@ -59,7 +63,7 @@ class ModelTest {
         GameField field = new GameField(10, 10, 0, new Level(1, 100, 200));
         Direction d = rs.chooseNextDirection(robot, field);
         assertNotNull(d);
-        
+
         // Trap the robot to force fallback
         field.addObstacle(new Obstacle(new Point(2, 1))); // RIGHT
         field.addObstacle(new Obstacle(new Point(1, 0))); // UP

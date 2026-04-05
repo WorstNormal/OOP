@@ -43,7 +43,7 @@ public class RandomStrategy implements RobotStrategy {
     private boolean isSafe(Point head, Direction dir, GameField field) {
         Point p = new Point(head.x() + dir.getDx(), head.y() + dir.getDy());
         if (p.x() < 0 || p.x() >= field.getWidth() || p.y() < 0 || p.y() >= field.getHeight()) return false;
-        
-        return field.isPointFree(p) || field.getFoods().stream().anyMatch(f -> f.getPosition().equals(p));
+
+        return field.isPointFree(p) || field.getFoods().stream().anyMatch(f -> f.position().equals(p));
     }
 }

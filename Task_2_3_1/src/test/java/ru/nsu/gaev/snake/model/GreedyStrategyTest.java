@@ -1,7 +1,9 @@
 package ru.nsu.gaev.snake.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GreedyStrategyTest {
     @Test
@@ -10,14 +12,14 @@ class GreedyStrategyTest {
         GameField field = new GameField(10, 10, 0, startLevel); // no foods by default if 0
         field.getFoods().clear();
         field.getFoods().add(new Food(new Point(0, 5), FoodType.NORMAL));
-        
+
         RobotSnake robot = new RobotSnake(new Point(5, 5), Direction.LEFT, new GreedyStrategy());
         field.addRobot(robot);
-        
+
         GreedyStrategy strategy = new GreedyStrategy();
         Direction nextDir = strategy.chooseNextDirection(robot, field);
         assertEquals(Direction.LEFT, nextDir);
-        
+
         // Food above
         field.getFoods().clear();
         field.getFoods().add(new Food(new Point(5, 0), FoodType.NORMAL));

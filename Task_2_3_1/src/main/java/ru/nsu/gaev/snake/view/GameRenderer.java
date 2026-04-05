@@ -3,7 +3,12 @@ package ru.nsu.gaev.snake.view;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import ru.nsu.gaev.snake.model.*;
+import ru.nsu.gaev.snake.model.Food;
+import ru.nsu.gaev.snake.model.GameField;
+import ru.nsu.gaev.snake.model.Obstacle;
+import ru.nsu.gaev.snake.model.Point;
+import ru.nsu.gaev.snake.model.RobotSnake;
+import ru.nsu.gaev.snake.model.Snake;
 
 public class GameRenderer {
     private final Canvas canvas;
@@ -20,7 +25,7 @@ public class GameRenderer {
         // clear
         gc.setFill(Color.web("#eef2f3"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
+
         // draw grid
         gc.setStroke(Color.LIGHTGRAY);
         for (int i = 0; i < field.getWidth(); i++) {
@@ -33,14 +38,14 @@ public class GameRenderer {
         // draw foods
         gc.setFill(Color.RED);
         for (Food food : field.getFoods()) {
-            Point p = food.getPosition();
+            Point p = food.position();
             gc.fillOval(p.x() * cellSize + 2, p.y() * cellSize + 2, cellSize - 4, cellSize - 4);
         }
 
         // draw obstacles
         gc.setFill(Color.DARKGRAY);
         for (Obstacle obs : field.getObstacles()) {
-            Point p = obs.getPosition();
+            Point p = obs.position();
             gc.fillRect(p.x() * cellSize, p.y() * cellSize, cellSize, cellSize);
         }
 
@@ -59,7 +64,7 @@ public class GameRenderer {
                 drawSnake(robot, Color.DARKGRAY, Color.GRAY);
             }
         }
-        
+
         if (!field.isStarted() && !field.isGameOver() && !field.isGameWon()) {
             gc.setFill(Color.BLACK);
             gc.setFont(new javafx.scene.text.Font("Arial", 24));
