@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'checkstyle'
+    id 'jacoco'
+}
+
+group = 'ru.nsu.gaev'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = '20.0.2'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.base']
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+check.dependsOn jacocoTestCoverageVerification
+
+checkstyle {
+    toolVersion = "10.12.4"
+}
+
+tasks.withType(Checkstyle) {
+    config = resources.text.fromArchiveEntry(configurations.checkstyle, "google_checks.xml")
+}
+
+application {
+    mainClass = 'ru.nsu.gaev.snake.Main'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = true
+    }
+}
