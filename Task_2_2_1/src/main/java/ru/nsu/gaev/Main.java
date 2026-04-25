@@ -1,5 +1,8 @@
 package ru.nsu.gaev;
 
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import ru.nsu.gaev.config.PizzeriaConfig;
 
 /**
@@ -13,6 +16,7 @@ public class Main {
      * @param args аргументы командной строки (не используются)
      */
     public static void main(String[] args) {
+        Counter.solve(); 
         try {
             // Загрузка конфигурации
             PizzeriaConfig config = Pizzeria.loadConfig("config.json");
@@ -50,6 +54,22 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Произошла ошибка: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+}
+
+class Counter{
+    private AtomicInteger count; 
+    private List<Thread> threads;  
+    public static void solve(){
+        for(int j = 0; j < 10; j++)
+        {
+            Thread solvegen = new Thread(()-> {
+                for(int i=0; i < 1000; i++)
+                {
+                    count.incrementAndGet(); 
+                }
+                });
         }
     }
 }

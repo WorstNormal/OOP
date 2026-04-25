@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task_2_1_1</a> &gt; <a href="index.source.html" class="el_package">ru.nsu.gaev</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package ru.nsu.gaev;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Locale;
+
+/**
+ * Main class for testing PrimeChecker performance.
+ * Demonstrates sequential, parallel (threads), and parallel stream approaches.
+ */
+<span class="nc" id="L12">public class Main {</span>
+    /**
+     * Main entry point for the application.
+     *
+     * @param args command line arguments (not used)
+     */
+    public static void main(String[] args) {
+        // Test set 1: mixed numbers
+<span class="fc" id="L20">        final int[] test1 = {6, 8, 7, 13, 5, 9, 4};</span>
+
+        // Test set 2: large prime numbers
+<span class="fc" id="L23">        final int[] test2 = {20319251, 6997901, 6997927, 6997937, 17858849,</span>
+                6997967, 6998009, 6998029, 6998039, 20165149, 6998051, 6998053};
+
+        // Test set 3: extended set of large prime numbers
+<span class="fc" id="L27">        final int[] test3 = generateLargePrimes();</span>
+
+        // 1. Sequential execution
+<span class="fc" id="L30">        System.out.println(&quot;=== Test 1: [6, 8, 7, 13, 5, 9, 4] ===&quot;);</span>
+<span class="fc" id="L31">        testAllMethods(test1, &quot;test1_results.csv&quot;);</span>
+
+<span class="fc" id="L33">        System.out.println(&quot;\n=== Test 2: Large prime numbers ===&quot;);</span>
+<span class="fc" id="L34">        testAllMethods(test2, &quot;test2_results.csv&quot;);</span>
+
+<span class="fc" id="L36">        System.out.println(&quot;\n=== Test 3: Extended large primes (&quot;</span>
+                + test3.length + &quot; numbers) ===&quot;);
+<span class="fc" id="L38">        testAllMethods(test3, &quot;test3_results.csv&quot;);</span>
+
+<span class="fc" id="L40">        System.out.println(&quot;\nResults saved to CSV files.&quot;);</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Tests all methods with given array and saves results to CSV.
+     *
+     * @param arr     input array to test
+     * @param csvFile output file for results
+     */
+    private static void testAllMethods(int[] arr, String csvFile) {
+<span class="fc" id="L50">        final PrimeChecker checker = new PrimeChecker(arr);</span>
+
+<span class="fc" id="L52">        final StringBuilder csv = new StringBuilder();</span>
+<span class="fc" id="L53">        csv.append(&quot;Method,NumThreads,TimeMs\n&quot;);</span>
+
+        // 1. Sequential execution
+<span class="fc" id="L56">        System.out.println(&quot;1. Sequential execution:&quot;);</span>
+<span class="fc" id="L57">        final double[] seqTimes = new double[5];</span>
+        // Warmup
+<span class="fc" id="L59">        checker.hasCompositeSequential();</span>
+
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        for (int run = 0; run &lt; 5; run++) {</span>
+<span class="fc" id="L62">            final long startTime = System.nanoTime();</span>
+<span class="fc" id="L63">            final boolean result1 = checker.hasCompositeSequential();</span>
+<span class="fc" id="L64">            final long time1 = System.nanoTime() - startTime;</span>
+<span class="fc" id="L65">            final double timeMs = time1 / 1_000_000.0;</span>
+<span class="fc" id="L66">            seqTimes[run] = timeMs;</span>
+            // System.out.printf(&quot;   Run %d: %b (%.2f ms)%n&quot;, run + 1, result1, timeMs);
+        }
+<span class="fc" id="L69">        final double avgSeq = average(seqTimes);</span>
+<span class="fc" id="L70">        System.out.printf(&quot;   Average: %.2f ms%n&quot;, avgSeq);</span>
+<span class="fc" id="L71">        csv.append(String.format(Locale.US, &quot;Sequential,1,%.2f%n&quot;, avgSeq));</span>
+
+        // 2. Parallel with Threads (different number of threads)
+<span class="fc" id="L74">        System.out.println(&quot;2. Parallel with Threads:&quot;);</span>
+<span class="fc" id="L75">        final int availableProcessors = Runtime.getRuntime().availableProcessors();</span>
+<span class="fc" id="L76">        System.out.println(&quot;   Available processors: &quot; + availableProcessors);</span>
+
+        // Test for 1 to availableProcessors * 2 threads
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        for (int threads = 1; threads &lt;= availableProcessors * 2; threads++) {</span>
+            // Only test specific thread counts to keep graph readable but cover the range
+            // e.g. 1, 2, 3, 4, ... up to max, maybe skipping if too many
+<span class="fc bfc" id="L82" title="All 4 branches covered.">            if (threads &gt; 16 &amp;&amp; threads % 4 != 0) {</span>
+<span class="fc" id="L83">                continue;</span>
+            }
+
+<span class="fc" id="L86">            final double[] threadTimes = new double[5];</span>
+            // Warmup
+<span class="fc" id="L88">            checker.hasCompositeParallel(threads);</span>
+
+<span class="fc bfc" id="L90" title="All 2 branches covered.">            for (int run = 0; run &lt; 5; run++) {</span>
+<span class="fc" id="L91">                final long startTime = System.nanoTime();</span>
+<span class="fc" id="L92">                final boolean result2 = checker.hasCompositeParallel(threads);</span>
+<span class="fc" id="L93">                final long time2 = System.nanoTime() - startTime;</span>
+<span class="fc" id="L94">                final double timeMs = time2 / 1_000_000.0;</span>
+<span class="fc" id="L95">                threadTimes[run] = timeMs;</span>
+            }
+<span class="fc" id="L97">            final double avgThread = average(threadTimes);</span>
+<span class="fc" id="L98">            System.out.printf(&quot;   Threads %d Average: %.2f ms%n&quot;, threads, avgThread);</span>
+<span class="fc" id="L99">            csv.append(String.format(Locale.US, &quot;Parallel,%d,%.2f%n&quot;, threads, avgThread));</span>
+        }
+
+        // 3. ParallelStream
+<span class="fc" id="L103">        System.out.println(&quot;3. ParallelStream:&quot;);</span>
+<span class="fc" id="L104">        final double[] streamTimes = new double[5];</span>
+        // Warmup
+<span class="fc" id="L106">        checker.hasCompositeParallelStream();</span>
+
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        for (int run = 0; run &lt; 5; run++) {</span>
+<span class="fc" id="L109">            final long startTime = System.nanoTime();</span>
+<span class="fc" id="L110">            final boolean result3 = checker.hasCompositeParallelStream();</span>
+<span class="fc" id="L111">            final long time3 = System.nanoTime() - startTime;</span>
+<span class="fc" id="L112">            final double timeMs = time3 / 1_000_000.0;</span>
+<span class="fc" id="L113">            streamTimes[run] = timeMs;</span>
+            // System.out.printf(&quot;   Run %d: %b (%.2f ms)%n&quot;, run + 1, result3, timeMs);
+        }
+<span class="fc" id="L116">        final double avgStream = average(streamTimes);</span>
+<span class="fc" id="L117">        System.out.printf(&quot;   Average: %.2f ms%n&quot;, avgStream);</span>
+<span class="fc" id="L118">        csv.append(String.format(Locale.US, &quot;ParallelStream,%d,%.2f%n&quot;,</span>
+<span class="fc" id="L119">                availableProcessors, avgStream));</span>
+
+        // Save results to CSV in directory from System.getProperty(&quot;user.dir&quot;)
+<span class="fc" id="L122">        final String userDir = System.getProperty(&quot;user.dir&quot;);</span>
+<span class="fc" id="L123">        final File outFile = new File(userDir, csvFile);</span>
+<span class="fc" id="L124">        try (PrintWriter writer = new PrintWriter(outFile)) {</span>
+<span class="fc" id="L125">            writer.print(csv.toString());</span>
+<span class="nc" id="L126">        } catch (IOException e) {</span>
+<span class="nc" id="L127">            e.printStackTrace();</span>
+<span class="fc" id="L128">        }</span>
+<span class="fc" id="L129">    }</span>
+
+    /**
+     * Calculates average of array values.
+     *
+     * @param values input array
+     * @return average value
+     */
+    public static double average(double[] values) {
+<span class="fc" id="L138">        double sum = 0;</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        for (double v : values) {</span>
+<span class="fc" id="L140">            sum += v;</span>
+        }
+<span class="fc" id="L142">        return sum / values.length;</span>
+    }
+
+    /**
+     * Generates array of large prime numbers.
+     *
+     * @return array of prime numbers
+     */
+    public static int[] generateLargePrimes() {
+        // Repeat the set of large primes to increase load
+<span class="fc" id="L152">        final int[] sourcePrimes = {</span>
+            2147483647, 2147483629, 2147483587, 2147483579, 2147483563,
+            2147483549, 2147483543, 2147483539, 2147483537, 2147483527,
+            2147483521, 2147483507, 2147483501, 2147483497, 2147483489,
+            2147483477, 2147483471, 2147483461, 2147483459, 2147483449,
+            2147483443, 2100000037, 2099999999, 2099999927, 2099999891,
+            2099999837, 2000000011, 1999999937, 1999999829, 1999999827,
+            1999999823, 1900000007, 1899999937, 1899999831, 1899999829,
+            1899999823, 1800000023, 1799999999, 1799999927, 1799999891,
+            1799999837, 1700000003, 1699999999, 1699999927, 1699999891,
+            1699999837, 1600000007, 1599999937, 1599999829, 1599999827,
+            1599999823
+        };
+
+        // Create a larger array by repeating the source primes
+        // Increase multiplier to ensure heavy load
+<span class="fc" id="L168">        final int multiplier = 2000;</span>
+<span class="fc" id="L169">        final int[] largePrimes = new int[sourcePrimes.length * multiplier];</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">        for (int i = 0; i &lt; multiplier; i++) {</span>
+<span class="fc" id="L171">            System.arraycopy(sourcePrimes, 0, largePrimes, i * sourcePrimes.length,</span>
+                    sourcePrimes.length);
+        }
+<span class="fc" id="L174">        return largePrimes;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

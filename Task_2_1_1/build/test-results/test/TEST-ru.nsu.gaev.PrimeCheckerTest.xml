@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.gaev.PrimeCheckerTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2026-02-15T16:26:47.495Z" hostname="DESKTOP-5DMEAV6" time="0.035">
+  <properties/>
+  <testcase name="testPrimeUtilsBoundaryCases()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testEmptyArray()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testSetThreadCount()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testPrimeUtilsEvenNumbers()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.0"/>
+  <testcase name="testParallelWithThreadCountEqualLength()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.002"/>
+  <testcase name="testSequentialAllPrimes()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.002"/>
+  <testcase name="testParallelContainsCompositeVariousPositions()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.003"/>
+  <testcase name="testPrimeUtilsCompositeOdd()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testLargeNumbersWithComposite()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testSequentialSmallNumbers()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testSequentialSingleElement()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testSequentialContainsComposite()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testParallelNegativeOrLargeThreadCount()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.002"/>
+  <testcase name="testParallelAllPrimesVariousThreads()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.002"/>
+  <testcase name="testParallelStream()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testLargeNumbers()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.002"/>
+  <testcase name="testParallelSingleThread()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.001"/>
+  <testcase name="testParallelWithThreadCountLargerThanLength()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.0"/>
+  <testcase name="testParallelStreamSinglePrime()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.0"/>
+  <testcase name="testNullArray()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.0"/>
+  <testcase name="testParallelStreamSingleComposite()" classname="ru.nsu.gaev.PrimeCheckerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Snake.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task_2_3_1</a> &gt; <a href="index.source.html" class="el_package">ru.nsu.gaev.snake.model</a> &gt; <span class="el_source">Snake.java</span></div><h1>Snake.java</h1><pre class="source lang-java linenums">package ru.nsu.gaev.snake.model;
+
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Snake class representing the player's snake in the game.
+ */
+public class Snake {
+    protected final LinkedList&lt;Point&gt; body;
+    protected Direction currentDirection;
+    protected Direction nextDirection;
+<span class="fc" id="L13">    protected int segmentsToGrow = 0;</span>
+<span class="fc" id="L14">    protected boolean alive = true;</span>
+
+    /**
+     * Constructor for Snake.
+     *
+     * @param startPosition the starting position of the snake
+     * @param startDirection the starting direction of the snake
+     */
+<span class="fc" id="L22">    public Snake(Point startPosition, Direction startDirection) {</span>
+<span class="fc" id="L23">        this.body = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L24">        this.body.add(startPosition);</span>
+<span class="fc" id="L25">        this.currentDirection = startDirection;</span>
+<span class="fc" id="L26">        this.nextDirection = startDirection;</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Get the body of the snake.
+     *
+     * @return list of points representing the snake body
+     */
+    public List&lt;Point&gt; getBody() {
+<span class="fc" id="L35">        return body;</span>
+    }
+
+    /**
+     * Get the head of the snake.
+     *
+     * @return the head point
+     */
+    public Point getHead() {
+<span class="fc" id="L44">        return body.getFirst();</span>
+    }
+
+    /**
+     * Set the next direction for the snake.
+     *
+     * @param dir the next direction
+     */
+    public void setNextDirection(Direction dir) {
+        // Cannot reverse direction if length &gt; 1
+<span class="pc bpc" id="L54" title="1 of 4 branches missed.">        if (body.size() &gt; 1 &amp;&amp; dir.isOpposite(currentDirection)) {</span>
+<span class="nc" id="L55">            return;</span>
+        }
+<span class="fc" id="L57">        this.nextDirection = dir;</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Get the current direction.
+     *
+     * @return the current direction
+     */
+    public Direction getCurrentDirection() {
+<span class="fc" id="L66">        return currentDirection;</span>
+    }
+
+    /**
+     * Eat food and grow.
+     *
+     * @param food the food to eat
+     */
+    public void eat(Food food) {
+<span class="fc" id="L75">        segmentsToGrow += food.type().getGrowthAmount();</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Kill the snake.
+     */
+    public void kill() {
+<span class="fc" id="L82">        this.alive = false;</span>
+<span class="fc" id="L83">    }</span>
+
+    /**
+     * Check if the snake is alive.
+     *
+     * @return true if alive, false otherwise
+     */
+    public boolean isAlive() {
+<span class="fc" id="L91">        return alive;</span>
+    }
+
+    /**
+     * Move the snake one step.
+     */
+    public void move() {
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">        if (!alive) {</span>
+<span class="nc" id="L99">            return;</span>
+        }
+
+<span class="fc" id="L102">        currentDirection = nextDirection;</span>
+<span class="fc" id="L103">        Point head = getHead();</span>
+<span class="fc" id="L104">        Point newHead = new Point(</span>
+<span class="fc" id="L105">                head.x() + currentDirection.getDx(),</span>
+<span class="fc" id="L106">                head.y() + currentDirection.getDy()</span>
+        );
+
+<span class="fc" id="L109">        body.addFirst(newHead);</span>
+
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (segmentsToGrow &gt; 0) {</span>
+<span class="fc" id="L112">            segmentsToGrow--;</span>
+            // We don't remove the tail because we are growing
+        } else {
+<span class="fc" id="L115">            body.removeLast(); // Remove tail</span>
+        }
+<span class="fc" id="L117">    }</span>
+
+    /**
+     * Check if the snake occupies a specific point.
+     *
+     * @param p the point to check
+     * @return true if occupied, false otherwise
+     */
+    public boolean occupies(Point p) {
+<span class="fc" id="L126">        return body.contains(p);</span>
+    }
+
+    /**
+     * Check for self-collision.
+     *
+     * @return true if self-collision detected, false otherwise
+     */
+    public boolean checkSelfCollision() {
+<span class="fc bfc" id="L135" title="All 4 branches covered.">        if (!alive || body.size() &lt;= 4) {</span>
+<span class="fc" id="L136">            return false;</span>
+        }
+<span class="fc" id="L138">        Point head = getHead();</span>
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">        for (int i = 1; i &lt; body.size(); i++) {</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">            if (body.get(i).equals(head)) {</span>
+<span class="fc" id="L141">                return true;</span>
+            }
+        }
+<span class="nc" id="L144">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.gaev.TopologicalSortStrategyTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2025-11-06T05:43:45.965Z" hostname="DESKTOP-5DMEAV6" time="0.022">
+  <properties/>
+  <testcase name="testDfsTopologicalSortSingleVertex()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.001"/>
+  <testcase name="testKahnTopologicalSort_LinearGraph()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.001"/>
+  <testcase name="testDfsTopologicalSortLinearGraph()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.001"/>
+  <testcase name="testKahnTopologicalSort()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.0"/>
+  <testcase name="testDfsTopologicalSort()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.001"/>
+  <testcase name="testKahnTopologicalSort_SingleVertex()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.001"/>
+  <testcase name="testDfsTopologicalSortCycle()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.003"/>
+  <testcase name="testKahnAndDfsProduceValidSort()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.001"/>
+  <testcase name="testKahnTopologicalSort_Cycle()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.002"/>
+  <testcase name="testKahnTopologicalSort_EmptyGraph()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.002"/>
+  <testcase name="testDfsTopologicalSortEmptyGraph()" classname="ru.nsu.gaev.TopologicalSortStrategyTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

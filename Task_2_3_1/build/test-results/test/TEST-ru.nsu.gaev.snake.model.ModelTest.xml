@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.gaev.snake.model.ModelTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-04-05T15:21:16.490Z" hostname="DESKTOP-5DMEAV6" time="0.009">
+  <properties/>
+  <testcase name="testRandomStrategy()" classname="ru.nsu.gaev.snake.model.ModelTest" time="0.002"/>
+  <testcase name="testFoodAndLevelAndObstacle()" classname="ru.nsu.gaev.snake.model.ModelTest" time="0.0"/>
+  <testcase name="testPoint()" classname="ru.nsu.gaev.snake.model.ModelTest" time="0.003"/>
+  <testcase name="testDirection()" classname="ru.nsu.gaev.snake.model.ModelTest" time="0.0"/>
+  <testcase name="testRobotSnake()" classname="ru.nsu.gaev.snake.model.ModelTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

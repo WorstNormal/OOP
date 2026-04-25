@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.gaev.snake.view.GameRendererTest" tests="47" skipped="0" failures="0" errors="0" timestamp="2026-04-05T15:21:16.504Z" hostname="DESKTOP-5DMEAV6" time="0.039">
+  <properties/>
+  <testcase name="testRenderWithMultipleElements()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderCanvasHasGraphicsContext()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithGameNotStarted()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderBackgroundColor()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithObstacles()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithDeadRobot()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderMultipleTimes()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithLargeGameField()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderAfterPlayerMove()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithPlayerMovement()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderPlayerAtCorners()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRendererWithDifferentCanvasSizes()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithEmptyField()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderGameAfterStart()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRendererGraphicsContextNotNull()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithFoods()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderPreservesCanvasState()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderGridLines()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testCellSizeAffectsRendering()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithManyFoods()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderAfterPlayerGrowth()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithEdgeCases()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithSmallGameField()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithMaxFoods()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderObstacleColor()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderRobotAtDifferentPositions()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithAllGameElements()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRendererCanvasNotNull()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderGameFieldConsistency()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithPlayer()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithRobots()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderMultipleConsecutiveCalls()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithStartMessage()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderRobotColor()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderPlayerAlive()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderPlayerColor()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithManyObstacles()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithMaxObstacles()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderFoodColor()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithDifferentDirections()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithManyRobots()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRendererCellSize()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithDeadPlayer()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithFoodConsumption()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.0"/>
+  <testcase name="testRenderWithAllSnakesAlive()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRendererInitialization()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <testcase name="testRenderWithSomeSnakesDead()" classname="ru.nsu.gaev.snake.view.GameRendererTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

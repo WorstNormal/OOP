@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrimeChecker.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task_2_1_1</a> &gt; <a href="index.source.html" class="el_package">ru.nsu.gaev</a> &gt; <span class="el_source">PrimeChecker.java</span></div><h1>PrimeChecker.java</h1><pre class="source lang-java linenums">package ru.nsu.gaev;
+
+import ru.nsu.gaev.strategy.ParallelStreamStrategy;
+import ru.nsu.gaev.strategy.ParallelThreadsStrategy;
+import ru.nsu.gaev.strategy.PrimeCheckStrategy;
+import ru.nsu.gaev.strategy.SequentialStrategy;
+
+/**
+ * Checker for composite numbers in an array using various parallelization strategies.
+ */
+public class PrimeChecker {
+    private final int[] array;
+
+    /**
+     * Constructs a PrimeChecker with the given array.
+     *
+     * @param array the array to check
+     */
+<span class="fc" id="L19">    public PrimeChecker(int[] array) {</span>
+<span class="fc" id="L20">        this.array = array;</span>
+<span class="fc" id="L21">    }</span>
+
+    /**
+     * Sequential execution: checks for composite numbers.
+     *
+     * @return true if composite number found, false otherwise
+     */
+    public boolean hasCompositeSequential() {
+<span class="fc" id="L29">        final PrimeCheckStrategy strategy = new SequentialStrategy();</span>
+<span class="fc" id="L30">        return strategy.hasComposite(array);</span>
+    }
+
+    /**
+     * Parallel execution using threads.
+     *
+     * @param threadCount number of threads to use
+     * @return true if composite number found, false otherwise
+     */
+    public boolean hasCompositeParallel(int threadCount) {
+<span class="fc" id="L40">        final ParallelThreadsStrategy strategy = new ParallelThreadsStrategy(threadCount);</span>
+<span class="fc" id="L41">        return strategy.hasComposite(array);</span>
+    }
+
+    /**
+     * Parallel execution using parallel stream.
+     *
+     * @return true if composite number found, false otherwise
+     */
+    public boolean hasCompositeParallelStream() {
+<span class="fc" id="L50">        final PrimeCheckStrategy strategy = new ParallelStreamStrategy();</span>
+<span class="fc" id="L51">        return strategy.hasComposite(array);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
