@@ -1,0 +1,14 @@
+{
+  "bakers": [
+    { "id": 1, "cookingTimeMs": 500 },
+    { "id": 2, "cookingTimeMs": 800 },
+    { "id": 3, "cookingTimeMs": 400 }
+  ],
+  "couriers": [
+    { "id": 1, "trunkCapacity": 2, "deliveryTimeMs": 1000 },
+    { "id": 2, "trunkCapacity": 3, "deliveryTimeMs": 1500 }
+  ],
+  "storageCapacity": 5,
+  "workingTimeMs": 10000
+}
+
