@@ -31,7 +31,7 @@ class GameRendererTest {
         canvas = new Canvas(600, 600);
         level = new Level(1, 100, 200);
         gameField = new GameField(20, 20, 5, level);
-        renderer = new GameRenderer(canvas, 30);
+        renderer = new GameRenderer(canvas);
     }
 
     @Test
@@ -50,9 +50,9 @@ class GameRendererTest {
     @Test
     void testRendererCellSize() {
         try {
-            var cellSizeField = GameRenderer.class.getDeclaredField("cellSize");
+            var cellSizeField = GameRenderer.class.getDeclaredField("CELL_SIZE");
             cellSizeField.setAccessible(true);
-            int cellSize = cellSizeField.getInt(renderer);
+            int cellSize = cellSizeField.getInt(null);
             assertTrue(cellSize > 0);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
@@ -166,7 +166,7 @@ class GameRendererTest {
     void testRenderWithLargeGameField() {
         Canvas largeCanvas = new Canvas(1200, 1200);
         GameField largeField = new GameField(40, 40, 10, level);
-        GameRenderer largeRenderer = new GameRenderer(largeCanvas, 30);
+        GameRenderer largeRenderer = new GameRenderer(largeCanvas);
 
         largeRenderer.render(largeField);
     }
@@ -175,7 +175,7 @@ class GameRendererTest {
     void testRenderWithSmallGameField() {
         Canvas smallCanvas = new Canvas(300, 300);
         GameField smallField = new GameField(10, 10, 2, level);
-        GameRenderer smallRenderer = new GameRenderer(smallCanvas, 30);
+        GameRenderer smallRenderer = new GameRenderer(smallCanvas);
 
         smallRenderer.render(smallField);
     }
@@ -321,7 +321,7 @@ class GameRendererTest {
     void testRenderWithEdgeCases() {
         Canvas minCanvas = new Canvas(60, 60);
         GameField minField = new GameField(2, 2, 0, level);
-        GameRenderer minRenderer = new GameRenderer(minCanvas, 30);
+        GameRenderer minRenderer = new GameRenderer(minCanvas);
 
         minRenderer.render(minField);
     }
@@ -454,7 +454,7 @@ class GameRendererTest {
     @Test
     void testCellSizeAffectsRendering() {
         Canvas canvas2 = new Canvas(600, 600);
-        GameRenderer renderer2 = new GameRenderer(canvas2, 20);
+        GameRenderer renderer2 = new GameRenderer(canvas2);
         renderer2.render(gameField);
     }
 
@@ -463,7 +463,7 @@ class GameRendererTest {
         int[] sizes = { 300, 600, 900, 1200 };
         for (int size : sizes) {
             Canvas testCanvas = new Canvas(size, size);
-            GameRenderer testRenderer = new GameRenderer(testCanvas, 30);
+            GameRenderer testRenderer = new GameRenderer(testCanvas);
             testRenderer.render(gameField);
         }
     }

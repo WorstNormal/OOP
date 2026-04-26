@@ -2,7 +2,7 @@ package ru.nsu.gaev.snake.model.entity;
 
 import ru.nsu.gaev.snake.model.common.Direction;
 import ru.nsu.gaev.snake.model.common.Point;
-import ru.nsu.gaev.snake.model.core.GameFieldView;
+import ru.nsu.gaev.snake.model.core.FieldSnapshot;
 import ru.nsu.gaev.snake.model.strategy.RobotStrategy;
 
 /**
@@ -26,9 +26,9 @@ public class RobotSnake extends Snake {
     /**
      * Определяет следующее направление движения.
      *
-     * @param field игровое поле
+     * @param field снимок игрового поля с ограниченным доступом
      */
-    public void determineNextMove(GameFieldView field) {
+    public void determineNextMove(FieldSnapshot field) {
         Direction nextDir = strategy.chooseNextDirection(this, field);
         if (nextDir != null) {
             setNextDirection(nextDir);

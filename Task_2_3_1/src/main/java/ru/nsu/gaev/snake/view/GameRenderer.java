@@ -12,33 +12,46 @@ import ru.nsu.gaev.snake.model.entity.RobotSnake;
 import ru.nsu.gaev.snake.model.entity.Snake;
 
 /**
- * Отрисовывает текущее состояние игрового поля.
+ * Отрисовывает текущее состояни�� игрового поля.
  */
 public class GameRenderer {
+    // Размер одной клетки в пикселях
+    private static final int CELL_SIZE = 30;
+
+    // Сообщение при старте игры
     private static final String START_MESSAGE = "Press any arrow key to start";
     private static final int START_MESSAGE_FONT_SIZE = 24;
+
+    // Смещения и размеры для рисования еды (овала)
+    private static final int FOOD_OVAL_OFFSET = 2;
+    private static final int FOOD_OVAL_SIZE_REDUCTION = 4;
+
+    // Смещения и размеры для рисования тела змеи (прямоугольника)
+    private static final int SNAKE_RECT_OFFSET = 1;
+    private static final int SNAKE_RECT_SIZE_REDUCTION = 2;
+
+    // Смещение для текста стартового сообщения от центра
+    private static final int TEXT_Y_OFFSET = 0;
+
     private final Canvas canvas;
     private final GraphicsContext gc;
-    private final int cellSize;
 
     /**
      * Создает рендерер.
      *
      * @param canvas холст для рисования
-     * @param cellSize размер клетки
      */
-    public GameRenderer(Canvas canvas, int cellSize) {
+    public GameRenderer(Canvas canvas) {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
-        this.cellSize = cellSize;
     }
 
     public int getFieldWidth() {
-        return (int) (canvas.getWidth() / cellSize);
+        return (int) (canvas.getWidth() / CELL_SIZE);
     }
 
     public int getFieldHeight() {
-        return (int) (canvas.getHeight() / cellSize);
+        return (int) (canvas.getHeight() / CELL_SIZE);
     }
 
     /**
@@ -47,29 +60,51 @@ public class GameRenderer {
      * @param field игровое поле
      */
     public void render(GameFieldView field) {
+        drawBackground();
+        drawGrid(field);
+        drawFood(field);
+        drawObstacles(field);
+        drawSnakes(field);
+        drawStartMessage(field);
+    }
+
+    private void drawBackground() {
         gc.setFill(Color.web("#eef2f3"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
 
+    private void drawGrid(GameFieldView field) {
         gc.setStroke(Color.LIGHTGRAY);
         for (int i = 0; i < field.getWidth(); i++) {
-            gc.strokeLine(i * cellSize, 0, i * cellSize, canvas.getHeight());
+            gc.strokeLine(i * CELL_SIZE, 0, i * CELL_SIZE, canvas.getHeight());
         }
         for (int i = 0; i < field.getHeight(); i++) {
-            gc.strokeLine(0, i * cellSize, canvas.getWidth(), i * cellSize);
+            gc.strokeLine(0, i * CELL_SIZE, canvas.getWidth(), i * CELL_SIZE);
         }
+    }
 
+    private void drawFood(GameFieldView field) {
         gc.setFill(Color.RED);
         for (Food food : field.getFoods()) {
             Point p = food.position();
-            gc.fillOval(p.x() * cellSize + 2, p.y() * cellSize + 2, cellSize - 4, cellSize - 4);
+            gc.fillOval(
+                    p.x() * CELL_SIZE + FOOD_OVAL_OFFSET,
+                    p.y() * CELL_SIZE + FOOD_OVAL_OFFSET,
+                    CELL_SIZE - FOOD_OVAL_SIZE_REDUCTION,
+                    CELL_SIZE - FOOD_OVAL_SIZE_REDUCTION
+            );
         }
+    }
 
+    private void drawObstacles(GameFieldView field) {
         gc.setFill(Color.DARKGRAY);
         for (Obstacle obs : field.getObstacles()) {
             Point p = obs.position();
-            gc.fillRect(p.x() * cellSize, p.y() * cellSize, cellSize, cellSize);
+            gc.fillRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         }
+    }
 
+    private void drawSnakes(GameFieldView field) {
         if (field.getPlayer().isAlive()) {
             drawSnake(field.getPlayer(), Color.DARKGREEN, Color.LIMEGREEN);
         } else {
@@ -83,12 +118,18 @@ public class GameRenderer {
                 drawSnake(robot, Color.DARKGRAY, Color.GRAY);
             }
         }
+    }
 
+    private void drawStartMessage(GameFieldView field) {
         if (!field.isStarted() && !field.isGameOver() && !field.isGameWon()) {
             gc.setFill(Color.BLACK);
             gc.setFont(new javafx.scene.text.Font("Arial", START_MESSAGE_FONT_SIZE));
             gc.setTextAlign(TextAlignment.CENTER);
-            gc.fillText(START_MESSAGE, canvas.getWidth() / 2, canvas.getHeight() / 2);
+            gc.fillText(
+                    START_MESSAGE,
+                    canvas.getWidth() / 2,
+                    canvas.getHeight() / 2 + TEXT_Y_OFFSET
+            );
         }
     }
 
@@ -96,7 +137,12 @@ public class GameRenderer {
         boolean isHead = true;
         for (Point p : snake.getBody()) {
             gc.setFill(isHead ? headColor : bodyColor);
-            gc.fillRect(p.x() * cellSize + 1, p.y() * cellSize + 1, cellSize - 2, cellSize - 2);
+            gc.fillRect(
+                    p.x() * CELL_SIZE + SNAKE_RECT_OFFSET,
+                    p.y() * CELL_SIZE + SNAKE_RECT_OFFSET,
+                    CELL_SIZE - SNAKE_RECT_SIZE_REDUCTION,
+                    CELL_SIZE - SNAKE_RECT_SIZE_REDUCTION
+            );
             isHead = false;
         }
     }

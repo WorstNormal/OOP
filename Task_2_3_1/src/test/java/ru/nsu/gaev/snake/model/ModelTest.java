@@ -10,6 +10,7 @@ import ru.nsu.gaev.snake.model.common.Direction;
 import ru.nsu.gaev.snake.model.common.FoodType;
 import ru.nsu.gaev.snake.model.common.Level;
 import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.FieldSnapshot;
 import ru.nsu.gaev.snake.model.core.GameField;
 import ru.nsu.gaev.snake.model.entity.Food;
 import ru.nsu.gaev.snake.model.entity.Obstacle;
@@ -63,7 +64,8 @@ class ModelTest {
         RobotSnake rs = new RobotSnake(new Point(0, 0), Direction.RIGHT, dummy);
 
         GameField field = new GameField(10, 10, 0, new Level(1, 100, 200));
-        rs.determineNextMove(field);
+        FieldSnapshot snapshot = createSnapshot(field);
+        rs.determineNextMove(snapshot);
         rs.move();
         assertEquals(Direction.DOWN, rs.getCurrentDirection());
     }
@@ -73,13 +75,57 @@ class ModelTest {
         RandomStrategy rs = new RandomStrategy();
         RobotSnake robot = new RobotSnake(new Point(1, 1), Direction.RIGHT, rs);
         GameField field = new GameField(10, 10, 0, new Level(1, 100, 200));
-        Direction d = rs.chooseNextDirection(robot, field);
+        FieldSnapshot snapshot = createSnapshot(field);
+        Direction d = rs.chooseNextDirection(robot, snapshot);
         assertNotNull(d);
 
         field.addObstacle(new Obstacle(new Point(2, 1)));
         field.addObstacle(new Obstacle(new Point(1, 0)));
         field.addObstacle(new Obstacle(new Point(1, 2)));
-        Direction d2 = rs.chooseNextDirection(robot, field);
+        snapshot = createSnapshot(field);
+        Direction d2 = rs.chooseNextDirection(robot, snapshot);
         assertNotNull(d2);
+    }
+
+    private FieldSnapshot createSnapshot(GameField field) {
+        return new FieldSnapshot() {
+            @Override
+            public int getWidth() {
+                return field.getWidth();
+            }
+
+            @Override
+            public int getHeight() {
+                return field.getHeight();
+            }
+
+            @Override
+            public java.util.List<Point> getObstacles() {
+                java.util.List<Point> points = new java.util.ArrayList<>();
+                for (var obs : field.getObstacles()) {
+                    points.add(obs.position());
+                }
+                return java.util.Collections.unmodifiableList(points);
+            }
+
+            @Override
+            public java.util.List<Point> getFoods() {
+                java.util.List<Point> points = new java.util.ArrayList<>();
+                for (var food : field.getFoods()) {
+                    points.add(food.position());
+                }
+                return java.util.Collections.unmodifiableList(points);
+            }
+
+            @Override
+            public boolean isPointFree(Point point) {
+                return field.isPointFree(point);
+            }
+
+            @Override
+            public Point getMyPosition() {
+                return field.getPlayer().getHead();
+            }
+        };
     }
 }

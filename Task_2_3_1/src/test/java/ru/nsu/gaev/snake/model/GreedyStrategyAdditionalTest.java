@@ -10,6 +10,7 @@ import ru.nsu.gaev.snake.model.common.Direction;
 import ru.nsu.gaev.snake.model.common.FoodType;
 import ru.nsu.gaev.snake.model.common.Level;
 import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.FieldSnapshot;
 import ru.nsu.gaev.snake.model.core.GameField;
 import ru.nsu.gaev.snake.model.entity.Food;
 import ru.nsu.gaev.snake.model.entity.Obstacle;
@@ -39,7 +40,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(5, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(
             nextDir == Direction.LEFT
@@ -53,7 +54,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(
             nextDir == Direction.RIGHT
@@ -67,7 +68,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 5), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.UP, nextDir);
     }
@@ -77,7 +78,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 15), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.DOWN, nextDir);
     }
@@ -89,7 +90,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().add(new Food(new Point(10, 11), FoodType.NORMAL));
         gameField.getFoods().add(new Food(new Point(15, 15), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.DOWN, nextDir);
     }
@@ -98,7 +99,7 @@ class GreedyStrategyAdditionalTest {
     void testChooseNextDirectionNoFoods() {
         gameField.getFoods().clear();
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.UP, nextDir);
     }
@@ -110,7 +111,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(5, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robotNearWall, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robotNearWall, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -124,7 +125,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 5), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.UP, nextDir);
     }
@@ -136,7 +137,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 5), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(
             nextDir == Direction.UP
@@ -156,7 +157,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(2, 1), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robotCornered, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robotCornered, createSnapshot(gameField));
         assertNotNull(nextDir);
     }
 
@@ -166,7 +167,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().add(new Food(new Point(10, 14), FoodType.NORMAL));
         gameField.getFoods().add(new Food(new Point(10, 18), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.DOWN, nextDir);
     }
@@ -176,7 +177,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(5, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -186,7 +187,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -198,7 +199,7 @@ class GreedyStrategyAdditionalTest {
         gameField.addObstacle(new Obstacle(new Point(10, 12)));
         gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -208,7 +209,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(19, 19), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -218,7 +219,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(1, 1), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -230,7 +231,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 0), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robotCorner, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -242,7 +243,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 19), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robotCorner, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -254,7 +255,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(0, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robotCorner, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -266,7 +267,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(19, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robotCorner, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -278,7 +279,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
         gameField.getFoods().add(new Food(new Point(8, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -289,7 +290,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 5), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.UP, nextDir);
     }
@@ -300,7 +301,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 15), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.DOWN, nextDir);
     }
@@ -311,7 +312,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(5, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir == Direction.LEFT || nextDir == Direction.UP || nextDir == Direction.DOWN);
     }
@@ -322,7 +323,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(
             nextDir == Direction.RIGHT
@@ -342,7 +343,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(15, 15), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
     }
@@ -352,7 +353,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(10, 9), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertEquals(Direction.UP, nextDir);
     }
@@ -362,7 +363,7 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(15, 15), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir == Direction.RIGHT || nextDir == Direction.DOWN);
     }
@@ -377,8 +378,50 @@ class GreedyStrategyAdditionalTest {
         gameField.getFoods().clear();
         gameField.getFoods().add(new Food(new Point(12, 10), FoodType.NORMAL));
 
-        Direction nextDir = strategy.chooseNextDirection(robot, gameField);
+        Direction nextDir = strategy.chooseNextDirection(robot, createSnapshot(gameField));
         assertNotNull(nextDir);
         assertTrue(nextDir != null);
+    }
+
+    private FieldSnapshot createSnapshot(GameField field) {
+        return new FieldSnapshot() {
+            @Override
+            public int getWidth() {
+                return field.getWidth();
+            }
+
+            @Override
+            public int getHeight() {
+                return field.getHeight();
+            }
+
+            @Override
+            public java.util.List<Point> getObstacles() {
+                java.util.List<Point> points = new java.util.ArrayList<>();
+                for (var obs : field.getObstacles()) {
+                    points.add(obs.position());
+                }
+                return java.util.Collections.unmodifiableList(points);
+            }
+
+            @Override
+            public java.util.List<Point> getFoods() {
+                java.util.List<Point> points = new java.util.ArrayList<>();
+                for (var food : field.getFoods()) {
+                    points.add(food.position());
+                }
+                return java.util.Collections.unmodifiableList(points);
+            }
+
+            @Override
+            public boolean isPointFree(Point point) {
+                return field.isPointFree(point);
+            }
+
+            @Override
+            public Point getMyPosition() {
+                return field.getPlayer().getHead();
+            }
+        };
     }
 }

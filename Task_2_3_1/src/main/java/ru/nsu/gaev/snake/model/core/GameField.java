@@ -1,6 +1,7 @@
 package ru.nsu.gaev.snake.model.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import ru.nsu.gaev.snake.model.common.Direction;
@@ -31,6 +32,7 @@ public class GameField implements GameFieldView {
     private boolean gameDraw = false;
     private boolean started = false;
     private final List<GameFieldListener> listeners = new ArrayList<>();
+    private final List<ModelListener> modelListeners = new ArrayList<>();
 
     /**
      * Создает игровое поле.
@@ -68,6 +70,14 @@ public class GameField implements GameFieldView {
 
     public void removeListener(GameFieldListener listener) {
         listeners.remove(listener);
+    }
+
+    public void addModelListener(ModelListener listener) {
+        modelListeners.add(listener);
+    }
+
+    public void removeModelListener(ModelListener listener) {
+        modelListeners.remove(listener);
     }
 
     private void spawnInitialFoods() {
@@ -130,7 +140,7 @@ public class GameField implements GameFieldView {
 
         for (RobotSnake robot : robots) {
             if (robot.isAlive()) {
-                robot.determineNextMove(this);
+                robot.determineNextMove(createSnapshotForRobot(robot));
                 robot.move();
             }
         }
@@ -139,6 +149,7 @@ public class GameField implements GameFieldView {
         checkFood();
         checkLevelProgression();
         notifyListeners();
+        notifyModelListeners();
     }
 
     private void checkCollisions() {
@@ -151,12 +162,14 @@ public class GameField implements GameFieldView {
         if (phead.x() < 0 || phead.x() >= width || phead.y() < 0 || phead.y() >= height) {
             player.kill();
             gameOver = true;
+            notifyModelListenersCollision();
             return;
         }
 
         if (player.checkSelfCollision()) {
             player.kill();
             gameOver = true;
+            notifyModelListenersCollision();
             return;
         }
 
@@ -164,6 +177,7 @@ public class GameField implements GameFieldView {
             if (phead.equals(obs.position())) {
                 player.kill();
                 gameOver = true;
+                notifyModelListenersCollision();
                 return;
             }
         }
@@ -177,31 +191,37 @@ public class GameField implements GameFieldView {
                 player.kill();
                 robot.kill();
                 gameDraw = true;
+                notifyModelListenersCollision();
                 return;
             }
 
             if (robot.occupies(phead)) {
                 player.kill();
                 gameOver = true;
+                notifyModelListenersCollision();
             }
 
             if (player.occupies(robot.getHead())) {
                 robot.kill();
                 gameWon = true;
+                notifyModelListenersCollision();
             }
             Point rhead = robot.getHead();
             if (rhead.x() < 0 || rhead.x() >= width || rhead.y() < 0 || rhead.y() >= height) {
                 robot.kill();
                 gameWon = true;
+                notifyModelListenersCollision();
             }
             if (robot.checkSelfCollision()) {
                 robot.kill();
                 gameWon = true;
+                notifyModelListenersCollision();
             }
             for (Obstacle obs : obstacles) {
                 if (rhead.equals(obs.position())) {
                     robot.kill();
                     gameWon = true;
+                    notifyModelListenersCollision();
                 }
             }
         }
@@ -312,6 +332,121 @@ public class GameField implements GameFieldView {
         List<GameFieldListener> snapshot = new ArrayList<>(listeners);
         for (GameFieldListener listener : snapshot) {
             listener.onGameFieldChanged(this);
+        }
+    }
+
+    private void notifyModelListeners() {
+        List<ModelListener> snapshot = new ArrayList<>(modelListeners);
+        FieldSnapshot fieldSnapshot = new GameFieldSnapshot();
+        for (ModelListener listener : snapshot) {
+            listener.onTick(fieldSnapshot);
+        }
+    }
+
+    private void notifyModelListenersCollision() {
+        List<ModelListener> snapshot = new ArrayList<>(modelListeners);
+        FieldSnapshot fieldSnapshot = new GameFieldSnapshot();
+        for (ModelListener listener : snapshot) {
+            listener.onCollision(fieldSnapshot);
+        }
+    }
+
+    /**
+     * Создает снимок поля с ограниченным доступом для робота.
+     */
+    private FieldSnapshot createSnapshotForRobot(RobotSnake robot) {
+        return new RobotFieldSnapshot(robot);
+    }
+
+    /**
+     * Общий снимок поля для слушателей.
+     */
+    private class GameFieldSnapshot implements FieldSnapshot {
+        @Override
+        public int getWidth() {
+            return width;
+        }
+
+        @Override
+        public int getHeight() {
+            return height;
+        }
+
+        @Override
+        public List<Point> getObstacles() {
+            List<Point> points = new ArrayList<>();
+            for (Obstacle obs : obstacles) {
+                points.add(obs.position());
+            }
+            return Collections.unmodifiableList(points);
+        }
+
+        @Override
+        public List<Point> getFoods() {
+            List<Point> points = new ArrayList<>();
+            for (Food food : foods) {
+                points.add(food.position());
+            }
+            return Collections.unmodifiableList(points);
+        }
+
+        @Override
+        public boolean isPointFree(Point point) {
+            return GameField.this.isPointFree(point);
+        }
+
+        @Override
+        public Point getMyPosition() {
+            return player.getHead();
+        }
+    }
+
+    /**
+     * Снимок поля для робота с доступом только к необходимой информации.
+     */
+    private class RobotFieldSnapshot implements FieldSnapshot {
+        private final RobotSnake robot;
+
+        RobotFieldSnapshot(RobotSnake robot) {
+            this.robot = robot;
+        }
+
+        @Override
+        public int getWidth() {
+            return width;
+        }
+
+        @Override
+        public int getHeight() {
+            return height;
+        }
+
+        @Override
+        public List<Point> getObstacles() {
+            List<Point> points = new ArrayList<>();
+            for (Obstacle obs : obstacles) {
+                points.add(obs.position());
+            }
+            return Collections.unmodifiableList(points);
+        }
+
+        @Override
+        public List<Point> getFoods() {
+            List<Point> points = new ArrayList<>();
+            for (Food food : foods) {
+                points.add(food.position());
+            }
+            return Collections.unmodifiableList(points);
+        }
+
+        @Override
+        public boolean isPointFree(Point point) {
+            return GameField.this.isPointFree(point);
+        }
+
+        @Override
+        public Point getMyPosition() {
+            return robot.getHead();
         }
     }
 }

@@ -4,8 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import ru.nsu.gaev.snake.model.common.Direction;
 import ru.nsu.gaev.snake.model.common.Point;
-import ru.nsu.gaev.snake.model.core.GameFieldView;
-import ru.nsu.gaev.snake.model.entity.Food;
+import ru.nsu.gaev.snake.model.core.FieldSnapshot;
 import ru.nsu.gaev.snake.model.entity.RobotSnake;
 
 /**
@@ -14,17 +13,16 @@ import ru.nsu.gaev.snake.model.entity.RobotSnake;
 public class GreedyStrategy implements RobotStrategy {
 
     @Override
-    public Direction chooseNextDirection(RobotSnake robot, GameFieldView field) {
+    public Direction chooseNextDirection(RobotSnake robot, FieldSnapshot field) {
         Point head = robot.getHead();
 
-        Food nearestFood = null;
+        Point nearestFood = null;
         int minDistance = Integer.MAX_VALUE;
-        for (Food f : field.getFoods()) {
-            int dist = Math.abs(f.position().x() - head.x())
-                    + Math.abs(f.position().y() - head.y());
+        for (Point p : field.getFoods()) {
+            int dist = Math.abs(p.x() - head.x()) + Math.abs(p.y() - head.y());
             if (dist < minDistance) {
                 minDistance = dist;
-                nearestFood = f;
+                nearestFood = p;
             }
         }
 
@@ -32,7 +30,7 @@ public class GreedyStrategy implements RobotStrategy {
             return fallback(head, robot.getCurrentDirection(), field);
         }
 
-        Direction bestDir = bfs(head, nearestFood.position(), field, robot);
+        Direction bestDir = bfs(head, nearestFood, field, robot);
         if (bestDir != null) {
             return bestDir;
         }
@@ -40,7 +38,7 @@ public class GreedyStrategy implements RobotStrategy {
         return fallback(head, robot.getCurrentDirection(), field);
     }
 
-    private Direction bfs(Point start, Point target, GameFieldView field, RobotSnake robot) {
+    private Direction bfs(Point start, Point target, FieldSnapshot field, RobotSnake robot) {
         boolean[][] visited = new boolean[field.getWidth()][field.getHeight()];
         Queue<Node> queue = new LinkedList<>();
 
@@ -75,18 +73,18 @@ public class GreedyStrategy implements RobotStrategy {
         return null;
     }
 
-    private boolean isValid(Point p, GameFieldView field) {
+    private boolean isValid(Point p, FieldSnapshot field) {
         if (p.x() < 0 || p.x() >= field.getWidth()
                 || p.y() < 0 || p.y() >= field.getHeight()) {
             return false;
         }
-        if (field.getFoods().stream().anyMatch(f -> f.position().equals(p))) {
+        if (field.getFoods().stream().anyMatch(f -> f.equals(p))) {
             return true;
         }
         return field.isPointFree(p);
     }
 
-    private Direction fallback(Point head, Direction currentDir, GameFieldView field) {
+    private Direction fallback(Point head, Direction currentDir, FieldSnapshot field) {
         Direction[] dirs = {currentDir, getLeft(currentDir), getRight(currentDir)};
         for (Direction d : dirs) {
             Point next = new Point(head.x() + d.getDx(), head.y() + d.getDy());

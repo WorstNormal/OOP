@@ -38,7 +38,7 @@ public class GameController {
      */
     @FXML
     public void initialize() {
-        renderer = new GameRenderer(gameCanvas, 30);
+        renderer = new GameRenderer(gameCanvas);
         int width = renderer.getFieldWidth();
         int height = renderer.getFieldHeight();
 
