@@ -1,13 +1,13 @@
 package ru.nsu.gaev.snake.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.lang.reflect.Field;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import java.lang.reflect.Field;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.gaev.snake.model.common.Direction;
@@ -18,7 +18,6 @@ import ru.nsu.gaev.snake.model.entity.Snake;
 
 /**
  * Тесты для класса GameController.
- *
  * Полные интеграционные тесты требуют инициализации JavaFX, поэтому здесь
  * проверяется поведение контроллера и обработка клавиш.
  */

@@ -25,7 +25,6 @@ class MainTest {
         try {
             Platform.startup(() -> {
             });
-        } catch (IllegalStateException ignored) {
         } catch (UnsupportedOperationException ignored) {
             javaFxSupported = false;
         }
