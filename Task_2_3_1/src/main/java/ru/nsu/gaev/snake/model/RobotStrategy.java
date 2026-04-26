@@ -1,7 +1,7 @@
 package ru.nsu.gaev.snake.model;
 
 /**
- * RobotStrategy interface.
+ * Стратегия выбора следующего хода для робота.
  */
 public interface RobotStrategy {
     Direction chooseNextDirection(RobotSnake robot, GameField field);

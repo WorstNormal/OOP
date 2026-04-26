@@ -1,9 +1,9 @@
 package ru.nsu.gaev.snake.model;
 
 /**
- * Obstacle record.
+ * Препятствие на поле.
  *
- * @param position position.
+ * @param position координата препятствия
  */
 public record Obstacle(Point position) implements GameObject {
 }

@@ -37,7 +37,6 @@ class SnakeTest {
     @Test
     void testSelfCollision() {
         Snake snake = new Snake(new Point(5, 5), Direction.UP);
-        // Force body to be larger
         snake.eat(new Food(new Point(0, 0), FoodType.NORMAL));
         snake.eat(new Food(new Point(0, 0), FoodType.NORMAL));
         snake.eat(new Food(new Point(0, 0), FoodType.NORMAL));

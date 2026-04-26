@@ -8,23 +8,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Main application class for Snake game.
+ * Основной класс JavaFX-приложения.
  */
 public class Main extends Application {
     /**
-     * Main entry point.
+     * Точка входа в игру.
      *
-     * @param args command line arguments
+     * @param args аргументы командной строки
      */
     public static void main(String[] args) {
         launch();
     }
 
     /**
-     * Start the JavaFX application.
+     * Запускает JavaFX-приложение.
      *
-     * @param stage the primary stage
-     * @throws IOException if FXML file cannot be loaded
+     * @param stage основное окно
+     * @throws IOException если не удается загрузить FXML
      */
     @Override
     public void start(Stage stage) throws IOException {
@@ -32,7 +32,6 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
 
-        // Ensure keyboard events are captured by the main layout
         root.requestFocus();
 
         stage.setTitle("Snake Game");

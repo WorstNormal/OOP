@@ -1,7 +1,7 @@
 package ru.nsu.gaev.snake.model;
 
 /**
- * Direction enum.
+ * Возможные направления движения.
  */
 public enum Direction {
     UP(0, -1),

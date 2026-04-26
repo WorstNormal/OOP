@@ -28,7 +28,6 @@ class GameFieldTest {
         field.setStarted(true);
         Snake player = field.getPlayer();
 
-        // Move towards 0, then hit wall
         while (player.getHead().y() >= 0 && !field.isGameOver()) {
             field.update();
         }
@@ -45,10 +44,8 @@ class GameFieldTest {
                 Direction.LEFT, (r, f) -> Direction.LEFT);
         field.addRobot(robot);
 
-        // Next tick it should hit left wall
         field.update();
         assertFalse(robot.isAlive());
-        // Player should still be alive but game is won
         assertTrue(field.isGameWon());
     }
 
@@ -56,9 +53,9 @@ class GameFieldTest {
     void testAddObstacle() {
         Level startLevel = new Level(1, 100, 200);
         GameField field = new GameField(20, 15, 0, startLevel);
-        field.addObstacle(new Obstacle(new Point(10, 6))); // directly above player at 10,7
+        field.addObstacle(new Obstacle(new Point(10, 6)));
         field.setStarted(true);
-        field.update(); // moves up to 10,6
+        field.update();
         assertTrue(field.isGameOver());
     }
 }

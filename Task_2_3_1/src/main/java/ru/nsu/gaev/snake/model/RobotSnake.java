@@ -3,18 +3,18 @@ package ru.nsu.gaev.snake.model;
 import java.util.Random;
 
 /**
- * RobotSnake class.
+ * Змейка, управляемая стратегией искусственного интеллекта.
  */
 public class RobotSnake extends Snake {
     private static final Random RANDOM = new Random();
     private final RobotStrategy strategy;
 
     /**
-     * RobotSnake constructor.
+     * Создает робота-змейку.
      *
-     * @param start start position.
-     * @param startDirection start direction.
-     * @param strategy strategy.
+     * @param start стартовая позиция
+     * @param startDirection стартовое направление
+     * @param strategy стратегия выбора хода
      */
     public RobotSnake(Point start, Direction startDirection, RobotStrategy strategy) {
         super(start, startDirection);
@@ -22,9 +22,9 @@ public class RobotSnake extends Snake {
     }
 
     /**
-     * Determines the next move for the robot snake.
+     * Определяет следующее направление движения.
      *
-     * @param field The game field.
+     * @param field игровое поле
      */
     public void determineNextMove(GameField field) {
         Direction nextDir = strategy.chooseNextDirection(this, field);

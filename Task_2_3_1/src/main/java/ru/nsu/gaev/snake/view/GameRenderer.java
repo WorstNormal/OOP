@@ -11,7 +11,7 @@ import ru.nsu.gaev.snake.model.RobotSnake;
 import ru.nsu.gaev.snake.model.Snake;
 
 /**
- * GameRenderer class.
+ * Отрисовывает текущее состояние игрового поля.
  */
 public class GameRenderer {
     private final Canvas canvas;
@@ -19,10 +19,10 @@ public class GameRenderer {
     private final int cellSize;
 
     /**
-     * GameRenderer constructor.
+     * Создает рендерер.
      *
-     * @param canvas canvas.
-     * @param cellSize cell size.
+     * @param canvas холст для рисования
+     * @param cellSize размер клетки
      */
     public GameRenderer(Canvas canvas, int cellSize) {
         this.canvas = canvas;
@@ -31,16 +31,14 @@ public class GameRenderer {
     }
 
     /**
-     * Render method.
+     * Рисует игровое состояние.
      *
-     * @param field game field.
+     * @param field игровое поле
      */
     public void render(GameField field) {
-        // clear
         gc.setFill(Color.web("#eef2f3"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        // draw grid
         gc.setStroke(Color.LIGHTGRAY);
         for (int i = 0; i < field.getWidth(); i++) {
             gc.strokeLine(i * cellSize, 0, i * cellSize, canvas.getHeight());
@@ -49,28 +47,24 @@ public class GameRenderer {
             gc.strokeLine(0, i * cellSize, canvas.getWidth(), i * cellSize);
         }
 
-        // draw foods
         gc.setFill(Color.RED);
         for (Food food : field.getFoods()) {
             Point p = food.position();
             gc.fillOval(p.x() * cellSize + 2, p.y() * cellSize + 2, cellSize - 4, cellSize - 4);
         }
 
-        // draw obstacles
         gc.setFill(Color.DARKGRAY);
         for (Obstacle obs : field.getObstacles()) {
             Point p = obs.position();
             gc.fillRect(p.x() * cellSize, p.y() * cellSize, cellSize, cellSize);
         }
 
-        // draw player
         if (field.getPlayer().isAlive()) {
             drawSnake(field.getPlayer(), Color.DARKGREEN, Color.LIMEGREEN);
         } else {
             drawSnake(field.getPlayer(), Color.DARKGRAY, Color.GRAY);
         }
 
-        // draw robots
         for (RobotSnake robot : field.getRobots()) {
             if (robot.isAlive()) {
                 drawSnake(robot, Color.DARKBLUE, Color.BLUE);

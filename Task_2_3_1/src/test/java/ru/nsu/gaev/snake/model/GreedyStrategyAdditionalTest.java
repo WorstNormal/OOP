@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Additional tests for GreedyStrategy class.
+ * Дополнительные тесты для класса GreedyStrategy.
  */
 class GreedyStrategyAdditionalTest {
     private GameField gameField;
@@ -32,7 +32,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should move left or towards the food
         assertTrue(
             nextDir == Direction.LEFT
                 || nextDir == Direction.UP
@@ -47,7 +46,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should move right or towards the food
         assertTrue(
             nextDir == Direction.RIGHT
                 || nextDir == Direction.UP
@@ -84,7 +82,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should choose the nearest food at (10, 11)
         assertEquals(Direction.DOWN, nextDir);
     }
 
@@ -94,7 +91,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should use fallback direction (same direction)
         assertEquals(Direction.UP, nextDir);
     }
 
@@ -107,13 +103,11 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robotNearWall, gameField);
         assertNotNull(nextDir);
-        // Robot should move towards food or use fallback strategy
         assertTrue(nextDir != null);
     }
 
     @Test
     void testChooseNextDirectionWithLongSnake() {
-        // Make the robot's snake longer
         for (int i = 0; i < 5; i++) {
             robot.eat(new Food(new Point(0, 0), FoodType.NORMAL));
         }
@@ -123,7 +117,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should still find a path to food
         assertEquals(Direction.UP, nextDir);
     }
 
@@ -136,7 +129,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should find alternative path avoiding obstacle
         assertTrue(
             nextDir == Direction.UP
                 || nextDir == Direction.LEFT
@@ -146,11 +138,9 @@ class GreedyStrategyAdditionalTest {
 
     @Test
     void testChooseNextDirectionFallbackWhenPathBlocked() {
-        // Create a scenario where robot is surrounded
         RobotSnake robotCornered = new RobotSnake(new Point(2, 2), Direction.UP, strategy);
         gameField.addRobot(robotCornered);
 
-        // Add obstacles around
         gameField.addObstacle(new Obstacle(new Point(2, 1)));
         gameField.addObstacle(new Obstacle(new Point(3, 2)));
 
@@ -164,14 +154,11 @@ class GreedyStrategyAdditionalTest {
     @Test
     void testChooseNextDirectionNearestFoodSelection() {
         gameField.getFoods().clear();
-        // Food 1: distance = 4
         gameField.getFoods().add(new Food(new Point(10, 14), FoodType.NORMAL));
-        // Food 2: distance = 8
         gameField.getFoods().add(new Food(new Point(10, 18), FoodType.NORMAL));
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should target the nearer food
         assertEquals(Direction.DOWN, nextDir);
     }
 
@@ -182,7 +169,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Test that the strategy can find paths using left turns
         assertTrue(nextDir != null);
     }
 
@@ -193,13 +179,11 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Test that the strategy can find paths using right turns
         assertTrue(nextDir != null);
     }
 
     @Test
     void testBfsPathfinding() {
-        // Create a simple maze-like scenario
         gameField.getFoods().clear();
         gameField.addObstacle(new Obstacle(new Point(10, 11)));
         gameField.addObstacle(new Obstacle(new Point(10, 12)));
@@ -207,7 +191,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should find a path around obstacles
         assertTrue(nextDir != null);
     }
 
@@ -218,7 +201,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should be able to reach corner of field
         assertTrue(nextDir != null);
     }
 
@@ -229,7 +211,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should not move out of bounds
         assertTrue(nextDir != null);
     }
 
@@ -242,7 +223,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
         assertNotNull(nextDir);
-        // Should use fallback strategy
         assertTrue(nextDir != null);
     }
 
@@ -255,7 +235,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
         assertNotNull(nextDir);
-        // Should use fallback strategy
         assertTrue(nextDir != null);
     }
 
@@ -268,7 +247,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
         assertNotNull(nextDir);
-        // Should use fallback strategy
         assertTrue(nextDir != null);
     }
 
@@ -281,21 +259,18 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robotCorner, gameField);
         assertNotNull(nextDir);
-        // Should use fallback strategy
         assertTrue(nextDir != null);
     }
 
     @Test
     void testMultipleFoodsDistanceCalculation() {
         gameField.getFoods().clear();
-        // Add multiple foods at different distances
         gameField.getFoods().add(new Food(new Point(12, 10), FoodType.NORMAL));
         gameField.getFoods().add(new Food(new Point(15, 10), FoodType.NORMAL));
         gameField.getFoods().add(new Food(new Point(8, 10), FoodType.NORMAL));
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should choose closest food
         assertTrue(nextDir != null);
     }
 
@@ -349,7 +324,6 @@ class GreedyStrategyAdditionalTest {
 
     @Test
     void testComplexMazeNavigation() {
-        // Create a complex obstacle layout
         for (int i = 5; i <= 15; i++) {
             if (i != 10) {
                 gameField.addObstacle(new Obstacle(new Point(i, 12)));
@@ -361,7 +335,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should find path around complex obstacles
         assertTrue(nextDir != null);
     }
 
@@ -378,7 +351,6 @@ class GreedyStrategyAdditionalTest {
     @Test
     void testDiagonalDistance() {
         gameField.getFoods().clear();
-        // Food at diagonal distance
         gameField.getFoods().add(new Food(new Point(15, 15), FoodType.NORMAL));
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
@@ -388,7 +360,6 @@ class GreedyStrategyAdditionalTest {
 
     @Test
     void testSnakeBodyBlocksPath() {
-        // Grow snake to block some paths
         for (int i = 0; i < 3; i++) {
             robot.eat(new Food(new Point(0, 0), FoodType.NORMAL));
             robot.move();
@@ -399,7 +370,6 @@ class GreedyStrategyAdditionalTest {
 
         Direction nextDir = strategy.chooseNextDirection(robot, gameField);
         assertNotNull(nextDir);
-        // Should navigate around own body
         assertTrue(nextDir != null);
     }
 }

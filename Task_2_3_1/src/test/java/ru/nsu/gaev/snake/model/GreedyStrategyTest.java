@@ -9,7 +9,7 @@ class GreedyStrategyTest {
     @Test
     void testChooseNextDirection() {
         Level startLevel = new Level(1, 100, 200);
-        GameField field = new GameField(10, 10, 0, startLevel); // no foods by default if 0
+        GameField field = new GameField(10, 10, 0, startLevel);
         field.getFoods().clear();
         field.getFoods().add(new Food(new Point(0, 5), FoodType.NORMAL));
 
@@ -20,17 +20,14 @@ class GreedyStrategyTest {
         Direction nextDir = strategy.chooseNextDirection(robot, field);
         assertEquals(Direction.LEFT, nextDir);
 
-        // Food above
         field.getFoods().clear();
         field.getFoods().add(new Food(new Point(5, 0), FoodType.NORMAL));
         nextDir = strategy.chooseNextDirection(robot, field);
         assertEquals(Direction.UP, nextDir);
 
-        // Fallback test
         field.getFoods().clear();
         field.getFoods().add(new Food(new Point(5, 9), FoodType.NORMAL));
         nextDir = strategy.chooseNextDirection(robot, field);
-        // Will go DOWN or LEFT based on BFS priorities / shortest path
         assertNotNull(nextDir);
     }
 }

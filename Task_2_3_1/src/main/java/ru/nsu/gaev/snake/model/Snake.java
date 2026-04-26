@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Snake class representing the player's snake in the game.
+ * Базовая змейка, содержащая логику движения, роста и столкновений с собой.
  */
 public class Snake {
     protected final LinkedList<Point> body;
@@ -14,10 +14,10 @@ public class Snake {
     protected boolean alive = true;
 
     /**
-     * Constructor for Snake.
+     * Создает змейку.
      *
-     * @param startPosition the starting position of the snake
-     * @param startDirection the starting direction of the snake
+     * @param startPosition стартовая позиция головы
+     * @param startDirection стартовое направление движения
      */
     public Snake(Point startPosition, Direction startDirection) {
         this.body = new LinkedList<>();
@@ -27,30 +27,29 @@ public class Snake {
     }
 
     /**
-     * Get the body of the snake.
+     * Возвращает тело змейки.
      *
-     * @return list of points representing the snake body
+     * @return список точек тела
      */
     public List<Point> getBody() {
         return body;
     }
 
     /**
-     * Get the head of the snake.
+     * Возвращает голову змейки.
      *
-     * @return the head point
+     * @return координата головы
      */
     public Point getHead() {
         return body.getFirst();
     }
 
     /**
-     * Set the next direction for the snake.
+     * Задает следующее направление движения.
      *
-     * @param dir the next direction
+     * @param dir новое направление
      */
     public void setNextDirection(Direction dir) {
-        // Cannot reverse direction if length > 1
         if (body.size() > 1 && dir.isOpposite(currentDirection)) {
             return;
         }
@@ -58,41 +57,41 @@ public class Snake {
     }
 
     /**
-     * Get the current direction.
+     * Возвращает текущее направление.
      *
-     * @return the current direction
+     * @return текущее направление
      */
     public Direction getCurrentDirection() {
         return currentDirection;
     }
 
     /**
-     * Eat food and grow.
+     * Обрабатывает поедание еды и рост змейки.
      *
-     * @param food the food to eat
+     * @param food съеденная еда
      */
     public void eat(Food food) {
         segmentsToGrow += food.type().getGrowthAmount();
     }
 
     /**
-     * Kill the snake.
+     * Убивает змейку.
      */
     public void kill() {
         this.alive = false;
     }
 
     /**
-     * Check if the snake is alive.
+     * Проверяет, жива ли змейка.
      *
-     * @return true if alive, false otherwise
+     * @return true, если змейка жива
      */
     public boolean isAlive() {
         return alive;
     }
 
     /**
-     * Move the snake one step.
+     * Двигает змейку на один шаг.
      */
     public void move() {
         if (!alive) {
@@ -110,26 +109,25 @@ public class Snake {
 
         if (segmentsToGrow > 0) {
             segmentsToGrow--;
-            // We don't remove the tail because we are growing
         } else {
-            body.removeLast(); // Remove tail
+            body.removeLast();
         }
     }
 
     /**
-     * Check if the snake occupies a specific point.
+     * Проверяет, занимает ли змейка указанную точку.
      *
-     * @param p the point to check
-     * @return true if occupied, false otherwise
+     * @param p проверяемая точка
+     * @return true, если точка занята змейкой
      */
     public boolean occupies(Point p) {
         return body.contains(p);
     }
 
     /**
-     * Check for self-collision.
+     * Проверяет столкновение змейки с самой собой.
      *
-     * @return true if self-collision detected, false otherwise
+     * @return true, если обнаружено самостолкновение
      */
     public boolean checkSelfCollision() {
         if (!alive || body.size() <= 4) {

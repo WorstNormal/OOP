@@ -1,24 +1,18 @@
 package ru.nsu.gaev;
 
 /**
- * Main class.
+ * Вспомогательный класс для запуска.
  */
 public class Main {
     /**
-     * Main method.
+     * Точка входа в приложение.
      *
-     * @param args command line arguments.
+     * @param args аргументы командной строки
      */
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret
-        // at the highlighted text to see how IntelliJ IDEA suggests fixing it.
         System.out.print("Hello and welcome!");
 
         for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code.
-            // We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing
-            // <shortcut actionId="ToggleLineBreakpoint"/>.
             System.out.println("i = " + i);
         }
     }

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * GreedyStrategy class.
+ * Жадная стратегия, которая ведет робота к ближайшей еде.
  */
 public class GreedyStrategy implements RobotStrategy {
 
@@ -89,7 +89,7 @@ public class GreedyStrategy implements RobotStrategy {
                 return d;
             }
         }
-        return currentDir; // unavoidable crash
+        return currentDir;
     }
 
     private Direction getLeft(Direction d) {

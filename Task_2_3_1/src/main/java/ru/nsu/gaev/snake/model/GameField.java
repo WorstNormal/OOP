@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * GameField class.
+ * Игровое поле, которое хранит состояние матча и применяет правила.
  */
 public class GameField {
     private static final Random random = new Random();
@@ -24,12 +24,12 @@ public class GameField {
     private boolean started = false;
 
     /**
-     * GameField constructor.
+     * Создает игровое поле.
      *
-     * @param width width.
-     * @param height height.
-     * @param numFoods number of foods.
-     * @param startLevel start level.
+     * @param width ширина поля
+     * @param height высота поля
+     * @param numFoods количество еды на старте
+     * @param startLevel начальный уровень
      */
     public GameField(int width, int height, int numFoods, Level startLevel) {
         this.width = width;
@@ -59,7 +59,7 @@ public class GameField {
 
     private void spawnFood() {
         if (foods.size() >= width * height / 2) {
-            return; // Prevent infinite loop if too full
+            return;
         }
         Point p;
         do {
@@ -70,10 +70,10 @@ public class GameField {
     }
 
     /**
-     * isPointFree method.
+     * Проверяет, свободна ли точка на поле.
      *
-     * @param p point.
-     * @return boolean.
+     * @param p проверяемая точка
+     * @return true, если клетка свободна
      */
     public boolean isPointFree(Point p) {
         if (player.occupies(p)) {
@@ -98,19 +98,17 @@ public class GameField {
     }
 
     /**
-     * update method.
+     * Выполняет один игровой тик.
      */
     public void update() {
         if (!started || gameOver || gameWon || gameDraw) {
             return;
         }
 
-        // Move player
         if (player.isAlive()) {
             player.move();
         }
 
-        // Move robots
         for (RobotSnake robot : robots) {
             if (robot.isAlive()) {
                 robot.determineNextMove(this);
@@ -130,21 +128,18 @@ public class GameField {
 
         Point phead = player.getHead();
 
-        // Wall collision
         if (phead.x() < 0 || phead.x() >= width || phead.y() < 0 || phead.y() >= height) {
             player.kill();
             gameOver = true;
             return;
         }
 
-        // Self collision
         if (player.checkSelfCollision()) {
             player.kill();
             gameOver = true;
             return;
         }
 
-        // Obstacle collision
         for (Obstacle obs : obstacles) {
             if (phead.equals(obs.position())) {
                 player.kill();
@@ -153,13 +148,11 @@ public class GameField {
             }
         }
 
-        // Robot collisions
         for (RobotSnake robot : robots) {
             if (!robot.isAlive()) {
                 continue;
             }
 
-            // Head to head collision
             if (phead.equals(robot.getHead())) {
                 player.kill();
                 robot.kill();
@@ -167,29 +160,24 @@ public class GameField {
                 return;
             }
 
-            // Player hits robot
-            if (robot.occupies(phead)) { // Could be head to head or head to body
+            if (robot.occupies(phead)) {
                 player.kill();
                 gameOver = true;
             }
 
-            // Robot hits player (tail crossing)
             if (player.occupies(robot.getHead())) {
                 robot.kill();
                 gameWon = true;
             }
-            // Robot wall collision
             Point rhead = robot.getHead();
             if (rhead.x() < 0 || rhead.x() >= width || rhead.y() < 0 || rhead.y() >= height) {
                 robot.kill();
                 gameWon = true;
             }
-            // Robot self collision
             if (robot.checkSelfCollision()) {
                 robot.kill();
                 gameWon = true;
             }
-            // Robot obstacle collision
             for (Obstacle obs : obstacles) {
                 if (rhead.equals(obs.position())) {
                     robot.kill();
@@ -200,7 +188,6 @@ public class GameField {
     }
 
     private void checkFood() {
-        // Player
         if (player.isAlive()) {
             Point phead = player.getHead();
             Food eaten = null;
@@ -218,7 +205,6 @@ public class GameField {
             }
         }
 
-        // Robots
         for (RobotSnake robot : robots) {
             if (robot.isAlive()) {
                 Point rhead = robot.getHead();

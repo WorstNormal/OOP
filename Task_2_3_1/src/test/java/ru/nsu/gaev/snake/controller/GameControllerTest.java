@@ -17,10 +17,10 @@ import ru.nsu.gaev.snake.model.Point;
 import ru.nsu.gaev.snake.model.Snake;
 
 /**
- * Tests for GameController class.
- * Note: Full integration tests require JavaFX initialization which is complex
- * in unit tests. These tests focus on controller behavior and keyboard event
- * handling.
+ * Тесты для класса GameController.
+ *
+ * Полные интеграционные тесты требуют инициализации JavaFX, поэтому здесь
+ * проверяется поведение контроллера и обработка клавиш.
  */
 class GameControllerTest {
     private GameController controller;
@@ -145,7 +145,6 @@ class GameControllerTest {
         controller.handleKeyPressed(keyPress(KeyCode.SPACE));
         player.move();
 
-        // Snake should continue in its default UP direction.
         assertEquals(new Point(initialHead.x(), initialHead.y() - 1),
                 player.getHead());
         assertEquals(Direction.UP, player.getCurrentDirection());

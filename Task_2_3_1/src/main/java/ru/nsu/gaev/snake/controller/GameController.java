@@ -18,7 +18,7 @@ import ru.nsu.gaev.snake.model.Snake;
 import ru.nsu.gaev.snake.view.GameRenderer;
 
 /**
- * GameController class that manages the game logic and UI updates.
+ * Контроллер игры, который связывает интерфейс и игровую модель.
  */
 public class GameController {
     private static final int CELL_SIZE = 30;
@@ -34,17 +34,16 @@ public class GameController {
     private long lastUpdate = 0;
 
     /**
-     * Initialize the game controller.
+     * Инициализирует контроллер и создает игровое поле.
      */
     @FXML
     public void initialize() {
         int width = (int) (gameCanvas.getWidth() / CELL_SIZE);
         int height = (int) (gameCanvas.getHeight() / CELL_SIZE);
 
-        Level level1 = new Level(1, Integer.MAX_VALUE, 200_000_000L); // 200ms
+        Level level1 = new Level(1, Integer.MAX_VALUE, 200_000_000L);
         gameField = new GameField(width, height, 5, level1);
 
-        // Add a simple robot using greedy BFS strategy
         gameField.addRobot(
                 new RobotSnake(
                         new Point(width - 5, height - 5),
@@ -76,13 +75,12 @@ public class GameController {
             }
         };
 
-        // Render initial state
         updateUI();
         timer.start();
     }
 
     /**
-     * Update the UI elements.
+     * Обновляет элементы интерфейса.
      */
     private void updateUI() {
         renderer.render(gameField);
@@ -91,10 +89,10 @@ public class GameController {
     }
 
     /**
-     * Show end game message.
+     * Показывает итоговое сообщение после завершения игры.
      *
-     * @param won true if player won
-     * @param draw true if game ended in a draw
+     * @param won true, если игрок победил
+     * @param draw true, если игра завершилась вничью
      */
     private void showEndGameMessage(boolean won, boolean draw) {
         Platform.runLater(() -> {
@@ -109,7 +107,7 @@ public class GameController {
     }
 
     /**
-     * Show game rules.
+     * Показывает окно с правилами игры.
      */
     @FXML
     public void showRules() {
@@ -140,16 +138,15 @@ public class GameController {
             timer.start();
         }
 
-        // Возвращаем фокус на холст/сцену
         if (gameCanvas != null && gameCanvas.getScene() != null) {
             gameCanvas.getScene().getRoot().requestFocus();
         }
     }
 
     /**
-     * Handle keyboard input.
+     * Обрабатывает нажатия клавиш.
      *
-     * @param event the keyboard event
+     * @param event событие клавиатуры
      */
     @FXML
     public void handleKeyPressed(KeyEvent event) {

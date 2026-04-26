@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * RandomStrategy class.
+ * Случайная стратегия выбора безопасного хода.
  */
 public class RandomStrategy implements RobotStrategy {
     private static final Random RANDOM = new Random();

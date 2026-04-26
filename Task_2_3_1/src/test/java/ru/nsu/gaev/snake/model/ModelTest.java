@@ -64,10 +64,9 @@ class ModelTest {
         Direction d = rs.chooseNextDirection(robot, field);
         assertNotNull(d);
 
-        // Trap the robot to force fallback
-        field.addObstacle(new Obstacle(new Point(2, 1))); // RIGHT
-        field.addObstacle(new Obstacle(new Point(1, 0))); // UP
-        field.addObstacle(new Obstacle(new Point(1, 2))); // DOWN
+        field.addObstacle(new Obstacle(new Point(2, 1)));
+        field.addObstacle(new Obstacle(new Point(1, 0)));
+        field.addObstacle(new Obstacle(new Point(1, 2)));
         Direction d2 = rs.chooseNextDirection(robot, field);
         assertNotNull(d2);
     }

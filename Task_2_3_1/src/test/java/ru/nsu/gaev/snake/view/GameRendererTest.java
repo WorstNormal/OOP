@@ -18,7 +18,7 @@ import ru.nsu.gaev.snake.model.Point;
 import ru.nsu.gaev.snake.model.RobotSnake;
 
 /**
- * Tests for GameRenderer class.
+ * Тесты для класса GameRenderer.
  */
 class GameRendererTest {
     private GameRenderer renderer;
@@ -74,7 +74,6 @@ class GameRendererTest {
     @Test
     void testRenderWithEmptyField() {
         gameField.getFoods().clear();
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -84,7 +83,6 @@ class GameRendererTest {
         gameField.getFoods().add(new Food(new Point(5, 5), FoodType.NORMAL));
         gameField.getFoods().add(new Food(new Point(10, 10), FoodType.NORMAL));
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -93,7 +91,6 @@ class GameRendererTest {
         gameField.addObstacle(new Obstacle(new Point(7, 7)));
         gameField.addObstacle(new Obstacle(new Point(12, 12)));
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -105,7 +102,6 @@ class GameRendererTest {
                 new GreedyStrategy());
         gameField.addRobot(robot);
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -113,7 +109,6 @@ class GameRendererTest {
     void testRenderWithPlayer() {
         assertNotNull(gameField.getPlayer());
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -131,16 +126,13 @@ class GameRendererTest {
                 new GreedyStrategy());
         gameField.addRobot(robot);
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
     @Test
     void testRenderWithDeadPlayer() {
-        // Kill the player
         gameField.getPlayer().kill();
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -153,13 +145,11 @@ class GameRendererTest {
         gameField.addRobot(robot);
         robot.kill();
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
     @Test
     void testRenderMultipleTimes() {
-        // Should handle multiple render calls without issues
         for (int i = 0; i < 5; i++) {
             renderer.render(gameField);
         }
@@ -167,10 +157,8 @@ class GameRendererTest {
 
     @Test
     void testRenderWithGameNotStarted() {
-        // Game not started initially
         assertTrue(!gameField.isStarted());
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -180,7 +168,6 @@ class GameRendererTest {
         GameField largeField = new GameField(40, 40, 10, level);
         GameRenderer largeRenderer = new GameRenderer(largeCanvas, 30);
 
-        // Should not throw exception
         largeRenderer.render(largeField);
     }
 
@@ -190,7 +177,6 @@ class GameRendererTest {
         GameField smallField = new GameField(10, 10, 2, level);
         GameRenderer smallRenderer = new GameRenderer(smallCanvas, 30);
 
-        // Should not throw exception
         smallRenderer.render(smallField);
     }
 
@@ -201,7 +187,6 @@ class GameRendererTest {
             gameField.getFoods().add(new Food(new Point(i % 20, i / 20), FoodType.NORMAL));
         }
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -211,7 +196,6 @@ class GameRendererTest {
             gameField.addObstacle(new Obstacle(new Point(i, i)));
         }
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -225,7 +209,6 @@ class GameRendererTest {
             gameField.addRobot(robot);
         }
 
-        // Should not throw exception
         renderer.render(gameField);
     }
 
@@ -237,7 +220,6 @@ class GameRendererTest {
     @Test
     void testRenderPlayerAlive() {
         assertTrue(gameField.getPlayer().isAlive());
-        // Should render the alive player
         renderer.render(gameField);
     }
 
@@ -247,17 +229,14 @@ class GameRendererTest {
         renderer.render(gameField);
         int afterRenderFoodCount = gameField.getFoods().size();
 
-        // Render should not modify game field
         assertTrue(initialFoodCount == afterRenderFoodCount);
     }
 
     @Test
     void testRenderWithPlayerMovement() {
-        // Move player
         gameField.getPlayer().setNextDirection(Direction.RIGHT);
         gameField.getPlayer().move();
 
-        // Should render correctly
         renderer.render(gameField);
     }
 
@@ -267,7 +246,6 @@ class GameRendererTest {
         Point foodPoint = gameField.getPlayer().getHead();
         gameField.getFoods().add(new Food(foodPoint, FoodType.NORMAL));
 
-        // Should render food at the same position as player head
         renderer.render(gameField);
     }
 
@@ -292,7 +270,6 @@ class GameRendererTest {
         gameField.addRobot(robot1);
         gameField.addRobot(robot2);
 
-        // Should render without exceptions
         renderer.render(gameField);
     }
 
@@ -342,7 +319,6 @@ class GameRendererTest {
 
     @Test
     void testRenderWithEdgeCases() {
-        // Render at minimum field size
         Canvas minCanvas = new Canvas(60, 60);
         GameField minField = new GameField(2, 2, 0, level);
         GameRenderer minRenderer = new GameRenderer(minCanvas, 30);
@@ -406,7 +382,6 @@ class GameRendererTest {
 
     @Test
     void testRenderPlayerAtCorners() {
-        // Test rendering with player at different corners
         renderer.render(gameField);
     }
 
@@ -420,7 +395,6 @@ class GameRendererTest {
 
     @Test
     void testRenderGridLines() {
-        // Render should include grid lines
         renderer.render(gameField);
         assertNotNull(canvas.getGraphicsContext2D());
     }

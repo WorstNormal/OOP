@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for console Main class.
+ * Тесты для консольного класса Main.
  */
 class MainTest {
 

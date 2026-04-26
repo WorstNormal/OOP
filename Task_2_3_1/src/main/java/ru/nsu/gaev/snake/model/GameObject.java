@@ -1,7 +1,7 @@
 package ru.nsu.gaev.snake.model;
 
 /**
- * GameObject interface.
+ * Базовый контракт для игровых объектов, которые имеют координату.
  */
 public interface GameObject {
     Point position();

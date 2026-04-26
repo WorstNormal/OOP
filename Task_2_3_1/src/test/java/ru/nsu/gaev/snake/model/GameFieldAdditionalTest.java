@@ -27,7 +27,7 @@ class GameFieldAdditionalTest {
         field.getPlayer().setNextDirection(Direction.RIGHT);
 
         RobotSnake robot = new RobotSnake(new Point(6, 5), Direction.UP, (r, f) -> Direction.UP);
-        robot.eat(new Food(new Point(-1, -1), FoodType.NORMAL)); // now length 2 so tail stays
+        robot.eat(new Food(new Point(-1, -1), FoodType.NORMAL));
         field.addRobot(robot);
 
         field.update();
@@ -43,11 +43,10 @@ class GameFieldAdditionalTest {
                 Direction.LEFT, (r, f) -> Direction.LEFT);
         field.addRobot(robot);
 
-        field.getPlayer().eat(new Food(new Point(-1, -1), FoodType.NORMAL)); // length 2
+        field.getPlayer().eat(new Food(new Point(-1, -1), FoodType.NORMAL));
         field.getPlayer().setNextDirection(Direction.UP);
 
         field.update();
-        // Robot hits player body
         assertTrue(field.isGameWon());
     }
 

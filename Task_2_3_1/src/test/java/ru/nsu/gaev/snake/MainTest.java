@@ -15,7 +15,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for JavaFX Main class.
+ * Тесты для JavaFX-класса Main.
  */
 class MainTest {
     private static volatile boolean javaFxSupported = true;
@@ -24,10 +24,8 @@ class MainTest {
     static void initJavaFxToolkit() {
         try {
             Platform.startup(() -> {
-                // Toolkit init.
             });
         } catch (IllegalStateException ignored) {
-            // JavaFX runtime already initialized by another test.
         } catch (UnsupportedOperationException ignored) {
             javaFxSupported = false;
         }
