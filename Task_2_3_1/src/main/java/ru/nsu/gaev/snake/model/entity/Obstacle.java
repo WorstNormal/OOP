@@ -1,4 +1,6 @@
-package ru.nsu.gaev.snake.model;
+package ru.nsu.gaev.snake.model.entity;
+
+import ru.nsu.gaev.snake.model.common.Point;
 
 /**
  * Препятствие на поле.

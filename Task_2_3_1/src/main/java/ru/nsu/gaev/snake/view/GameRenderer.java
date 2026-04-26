@@ -3,17 +3,20 @@ package ru.nsu.gaev.snake.view;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import ru.nsu.gaev.snake.model.Food;
-import ru.nsu.gaev.snake.model.GameField;
-import ru.nsu.gaev.snake.model.Obstacle;
-import ru.nsu.gaev.snake.model.Point;
-import ru.nsu.gaev.snake.model.RobotSnake;
-import ru.nsu.gaev.snake.model.Snake;
+import javafx.scene.text.TextAlignment;
+import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.GameFieldView;
+import ru.nsu.gaev.snake.model.entity.Food;
+import ru.nsu.gaev.snake.model.entity.Obstacle;
+import ru.nsu.gaev.snake.model.entity.RobotSnake;
+import ru.nsu.gaev.snake.model.entity.Snake;
 
 /**
  * Отрисовывает текущее состояние игрового поля.
  */
 public class GameRenderer {
+    private static final String START_MESSAGE = "Press any arrow key to start";
+    private static final int START_MESSAGE_FONT_SIZE = 24;
     private final Canvas canvas;
     private final GraphicsContext gc;
     private final int cellSize;
@@ -30,12 +33,20 @@ public class GameRenderer {
         this.cellSize = cellSize;
     }
 
+    public int getFieldWidth() {
+        return (int) (canvas.getWidth() / cellSize);
+    }
+
+    public int getFieldHeight() {
+        return (int) (canvas.getHeight() / cellSize);
+    }
+
     /**
      * Рисует игровое состояние.
      *
      * @param field игровое поле
      */
-    public void render(GameField field) {
+    public void render(GameFieldView field) {
         gc.setFill(Color.web("#eef2f3"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -75,9 +86,9 @@ public class GameRenderer {
 
         if (!field.isStarted() && !field.isGameOver() && !field.isGameWon()) {
             gc.setFill(Color.BLACK);
-            gc.setFont(new javafx.scene.text.Font("Arial", 24));
-            gc.fillText("Press any arrow key to start",
-                    canvas.getWidth() / 2 - 140, canvas.getHeight() / 2);
+            gc.setFont(new javafx.scene.text.Font("Arial", START_MESSAGE_FONT_SIZE));
+            gc.setTextAlign(TextAlignment.CENTER);
+            gc.fillText(START_MESSAGE, canvas.getWidth() / 2, canvas.getHeight() / 2);
         }
     }
 

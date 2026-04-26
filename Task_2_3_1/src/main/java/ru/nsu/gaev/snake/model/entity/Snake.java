@@ -1,7 +1,9 @@
-package ru.nsu.gaev.snake.model;
+package ru.nsu.gaev.snake.model.entity;
 
 import java.util.LinkedList;
 import java.util.List;
+import ru.nsu.gaev.snake.model.common.Direction;
+import ru.nsu.gaev.snake.model.common.Point;
 
 /**
  * Базовая змейка, содержащая логику движения, роста и столкновений с собой.

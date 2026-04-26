@@ -8,13 +8,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import ru.nsu.gaev.snake.model.Direction;
-import ru.nsu.gaev.snake.model.GameField;
-import ru.nsu.gaev.snake.model.GreedyStrategy;
-import ru.nsu.gaev.snake.model.Level;
-import ru.nsu.gaev.snake.model.Point;
-import ru.nsu.gaev.snake.model.RobotSnake;
-import ru.nsu.gaev.snake.model.Snake;
+import ru.nsu.gaev.snake.model.common.Direction;
+import ru.nsu.gaev.snake.model.common.Level;
+import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.GameField;
+import ru.nsu.gaev.snake.model.core.GameFieldView;
+import ru.nsu.gaev.snake.model.entity.RobotSnake;
+import ru.nsu.gaev.snake.model.entity.Snake;
+import ru.nsu.gaev.snake.model.strategy.GreedyStrategy;
 import ru.nsu.gaev.snake.view.GameRenderer;
 
 /**
@@ -38,11 +39,14 @@ public class GameController {
      */
     @FXML
     public void initialize() {
-        int width = (int) (gameCanvas.getWidth() / CELL_SIZE);
-        int height = (int) (gameCanvas.getHeight() / CELL_SIZE);
+        renderer = new GameRenderer(gameCanvas, CELL_SIZE);
+        int width = renderer.getFieldWidth();
+        int height = renderer.getFieldHeight();
 
         Level level1 = new Level(1, Integer.MAX_VALUE, 200_000_000L);
         gameField = new GameField(width, height, 5, level1);
+
+        gameField.addListener(this::onGameFieldChanged);
 
         gameField.addRobot(
                 new RobotSnake(
@@ -52,40 +56,36 @@ public class GameController {
                 )
         );
 
-        renderer = new GameRenderer(gameCanvas, CELL_SIZE);
-
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 if (now - lastUpdate
                         >= gameField.getCurrentLevel().tickDurationNs()) {
                     gameField.update();
-                    updateUI();
                     lastUpdate = now;
-
-                    if (gameField.isGameOver() || gameField.isGameWon()
-                            || gameField.isGameDraw()) {
-                        this.stop();
-                        showEndGameMessage(
-                                gameField.isGameWon(),
-                                gameField.isGameDraw()
-                        );
-                    }
                 }
             }
         };
 
-        updateUI();
+        updateUI(gameField);
         timer.start();
+    }
+
+    private void onGameFieldChanged(GameFieldView field) {
+        updateUI(field);
+        if (field.isGameOver() || field.isGameWon() || field.isGameDraw()) {
+            timer.stop();
+            showEndGameMessage(field.isGameWon(), field.isGameDraw());
+        }
     }
 
     /**
      * Обновляет элементы интерфейса.
      */
-    private void updateUI() {
-        renderer.render(gameField);
-        scoreLabel.setText("Score: " + gameField.getScore());
-        levelLabel.setText("Level: " + gameField.getCurrentLevel().levelNumber());
+    private void updateUI(GameFieldView field) {
+        renderer.render(field);
+        scoreLabel.setText("Score: " + field.getScore());
+        levelLabel.setText("Level: " + field.getCurrentLevel().levelNumber());
     }
 
     /**

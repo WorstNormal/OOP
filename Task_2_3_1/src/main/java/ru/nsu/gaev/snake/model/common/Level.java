@@ -1,4 +1,4 @@
-package ru.nsu.gaev.snake.model;
+package ru.nsu.gaev.snake.model.common;
 
 /**
  * Параметры уровня игры.

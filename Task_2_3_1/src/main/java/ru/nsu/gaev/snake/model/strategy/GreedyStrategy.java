@@ -1,7 +1,12 @@
-package ru.nsu.gaev.snake.model;
+package ru.nsu.gaev.snake.model.strategy;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import ru.nsu.gaev.snake.model.common.Direction;
+import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.GameFieldView;
+import ru.nsu.gaev.snake.model.entity.Food;
+import ru.nsu.gaev.snake.model.entity.RobotSnake;
 
 /**
  * Жадная стратегия, которая ведет робота к ближайшей еде.
@@ -9,7 +14,7 @@ import java.util.Queue;
 public class GreedyStrategy implements RobotStrategy {
 
     @Override
-    public Direction chooseNextDirection(RobotSnake robot, GameField field) {
+    public Direction chooseNextDirection(RobotSnake robot, GameFieldView field) {
         Point head = robot.getHead();
 
         Food nearestFood = null;
@@ -35,7 +40,7 @@ public class GreedyStrategy implements RobotStrategy {
         return fallback(head, robot.getCurrentDirection(), field);
     }
 
-    private Direction bfs(Point start, Point target, GameField field, RobotSnake robot) {
+    private Direction bfs(Point start, Point target, GameFieldView field, RobotSnake robot) {
         boolean[][] visited = new boolean[field.getWidth()][field.getHeight()];
         Queue<Node> queue = new LinkedList<>();
 
@@ -70,7 +75,7 @@ public class GreedyStrategy implements RobotStrategy {
         return null;
     }
 
-    private boolean isValid(Point p, GameField field) {
+    private boolean isValid(Point p, GameFieldView field) {
         if (p.x() < 0 || p.x() >= field.getWidth()
                 || p.y() < 0 || p.y() >= field.getHeight()) {
             return false;
@@ -81,7 +86,7 @@ public class GreedyStrategy implements RobotStrategy {
         return field.isPointFree(p);
     }
 
-    private Direction fallback(Point head, Direction currentDir, GameField field) {
+    private Direction fallback(Point head, Direction currentDir, GameFieldView field) {
         Direction[] dirs = {currentDir, getLeft(currentDir), getRight(currentDir)};
         for (Direction d : dirs) {
             Point next = new Point(head.x() + d.getDx(), head.y() + d.getDy());

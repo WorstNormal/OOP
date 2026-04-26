@@ -1,4 +1,4 @@
-package ru.nsu.gaev.snake.model;
+package ru.nsu.gaev.snake.model.common;
 
 /**
  * Точка на игровом поле.

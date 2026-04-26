@@ -3,6 +3,15 @@ package ru.nsu.gaev.snake.model;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.gaev.snake.model.common.Direction;
+import ru.nsu.gaev.snake.model.common.FoodType;
+import ru.nsu.gaev.snake.model.common.Level;
+import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.GameField;
+import ru.nsu.gaev.snake.model.entity.Food;
+import ru.nsu.gaev.snake.model.entity.Obstacle;
+import ru.nsu.gaev.snake.model.entity.RobotSnake;
+import ru.nsu.gaev.snake.model.entity.Snake;
 
 class GameFieldAdditionalTest {
     @Test

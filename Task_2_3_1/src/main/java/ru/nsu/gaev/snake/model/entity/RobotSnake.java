@@ -1,12 +1,14 @@
-package ru.nsu.gaev.snake.model;
+package ru.nsu.gaev.snake.model.entity;
 
-import java.util.Random;
+import ru.nsu.gaev.snake.model.common.Direction;
+import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.GameFieldView;
+import ru.nsu.gaev.snake.model.strategy.RobotStrategy;
 
 /**
  * Змейка, управляемая стратегией искусственного интеллекта.
  */
 public class RobotSnake extends Snake {
-    private static final Random RANDOM = new Random();
     private final RobotStrategy strategy;
 
     /**
@@ -26,7 +28,7 @@ public class RobotSnake extends Snake {
      *
      * @param field игровое поле
      */
-    public void determineNextMove(GameField field) {
+    public void determineNextMove(GameFieldView field) {
         Direction nextDir = strategy.chooseNextDirection(this, field);
         if (nextDir != null) {
             setNextDirection(nextDir);

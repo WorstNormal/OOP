@@ -10,11 +10,11 @@ import javafx.scene.input.KeyEvent;
 import java.lang.reflect.Field;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.gaev.snake.model.Direction;
-import ru.nsu.gaev.snake.model.GameField;
-import ru.nsu.gaev.snake.model.Level;
-import ru.nsu.gaev.snake.model.Point;
-import ru.nsu.gaev.snake.model.Snake;
+import ru.nsu.gaev.snake.model.common.Direction;
+import ru.nsu.gaev.snake.model.common.Level;
+import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.GameField;
+import ru.nsu.gaev.snake.model.entity.Snake;
 
 /**
  * Тесты для класса GameController.

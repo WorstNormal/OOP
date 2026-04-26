@@ -1,13 +1,21 @@
-package ru.nsu.gaev.snake.model;
+package ru.nsu.gaev.snake.model.core;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import ru.nsu.gaev.snake.model.common.Direction;
+import ru.nsu.gaev.snake.model.common.FoodType;
+import ru.nsu.gaev.snake.model.common.Level;
+import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.entity.Food;
+import ru.nsu.gaev.snake.model.entity.Obstacle;
+import ru.nsu.gaev.snake.model.entity.RobotSnake;
+import ru.nsu.gaev.snake.model.entity.Snake;
 
 /**
  * Игровое поле, которое хранит состояние матча и применяет правила.
  */
-public class GameField {
+public class GameField implements GameFieldView {
     private static final Random random = new Random();
     private final int width;
     private final int height;
@@ -22,6 +30,7 @@ public class GameField {
     private boolean gameOver = false;
     private boolean gameDraw = false;
     private boolean started = false;
+    private final List<GameFieldListener> listeners = new ArrayList<>();
 
     /**
      * Создает игровое поле.
@@ -45,10 +54,20 @@ public class GameField {
 
     public void addRobot(RobotSnake robot) {
         robots.add(robot);
+        notifyListeners();
     }
 
     public void addObstacle(Obstacle obs) {
         obstacles.add(obs);
+        notifyListeners();
+    }
+
+    public void addListener(GameFieldListener listener) {
+        listeners.add(listener);
+    }
+
+    public void removeListener(GameFieldListener listener) {
+        listeners.remove(listener);
     }
 
     private void spawnInitialFoods() {
@@ -119,6 +138,7 @@ public class GameField {
         checkCollisions();
         checkFood();
         checkLevelProgression();
+        notifyListeners();
     }
 
     private void checkCollisions() {
@@ -260,6 +280,7 @@ public class GameField {
 
     public void setCurrentLevel(Level level) {
         this.currentLevel = level;
+        notifyListeners();
     }
 
     public int getScore() {
@@ -284,5 +305,13 @@ public class GameField {
 
     public void setStarted(boolean started) {
         this.started = started;
+        notifyListeners();
+    }
+
+    private void notifyListeners() {
+        List<GameFieldListener> snapshot = new ArrayList<>(listeners);
+        for (GameFieldListener listener : snapshot) {
+            listener.onGameFieldChanged(this);
+        }
     }
 }

@@ -6,6 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.gaev.snake.model.common.Direction;
+import ru.nsu.gaev.snake.model.common.FoodType;
+import ru.nsu.gaev.snake.model.common.Level;
+import ru.nsu.gaev.snake.model.common.Point;
+import ru.nsu.gaev.snake.model.core.GameField;
+import ru.nsu.gaev.snake.model.entity.Food;
+import ru.nsu.gaev.snake.model.entity.Obstacle;
+import ru.nsu.gaev.snake.model.entity.RobotSnake;
+import ru.nsu.gaev.snake.model.entity.Snake;
+import ru.nsu.gaev.snake.model.strategy.GreedyStrategy;
+import ru.nsu.gaev.snake.model.strategy.RandomStrategy;
+import ru.nsu.gaev.snake.model.strategy.RobotStrategy;
 
 class ModelTest {
     @Test
