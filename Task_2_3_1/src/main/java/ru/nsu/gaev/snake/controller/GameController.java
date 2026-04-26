@@ -42,12 +42,9 @@ public class GameController {
         renderer = new GameRenderer(gameCanvas, CELL_SIZE);
         int width = renderer.getFieldWidth();
         int height = renderer.getFieldHeight();
-
         Level level1 = new Level(1, Integer.MAX_VALUE, 200_000_000L);
         gameField = new GameField(width, height, 5, level1);
-
         gameField.addListener(this::onGameFieldChanged);
-
         gameField.addRobot(
                 new RobotSnake(
                         new Point(width - 5, height - 5),
@@ -55,7 +52,6 @@ public class GameController {
                         new GreedyStrategy()
                 )
         );
-
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -66,7 +62,6 @@ public class GameController {
                 }
             }
         };
-
         updateUI(gameField);
         timer.start();
     }
@@ -124,7 +119,13 @@ public class GameController {
         alert.setTitle("Правила игры");
         alert.setHeaderText("Классическая змейка с ИИ-роботами");
         alert.setContentText(
-                "1. Управление: W, A, S, D или стрелки."
+                "1. Управление: W, A, S, D или стрелки.\n"
+                        + "2. Цель: Собирать красную еду, расти и набирать "
+                        + "очки для победы.\n"
+                        + "3. Проигрыш: Столкновение со стеной, со своим "
+                        + "хвостом, препятствием или синим ИИ-роботом.\n"
+                        + "4. Робот: Синяя змейка (бот) сама ищет кратчайший "
+                        + "путь к еде. Будьте осторожны!"
         );
         alert.showAndWait();
 
