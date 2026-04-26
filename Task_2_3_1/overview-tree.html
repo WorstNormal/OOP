@@ -53,7 +53,10 @@ loadScripts(document, 'script');</script>
 <li><a href="ru/nsu/gaev/package-tree.html">ru.nsu.gaev</a>, </li>
 <li><a href="ru/nsu/gaev/snake/package-tree.html">ru.nsu.gaev.snake</a>, </li>
 <li><a href="ru/nsu/gaev/snake/controller/package-tree.html">ru.nsu.gaev.snake.controller</a>, </li>
-<li><a href="ru/nsu/gaev/snake/model/package-tree.html">ru.nsu.gaev.snake.model</a>, </li>
+<li><a href="ru/nsu/gaev/snake/model/common/package-tree.html">ru.nsu.gaev.snake.model.common</a>, </li>
+<li><a href="ru/nsu/gaev/snake/model/core/package-tree.html">ru.nsu.gaev.snake.model.core</a>, </li>
+<li><a href="ru/nsu/gaev/snake/model/entity/package-tree.html">ru.nsu.gaev.snake.model.entity</a>, </li>
+<li><a href="ru/nsu/gaev/snake/model/strategy/package-tree.html">ru.nsu.gaev.snake.model.strategy</a>, </li>
 <li><a href="ru/nsu/gaev/snake/view/package-tree.html">ru.nsu.gaev.snake.view</a></li>
 </ul>
 </div>
@@ -68,22 +71,22 @@ loadScripts(document, 'script');</script>
 </ul>
 </li>
 <li class="circle">ru.nsu.gaev.snake.controller.<a href="ru/nsu/gaev/snake/controller/GameController.html" class="type-name-link" title="class in ru.nsu.gaev.snake.controller">GameController</a></li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/GameField.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">GameField</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.core.<a href="ru/nsu/gaev/snake/model/core/GameField.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.core">GameField</a> (implements ru.nsu.gaev.snake.model.core.<a href="ru/nsu/gaev/snake/model/core/GameFieldView.html" title="interface in ru.nsu.gaev.snake.model.core">GameFieldView</a>)</li>
 <li class="circle">ru.nsu.gaev.snake.view.<a href="ru/nsu/gaev/snake/view/GameRenderer.html" class="type-name-link" title="class in ru.nsu.gaev.snake.view">GameRenderer</a></li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/GreedyStrategy.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">GreedyStrategy</a> (implements ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/RobotStrategy.html" title="interface in ru.nsu.gaev.snake.model">RobotStrategy</a>)</li>
+<li class="circle">ru.nsu.gaev.snake.model.strategy.<a href="ru/nsu/gaev/snake/model/strategy/GreedyStrategy.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.strategy">GreedyStrategy</a> (implements ru.nsu.gaev.snake.model.strategy.<a href="ru/nsu/gaev/snake/model/strategy/RobotStrategy.html" title="interface in ru.nsu.gaev.snake.model.strategy">RobotStrategy</a>)</li>
 <li class="circle">ru.nsu.gaev.<a href="ru/nsu/gaev/Main.html" class="type-name-link" title="class in ru.nsu.gaev">Main</a></li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/RandomStrategy.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">RandomStrategy</a> (implements ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/RobotStrategy.html" title="interface in ru.nsu.gaev.snake.model">RobotStrategy</a>)</li>
+<li class="circle">ru.nsu.gaev.snake.model.strategy.<a href="ru/nsu/gaev/snake/model/strategy/RandomStrategy.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.strategy">RandomStrategy</a> (implements ru.nsu.gaev.snake.model.strategy.<a href="ru/nsu/gaev/snake/model/strategy/RobotStrategy.html" title="interface in ru.nsu.gaev.snake.model.strategy">RobotStrategy</a>)</li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" class="type-name-link external-link" title="class or interface in java.lang">Record</a>
 <ul>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/Food.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">Food</a> (implements ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/GameObject.html" title="interface in ru.nsu.gaev.snake.model">GameObject</a>)</li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/Level.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">Level</a></li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/Obstacle.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">Obstacle</a> (implements ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/GameObject.html" title="interface in ru.nsu.gaev.snake.model">GameObject</a>)</li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/Point.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">Point</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.entity.<a href="ru/nsu/gaev/snake/model/entity/Food.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.entity">Food</a> (implements ru.nsu.gaev.snake.model.entity.<a href="ru/nsu/gaev/snake/model/entity/GameObject.html" title="interface in ru.nsu.gaev.snake.model.entity">GameObject</a>)</li>
+<li class="circle">ru.nsu.gaev.snake.model.common.<a href="ru/nsu/gaev/snake/model/common/Level.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.common">Level</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.entity.<a href="ru/nsu/gaev/snake/model/entity/Obstacle.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.entity">Obstacle</a> (implements ru.nsu.gaev.snake.model.entity.<a href="ru/nsu/gaev/snake/model/entity/GameObject.html" title="interface in ru.nsu.gaev.snake.model.entity">GameObject</a>)</li>
+<li class="circle">ru.nsu.gaev.snake.model.common.<a href="ru/nsu/gaev/snake/model/common/Point.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.common">Point</a></li>
 </ul>
 </li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/Snake.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">Snake</a>
+<li class="circle">ru.nsu.gaev.snake.model.entity.<a href="ru/nsu/gaev/snake/model/entity/Snake.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.entity">Snake</a>
 <ul>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/RobotSnake.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model">RobotSnake</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.entity.<a href="ru/nsu/gaev/snake/model/entity/RobotSnake.html" class="type-name-link" title="class in ru.nsu.gaev.snake.model.entity">RobotSnake</a></li>
 </ul>
 </li>
 </ul>
@@ -93,8 +96,10 @@ loadScripts(document, 'script');</script>
 <section class="hierarchy">
 <h2 title="Interface Hierarchy">Interface Hierarchy</h2>
 <ul>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/GameObject.html" class="type-name-link" title="interface in ru.nsu.gaev.snake.model">GameObject</a></li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/RobotStrategy.html" class="type-name-link" title="interface in ru.nsu.gaev.snake.model">RobotStrategy</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.core.<a href="ru/nsu/gaev/snake/model/core/GameFieldListener.html" class="type-name-link" title="interface in ru.nsu.gaev.snake.model.core">GameFieldListener</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.core.<a href="ru/nsu/gaev/snake/model/core/GameFieldView.html" class="type-name-link" title="interface in ru.nsu.gaev.snake.model.core">GameFieldView</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.entity.<a href="ru/nsu/gaev/snake/model/entity/GameObject.html" class="type-name-link" title="interface in ru.nsu.gaev.snake.model.entity">GameObject</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.strategy.<a href="ru/nsu/gaev/snake/model/strategy/RobotStrategy.html" class="type-name-link" title="interface in ru.nsu.gaev.snake.model.strategy">RobotStrategy</a></li>
 </ul>
 </section>
 <section class="hierarchy">
@@ -104,8 +109,8 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" class="type-name-link external-link" title="class or interface in java.lang">Enum</a>&lt;E&gt; (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;T&gt;, java.lang.constant.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/constant/Constable.html" title="class or interface in java.lang.constant" class="external-link">Constable</a>, java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
 <ul>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/Direction.html" class="type-name-link" title="enum class in ru.nsu.gaev.snake.model">Direction</a></li>
-<li class="circle">ru.nsu.gaev.snake.model.<a href="ru/nsu/gaev/snake/model/FoodType.html" class="type-name-link" title="enum class in ru.nsu.gaev.snake.model">FoodType</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.common.<a href="ru/nsu/gaev/snake/model/common/Direction.html" class="type-name-link" title="enum class in ru.nsu.gaev.snake.model.common">Direction</a></li>
+<li class="circle">ru.nsu.gaev.snake.model.common.<a href="ru/nsu/gaev/snake/model/common/FoodType.html" class="type-name-link" title="enum class in ru.nsu.gaev.snake.model.common">FoodType</a></li>
 </ul>
 </li>
 </ul>

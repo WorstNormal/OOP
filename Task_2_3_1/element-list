@@ -1,5 +1,8 @@
 ru.nsu.gaev
 ru.nsu.gaev.snake
 ru.nsu.gaev.snake.controller
-ru.nsu.gaev.snake.model
+ru.nsu.gaev.snake.model.common
+ru.nsu.gaev.snake.model.core
+ru.nsu.gaev.snake.model.entity
+ru.nsu.gaev.snake.model.strategy
 ru.nsu.gaev.snake.view
