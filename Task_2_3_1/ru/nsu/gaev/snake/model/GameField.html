@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GameField</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">GameField class.</div>
+<div class="block">Игровое поле, которое хранит состояние матча и применяет правила.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
  int&nbsp;numFoods,
  <a href="Level.html" title="class in ru.nsu.gaev.snake.model">Level</a>&nbsp;startLevel)</code></div>
 <div class="col-last even-row-color">
-<div class="block">GameField constructor.</div>
+<div class="block">Создает игровое поле.</div>
 </div>
 </div>
 </section>
@@ -152,7 +152,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPointFree(ru.nsu.gaev.snake.model.Point)" class="member-name-link">isPointFree</a><wbr>(<a href="Point.html" title="class in ru.nsu.gaev.snake.model">Point</a>&nbsp;p)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">isPointFree method.</div>
+<div class="block">Проверяет, свободна ли точка на поле.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isStarted()" class="member-name-link">isStarted</a>()</code></div>
@@ -166,7 +166,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">update method.</div>
+<div class="block">Выполняет один игровой тик.</div>
 </div>
 </div>
 </div>
@@ -192,13 +192,13 @@ loadScripts(document, 'script');</script>
  int&nbsp;height,
  int&nbsp;numFoods,
  <a href="Level.html" title="class in ru.nsu.gaev.snake.model">Level</a>&nbsp;startLevel)</span></div>
-<div class="block">GameField constructor.</div>
+<div class="block">Создает игровое поле.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>width</code> - width.</dd>
-<dd><code>height</code> - height.</dd>
-<dd><code>numFoods</code> - number of foods.</dd>
-<dd><code>startLevel</code> - start level.</dd>
+<dd><code>width</code> - ширина поля</dd>
+<dd><code>height</code> - высота поля</dd>
+<dd><code>numFoods</code> - количество еды на старте</dd>
+<dd><code>startLevel</code> - начальный уровень</dd>
 </dl>
 </section>
 </li>
@@ -226,12 +226,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isPointFree(ru.nsu.gaev.snake.model.Point)">
 <h3>isPointFree</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPointFree</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.gaev.snake.model">Point</a>&nbsp;p)</span></div>
-<div class="block">isPointFree method.</div>
+<div class="block">Проверяет, свободна ли точка на поле.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>p</code> - point.</dd>
+<dd><code>p</code> - проверяемая точка</dd>
 <dt>Returns:</dt>
-<dd>boolean.</dd>
+<dd>true, если клетка свободна</dd>
 </dl>
 </section>
 </li>
@@ -239,7 +239,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="update()">
 <h3>update</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span>()</div>
-<div class="block">update method.</div>
+<div class="block">Выполняет один игровой тик.</div>
 </section>
 </li>
 <li>
