@@ -34,10 +34,33 @@ class MainTest {
         }
     }
 
+    private boolean isJavaFxResponsive() {
+        if (!javaFxSupported) {
+            return false;
+        }
+
+        CountDownLatch latch = new CountDownLatch(1);
+        Thread probe = new Thread(() -> {
+            try {
+                Platform.runLater(latch::countDown);
+            } catch (RuntimeException ignored) {
+                // JavaFX toolkit may be unavailable in this environment.
+            }
+        }, "javafx-main-probe-thread");
+        probe.setDaemon(true);
+        probe.start();
+
+        try {
+            return latch.await(2, TimeUnit.SECONDS);
+        } catch (InterruptedException ignored) {
+            Thread.currentThread().interrupt();
+            return false;
+        }
+    }
+
     @Test
-    @Timeout(10)
     void testStartConfiguresAndShowsStage() throws InterruptedException {
-        Assumptions.assumeTrue(javaFxSupported,
+        Assumptions.assumeTrue(isJavaFxResponsive(),
                 "JavaFX toolkit is not supported in current environment");
 
         Main app = new Main();

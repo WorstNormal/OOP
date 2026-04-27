@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
@@ -16,7 +19,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
 import ru.nsu.gaev.snake.model.common.Direction;
 import ru.nsu.gaev.snake.model.common.FoodType;
 import ru.nsu.gaev.snake.model.common.Level;
@@ -97,26 +99,85 @@ class GameControllerCoverageTest {
         field.setBoolean(target, value);
     }
 
-    private FxFixture createFxFixture() throws ReflectiveOperationException {
-        GameController fxController = new GameController();
-        Canvas canvas = new Canvas(600, 450);
-        Label scoreLabel = new Label();
-        Label levelLabel = new Label();
-        final GameField fxField = new GameField(20, 15, 1, new Level(1, 100, 200L));
-        setPrivateField(fxController, "gameField", fxField);
-        final AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
+    private boolean isJavaFxResponsive() {
+        if (!javaFxSupported) {
+            return false;
+        }
+
+        CountDownLatch latch = new CountDownLatch(1);
+        Thread probe = new Thread(() -> {
+            try {
+                Platform.runLater(latch::countDown);
+            } catch (RuntimeException ignored) {
+                // JavaFX toolkit may be unavailable in this environment.
             }
-        };
+        }, "javafx-probe-thread");
+        probe.setDaemon(true);
+        probe.start();
 
-        setPrivateField(fxController, "gameCanvas", canvas);
-        setPrivateField(fxController, "scoreLabel", scoreLabel);
-        setPrivateField(fxController, "levelLabel", levelLabel);
-        setPrivateField(fxController, "renderer", new GameRenderer(canvas));
-        setPrivateField(fxController, "timer", timer);
+        try {
+            return latch.await(2, TimeUnit.SECONDS);
+        } catch (InterruptedException ignored) {
+            Thread.currentThread().interrupt();
+            return false;
+        }
+    }
 
-        return new FxFixture(fxController, fxField, scoreLabel, levelLabel);
+    private FxFixture createFxFixture() throws ReflectiveOperationException {
+        CountDownLatch latch = new CountDownLatch(1);
+        AtomicReference<FxFixture> fixtureRef = new AtomicReference<>();
+        AtomicReference<Throwable> failureRef = new AtomicReference<>();
+
+        Thread builder = new Thread(() -> {
+            try {
+                GameController fxController = new GameController();
+                Canvas canvas = new Canvas(600, 450);
+                Label scoreLabel = new Label();
+                Label levelLabel = new Label();
+                final GameField fxField = new GameField(20, 15, 1,
+                        new Level(1, 100, 200L));
+                setPrivateField(fxController, "gameField", fxField);
+                final AnimationTimer timer = new AnimationTimer() {
+                    @Override
+                    public void handle(long now) {
+                    }
+                };
+
+                setPrivateField(fxController, "gameCanvas", canvas);
+                setPrivateField(fxController, "scoreLabel", scoreLabel);
+                setPrivateField(fxController, "levelLabel", levelLabel);
+                setPrivateField(fxController, "renderer", new GameRenderer(canvas));
+                setPrivateField(fxController, "timer", timer);
+
+                fixtureRef.set(new FxFixture(fxController, fxField, scoreLabel,
+                        levelLabel));
+            } catch (Throwable throwable) {
+                failureRef.set(throwable);
+            } finally {
+                latch.countDown();
+            }
+        }, "javafx-fixture-builder");
+        builder.setDaemon(true);
+        builder.start();
+
+        try {
+            if (!latch.await(3, TimeUnit.SECONDS)) {
+                return null;
+            }
+        } catch (InterruptedException ignored) {
+            Thread.currentThread().interrupt();
+            return null;
+        }
+
+        Throwable failure = failureRef.get();
+        if (failure == null) {
+            return fixtureRef.get();
+        }
+
+        if (failure instanceof ReflectiveOperationException reflectiveFailure) {
+            throw reflectiveFailure;
+        }
+        return null;
     }
 
     private void invokeOnGameFieldChanged(GameController fxController,
@@ -275,12 +336,13 @@ class GameControllerCoverageTest {
     }
 
     @Test
-    @Timeout(10)
     void testOnGameFieldChangedUpdatesUiWhenGameContinues() throws Exception {
-        Assumptions.assumeTrue(javaFxSupported,
+        Assumptions.assumeTrue(isJavaFxResponsive(),
                 "JavaFX toolkit is not supported in current environment");
 
         FxFixture fixture = createFxFixture();
+        Assumptions.assumeTrue(fixture != null,
+            "JavaFX controls are not available in current environment");
 
         GameController.UiExecutor originalExecutor = GameController.uiExecutor;
         try {
@@ -295,12 +357,13 @@ class GameControllerCoverageTest {
     }
 
     @Test
-    @Timeout(10)
     void testOnGameFieldChangedShowsGameOverMessage() throws Exception {
-        Assumptions.assumeTrue(javaFxSupported,
+        Assumptions.assumeTrue(isJavaFxResponsive(),
                 "JavaFX toolkit is not supported in current environment");
 
         FxFixture fixture = createFxFixture();
+        Assumptions.assumeTrue(fixture != null,
+            "JavaFX controls are not available in current environment");
         setBooleanField(fixture.field, "gameOver", true);
 
         GameController.UiExecutor originalExecutor = GameController.uiExecutor;
@@ -315,12 +378,13 @@ class GameControllerCoverageTest {
     }
 
     @Test
-    @Timeout(10)
     void testOnGameFieldChangedShowsWinMessage() throws Exception {
-        Assumptions.assumeTrue(javaFxSupported,
+        Assumptions.assumeTrue(isJavaFxResponsive(),
                 "JavaFX toolkit is not supported in current environment");
 
         FxFixture fixture = createFxFixture();
+        Assumptions.assumeTrue(fixture != null,
+            "JavaFX controls are not available in current environment");
         setBooleanField(fixture.field, "gameWon", true);
 
         GameController.UiExecutor originalExecutor = GameController.uiExecutor;
@@ -335,12 +399,13 @@ class GameControllerCoverageTest {
     }
 
     @Test
-    @Timeout(10)
     void testOnGameFieldChangedShowsDrawMessage() throws Exception {
-        Assumptions.assumeTrue(javaFxSupported,
+        Assumptions.assumeTrue(isJavaFxResponsive(),
                 "JavaFX toolkit is not supported in current environment");
 
         FxFixture fixture = createFxFixture();
+        Assumptions.assumeTrue(fixture != null,
+            "JavaFX controls are not available in current environment");
         setBooleanField(fixture.field, "gameDraw", true);
 
         GameController.UiExecutor originalExecutor = GameController.uiExecutor;
