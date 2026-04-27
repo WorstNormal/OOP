@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 /**
  * Тесты для JavaFX-класса Main.
@@ -34,6 +35,7 @@ class MainTest {
     }
 
     @Test
+    @Timeout(10)
     void testStartConfiguresAndShowsStage() throws InterruptedException {
         Assumptions.assumeTrue(javaFxSupported,
                 "JavaFX toolkit is not supported in current environment");
@@ -67,6 +69,7 @@ class MainTest {
     }
 
     @Test
+    @Timeout(5)
     void testMainDelegatesToLauncher() {
         Main.Launcher originalLauncher = Main.launcher;
         String[] args = {"--demo", "value"};

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import ru.nsu.gaev.snake.model.common.Direction;
 import ru.nsu.gaev.snake.model.common.FoodType;
 import ru.nsu.gaev.snake.model.common.Level;
@@ -274,6 +275,7 @@ class GameControllerCoverageTest {
     }
 
     @Test
+    @Timeout(10)
     void testOnGameFieldChangedUpdatesUiWhenGameContinues() throws Exception {
         Assumptions.assumeTrue(javaFxSupported,
                 "JavaFX toolkit is not supported in current environment");
@@ -293,6 +295,7 @@ class GameControllerCoverageTest {
     }
 
     @Test
+    @Timeout(10)
     void testOnGameFieldChangedShowsGameOverMessage() throws Exception {
         Assumptions.assumeTrue(javaFxSupported,
                 "JavaFX toolkit is not supported in current environment");
@@ -312,6 +315,7 @@ class GameControllerCoverageTest {
     }
 
     @Test
+    @Timeout(10)
     void testOnGameFieldChangedShowsWinMessage() throws Exception {
         Assumptions.assumeTrue(javaFxSupported,
                 "JavaFX toolkit is not supported in current environment");
@@ -331,6 +335,7 @@ class GameControllerCoverageTest {
     }
 
     @Test
+    @Timeout(10)
     void testOnGameFieldChangedShowsDrawMessage() throws Exception {
         Assumptions.assumeTrue(javaFxSupported,
                 "JavaFX toolkit is not supported in current environment");
