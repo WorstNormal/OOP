@@ -1,0 +1,110 @@
+package ru.nsu.gaev.snake;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+import javafx.application.Platform;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+
+/**
+ * Тесты для JavaFX-класса Main.
+ */
+class MainTest {
+    private static volatile boolean javaFxSupported = true;
+
+    @BeforeAll
+    static void initJavaFxToolkit() {
+        try {
+            Platform.startup(() -> {
+            });
+        } catch (IllegalStateException ignored) {
+            // Toolkit was already started by another test class.
+        } catch (UnsupportedOperationException ignored) {
+            javaFxSupported = false;
+        }
+    }
+
+    private boolean isJavaFxResponsive() {
+        if (!javaFxSupported) {
+            return false;
+        }
+
+        CountDownLatch latch = new CountDownLatch(1);
+        Thread probe = new Thread(() -> {
+            try {
+                Platform.runLater(latch::countDown);
+            } catch (RuntimeException ignored) {
+                // JavaFX toolkit may be unavailable in this environment.
+            }
+        }, "javafx-main-probe-thread");
+        probe.setDaemon(true);
+        probe.start();
+
+        try {
+            return latch.await(2, TimeUnit.SECONDS);
+        } catch (InterruptedException ignored) {
+            Thread.currentThread().interrupt();
+            return false;
+        }
+    }
+
+    @Test
+    void testStartConfiguresAndShowsStage() throws InterruptedException {
+        Assumptions.assumeTrue(isJavaFxResponsive(),
+                "JavaFX toolkit is not supported in current environment");
+
+        Main app = new Main();
+        AtomicReference<Throwable> failure = new AtomicReference<>();
+        CountDownLatch latch = new CountDownLatch(1);
+
+        Platform.runLater(() -> {
+            try {
+                Stage stage = new Stage();
+                app.start(stage);
+
+                assertNotNull(stage.getScene());
+                assertEquals("Snake Game", stage.getTitle());
+                assertFalse(stage.isResizable());
+                assertTrue(stage.isShowing());
+
+                stage.close();
+            } catch (Throwable t) {
+                failure.set(t);
+            } finally {
+                latch.countDown();
+            }
+        });
+
+        assertTrue(latch.await(5, TimeUnit.SECONDS));
+        if (failure.get() != null) {
+            throw new AssertionError("JavaFX stage startup failed", failure.get());
+        }
+    }
+
+    @Test
+    @Timeout(5)
+    void testMainDelegatesToLauncher() {
+        Main.Launcher originalLauncher = Main.launcher;
+        String[] args = {"--demo", "value"};
+        String[][] observedArgs = new String[1][];
+
+        try {
+            Main.launcher = passedArgs -> observedArgs[0] = passedArgs;
+            Main.main(args);
+        } finally {
+            Main.launcher = originalLauncher;
+        }
+
+        assertArrayEquals(args, observedArgs[0]);
+    }
+}
