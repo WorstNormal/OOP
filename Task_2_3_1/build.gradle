@@ -18,20 +18,23 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.base']
 }
 
-// 1. Create a dedicated configuration just for extracting the config file
-configurations {
-    checkstyleRules {
-        transitive = false // This prevents pulling in Guava, ANTLR, etc.
-    }
+// Прямая и понятная настройка Checkstyle
+checkstyle {
+    toolVersion = "10.12.4"
+    
+    // Укажите здесь путь к вашему файлу (относительно корня проекта).
+    // Стандартный путь, который ожидает Gradle, указан ниже:
+    configFile = file("config/checkstyle/checkstyle.xml") 
+    
+    // Если вы хотите, чтобы проект собирался даже при ошибках стиля 
+    // (ошибки будут просто писаться в консоль, но сборка не упадет):
+    // ignoreFailures = true
 }
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    // 2. Add the Checkstyle dependency to our dedicated configuration
-    checkstyleRules "com.puppycrawl.tools:checkstyle:10.12.4"
 }
 
 application {
