@@ -30,6 +30,10 @@ application {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+    testLogging {
+        events "passed", "skipped", "failed", "started" 
+        showStandardStreams = true
+    }
 }
 
 jacocoTestReport {
