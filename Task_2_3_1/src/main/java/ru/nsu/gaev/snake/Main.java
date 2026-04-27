@@ -11,13 +11,20 @@ import javafx.stage.Stage;
  * Основной класс JavaFX-приложения.
  */
 public class Main extends Application {
+    @FunctionalInterface
+    interface Launcher {
+        void launch(String... args);
+    }
+
+    static Launcher launcher = Main::launch;
+
     /**
      * Точка входа в игру.
      *
      * @param args аргументы командной строки
      */
     public static void main(String[] args) {
-        launch();
+        launcher.launch(args);
     }
 
     /**

@@ -22,6 +22,13 @@ import ru.nsu.gaev.snake.view.GameRenderer;
  * Контроллер игры, который связывает интерфейс и игровую модель.
  */
 public class GameController {
+    @FunctionalInterface
+    interface UiExecutor {
+        void execute(Runnable action);
+    }
+
+    static UiExecutor uiExecutor = Platform::runLater;
+
     @FXML
     private Canvas gameCanvas;
     @FXML
@@ -93,7 +100,7 @@ public class GameController {
      * @param draw true, если игра завершилась вничью
      */
     private void showEndGameMessage(boolean won, boolean draw) {
-        Platform.runLater(() -> {
+        uiExecutor.execute(() -> {
             if (draw) {
                 scoreLabel.setText("DRAW! Score: " + gameField.getScore());
             } else if (won) {

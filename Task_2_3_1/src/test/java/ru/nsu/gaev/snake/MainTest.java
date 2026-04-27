@@ -1,6 +1,7 @@
 package ru.nsu.gaev.snake;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,6 +26,8 @@ class MainTest {
         try {
             Platform.startup(() -> {
             });
+        } catch (IllegalStateException ignored) {
+            // Toolkit was already started by another test class.
         } catch (UnsupportedOperationException ignored) {
             javaFxSupported = false;
         }
@@ -61,5 +64,21 @@ class MainTest {
         if (failure.get() != null) {
             throw new AssertionError("JavaFX stage startup failed", failure.get());
         }
+    }
+
+    @Test
+    void testMainDelegatesToLauncher() {
+        Main.Launcher originalLauncher = Main.launcher;
+        String[] args = {"--demo", "value"};
+        String[][] observedArgs = new String[1][];
+
+        try {
+            Main.launcher = passedArgs -> observedArgs[0] = passedArgs;
+            Main.main(args);
+        } finally {
+            Main.launcher = originalLauncher;
+        }
+
+        assertArrayEquals(args, observedArgs[0]);
     }
 }
