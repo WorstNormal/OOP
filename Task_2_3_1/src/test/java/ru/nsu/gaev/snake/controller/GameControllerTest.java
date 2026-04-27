@@ -85,7 +85,7 @@ class GameControllerTest {
     }
 
     @Test
-    void testHandleKeyPressedWMovesSnakeUp() {
+    void testHandleKeyPressedUpArrowMovesSnakeUp() {
         Snake player = gameField.getPlayer();
         Point initialHead = player.getHead();
 
@@ -98,7 +98,7 @@ class GameControllerTest {
     }
 
     @Test
-    void testHandleKeyPressedSMapsToDown() {
+    void testHandleKeyPressedDownArrowMapsToDown() {
         Snake player = gameField.getPlayer();
         Point initialHead = player.getHead();
 
@@ -111,7 +111,7 @@ class GameControllerTest {
     }
 
     @Test
-    void testHandleKeyPressedAOrLeftMapsToLeft() {
+    void testHandleKeyPressedLeftArrowMapsToLeft() {
         Snake player = gameField.getPlayer();
         Point initialHead = player.getHead();
 
@@ -124,7 +124,7 @@ class GameControllerTest {
     }
 
     @Test
-    void testHandleKeyPressedDOrRightMapsToRight() {
+    void testHandleKeyPressedRightArrowMapsToRight() {
         Snake player = gameField.getPlayer();
         Point initialHead = player.getHead();
 

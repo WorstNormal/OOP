@@ -4,17 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.gaev.snake.model.common.Direction;
 import ru.nsu.gaev.snake.model.common.FoodType;
@@ -101,8 +101,9 @@ class GameControllerCoverageTest {
         Canvas canvas = new Canvas(600, 450);
         Label scoreLabel = new Label();
         Label levelLabel = new Label();
-        GameField fxField = new GameField(20, 15, 1, new Level(1, 100, 200L));
-        AnimationTimer timer = new AnimationTimer() {
+        final GameField fxField = new GameField(20, 15, 1, new Level(1, 100, 200L));
+        setPrivateField(fxController, "gameField", fxField);
+        final AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
             }
@@ -112,7 +113,6 @@ class GameControllerCoverageTest {
         setPrivateField(fxController, "scoreLabel", scoreLabel);
         setPrivateField(fxController, "levelLabel", levelLabel);
         setPrivateField(fxController, "renderer", new GameRenderer(canvas));
-        setPrivateField(fxController, "gameField", fxField);
         setPrivateField(fxController, "timer", timer);
 
         return new FxFixture(fxController, fxField, scoreLabel, levelLabel);
@@ -273,29 +273,29 @@ class GameControllerCoverageTest {
         assertNotNull(gameField.getPlayer());
     }
 
-        @Test
-        void testOnGameFieldChangedUpdatesUiWhenGameContinues() throws Exception {
+    @Test
+    void testOnGameFieldChangedUpdatesUiWhenGameContinues() throws Exception {
         Assumptions.assumeTrue(javaFxSupported,
-            "JavaFX toolkit is not supported in current environment");
+                "JavaFX toolkit is not supported in current environment");
 
         FxFixture fixture = createFxFixture();
 
-            GameController.UiExecutor originalExecutor = GameController.uiExecutor;
-            try {
-                GameController.uiExecutor = Runnable::run;
-                invokeOnGameFieldChanged(fixture.controller, fixture.field);
-            } finally {
-                GameController.uiExecutor = originalExecutor;
-            }
+        GameController.UiExecutor originalExecutor = GameController.uiExecutor;
+        try {
+            GameController.uiExecutor = Runnable::run;
+            invokeOnGameFieldChanged(fixture.controller, fixture.field);
+        } finally {
+            GameController.uiExecutor = originalExecutor;
+        }
 
         assertEquals("Score: 0", fixture.scoreLabel.getText());
         assertEquals("Level: 1", fixture.levelLabel.getText());
-        }
+    }
 
-        @Test
-        void testOnGameFieldChangedShowsGameOverMessage() throws Exception {
+    @Test
+    void testOnGameFieldChangedShowsGameOverMessage() throws Exception {
         Assumptions.assumeTrue(javaFxSupported,
-            "JavaFX toolkit is not supported in current environment");
+                "JavaFX toolkit is not supported in current environment");
 
         FxFixture fixture = createFxFixture();
         setBooleanField(fixture.field, "gameOver", true);
@@ -309,12 +309,12 @@ class GameControllerCoverageTest {
         }
 
         assertEquals("GAME OVER! Score: 0", fixture.scoreLabel.getText());
-        }
+    }
 
-        @Test
-        void testOnGameFieldChangedShowsWinMessage() throws Exception {
+    @Test
+    void testOnGameFieldChangedShowsWinMessage() throws Exception {
         Assumptions.assumeTrue(javaFxSupported,
-            "JavaFX toolkit is not supported in current environment");
+                "JavaFX toolkit is not supported in current environment");
 
         FxFixture fixture = createFxFixture();
         setBooleanField(fixture.field, "gameWon", true);
@@ -328,12 +328,12 @@ class GameControllerCoverageTest {
         }
 
         assertEquals("YOU WIN! Score: 0", fixture.scoreLabel.getText());
-        }
+    }
 
-        @Test
-        void testOnGameFieldChangedShowsDrawMessage() throws Exception {
+    @Test
+    void testOnGameFieldChangedShowsDrawMessage() throws Exception {
         Assumptions.assumeTrue(javaFxSupported,
-            "JavaFX toolkit is not supported in current environment");
+                "JavaFX toolkit is not supported in current environment");
 
         FxFixture fixture = createFxFixture();
         setBooleanField(fixture.field, "gameDraw", true);
@@ -347,5 +347,5 @@ class GameControllerCoverageTest {
         }
 
         assertEquals("DRAW! Score: 0", fixture.scoreLabel.getText());
-        }
+    }
 }

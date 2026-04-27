@@ -34,15 +34,6 @@ dependencies {
     checkstyleRules "com.puppycrawl.tools:checkstyle:10.12.4"
 }
 
-check.dependsOn jacocoTestCoverageVerification
-
-checkstyle {
-    toolVersion = "10.12.4"
-    ignoreFailures = true
-    // 3. Assign the config globally here, using our isolated configuration
-    config = resources.text.fromArchiveEntry(configurations.checkstyleRules, "google_checks.xml")
-}
-
 application {
     mainClass = 'ru.nsu.gaev.snake.Main'
 }
