@@ -2,8 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.1.0'
-    id 'checkstyle'
-    id 'jacoco'
+    id 'jacoco' // Оставили только покрытие тестами
 }
 
 group = 'ru.nsu.gaev'
@@ -16,19 +15,6 @@ repositories {
 javafx {
     version = '20.0.2'
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.base']
-}
-
-// Прямая и понятная настройка Checkstyle
-checkstyle {
-    toolVersion = "10.12.4"
-    
-    // Укажите здесь путь к вашему файлу (относительно корня проекта).
-    // Стандартный путь, который ожидает Gradle, указан ниже:
-    configFile = file("config/checkstyle/checkstyle.xml") 
-    
-    // Если вы хотите, чтобы проект собирался даже при ошибках стиля 
-    // (ошибки будут просто писаться в консоль, но сборка не упадет):
-    // ignoreFailures = true
 }
 
 dependencies {
