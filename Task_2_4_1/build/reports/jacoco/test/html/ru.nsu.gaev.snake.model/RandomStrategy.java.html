@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RandomStrategy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task_2_4_1</a> &gt; <a href="index.source.html" class="el_package">ru.nsu.gaev.snake.model</a> &gt; <span class="el_source">RandomStrategy.java</span></div><h1>RandomStrategy.java</h1><pre class="source lang-java linenums">package ru.nsu.gaev.snake.model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/**
+ * RandomStrategy class.
+ */
+<span class="fc" id="L10">public class RandomStrategy implements RobotStrategy {</span>
+<span class="fc" id="L11">    private static final Random RANDOM = new Random();</span>
+
+    @Override
+    public Direction chooseNextDirection(RobotSnake robot, GameField field) {
+<span class="fc" id="L15">        Direction forward = robot.getCurrentDirection();</span>
+<span class="fc" id="L16">        Direction left = getLeft(forward);</span>
+<span class="fc" id="L17">        Direction right = getRight(forward);</span>
+
+<span class="fc" id="L19">        List&lt;Direction&gt; possible = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (isSafe(robot.getHead(), forward, field)) {</span>
+<span class="fc" id="L21">            possible.add(forward);</span>
+        }
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (isSafe(robot.getHead(), left, field)) {</span>
+<span class="fc" id="L24">            possible.add(left);</span>
+        }
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (isSafe(robot.getHead(), right, field)) {</span>
+<span class="fc" id="L27">            possible.add(right);</span>
+        }
+
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (possible.isEmpty()) {</span>
+<span class="fc" id="L31">            return forward;</span>
+        }
+<span class="fc" id="L33">        return possible.get(RANDOM.nextInt(possible.size()));</span>
+    }
+
+    private Direction getLeft(Direction d) {
+<span class="pc bpc" id="L37" title="3 of 4 branches missed.">        return switch (d) {</span>
+<span class="nc" id="L38">            case UP -&gt; Direction.LEFT;</span>
+<span class="nc" id="L39">            case LEFT -&gt; Direction.DOWN;</span>
+<span class="nc" id="L40">            case DOWN -&gt; Direction.RIGHT;</span>
+<span class="fc" id="L41">            case RIGHT -&gt; Direction.UP;</span>
+        };
+    }
+
+    private Direction getRight(Direction d) {
+<span class="pc bpc" id="L46" title="3 of 4 branches missed.">        return switch (d) {</span>
+<span class="nc" id="L47">            case UP -&gt; Direction.RIGHT;</span>
+<span class="fc" id="L48">            case RIGHT -&gt; Direction.DOWN;</span>
+<span class="nc" id="L49">            case DOWN -&gt; Direction.LEFT;</span>
+<span class="nc" id="L50">            case LEFT -&gt; Direction.UP;</span>
+        };
+    }
+
+    private boolean isSafe(Point head, Direction dir, GameField field) {
+<span class="fc" id="L55">        Point p = new Point(head.x() + dir.getDx(), head.y() + dir.getDy());</span>
+<span class="pc bpc" id="L56" title="4 of 8 branches missed.">        if (p.x() &lt; 0 || p.x() &gt;= field.getWidth() || p.y() &lt; 0 || p.y() &gt;= field.getHeight()) {</span>
+<span class="nc" id="L57">            return false;</span>
+        }
+
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        return field.isPointFree(p)</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">                || field.getFoods().stream().anyMatch(f -&gt; f.position().equals(p));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

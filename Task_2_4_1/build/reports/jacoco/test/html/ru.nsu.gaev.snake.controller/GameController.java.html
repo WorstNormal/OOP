@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task_2_4_1</a> &gt; <a href="index.source.html" class="el_package">ru.nsu.gaev.snake.controller</a> &gt; <span class="el_source">GameController.java</span></div><h1>GameController.java</h1><pre class="source lang-java linenums">package ru.nsu.gaev.snake.controller;
+
+import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import ru.nsu.gaev.snake.model.Direction;
+import ru.nsu.gaev.snake.model.GameField;
+import ru.nsu.gaev.snake.model.GreedyStrategy;
+import ru.nsu.gaev.snake.model.Level;
+import ru.nsu.gaev.snake.model.Point;
+import ru.nsu.gaev.snake.model.RobotSnake;
+import ru.nsu.gaev.snake.model.Snake;
+import ru.nsu.gaev.snake.view.GameRenderer;
+
+/**
+ * GameController class that manages the game logic and UI updates.
+ */
+<span class="fc" id="L23">public class GameController {</span>
+    private static final int CELL_SIZE = 30;
+    @FXML
+    private Canvas gameCanvas;
+    @FXML
+    private Label scoreLabel;
+    @FXML
+    private Label levelLabel;
+    private GameField gameField;
+    private GameRenderer renderer;
+    private AnimationTimer timer;
+<span class="fc" id="L34">    private long lastUpdate = 0;</span>
+
+    /**
+     * Initialize the game controller.
+     */
+    @FXML
+    public void initialize() {
+<span class="fc" id="L41">        int width = (int) (gameCanvas.getWidth() / CELL_SIZE);</span>
+<span class="fc" id="L42">        int height = (int) (gameCanvas.getHeight() / CELL_SIZE);</span>
+
+<span class="fc" id="L44">        Level level1 = new Level(1, Integer.MAX_VALUE, 200_000_000L); // 200ms</span>
+<span class="fc" id="L45">        gameField = new GameField(width, height, 5, level1);</span>
+
+        // Add a simple robot using greedy BFS strategy
+<span class="fc" id="L48">        gameField.addRobot(</span>
+                new RobotSnake(
+                        new Point(width - 5, height - 5),
+                        Direction.LEFT,
+                        new GreedyStrategy()
+                )
+        );
+
+<span class="fc" id="L56">        renderer = new GameRenderer(gameCanvas, CELL_SIZE);</span>
+
+<span class="fc" id="L58">        timer = new AnimationTimer() {</span>
+            @Override
+            public void handle(long now) {
+<span class="fc" id="L61">                if (now - lastUpdate</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">                        &gt;= gameField.getCurrentLevel().tickDurationNs()) {</span>
+<span class="fc" id="L63">                    gameField.update();</span>
+<span class="fc" id="L64">                    updateUI();</span>
+<span class="fc" id="L65">                    lastUpdate = now;</span>
+
+<span class="pc bpc" id="L67" title="2 of 4 branches missed.">                    if (gameField.isGameOver() || gameField.isGameWon()</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">                            || gameField.isGameDraw()) {</span>
+<span class="nc" id="L69">                        this.stop();</span>
+<span class="nc" id="L70">                        showEndGameMessage(</span>
+<span class="nc" id="L71">                                gameField.isGameWon(),</span>
+<span class="nc" id="L72">                                gameField.isGameDraw()</span>
+                        );
+                    }
+                }
+<span class="fc" id="L76">            }</span>
+        };
+
+        // Render initial state
+<span class="fc" id="L80">        updateUI();</span>
+<span class="fc" id="L81">        timer.start();</span>
+<span class="fc" id="L82">    }</span>
+
+    /**
+     * Update the UI elements.
+     */
+    private void updateUI() {
+<span class="fc" id="L88">        renderer.render(gameField);</span>
+<span class="fc" id="L89">        scoreLabel.setText(&quot;Score: &quot; + gameField.getScore());</span>
+<span class="fc" id="L90">        levelLabel.setText(&quot;Level: &quot; + gameField.getCurrentLevel().levelNumber());</span>
+<span class="fc" id="L91">    }</span>
+
+    /**
+     * Show end game message.
+     *
+     * @param won true if player won
+     * @param draw true if game ended in a draw
+     */
+    private void showEndGameMessage(boolean won, boolean draw) {
+<span class="nc" id="L100">        Platform.runLater(() -&gt; {</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (draw) {</span>
+<span class="nc" id="L102">                scoreLabel.setText(&quot;DRAW! Score: &quot; + gameField.getScore());</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            } else if (won) {</span>
+<span class="nc" id="L104">                scoreLabel.setText(&quot;YOU WIN! Score: &quot; + gameField.getScore());</span>
+            } else {
+<span class="nc" id="L106">                scoreLabel.setText(&quot;GAME OVER! Score: &quot; + gameField.getScore());</span>
+            }
+<span class="nc" id="L108">        });</span>
+<span class="nc" id="L109">    }</span>
+
+    /**
+     * Show game rules.
+     */
+    @FXML
+    public void showRules() {
+<span class="nc bnc" id="L116" title="All 4 branches missed.">        boolean wasStarted = gameField != null &amp;&amp; gameField.isStarted();</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        boolean wasGameOver = gameField != null</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">                &amp;&amp; (gameField.isGameOver() || gameField.isGameWon()</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                || gameField.isGameDraw());</span>
+
+<span class="nc bnc" id="L121" title="All 6 branches missed.">        if (wasStarted &amp;&amp; !wasGameOver &amp;&amp; timer != null) {</span>
+<span class="nc" id="L122">            timer.stop();</span>
+        }
+
+<span class="nc" id="L125">        Alert alert = new Alert(Alert.AlertType.INFORMATION);</span>
+<span class="nc" id="L126">        alert.setTitle(&quot;Правила игры&quot;);</span>
+<span class="nc" id="L127">        alert.setHeaderText(&quot;Классическая змейка с ИИ-роботами&quot;);</span>
+<span class="nc" id="L128">        alert.setContentText(</span>
+                &quot;1. Управление: W, A, S, D или стрелки.\n&quot;
+                        + &quot;2. Цель: Собирать красную еду, расти и набирать &quot;
+                        + &quot;очки для победы.\n&quot;
+                        + &quot;3. Проигрыш: Столкновение со стеной, со своим &quot;
+                        + &quot;хвостом, препятствием или синим ИИ-роботом.\n&quot;
+                        + &quot;4. Робот: Синяя змейка (бот) сама ищет кратчайший &quot;
+                        + &quot;путь к еде. Будьте осторожны!&quot;
+        );
+<span class="nc" id="L137">        alert.showAndWait();</span>
+
+<span class="nc bnc" id="L139" title="All 6 branches missed.">        if (wasStarted &amp;&amp; !wasGameOver &amp;&amp; timer != null) {</span>
+<span class="nc" id="L140">            timer.start();</span>
+        }
+
+        // Возвращаем фокус на холст/сцену
+<span class="nc bnc" id="L144" title="All 4 branches missed.">        if (gameCanvas != null &amp;&amp; gameCanvas.getScene() != null) {</span>
+<span class="nc" id="L145">            gameCanvas.getScene().getRoot().requestFocus();</span>
+        }
+<span class="nc" id="L147">    }</span>
+
+    /**
+     * Handle keyboard input.
+     *
+     * @param event the keyboard event
+     */
+    @FXML
+    public void handleKeyPressed(KeyEvent event) {
+<span class="pc bpc" id="L156" title="1 of 4 branches missed.">        if (!gameField.isStarted() &amp;&amp; !gameField.isGameOver()</span>
+<span class="pc bpc" id="L157" title="2 of 4 branches missed.">                &amp;&amp; !gameField.isGameWon() &amp;&amp; !gameField.isGameDraw()) {</span>
+<span class="fc" id="L158">            gameField.setStarted(true);</span>
+        }
+<span class="fc" id="L160">        KeyCode code = event.getCode();</span>
+<span class="fc" id="L161">        Snake player = gameField.getPlayer();</span>
+<span class="pc bpc" id="L162" title="1 of 4 branches missed.">        if (code == KeyCode.W || code == KeyCode.UP) {</span>
+<span class="fc" id="L163">            player.setNextDirection(Direction.UP);</span>
+<span class="pc bpc" id="L164" title="1 of 4 branches missed.">        } else if (code == KeyCode.S || code == KeyCode.DOWN) {</span>
+<span class="fc" id="L165">            player.setNextDirection(Direction.DOWN);</span>
+<span class="pc bpc" id="L166" title="1 of 4 branches missed.">        } else if (code == KeyCode.A || code == KeyCode.LEFT) {</span>
+<span class="fc" id="L167">            player.setNextDirection(Direction.LEFT);</span>
+<span class="fc bfc" id="L168" title="All 4 branches covered.">        } else if (code == KeyCode.D || code == KeyCode.RIGHT) {</span>
+<span class="fc" id="L169">            player.setNextDirection(Direction.RIGHT);</span>
+        }
+<span class="fc" id="L171">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

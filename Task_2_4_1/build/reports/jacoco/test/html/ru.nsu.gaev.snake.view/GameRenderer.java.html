@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameRenderer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task_2_4_1</a> &gt; <a href="index.source.html" class="el_package">ru.nsu.gaev.snake.view</a> &gt; <span class="el_source">GameRenderer.java</span></div><h1>GameRenderer.java</h1><pre class="source lang-java linenums">package ru.nsu.gaev.snake.view;
+
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import ru.nsu.gaev.snake.model.Food;
+import ru.nsu.gaev.snake.model.GameField;
+import ru.nsu.gaev.snake.model.Obstacle;
+import ru.nsu.gaev.snake.model.Point;
+import ru.nsu.gaev.snake.model.RobotSnake;
+import ru.nsu.gaev.snake.model.Snake;
+
+/**
+ * GameRenderer class.
+ */
+public class GameRenderer {
+    private final Canvas canvas;
+    private final GraphicsContext gc;
+    private final int cellSize;
+
+    /**
+     * GameRenderer constructor.
+     *
+     * @param canvas canvas.
+     * @param cellSize cell size.
+     */
+<span class="fc" id="L27">    public GameRenderer(Canvas canvas, int cellSize) {</span>
+<span class="fc" id="L28">        this.canvas = canvas;</span>
+<span class="fc" id="L29">        this.gc = canvas.getGraphicsContext2D();</span>
+<span class="fc" id="L30">        this.cellSize = cellSize;</span>
+<span class="fc" id="L31">    }</span>
+
+    /**
+     * Render method.
+     *
+     * @param field game field.
+     */
+    public void render(GameField field) {
+        // clear
+<span class="fc" id="L40">        gc.setFill(Color.web(&quot;#eef2f3&quot;));</span>
+<span class="fc" id="L41">        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());</span>
+
+        // draw grid
+<span class="fc" id="L44">        gc.setStroke(Color.LIGHTGRAY);</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (int i = 0; i &lt; field.getWidth(); i++) {</span>
+<span class="fc" id="L46">            gc.strokeLine(i * cellSize, 0, i * cellSize, canvas.getHeight());</span>
+        }
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (int i = 0; i &lt; field.getHeight(); i++) {</span>
+<span class="fc" id="L49">            gc.strokeLine(0, i * cellSize, canvas.getWidth(), i * cellSize);</span>
+        }
+
+        // draw foods
+<span class="fc" id="L53">        gc.setFill(Color.RED);</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        for (Food food : field.getFoods()) {</span>
+<span class="fc" id="L55">            Point p = food.position();</span>
+<span class="fc" id="L56">            gc.fillOval(p.x() * cellSize + 2, p.y() * cellSize + 2, cellSize - 4, cellSize - 4);</span>
+<span class="fc" id="L57">        }</span>
+
+        // draw obstacles
+<span class="fc" id="L60">        gc.setFill(Color.DARKGRAY);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        for (Obstacle obs : field.getObstacles()) {</span>
+<span class="fc" id="L62">            Point p = obs.position();</span>
+<span class="fc" id="L63">            gc.fillRect(p.x() * cellSize, p.y() * cellSize, cellSize, cellSize);</span>
+<span class="fc" id="L64">        }</span>
+
+        // draw player
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if (field.getPlayer().isAlive()) {</span>
+<span class="fc" id="L68">            drawSnake(field.getPlayer(), Color.DARKGREEN, Color.LIMEGREEN);</span>
+        } else {
+<span class="fc" id="L70">            drawSnake(field.getPlayer(), Color.DARKGRAY, Color.GRAY);</span>
+        }
+
+        // draw robots
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        for (RobotSnake robot : field.getRobots()) {</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">            if (robot.isAlive()) {</span>
+<span class="fc" id="L76">                drawSnake(robot, Color.DARKBLUE, Color.BLUE);</span>
+            } else {
+<span class="fc" id="L78">                drawSnake(robot, Color.DARKGRAY, Color.GRAY);</span>
+            }
+<span class="fc" id="L80">        }</span>
+
+<span class="pc bpc" id="L82" title="2 of 6 branches missed.">        if (!field.isStarted() &amp;&amp; !field.isGameOver() &amp;&amp; !field.isGameWon()) {</span>
+<span class="fc" id="L83">            gc.setFill(Color.BLACK);</span>
+<span class="fc" id="L84">            gc.setFont(new javafx.scene.text.Font(&quot;Arial&quot;, 24));</span>
+<span class="fc" id="L85">            gc.fillText(&quot;Press any arrow key to start&quot;,</span>
+<span class="fc" id="L86">                    canvas.getWidth() / 2 - 140, canvas.getHeight() / 2);</span>
+        }
+<span class="fc" id="L88">    }</span>
+
+    private void drawSnake(Snake snake, Color headColor, Color bodyColor) {
+<span class="fc" id="L91">        boolean isHead = true;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        for (Point p : snake.getBody()) {</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">            gc.setFill(isHead ? headColor : bodyColor);</span>
+<span class="fc" id="L94">            gc.fillRect(p.x() * cellSize + 1, p.y() * cellSize + 1, cellSize - 2, cellSize - 2);</span>
+<span class="fc" id="L95">            isHead = false;</span>
+<span class="fc" id="L96">        }</span>
+<span class="fc" id="L97">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
